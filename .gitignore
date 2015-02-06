@@ -1,0 +1,23 @@
+/.bundle
+db/*.sqlite3
+.sass-cache/
+/spring
+
+tmp/*
+!tmp
+log/*.log
+!log
+.sass-cache/
+
+# Ignore all .yml and .txt files in config, because they should obviously are env specific.
+config/*.yml
+config/*.txt
+
+public/assets/
+public/uploads
+public/uploads_test
+public/maintenance.html
+public/robots.txt
+
+.DS_Store
+!.gitkeep
