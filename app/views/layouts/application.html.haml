@@ -1,0 +1,17 @@
+!!!
+%html{lang: "en"}
+  %head
+
+    - if request.path == '/'
+      = display_meta_tags(title: "Mycelium Gear Admin: payment processor admin panel", description: @page_description, keywords: @page_keywords)
+    - else
+      = display_meta_tags(site: 'Mycelium Gear Admin', title: @page_title, reverse: true, description: @page_description, keywords: @page_keywords)
+
+    = favicon_link_tag
+    = yield :meta_tags
+    = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_include_tag 'jquery', 'application'
+    = csrf_meta_tags
+
+  %body= yield
