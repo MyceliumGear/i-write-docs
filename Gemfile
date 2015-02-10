@@ -28,12 +28,12 @@ group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
-end
-
-group :test do
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
+end
+
+group :test do
   gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass' 
   gem 'turn', require: false # Pretty printed test output
 end
