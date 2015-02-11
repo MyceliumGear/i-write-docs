@@ -11,7 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210214156) do
+ActiveRecord::Schema.define(version: 20150211191801) do
+
+  create_table "gateways", force: :cascade do |t|
+    t.integer  "confirmations_required",      default: 0,     null: false
+    t.string   "pubkey",                                      null: false
+    t.string   "name",                                        null: false
+    t.string   "default_currency",            default: "BTC", null: false
+    t.string   "callback_url"
+    t.boolean  "check_signature",             default: true,  null: false
+    t.string   "exchange_rate_adapter_names"
+    t.integer  "user_id"
+    t.text     "description"
+    t.string   "merchant_url"
+    t.string   "merchant_name"
+    t.string   "country"
+    t.string   "region"
+    t.string   "city"
+    t.text     "db_config"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  add_index "gateways", ["user_id"], name: "index_gateways_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"

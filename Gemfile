@@ -12,6 +12,7 @@ gem 'jquery-rails'
 gem 'string_master'
 gem 'will_paginate'
 gem 'frontend_notifier'
+gem 'nilify_blanks'
 
 group :development do
   gem 'capistrano-rails'
