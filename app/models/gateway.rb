@@ -52,7 +52,8 @@ class Gateway < ActiveRecord::Base
         secret:      'xxx',
         name:        name,
         check_signature:             check_signature,
-        exchange_rate_adapter_names: exchange_rate_adapter_names 
+        exchange_rate_adapter_names: exchange_rate_adapter_names,
+        active: active
       )
       update_attributes(straight_gateway_id: self.id)
     end
@@ -64,7 +65,8 @@ class Gateway < ActiveRecord::Base
         secret: 'xxx',
         name:   name,
         check_signature: check_signature,
-        exchange_rate_adapter_names: exchange_rate_adapter_names 
+        exchange_rate_adapter_names: exchange_rate_adapter_names,
+        active: active
       )
     end
 

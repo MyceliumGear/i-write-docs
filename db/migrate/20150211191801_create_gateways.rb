@@ -7,6 +7,7 @@ class CreateGateways < ActiveRecord::Migration
       t.string  :default_currency, null: false, default: 'BTC'
       t.string  :callback_url
       t.boolean :check_signature, null: false, default: true
+      t.boolean :active, null: false, default: true
       t.string  :exchange_rate_adapter_names
 
       t.belongs_to :user

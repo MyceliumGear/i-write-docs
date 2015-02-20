@@ -31,14 +31,15 @@ RSpec.describe Gateway, type: :model do
         expect(@straight_gateway.name).to                   eq(@gateway.name)
         expect(@straight_gateway.check_signature).to        eq(@gateway.check_signature)
         expect(@straight_gateway.exchange_rate_adapter_names).to eq(@gateway.exchange_rate_adapter_names)
+        expect(@straight_gateway.active).to eq(@gateway.active)
       end
 
       it "updates a gateway with the changed fields from the model" do
-        @gateway.update_attributes(name: "New Gateway Name")
+        @gateway.update_attributes(name: "New Gateway Name", active: false)
         expect(@straight_gateway.reload.name).to eq("New Gateway Name")
+        expect(@straight_gateway.active).to   be_falsy
       end
 
-      it "turns a gateway on/off"
       it "shows gateway stats about orders"
       it "finds all orders for the gateway"
 
