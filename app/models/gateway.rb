@@ -50,20 +50,17 @@ class Gateway < ActiveRecord::Base
 
     def create_straight_gateway
       @straight_gateway = StraightServer::Gateway.create(
-        confirmations_required: confirmations_required,
-        pubkey:      pubkey,
-        order_class: 'StraightServer::Order',
-        secret:      'xxx',
-        name:        name,
-        check_signature:             check_signature,
-        exchange_rate_adapter_names: exchange_rate_adapter_names,
-        active: active
+        straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
       )
       update_attributes(straight_gateway_id: self.id)
     end
 
     def update_straight_gateway
-      straight_gateway.update(
+      straight_gateway.update(straight_server_gateway_fields)
+    end
+
+    def straight_server_gateway_fields
+      {
         confirmations_required: confirmations_required,
         pubkey: pubkey,
         secret: 'xxx',
@@ -71,7 +68,7 @@ class Gateway < ActiveRecord::Base
         check_signature: check_signature,
         exchange_rate_adapter_names: exchange_rate_adapter_names,
         active: active
-      )
+      }
     end
 
   
