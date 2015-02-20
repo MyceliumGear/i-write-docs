@@ -20,7 +20,7 @@ RSpec.describe Gateway, type: :model do
     describe "straight-server integration" do
 
       before(:each) do
-        @gateway          = create(:gateway)
+        @gateway.save
         @straight_gateway = StraightServer::Gateway[@gateway.straight_gateway_id]
       end
 
@@ -42,6 +42,22 @@ RSpec.describe Gateway, type: :model do
 
       it "shows gateway stats about orders" do
         expect(@gateway.order_counters).to eq({new: 0, unconfirmed: 0, paid: 0, underpaid: 0, overpaid: 0, expired: 0 })
+      end
+
+
+      describe "finding orders" do
+
+        before(:each) do
+          @orders = create_list(:order, 3, gateway_id: @gateway.straight_gateway_id)
+        end
+
+        it "finds all orders for the gateway" do
+          expect(@gateway.orders.to_a.size).to eq(3)
+          expect(@gateway.orders.to_a).to      include(*@orders)
+        end
+
+        it "allows to paginate orders"
+
       end
 
     end

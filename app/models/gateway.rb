@@ -2,7 +2,8 @@ class Gateway < ActiveRecord::Base
 
   nilify_blanks
 
-  attr_reader :straight_gateway
+  attr_reader   :straight_gateway
+  attr_accessor :secret
 
   belongs_to :user
   serialize :db_config, Hash
@@ -30,6 +31,11 @@ class Gateway < ActiveRecord::Base
     @order_counters ||= straight_gateway.order_counters
   end
 
+  def orders(reload: false, conditions: {})
+    @orders = nil if reload
+    @orders ||= StraightServer::Order.where({gateway_id: id}.merge(conditions))
+  end
+
   private
 
     def validate_exchange_rate_adapter_names
@@ -52,7 +58,7 @@ class Gateway < ActiveRecord::Base
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
       )
-      update_attributes(straight_gateway_id: self.id)
+      update_column(:straight_gateway_id, self.id)
     end
 
     def update_straight_gateway
@@ -63,7 +69,7 @@ class Gateway < ActiveRecord::Base
       {
         confirmations_required: confirmations_required,
         pubkey: pubkey,
-        secret: 'xxx',
+        secret: secret,
         name:   name,
         check_signature: check_signature,
         exchange_rate_adapter_names: exchange_rate_adapter_names,
