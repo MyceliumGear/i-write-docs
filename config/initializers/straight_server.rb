@@ -18,6 +18,7 @@ StraightServer::Initializer::ConfigDir.set!("#{Rails.root}/config/straight/#{Rai
 STRAIGHT_SERVER_INITIALIZER = StraightServerInitializer.new
 STRAIGHT_SERVER_INITIALIZER.read_config_file
 STRAIGHT_SERVER_INITIALIZER.connect_to_db
+STRAIGHT_SERVER_INITIALIZER.setup_redis_connection
 
 if Rails.env.test?
   STRAIGHT_SERVER_INITIALIZER.run_migrations

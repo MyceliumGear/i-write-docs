@@ -59,9 +59,13 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    DatabaseCleaner.start
+    # Clear Gateway's order counters in Redis
+    Redis.current.keys("#{StraightServer::Config.redis[:prefix]}*").each do |k|
+      Redis.current.del k
+    end
     StraightServer.db_connection[:orders].delete
     StraightServer.db_connection[:gateways].delete
+    DatabaseCleaner.start
   end
 
   config.after(:each) do

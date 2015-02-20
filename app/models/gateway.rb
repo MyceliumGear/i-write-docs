@@ -26,6 +26,10 @@ class Gateway < ActiveRecord::Base
     @straight_gateway ||= StraightServer::Gateway[straight_gateway_id]
   end
 
+  def order_counters
+    @order_counters ||= straight_gateway.order_counters
+  end
+
   private
 
     def validate_exchange_rate_adapter_names
