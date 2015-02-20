@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150211191801) do
     t.boolean  "check_signature",             default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
+    t.integer  "straight_gateway_id"
     t.text     "description"
     t.string   "merchant_url"
     t.string   "merchant_name"

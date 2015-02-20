@@ -60,6 +60,8 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
+    StraightServer.db_connection[:orders].delete
+    StraightServer.db_connection[:gateways].delete
   end
 
   config.after(:each) do

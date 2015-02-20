@@ -2,6 +2,8 @@ class Gateway < ActiveRecord::Base
 
   nilify_blanks
 
+  attr_reader :straight_gateway
+
   belongs_to :user
   serialize :db_config, Hash
   serialize :exchange_rate_adapter_names
@@ -11,14 +13,17 @@ class Gateway < ActiveRecord::Base
             presence: true
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0 }
+  validates :name, uniqueness: true
 
   before_validation :split_exchange_rate_adapter_names!
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
 
+  after_create :create_straight_gateway
+
   private
 
     def validate_exchange_rate_adapter_names
-      self.exchange_rate_adapter_names = self.exchange_rate_adapter_names.map do |a|
+      self.exchange_rate_adapter_names.each do |a|
         begin
           Kernel.const_get("Straight::ExchangeRate::#{a}Adapter")
         rescue
@@ -31,6 +36,19 @@ class Gateway < ActiveRecord::Base
       if self.exchange_rate_adapter_names.kind_of?(String)
         self.exchange_rate_adapter_names = self.exchange_rate_adapter_names.split(/,\s*/)
       end
+    end
+
+    def create_straight_gateway
+      @straight_gateway = StraightServer::Gateway.create(
+        confirmations_required: confirmations_required,
+        pubkey:      pubkey,
+        order_class: 'StraightServer::Order',
+        secret:      'xxx',
+        name:        name,
+        check_signature: check_signature,
+        exchange_rate_adapter_names: exchange_rate_adapter_names 
+      )
+      update_attributes(straight_gateway_id: self.id)
     end
   
 end

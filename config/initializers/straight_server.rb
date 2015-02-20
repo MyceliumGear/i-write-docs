@@ -14,10 +14,15 @@ require 'straight-server/initializer'
 class StraightServerInitializer
   include StraightServer::Initializer
 end
-StraightServer::Initializer::ConfigDir.set!("#{Rails.root}/config/straight")
+StraightServer::Initializer::ConfigDir.set!("#{Rails.root}/config/straight/#{Rails.env}")
 STRAIGHT_SERVER_INITIALIZER = StraightServerInitializer.new
 STRAIGHT_SERVER_INITIALIZER.read_config_file
 STRAIGHT_SERVER_INITIALIZER.connect_to_db
+
+if Rails.env.test?
+  STRAIGHT_SERVER_INITIALIZER.run_migrations
+  StraightServer::Config.gateways_source = "db"
+end
 
 require 'straight-server/order'
 require 'straight-server/gateway'

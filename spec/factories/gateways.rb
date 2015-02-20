@@ -7,7 +7,7 @@ FactoryGirl.define do
     pubkey                      'xpub-xxx'
     default_currency            'BTC'
     callback_url                'http://0.0.0.0/my_store_callback'
-    #exchange_rate_adapter_names 'Bitpay, Coinbase, Bitstamp'
+    exchange_rate_adapter_names 'Bitpay, Coinbase, Bitstamp'
 
     description   "Yet another gateway"
     merchant_url  "mystore.com"

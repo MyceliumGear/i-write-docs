@@ -8,7 +8,9 @@ class CreateGateways < ActiveRecord::Migration
       t.string  :callback_url
       t.boolean :check_signature, null: false, default: true
       t.string  :exchange_rate_adapter_names
+
       t.belongs_to :user
+      t.integer    :straight_gateway_id
 
       t.text   :description
       t.string :merchant_url
