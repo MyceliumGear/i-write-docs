@@ -52,11 +52,16 @@ RSpec.describe Gateway, type: :model do
         end
 
         it "finds all orders for the gateway" do
-          expect(@gateway.orders.to_a.size).to eq(3)
-          expect(@gateway.orders.to_a).to      include(*@orders)
+          found_orders = @gateway.orders 
+          expect(found_orders.size).to eq(3)
+          expect(found_orders).to      include(*@orders)
         end
 
-        it "allows to paginate orders"
+        it "allows to paginate orders" do
+          found_orders = @gateway.orders(paginate: { per_page: 2, page: 1})
+          expect(found_orders.size).to eq(2)
+          expect(found_orders).to      include(@orders[0], @orders[1])
+        end
 
       end
 

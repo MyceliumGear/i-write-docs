@@ -31,9 +31,10 @@ class Gateway < ActiveRecord::Base
     @order_counters ||= straight_gateway.order_counters
   end
 
-  def orders(reload: false, conditions: {})
-    @orders = nil if reload
-    @orders ||= StraightServer::Order.where({gateway_id: id}.merge(conditions))
+  def orders(reload: false, conditions: {}, paginate: {})
+    @orders = StraightServer::Order.where({gateway_id: id}.merge(conditions))
+    @orders = @orders.extension(:pagination).paginate(paginate[:page], paginate[:per_page]) if paginate.present?
+    @orders = @orders.to_a
   end
 
   private
