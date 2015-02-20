@@ -19,6 +19,12 @@ class Gateway < ActiveRecord::Base
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
 
   after_create :create_straight_gateway
+  after_update :update_straight_gateway
+
+  def straight_gateway(reload: false)
+    @straight_gateway = nil if reload
+    @straight_gateway ||= StraightServer::Gateway[straight_gateway_id]
+  end
 
   private
 
@@ -45,10 +51,22 @@ class Gateway < ActiveRecord::Base
         order_class: 'StraightServer::Order',
         secret:      'xxx',
         name:        name,
-        check_signature: check_signature,
+        check_signature:             check_signature,
         exchange_rate_adapter_names: exchange_rate_adapter_names 
       )
       update_attributes(straight_gateway_id: self.id)
     end
+
+    def update_straight_gateway
+      straight_gateway.update(
+        confirmations_required: confirmations_required,
+        pubkey: pubkey,
+        secret: 'xxx',
+        name:   name,
+        check_signature: check_signature,
+        exchange_rate_adapter_names: exchange_rate_adapter_names 
+      )
+    end
+
   
 end
