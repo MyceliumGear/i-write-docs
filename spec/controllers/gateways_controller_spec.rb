@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe GatewaysController, type: :controller do
 
+  it_should_require_signed_in_user [:index, :new, :show, :edit, :update, :destroy], :gateway
+  it_should_render_404_if_the_resource_was_not_found [:show, :edit, :update, :destroy]
+  it_only_allows_resource_author_or_admin            [:show, :edit, :update, :destroy], :gateway
+
   before(:each) do
     allow(StraightServer::Gateway).to receive_message_chain('create.id').and_return(*((1..100).to_a))
     allow_any_instance_of(Gateway).to receive_message_chain('straight_gateway.update')

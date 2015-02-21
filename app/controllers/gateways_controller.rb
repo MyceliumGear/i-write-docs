@@ -1,7 +1,8 @@
 class GatewaysController < ApplicationController
 
   before_filter :authenticate_user!
-  before_filter :find_gateway, only: [:show, :edit, :update, :destroy]
+  before_filter :find_gateway,                      only: [:show, :edit, :update, :destroy]
+  before_filter :only_allow_gateway_owner_or_admin, only: [:show, :edit, :update, :destroy]
 
   def index
     @gateways = Gateway.where(deleted: false).order('created_at DESC')
@@ -48,6 +49,10 @@ class GatewaysController < ApplicationController
 
     def find_gateway
       @gateway = Gateway.find(params[:id])
+    end
+
+    def only_allow_gateway_owner_or_admin
+      render_403 unless current_user.admin? || @gateway.user == current_user
     end
 
     def gateway_params
