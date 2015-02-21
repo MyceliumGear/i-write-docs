@@ -14,6 +14,12 @@ class GatewaysController < ApplicationController
   end
 
   def create
+    @gateway = Gateway.new(gateway_params.merge({user: current_user}))
+    if @gateway.save
+      redirect_to gateways_path
+    else
+      render 'new'
+    end
   end
   
   def show
@@ -27,5 +33,28 @@ class GatewaysController < ApplicationController
 
   def destroy
   end
+
+
+  private
+
+    def gateway_params
+      params.require(:gateway).permit(
+        :confirmations_required,
+        :pubkey,
+        :name,
+        :default_currency,
+        :callback_url,
+        :check_signature,
+        :active,
+        :exchange_rate_adapter_names,
+        :description,
+        :merchant_url,
+        :merchant_name,
+        :country,
+        :region,
+        :city,
+        :db_config
+      )
+    end
 
 end

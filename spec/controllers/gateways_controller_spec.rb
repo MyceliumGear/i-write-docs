@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe GatewaysController, type: :controller do
 
+  before(:each) do
+    login_user
+  end
+
   describe "index action" do
 
     before(:each) do
@@ -24,6 +28,21 @@ RSpec.describe GatewaysController, type: :controller do
       get :index
       expect(response).to render_template('index')
       expect(assigns(:gateways).size).to eq(10) 
+    end
+
+  end
+
+  describe "create action" do
+
+    it "redirects to the gateway's index page if validations pass" do
+      allow(StraightServer::Gateway).to receive_message_chain('create.id').and_return(1)
+      post :create, gateway: attributes_for(:gateway)
+      expect(response).to redirect_to(gateways_path)
+    end
+
+    it "renders the form again if validations fail" do
+      post :create, gateway: attributes_for(:gateway).merge({name: nil})
+      expect(response).to render_template('new')
     end
 
   end

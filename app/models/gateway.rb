@@ -74,6 +74,7 @@ class Gateway < ActiveRecord::Base
         name:   name,
         check_signature: check_signature,
         exchange_rate_adapter_names: exchange_rate_adapter_names,
+        default_currency: default_currency,
         active: active
       }
     end
