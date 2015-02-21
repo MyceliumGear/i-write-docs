@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   enum role: { merchant: 0, admin: 1 }
 
+  def admin?
+    role == 'admin'
+  end
+
 end
