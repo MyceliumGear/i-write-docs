@@ -14,10 +14,11 @@ RSpec.describe GatewaysController, type: :controller do
       @merchant = create(:user)
       @admin    = create(:admin)
       @merchant_gateways = create_list(:gateway, 5, user: @merchant)
+      create(:gateway, deleted: true, user: @merchant)
       @other_gateways    = create_list(:gateway, 7)
     end
 
-    it "shows all gateways belonging to the current user, paginated" do
+    it "shows all gateways belonging to the current user, paginated (excluding deleted ones)" do
       login_user(@merchant)
       get :index
       expect(response).to render_template('index')
@@ -61,6 +62,16 @@ RSpec.describe GatewaysController, type: :controller do
     it "renders the form again if validations fail" do
       patch :update, id: @gateway.id, gateway: { name: nil }
       expect(response).to render_template('edit')
+    end
+
+  end
+
+  describe "destroy action" do
+    
+    it "marks gateway as deleted" do
+      gateway = create(:gateway, user: @current_user)
+      delete :destroy, id: gateway.id
+      expect(response).to redirect_to(gateways_path) 
     end
 
   end

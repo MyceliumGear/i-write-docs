@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20150211191801) do
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
     t.integer  "straight_gateway_id"
+    t.boolean  "deleted",                     default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
     t.string   "merchant_name"

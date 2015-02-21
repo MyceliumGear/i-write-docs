@@ -4,7 +4,7 @@ class GatewaysController < ApplicationController
   before_filter :find_gateway, only: [:show, :edit, :update, :destroy]
 
   def index
-    @gateways = Gateway.order('created_at DESC')
+    @gateways = Gateway.where(deleted: false).order('created_at DESC')
     unless current_user.admin?
       @gateways = @gateways.where(user_id: current_user.id)
     end
@@ -30,7 +30,7 @@ class GatewaysController < ApplicationController
   end
 
   def update
-    @gateway.update_attributes(gateway_params)
+    @gateway.update(gateway_params)
     if @gateway.errors.empty?
       redirect_to gateways_path
     else
@@ -39,6 +39,8 @@ class GatewaysController < ApplicationController
   end
 
   def destroy
+    @gateway.update(deleted: true)
+    redirect_to gateways_path
   end
 
 

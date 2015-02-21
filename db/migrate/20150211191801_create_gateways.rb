@@ -12,6 +12,7 @@ class CreateGateways < ActiveRecord::Migration
 
       t.belongs_to :user
       t.integer    :straight_gateway_id
+      t.boolean    :deleted, default: false, null: false
 
       t.text   :description
       t.string :merchant_url
