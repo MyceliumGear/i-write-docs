@@ -1,6 +1,7 @@
 class GatewaysController < ApplicationController
 
   before_filter :authenticate_user!
+  before_filter :find_gateway, only: [:show, :edit, :update, :destroy]
 
   def index
     @gateways = Gateway.order('created_at DESC')
@@ -29,6 +30,12 @@ class GatewaysController < ApplicationController
   end
 
   def update
+    @gateway.update_attributes(gateway_params)
+    if @gateway.errors.empty?
+      redirect_to gateways_path
+    else
+      render 'edit'
+    end
   end
 
   def destroy
@@ -36,6 +43,10 @@ class GatewaysController < ApplicationController
 
 
   private
+
+    def find_gateway
+      @gateway = Gateway.find(params[:id])
+    end
 
     def gateway_params
       params.require(:gateway).permit(
