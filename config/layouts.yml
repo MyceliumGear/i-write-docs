@@ -1,0 +1,3 @@
+unauthenticated: # layout name
+  pages:         # controller name
+    - frontpage  # action name
