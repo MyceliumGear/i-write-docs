@@ -1,0 +1,22 @@
+@import 'colors';
+@import 'mixins';
+@import 'components/buttons';
+@import 'components/forms';
+
+header, .pageContainer {
+  @include width-700px-centered;
+}
+
+header {
+  .logo { text-align: center; }
+}
+
+.page.frontpage {
+
+  form {
+    input[type=text], input[type=password], input.string, button, .button, input[type=submit] { border-radius: 10px; font-size: 150%; }
+    button, .button, input[type=submit] { font-size: 100%;  }
+    .form-actions { text-align: center; }
+  }
+
+}

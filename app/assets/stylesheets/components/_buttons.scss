@@ -1,0 +1,63 @@
+@import 'gradients';
+
+// reset button's styles
+button {
+  background: none repeat scroll 0 0 transparent;
+  border: medium none;
+  border-spacing: 0;
+  color: #26589F;
+  font-size: 16px;
+  font-weight: normal;
+  list-style: none outside none;
+  margin: 0;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+}
+
+button, .button, input[type=submit] {
+
+  padding: 0.7em 2em;
+  &.big { padding: 0.7em 1em; font-size: 130%; }
+
+  font-size: 100%; font-weight: bold; text-decoration: none; cursor: pointer;
+
+  margin: 0.5em 0 0.5em 0.5em; text-align: center; color: #fff !important; display: inline-block; position: relative;
+  font-weight: bold; text-shadow: 2px 2px 0px rgba(150, 150, 150, 1); 
+  border: solid 1px #525252; border-radius: 5px; text-shadow: #555 1px -1px;
+  outline: none;
+
+  @include disable-text-selection;
+  @include gradient-gray;
+
+  &:hover { @include box-shadow(#7D7D7D, 0px, 0px, 5px, 0px); }
+
+  &.pressed  {
+    //@include box-shadow(transparent, 0px, 0px, 5px, 0px);
+    padding: 0.75em 2em 0.65em 2em;
+    &.big { padding: 0.75em 1em 0.65em 1em; }
+  }
+  &.disabled { color: #AAB8CA; color: rgba(255, 255, 255, 0.5); opacity: 0.7; cursor: default; }
+  &.disabled:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
+
+  &.locked { color: rgba(255, 255, 255, 0.9) !important; text-shadow: #777 1px -1px; opacity: 0.7;  }  
+  &.locked:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
+
+
+  // Blue button
+  &.blue {
+
+  }
+
+  // Green button
+  &.green {
+
+  }
+
+  // Red button
+  &.red {
+    &.pressed { }
+    &.locked  { color: rgba(255, 255, 255, 0.8) !important; }  
+  }
+
+}

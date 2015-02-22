@@ -1,0 +1,58 @@
+@mixin standart-user-text {
+  code { display: block; clear: both; background-color: #eee; font-family: "Dejavu Mono", "Monaco", "Courier New", monospace; margin: 0.5em; padding: 0.5em; font-size: 85%; }
+  span.inlineCode { background-color: #eee; font-family: "Dejavu Mono", "Monaco", "Courier New", monospace; padding: 0.1em 0.3em; }
+}
+
+@mixin box-shadow($color, $a, $b, $c, $d) {
+  -webkit-box-shadow: $a $b $c $d $color;
+  -moz-box-shadow: $a $b $c $d  $color;
+  box-shadow: $a $b $c $d  $color;
+}
+
+@mixin inset-box-shadow($color, $a, $b, $c, $d) {
+  -webkit-box-shadow: inset $a $b $c $d $color;
+  -moz-box-shadow: inset $a $b $c $d  $color;
+  box-shadow: inset $a $b $c $d  $color;
+}
+
+@mixin disable-text-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin text-field-with-errors {
+  background-color: $colors_pink; border: solid 1px $colors_red;
+  @include inset-box-shadow(#F29C9C, 2px, 2px, 2px, 0px);
+}
+
+@mixin always-fresh {
+  a:visited { color: $colors_link; }
+}
+
+@mixin width-700px-centered {
+  max-width: 700px; margin: 0 auto;
+}
+
+@mixin width-700px-left {
+  max-width: 700px;
+}
+
+@mixin clearfix {
+
+  &:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0;
+  }
+   
+  display: inline-block;
+
+}
+.clearfix { @include clearfix; }

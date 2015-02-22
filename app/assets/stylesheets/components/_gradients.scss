@@ -1,0 +1,10 @@
+@mixin gradient-gray {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #74828c), color-stop(1, #53717a));
+	background:-moz-linear-gradient(top, #74828c 5%, #53717a 100%);
+	background:-webkit-linear-gradient(top, #74828c 5%, #53717a 100%);
+	background:-o-linear-gradient(top, #74828c 5%, #53717a 100%);
+	background:-ms-linear-gradient(top, #74828c 5%, #53717a 100%);
+	background:linear-gradient(to bottom, #74828c 5%, #53717a 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#74828c', endColorstr='#53717a',GradientType=0);
+	background-color:#74828c;
+}

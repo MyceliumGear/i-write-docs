@@ -3,6 +3,12 @@
 - else
   = display_meta_tags(site: 'Mycelium Gear Admin', title: @page_title, reverse: true, description: @page_description, keywords: @page_keywords)
 
+/[if lte IE 8]
+  = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
+  = stylesheet_link_tag "http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-old-ie-min.css"
+
+= stylesheet_link_tag "http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-min.css"
+
 = favicon_link_tag
 = yield :meta_tags
 = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"
