@@ -17,11 +17,8 @@ class ApplicationController < ActionController::Base
       @@layouts.each do |name, controllers|
         controllers.each do |_controller, actions|
 
-          p params[:controller]
-          p _controller
           if params[:controller] == _controller
             actions.each do |_action|
-              puts "Action: #{_action} - #{params[:action]}"
               if params[:action] == _action
                 self.class.layout name.to_s
                 return

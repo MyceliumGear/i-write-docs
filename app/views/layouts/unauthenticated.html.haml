@@ -4,9 +4,10 @@
   %head
     = render partial: 'layouts/shared_head'
     = stylesheet_link_tag 'shared', 'unauthenticated', media: 'all'
-    = javascript_include_tag 'jquery', 'shared'
 
   %body
+
+    = image_tag "ajax-loader.gif", class: 'ajaxLoader'
 
     %header
       .logo= image_tag "mycelium_gear_admin_logo.png"

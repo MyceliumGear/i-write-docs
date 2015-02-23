@@ -8,3 +8,5 @@ html, button, input, select, textarea,
   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 }
 body { background-color: #D5DEE8; color: $colors_text; margin: 0 0 0 0; line-height: 150%; }
+
+.ajaxLoader { display: none; position: absolute; z-index: 10; }
