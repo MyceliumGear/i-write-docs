@@ -24,11 +24,6 @@
   user-select: none;
 }
 
-@mixin text-field-with-errors {
-  background-color: $colors_pink; border: solid 1px $colors_red;
-  @include inset-box-shadow(#F29C9C, 2px, 2px, 2px, 0px);
-}
-
 @mixin always-fresh {
   a:visited { color: $colors_link; }
 }

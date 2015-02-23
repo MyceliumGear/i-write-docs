@@ -1,3 +1,10 @@
+@mixin text-field-with-errors {
+  background-color: $colors_pink;
+  border: solid 1px $colors_red;
+  @include inset-box-shadow(#ED8787, 2px, 2px, 2px, 0px);
+  &:focus { @include inset-box-shadow(#ED8787, 2px, 2px, 2px, 0px); border: solid 1px $colors_red; }
+}
+
 form {
 
   abbr[title=required] { display: none; }
@@ -23,7 +30,7 @@ form {
   .string.field_with_errors input,
   .integer.field_with_errors input,
   .float.field_with_errors input,
-  .field_with_errors textarea { @include text-field-with-errors }
+  .field_with_errors { textarea, input[type=text], input[type=password] { @include text-field-with-errors }}
 
   input[type=text], input[type=password], input.string, textarea, .tagsinput {
 
@@ -43,4 +50,9 @@ form {
 
   textarea { min-height: 100px; }
 
+}
+
+ul.deviseMenu {
+  text-align: center; font-size: 85%;
+  li { display: inline; margin: 0 0.5em; }
 }
