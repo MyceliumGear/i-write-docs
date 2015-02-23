@@ -1,4 +1,7 @@
 @import 'colors';
+@import 'mixins';
+@import 'components/buttons';
+@import 'components/forms';
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
