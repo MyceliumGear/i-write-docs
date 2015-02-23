@@ -1,6 +1,6 @@
 unauthenticated: # layout name
   pages:         # controller name
     - frontpage  # action name
-  'devise/registrations':
+  'devise_registrations':
     - new
     - create
