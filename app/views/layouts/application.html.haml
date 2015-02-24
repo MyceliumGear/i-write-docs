@@ -5,7 +5,7 @@
     = render partial: 'layouts/shared_head'
     = stylesheet_link_tag 'shared', 'application', media: 'all'
 
-  %body
+  %body.authenticated
     = render partial: "shared/frontend_notifier"
     = image_tag "ajax-loader.gif", class: 'ajaxLoader'
 

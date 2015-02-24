@@ -20,7 +20,9 @@ class GatewaysController < ApplicationController
     @gateway = Gateway.new(gateway_params.merge({user: current_user}))
     if @gateway.save
       redirect_to gateways_path
+      flash[:success] = "Gateway created successfully!"
     else
+      flash[:success] = "We've found errors in your form, please correct them and try again."
       render 'new'
     end
   end

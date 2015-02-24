@@ -1,1 +1,12 @@
 @import "frontend_notifier.css.scss";
+
+.authenticated {
+  #frontend_notification {
+    margin-left: 300px;
+    .message { text-align: left; padding-left: 2em; }
+    .info {
+      position: relative; left: -300px;
+      span.closingCounter { position: relative; top: -4px; }
+    }
+  }
+}
