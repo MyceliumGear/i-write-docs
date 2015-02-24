@@ -1,6 +1,10 @@
+@import 'colors';
+
 @import 'components/left_sidebar';
 @import 'components/page_content';
 @import 'pages/gateways';
 
 html, body, .leftSidebar, .pageContent, .pageContainer, .pure-g { height: 100%; }
 body { min-width: 800px; }
+
+.list .noRecords { text-align: center; color: $colors_gray; font-size: 90%; }

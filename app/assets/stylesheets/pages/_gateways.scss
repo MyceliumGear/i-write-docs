@@ -1,7 +1,10 @@
 .page.gateways {
 
-  &.list {
-    .actions { text-align: left; }
+  &.index {
+    .actions { text-align: right; }
+    .list {
+      margin: 2em 0;
+    }
   }
 
 }

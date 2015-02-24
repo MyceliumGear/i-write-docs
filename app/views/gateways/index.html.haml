@@ -1,4 +1,13 @@
-.page.gateways.list
+.page.gateways.index
 
   .actions
     = link_to "create gateway", new_gateway_path, class: "button small"
+
+  .list
+    - if @gateways.present?
+      = @gateways.each do |g|
+        = g.name
+    - else
+      .noRecords
+        %h2 You have not created any gateways yet
+        %p A gateway is a logical unit that serves one online store or website. For each store that you own, you need to create one gateway. You can then track all the orders associated with that gateway, along with their statuses and how much money was received.
