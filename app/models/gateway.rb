@@ -13,7 +13,7 @@ class Gateway < ActiveRecord::Base
             :default_currency, :check_signature, :user,
             presence: true
 
-  validates :confirmations_required, numericality: { greater_than_or_equal_to: 0 }
+  validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
   validates :name, uniqueness: true
 
   before_validation :split_exchange_rate_adapter_names!

@@ -65,7 +65,6 @@ class GatewaysController < ApplicationController
         :name,
         :default_currency,
         :callback_url,
-        :check_signature,
         :active,
         :exchange_rate_adapter_names,
         :description,
