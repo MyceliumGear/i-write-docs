@@ -4,3 +4,13 @@ unauthenticated: # layout name
   'devise_registrations':
     - new
     - create
+  'devise_sessions':
+    - new
+    - create
+  'devise/passwords':
+    - new
+    - update
+  'devise/confirmations':
+    - new
+    - create
+    - show
