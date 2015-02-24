@@ -17,8 +17,11 @@ button {
 
 button, .button, input[type=submit] {
 
+  font-size: 100%;
+
   padding: 0.7em 2em;
-  &.big { padding: 0.7em 1em; font-size: 130%; }
+  &.big   { padding: 0.7em 2em; font-size: 130%; }
+  &.small { padding: 0.3em 1.5em; font-size: 85%; }
 
   font-size: 100%; font-weight: bold; text-decoration: none; cursor: pointer;
 
@@ -60,4 +63,10 @@ button, .button, input[type=submit] {
     &.locked  { color: rgba(255, 255, 255, 0.8) !important; }  
   }
 
+}
+
+button {
+  padding: 0.85em 1.8em;
+  &.small { padding: 0.65em 1.5em; }
+  &.big   { padding: 0.7em 2em; }
 }

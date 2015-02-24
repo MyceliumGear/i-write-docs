@@ -10,7 +10,13 @@ jQuery(function($){
   $("button, .button, input[type=submit]").click(function() {
     if(!$(this).hasClass('unlockable')) {
       $(this).addClass('locked');
+      $(".ajaxLoader").removeClass('small').removeClass('big');
       // Position ajax loader on top of the Button
+      if($(this).hasClass('small')) {
+        $(".ajaxLoader").addClass('small'); 
+      } else if($(this).hasClass('big')) {
+        $(".ajaxLoader").addClass('big'); 
+      }
       $(".ajaxLoader").center($(this));
       $(".ajaxLoader").show();
     }

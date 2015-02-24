@@ -9,7 +9,10 @@ html, button, input, select, textarea,
 }
 body { background-color: #D5DEE8; color: $colors_text; margin: 0 0 0 0; line-height: 150%; }
 
-.ajaxLoader { display: none; position: absolute; z-index: 10; }
+.ajaxLoader {
+  display: none; position: absolute; z-index: 10;
+ &.small { width: 10px; } 
+}
 
 a         { color: $colors_link; }
 a:visited { color: $colors_link_visited; }
