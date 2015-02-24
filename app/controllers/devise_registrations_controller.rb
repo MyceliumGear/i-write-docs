@@ -16,7 +16,7 @@ class DeviseRegistrationsController < Devise::RegistrationsController
         respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
     else
-      flash[:alert] = "Couldn't sign you up, please correct the mistakes in the form below."
+      flash.now[:alert] = "Couldn't sign you up, please correct the mistakes in the form below."
       clean_up_passwords resource
       #set_minimum_password_length
       respond_with resource
