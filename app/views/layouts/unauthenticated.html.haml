@@ -11,6 +11,7 @@
     = image_tag "ajax-loader.gif", class: 'ajaxLoader'
 
     %header
-      .logo= image_tag "mycelium_gear_admin_logo.png"
+      = link_to root_path do
+        .logo= image_tag "mycelium_gear_admin_logo.png"
 
     .pageContainer= yield
