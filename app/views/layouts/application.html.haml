@@ -3,7 +3,8 @@
 
   %head
     = render partial: 'layouts/shared_head'
-    = stylesheet_link_tag 'shared', 'application', media: 'all'
+    = stylesheet_link_tag 'vendor/chosen', 'shared', 'application', media: 'all'
+    = javascript_include_tag 'jquery.matchHeight.js', 'chosen.jquery.js', 'application'
 
   %body.authenticated
     = render partial: "shared/frontend_notifier"

@@ -3,6 +3,7 @@
 
 jQuery(function($){
 
-  $('.leftSidebar, .pageContainer').matchHeight(); 
+  $('.leftSidebar, .pageContainer').matchHeight();
+  $( ".simple_form select" ).chosen();
 
 });
