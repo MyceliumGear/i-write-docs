@@ -1,10 +1,10 @@
 unauthenticated: # layout name
   pages:         # controller name
     - frontpage  # action name
-  'devise_registrations':
+  'devise/registrations':
     - new
     - create
-  'devise_sessions':
+  'devise/sessions':
     - new
     - create
   'devise/passwords':

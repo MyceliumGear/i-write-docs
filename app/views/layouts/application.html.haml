@@ -8,4 +8,14 @@
   %body
     = render partial: "shared/frontend_notifier"
     = image_tag "ajax-loader.gif", class: 'ajaxLoader'
-    = yield
+
+    .pageContainer
+
+      .pure-g
+
+        .leftSidebar.pure-u-1-5
+          .container
+            .logo= image_tag "mycelium_gear_admin_logo_sidebar.png"
+
+        .pageContent.pure-u-4-5
+          .container= yield

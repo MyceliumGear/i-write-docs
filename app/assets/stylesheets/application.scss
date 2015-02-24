@@ -1,0 +1,5 @@
+@import 'components/left_sidebar';
+@import 'components/page_content';
+
+html, body, .leftSidebar, .pageContent, .pageContainer, .pure-g { height: 100%; }
+body { min-width: 800px; }
