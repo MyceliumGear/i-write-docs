@@ -15,6 +15,7 @@ gem 'frontend_notifier'
 gem 'nilify_blanks'
 gem 'straight-server'
 gem 'redis'
+gem 'mmmenu'
 
 group :development do
   gem 'capistrano-rails'

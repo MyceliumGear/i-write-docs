@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :set_unauthenticated_layout
+  before_filter :prepare_menu
 
   @@layouts = YAML.load_file("#{Rails.root}/config/layouts.yml")
 
@@ -42,6 +43,18 @@ class ApplicationController < ActionController::Base
         format.html { render file: "#{Rails.root}/public/404", status: 404, layout: false }
         format.json { render json: { type: "error", message: "Error 404, resource was not found." } }
       end
+    end
+
+    def prepare_menu
+      return unless current_user
+      mmmenu do |l1|
+
+        l1.add "Gateways", gateways_path
+        l1.add "Orders",   orders_path
+        l1.add "Settings", "#"
+        l1.add "Account",  edit_user_registration_path
+
+      end 
     end
 
 end

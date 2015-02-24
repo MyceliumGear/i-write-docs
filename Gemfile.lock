@@ -165,6 +165,7 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    mmmenu (0.5.2)
     money-tree (0.8.9)
       ffi
     multi_json (1.10.1)
@@ -319,6 +320,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   meta-tags
+  mmmenu
   nilify_blanks
   rails (= 4.2.0)
   redis

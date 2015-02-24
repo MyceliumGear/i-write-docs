@@ -16,6 +16,7 @@
         .leftSidebar.pure-u-1-5
           .container
             .logo= image_tag "mycelium_gear_admin_logo_sidebar.png"
+            %menu.alwaysFresh= build_mmmenu(@menu)
 
         .pageContent.pure-u-4-5
           .container= yield

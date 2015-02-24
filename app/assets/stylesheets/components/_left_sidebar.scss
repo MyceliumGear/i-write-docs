@@ -1,7 +1,21 @@
+@import 'components/gradients';
+
 .leftSidebar {
 
   background-color: #B8CCE0;
   .container { padding: 0em; }
   .logo { text-align: center; padding: 1em; }
+
+  menu {
+    padding: 0 0 0 0; margin: 0 0 0 0; border-bottom: solid 1px #A7BDD4;
+    ul {
+      margin: 0 0 0 0; padding: 0 0 0 0; text-align: right;
+      li { list-style: none; padding: 1em; border-top: solid 1px #A7BDD4; cursor: pointer; }
+      li.current { @include gradient-current-menu; }
+      a { text-decoration: none; color: #000; font-weight: bold; color: #2D405D; }
+      li.current a { text-decoration: none; color: #000; font-weight: bold; color: #2D405D; }
+      li:hover { background-color: #BFD1E3; }
+    }
+  }
 
 }
