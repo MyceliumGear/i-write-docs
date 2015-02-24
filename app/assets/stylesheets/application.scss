@@ -4,8 +4,23 @@
 @import 'components/page_content';
 @import 'pages/gateways';
 
-html, body, .leftSidebar, .pageContent, .pageContainer, .pure-g { height: 100%; }
 body { min-width: 800px; }
 
 .list .noRecords { text-align: center; color: $colors_gray; font-size: 90%; }
 .pages form { width: 50%; }
+
+
+.pageContainer{
+  float: left;
+  width: 100%;
+}
+
+.pageContent{
+  margin-left: 300px; /*Set left margin to LeftColumnWidth*/
+}
+
+.leftSidebar{
+  float: left;
+  width: 300px; /*Width of left column*/
+  margin-left: -100%;
+}
