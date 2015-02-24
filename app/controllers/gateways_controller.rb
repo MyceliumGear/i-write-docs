@@ -13,6 +13,7 @@ class GatewaysController < ApplicationController
   end
 
   def new
+    @gateway = Gateway.new
   end
 
   def create

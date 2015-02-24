@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
       return unless current_user
       mmmenu do |l1|
 
-        l1.add "Gateways", gateways_path
+        l1.add "Gateways", gateways_path, match_subpaths: true
         l1.add "Orders",   orders_path
         l1.add "Settings", "#"
         l1.add "Account",  edit_user_registration_path

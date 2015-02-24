@@ -1,0 +1,21 @@
+.pages.gateways.new
+
+  %h2 Create a new gateway
+  = simple_form_for(@gateway) do |f|
+
+    = f.input :name
+    = f.input :confirmations_required
+    = f.input :pubkey
+    = f.input :default_currency
+    = f.input :callback_url
+    = f.input :check_signature
+    = f.input :active
+    = f.input :exchange_rate_adapter_names
+    = f.input :description
+    = f.input :merchant_url
+    = f.input :merchant_name
+    = f.input :country
+    = f.input :region
+    = f.input :city
+
+    = f.submit

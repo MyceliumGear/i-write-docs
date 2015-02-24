@@ -16,6 +16,7 @@ gem 'nilify_blanks'
 gem 'straight-server'
 gem 'redis'
 gem 'mmmenu'
+gem 'country_select', github: 'stefanpenner/country_select'
 
 group :development do
   gem 'capistrano-rails'
