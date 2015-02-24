@@ -9,17 +9,24 @@
 	background-color:#74828c;
 }
 
+@mixin gradient-gray-inverted {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(1, #53717a),color-stop(0.05, #74828c));
+	background:-moz-linear-gradient(top, #53717a 5%, #74828c 100%);
+	background:-webkit-linear-gradient(top, #53717a 5%, #74828c 100%);
+	background:-o-linear-gradient(top, #53717a 5%, #74828c 100%);
+	background:-ms-linear-gradient(top, #53717a 5%, #74828c 100%);
+	background:linear-gradient(to bottom, #53717a 5%, #74828c 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#53717a', endColorstr='#74828c',GradientType=0);
+	background-color:#74828c;
+}
+
 @mixin gradient-current-menu {
-
-
-background: #a1b5d1; /* Old browsers */
-background: -moz-linear-gradient(top,  #a1b5d1 1%, #a6bfd8 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#a1b5d1), color-stop(100%,#a6bfd8)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top,  #a1b5d1 1%,#a6bfd8 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(top,  #a1b5d1 1%,#a6bfd8 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(top,  #a1b5d1 1%,#a6bfd8 100%); /* IE10+ */
-background: linear-gradient(to bottom,  #a1b5d1 1%,#a6bfd8 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1b5d1', endColorstr='#a6bfd8',GradientType=0 ); /* IE6-9 */
-
-
+  background: #a1b5d1; /* Old browsers */
+  background: -moz-linear-gradient(top,  #a1b5d1 1%, #a6bfd8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%,#a1b5d1), color-stop(100%,#a6bfd8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #a1b5d1 1%,#a6bfd8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #a1b5d1 1%,#a6bfd8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #a1b5d1 1%,#a6bfd8 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #a1b5d1 1%,#a6bfd8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a1b5d1', endColorstr='#a6bfd8',GradientType=0 ); /* IE6-9 */
 }

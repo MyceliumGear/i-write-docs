@@ -2,6 +2,7 @@
 
   .actions
     = link_to "create gateway", new_gateway_path, class: "button small"
+    %button.small create gateway
 
   .list
     - if @gateways.present?

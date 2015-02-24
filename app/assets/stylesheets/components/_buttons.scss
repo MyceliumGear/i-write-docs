@@ -35,11 +35,7 @@ button, .button, input[type=submit] {
 
   &:hover { @include box-shadow(#7D7D7D, 0px, 0px, 5px, 0px); }
 
-  &.pressed  {
-    //@include box-shadow(transparent, 0px, 0px, 5px, 0px);
-    padding: 0.75em 2em 0.65em 2em;
-    &.big { padding: 0.75em 1em 0.65em 1em; }
-  }
+  &.pressed  { @include gradient-gray-inverted; }
   &.disabled { color: #AAB8CA; color: rgba(255, 255, 255, 0.5); opacity: 0.7; cursor: default; }
   &.disabled:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
 
