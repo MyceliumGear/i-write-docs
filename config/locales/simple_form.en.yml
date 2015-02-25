@@ -48,4 +48,4 @@ en:
         callback_url: When the status of the order changes (for example from NEW to PAID), Gear will send an http request to the following URL. The request will include additional order data (consult the documentation). This field may be left blank in which case no callback request will be sent.
         active: Unchecking this checkbox means new Orders will be turned down and customers will be unable to pay. This can be used when maintenance is being done.
         merchant_name: In most cases, we assume it's the same as the Gateway's name 
-        regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them.
+        regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them. The new secret will displayed to you after you click the "Update Gateway" button.

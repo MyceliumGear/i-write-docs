@@ -13,8 +13,9 @@ form {
   .hint { display: block; font-size: 80%; color: $colors_gray; margin-top: 0.2em; line-height: 120%; }
 
   .input.boolean {
-    input { float: left; }
+    input { float: left; margin-top: 0.3em; }
     label { margin-left: 0.5em; cursor: pointer; display: inline; }
+    .hint, label { width: 40%; }
   }
   
   .formBlock {
