@@ -1,38 +1,4 @@
 .page.gateways.new
 
   %h2 Create a new gateway
-  = simple_form_for(@gateway) do |f|
-
-    = f.input :name
-    = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
-    = f.input :pubkey
-    = f.input :callback_url
-    = f.input :active
-
-    .formBlock
-      %h3 Currency conversion options
-      = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
-      %label
-        Exchange rate provider #1:
-        = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[0]) 
-      %label
-        Exchange rate provider #2:
-        = select_tag "exchange_rate_adapter_name_2", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[1]) 
-      %label
-        Exchange rate provider #3:
-        = select_tag "exchange_rate_adapter_name_3", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[2]) 
-
-      %span.hint If one exchange rate provider fails (due to unavailability or other factors, the other one will be used automatically. Remember, this only applies if the gateway's default currency is different from BTC.
-      = f.input :exchange_rate_adapter_names, as: :hidden
-
-    .formBlock
-      %h3 Additional info about the merchant
-      %p.description (all fields are optional)
-      = f.input :description
-      = f.input :merchant_url
-      = f.input :merchant_name
-      = f.input :country
-      = f.input :region
-      = f.input :city
-
-    = f.submit
+  = render partial: 'form'

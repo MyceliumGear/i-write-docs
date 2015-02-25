@@ -1,7 +1,7 @@
 .page.gateways.show
 
   %h2= @gateway.name
-  = link_to "Edit", edit_gateway_path(@gateway), class: "button small editGateway"
+  = link_to "Edit settings", edit_gateway_path(@gateway), class: "button small editGateway"
   
   - if @gateway.description.present?
     %p= @gateway.description
