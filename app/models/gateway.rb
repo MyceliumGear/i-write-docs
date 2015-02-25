@@ -37,6 +37,12 @@ class Gateway < ActiveRecord::Base
     @orders = @orders.to_a
   end
 
+  def available_exchange_rate_adapter_names
+    names = Straight::ExchangeRate::Adapter.descendants.map do |a|
+      a.to_s.sub("Straight::ExchangeRate::", '').sub("Adapter", '')
+    end
+  end
+
   private
 
     def validate_exchange_rate_adapter_names
