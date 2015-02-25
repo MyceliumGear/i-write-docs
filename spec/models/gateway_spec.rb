@@ -16,6 +16,29 @@ RSpec.describe Gateway, type: :model do
       @gateway.exchange_rate_adapter_names = ""
       expect(@gateway.valid?).to be_truthy
     end
+    
+    describe "generating secret" do
+
+      it "generates a secret for a new record" do
+        @gateway.save
+        expect(@gateway.secret).not_to be_nil
+      end
+
+      it "doesn't generate a secret on update" do
+        @gateway.save
+        old_secret = @gateway.secret
+        @gateway.update(name: "New gateway name")
+        expect(@gateway.secret).to eq(old_secret)
+      end
+
+      it "regenerates a secret on update if requested" do
+        @gateway.save
+        old_secret = @gateway.secret
+        @gateway.update(name: "New gateway name", regenerate_secret: true)
+        expect(@gateway.secret).not_to eq(old_secret)
+      end
+
+    end
 
     describe "straight-server integration" do
 

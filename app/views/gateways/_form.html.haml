@@ -32,4 +32,7 @@
     = f.input :region
     = f.input :city
 
+  - unless @gateway.new_record?
+    = f.input :regenerate_secret, as: :boolean
+    
   = f.submit

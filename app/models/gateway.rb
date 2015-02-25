@@ -3,7 +3,7 @@ class Gateway < ActiveRecord::Base
   nilify_blanks
 
   attr_reader   :straight_gateway
-  attr_accessor :secret
+  attr_accessor :secret, :regenerate_secret
 
   belongs_to :user
   serialize :db_config, Hash
@@ -19,7 +19,7 @@ class Gateway < ActiveRecord::Base
   before_validation :split_exchange_rate_adapter_names!
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
 
-  before_create :generate_secret
+  before_save   :generate_secret
   after_create  :create_straight_gateway
   after_update  :update_straight_gateway
 
@@ -87,7 +87,9 @@ class Gateway < ActiveRecord::Base
     end
 
     def generate_secret
-      self.secret = String.random(64)
+      if new_record? || @regenerate_secret
+        self.secret = String.random(64)
+      end
     end
 
   
