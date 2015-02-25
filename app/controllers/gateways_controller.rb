@@ -5,7 +5,7 @@ class GatewaysController < ApplicationController
   before_filter :only_allow_gateway_owner_or_admin, only: [:show, :edit, :update, :destroy]
 
   def index
-    @gateways = Gateway.where(deleted: false).order('created_at DESC')
+    @gateways = Gateway.where(deleted: false).includes(:user).order('created_at DESC')
     unless current_user.admin?
       @gateways = @gateways.where(user_id: current_user.id)
     end

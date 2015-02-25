@@ -5,8 +5,23 @@
 
   .list
     - if @gateways.present?
-      = @gateways.each do |g|
-        = g.name
+
+      %table
+        %th Name
+        %th(style="width: 30px;") Active
+        %th BIP32 pubkey
+        %th(style="width: 70px;") Default currency
+        - if current_user.admin?
+          %th Owner
+        - @gateways.each do |g|
+          %tr
+            %td <b>#{link_to g.name, g}</b>
+            %td= g.active ? "Yes" : "No"
+            %td= g.pubkey.slice(0,16) + "..."
+            %td= g.default_currency
+            - if current_user.admin?
+              %td= link_to g.user.email, g.user
+
     - else
       .noRecords
         %h2 You have not created any gateways yet
