@@ -32,6 +32,8 @@ form {
   .float.field_with_errors input,
   .field_with_errors { textarea, input[type=text], input[type=password] { @include text-field-with-errors }}
 
+  select { width: 50%; }
+
   input[type=text], input[type=password], input.string, textarea, .tagsinput {
 
     width: 100%;

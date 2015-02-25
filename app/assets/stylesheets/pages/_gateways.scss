@@ -1,4 +1,4 @@
-.page.gateways {
+.pages.gateways {
 
   &.index {
     .actions { text-align: right; }
@@ -7,7 +7,8 @@
     }
   }
 
-  &.new {
+  &.new, &.edit {
+    select#gateway_default_currency { width: 70px; }
   }
 
 }

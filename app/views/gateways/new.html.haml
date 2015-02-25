@@ -6,10 +6,10 @@
     = f.input :name
     = f.input :confirmations_required
     = f.input :pubkey
-    = f.input :default_currency
+    = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
+    = f.input :exchange_rate_adapter_names
     = f.input :callback_url
     = f.input :active
-    = f.input :exchange_rate_adapter_names
     = f.input :description
     = f.input :merchant_url
     = f.input :merchant_name
