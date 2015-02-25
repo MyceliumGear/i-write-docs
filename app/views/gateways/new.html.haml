@@ -1,4 +1,4 @@
-.pages.gateways.new
+.page.gateways.new
 
   %h2 Create a new gateway
   = simple_form_for(@gateway) do |f|
@@ -11,7 +11,6 @@
 
     .formBlock
       %h3 Currency conversion options
-      %p.description Specify default currency to be used when displaying orders and exchange rate providers to the conversion
       = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
       %label
         Exchange rate provider #1:

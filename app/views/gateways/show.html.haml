@@ -1,0 +1,60 @@
+.page.gateways.show
+
+  %h2= @gateway.name
+  = link_to "Edit", edit_gateway_path(@gateway), class: "button small editGateway"
+  
+  - if @gateway.description.present?
+    %p= @gateway.description
+
+
+  - if flash[:gateway_secret]
+    .secret
+      .warning
+        Your gateway has been created. Please write this down. It is only displayed here once. This key is needed to access the API when creating orders and to sign callbacks. If you later lose this key, you will need to regenerate it.
+      .value Your gateway secret is: <b>#{flash[:gateway_secret]}</b>
+
+  %table
+
+    %tr
+      %th Merchant name
+      %td= @gateway.merchant_name
+
+    %tr
+      %th Online store / site URL
+      %td= @gateway.merchant_url
+      
+    %tr
+      %th Country
+      %td= @gateway.country
+
+    %tr
+      %th Region
+      %td= @gateway.region
+
+    %tr
+      %th City
+      %td= @gateway.city
+
+    %tr
+      %th Confirmations required
+      %td= @gateway.city
+
+    %tr
+      %th BIP32 pubkey
+      %td= @gateway.pubkey.slice(0,16) + "..."
+
+    %tr
+      %th Default currency
+      %td= @gateway.default_currency
+
+    %tr
+      %th Callback URL
+      %td= @gateway.callback_url
+
+    %tr
+      %th Exchange rate providers
+      %td= @gateway.exchange_rate_adapter_names.join(", ")
+
+    %tr
+      %th Is active?
+      %td= @gateway.active ? "Yes" : "No"

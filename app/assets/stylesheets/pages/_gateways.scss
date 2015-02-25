@@ -1,4 +1,4 @@
-.pages.gateways {
+.page.gateways {
 
   &.index {
     .actions { text-align: right; }
@@ -9,6 +9,23 @@
 
   &.new, &.edit {
     select#gateway_default_currency, select#gateway_confirmations_required { width: 70px; }
+  }
+
+  &.show {
+    h2 { width: 50%; float: left; }
+    .button.editGateway { float: right; }
+
+    .secret {
+      clear: both; margin: 2em 0 1em 0; background-color: #FFE885; border: solid 1px #8F5800;
+      padding: 1em; border-radius: 7px;
+      .warning { margin-bottom: 1em; font-size: 90%; }
+    }
+
+    table {
+      border-collapse: collapse; width: 100%; clear: both; margin-top: 2em;
+      th { text-align: right; font-weight: normal; font-size: 85%; width: 30%; }
+      th, td { border: dotted 1px $colors_gray; padding: 0.7em; overflow: hidden; }
+    }
   }
 
 }

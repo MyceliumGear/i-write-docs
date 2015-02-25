@@ -21,6 +21,7 @@ form {
     border: solid 1px $colors_light_gray; border-radius: 7px; padding: 1em 2em 1em 1em; margin-bottom: 1em;
     h3 { margin: 0 0 0 0; font-size: 100%; }
     p.description { margin: 0 0 1em 0; font-size: 85%; color: $colors_gray; }
+    input[type=text], input[type=password], input.string, textarea { width: 100%; }
   }
 
   label.radio { cursor: pointer; }
@@ -34,9 +35,9 @@ form {
 
   select { width: 50%; }
 
-  input[type=text], input[type=password], input.string, textarea, .tagsinput {
+  input[type=text], input[type=password], input.string, textarea {
 
-    width: 100%;
+    width: 99%;
 
     border-radius: 5px; border: solid 1px #aaa; outline: none; padding: 0.3em; font-size: 100%;
     @include inset-box-shadow(#ddd, 2px, 2px, 2px, 0px);

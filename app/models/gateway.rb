@@ -19,8 +19,9 @@ class Gateway < ActiveRecord::Base
   before_validation :split_exchange_rate_adapter_names!
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
 
-  after_create :create_straight_gateway
-  after_update :update_straight_gateway
+  before_create :generate_secret
+  after_create  :create_straight_gateway
+  after_update  :update_straight_gateway
 
   def straight_gateway(reload: false)
     @straight_gateway = nil if reload
@@ -83,6 +84,10 @@ class Gateway < ActiveRecord::Base
         default_currency: default_currency,
         active: active
       }
+    end
+
+    def generate_secret
+      self.secret = String.random(64)
     end
 
   
