@@ -58,3 +58,13 @@
     %tr
       %th Is active?
       %td= @gateway.active ? "Yes" : "No"
+
+    %tr
+      %th Orders stat
+      %td
+        new: #{@gateway.order_counters[:new]},
+        paid: #{@gateway.order_counters[:paid]},
+        overpaid: #{@gateway.order_counters[:overpaid]},
+        underpaid: #{@gateway.order_counters[:underpaid]},
+        expired: #{@gateway.order_counters[:expired]}
+        %span.seeAllOrders ( #{link_to "See all orders for this gateway", orders_path(gateway_id: @gateway.id)} )
