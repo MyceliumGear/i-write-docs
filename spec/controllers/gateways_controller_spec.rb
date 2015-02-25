@@ -42,7 +42,7 @@ RSpec.describe GatewaysController, type: :controller do
 
     it "redirects to the gateway's index page if validations pass" do
       post :create, gateway: attributes_for(:gateway)
-      expect(response).to redirect_to(gateways_path)
+      expect(response).to redirect_to(assigns(:gateway))
     end
 
     it "renders the form again if validations fail" do
@@ -60,7 +60,7 @@ RSpec.describe GatewaysController, type: :controller do
 
     it "redirects to the gateway's index page if validations pass" do
       patch :update, id: @gateway.id, gateway: { name: "New Gateway Name" }
-      expect(response).to redirect_to(gateways_path)
+      expect(response).to redirect_to(assigns(:gateway))
     end
 
     it "renders the form again if validations fail" do

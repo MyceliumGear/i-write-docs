@@ -27,7 +27,7 @@ RSpec.describe Gateway, type: :model do
       it "doesn't generate a secret on update" do
         @gateway.save
         old_secret = @gateway.secret
-        @gateway.update(name: "New gateway name")
+        @gateway.update(name: "New gateway name", regenerate_secret: false)
         expect(@gateway.secret).to eq(old_secret)
       end
 

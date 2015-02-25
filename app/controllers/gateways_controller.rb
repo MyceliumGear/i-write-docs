@@ -22,7 +22,7 @@ class GatewaysController < ApplicationController
       flash[:gateway_secret] = @gateway.secret
       redirect_to @gateway
     else
-      flash[:success] = "We've found errors in your form, please correct them and try again."
+      flash.now[:success] = "We've found errors in your form, please correct them and try again."
       render 'new'
     end
   end
@@ -36,8 +36,14 @@ class GatewaysController < ApplicationController
   def update
     @gateway.update(gateway_params)
     if @gateway.errors.empty?
-      redirect_to gateways_path
+      if @gateway.regenerate_secret
+        flash[:gateway_secret] = @gateway.secret
+      else
+        flash[:success] = "Gateway settings updated!"
+      end
+      redirect_to @gateway
     else
+      flash.now[:success] = "We've found errors in your form, please correct them and try again."
       render 'edit'
     end
   end
@@ -73,7 +79,7 @@ class GatewaysController < ApplicationController
         :country,
         :region,
         :city,
-        :db_config
+        :regenerate_secret
       )
     end
 

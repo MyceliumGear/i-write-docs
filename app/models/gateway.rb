@@ -74,21 +74,22 @@ class Gateway < ActiveRecord::Base
     end
 
     def straight_server_gateway_fields
-      {
+      fields = {
         confirmations_required: confirmations_required,
         pubkey: pubkey,
-        secret: secret,
         name:   name,
         check_signature: check_signature,
         exchange_rate_adapter_names: exchange_rate_adapter_names,
         default_currency: default_currency,
         active: active
       }
+      fields.merge(secret: @secret) if @secret
+      fields
     end
 
     def generate_secret
-      if new_record? || @regenerate_secret
-        self.secret = String.random(64)
+      if new_record? || @regenerate_secret && @regenerate_secret == "1"
+        @secret = String.random(64)
       end
     end
 

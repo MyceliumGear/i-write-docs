@@ -10,7 +10,7 @@
   - if flash[:gateway_secret]
     .secret
       .warning
-        Your gateway has been created. Please write this down. It is only displayed here once. This key is needed to access the API when creating orders and to sign callbacks. If you later lose this key, you will need to regenerate it.
+        Gateway settings saved. Please write this down. It is only displayed here once. This key is needed to access the API when creating orders and to sign callbacks. If you later lose this key, you will need to regenerate it.
       .value Your gateway secret is: <b>#{flash[:gateway_secret]}</b>
 
   %table
