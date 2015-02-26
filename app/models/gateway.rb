@@ -14,7 +14,7 @@ class Gateway < ActiveRecord::Base
             presence: true
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
-  validates :name, uniqueness: true
+  validates :name, :pubkey, uniqueness: true
 
   before_validation :split_exchange_rate_adapter_names!
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
