@@ -19,7 +19,7 @@
             %th Gateway
           %th Created at
         - @orders.each do |o|
-          %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { order_id: o.id } }
+          %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { order_id: o.id, gateway_id: gateway_id_for_order(o) } }
             %td= o.amount_in_btc(as: :string)
             %td= o.address
             %td

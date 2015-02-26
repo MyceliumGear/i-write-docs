@@ -7,7 +7,7 @@ jQuery(function($){
     $(this, "td").css({ opacity: 1 });
   });
   $(".page.orders.index .list tr.order").click(function() {
-    window.location = "/orders/" + $(this).data('orderId');
+    window.location = "/gateways/" + $(this).data('gatewayId') + "/orders/" + $(this).data('orderId');
   });
 
 });
