@@ -28,6 +28,8 @@
               %td= o.gateway.name
             %td= o.created_at
 
+      = will_paginate(@orders)
+
     - else
 
       .noRecords

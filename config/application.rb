@@ -33,6 +33,9 @@ module GearAdmin
     config.assets.logger = nil
 
     ::ADMIN_EMAILS  = File.readlines("#{Rails.root}/config/admin_emails.txt").map { |e| e.strip }
+    
+    require 'will_paginate/sequel'
+    require 'will_paginate/active_record'
 
   end
 end

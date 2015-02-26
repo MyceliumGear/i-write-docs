@@ -22,6 +22,8 @@
             - if current_user.admin?
               %td= link_to g.user.email, g.user
 
+      = will_paginate(@gateways)
+
     - else
       .noRecords
         %h2 You have not created any gateways yet
