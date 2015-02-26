@@ -1,0 +1,39 @@
+.page.orders.index
+
+  .list
+
+    - if @orders.present?
+
+      - if @gateway
+        %h2 All orders for gateway <span class="regularText">#{@gateway.name}</span>
+      - else
+        %h2 All orders for all gateways
+
+
+      %table
+        %tr
+          %th(style="width: 90px;") Amount (BTC)
+          %th Address
+          %th(style="width: 50px;") status
+          - unless @gateway
+            %th Gateway
+          %th Created at
+        - @orders.each do |o|
+          %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { order_id: o.id } }
+            %td= o.amount_in_btc(as: :string)
+            %td= o.address
+            %td
+              %b= StraightServer::Order::STATUSES.invert[o.status]
+            - unless @gateway
+              %td= o.gateway.name
+            %td= o.created_at
+
+    - else
+
+      .noRecords
+        - if @gateway
+          %h2 Nobody created orders with your gateway <span class="regularText">#{@gateway.name}</span> yet.
+        - else
+          %h2 Nobody created orders with your gateways yet.
+
+        %p An order is associated with something that you sell. When a customer wants to pay for an item,an order is created in the Database. An order contains an exact amount of bitcoins to be paid, payment Bitcoin address and other properties. Gear tracks Order statuses and when your customer makes a payment, it detects the transaction and changes order status accordingly, also issuing a callback (if set).

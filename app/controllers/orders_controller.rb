@@ -5,9 +5,9 @@ class OrdersController < ApplicationController
   def index
 
     gateway_ids = if params[:gateway_id]
-      gateway = Gateway.find(params[:gateway_id])
-      render_403 and return unless gateway.user == current_user || current_user.admin?
-      [gateway.id]
+      @gateway = Gateway.find(params[:gateway_id])
+      render_403 and return unless @gateway.user == current_user || current_user.admin?
+      [@gateway.id]
     else
       current_user.gateways.map(&:id) unless current_user.admin?
     end
