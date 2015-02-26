@@ -2,6 +2,7 @@
 @import 'mixins';
 @import 'components/buttons';
 @import 'components/forms';
+@import 'components/paginator';
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
@@ -24,3 +25,4 @@ a:active  { color: $colors_link_active; }
 
 .regularText { color: $colors_text; }
 .gray { color: $colors_gray; }
+
