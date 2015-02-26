@@ -34,7 +34,7 @@ RSpec.describe Gateway, type: :model do
       it "regenerates a secret on update if requested" do
         @gateway.save
         old_secret = @gateway.secret
-        @gateway.update(name: "New gateway name", regenerate_secret: true)
+        @gateway.update(name: "New gateway name", regenerate_secret: "1")
         expect(@gateway.secret).not_to eq(old_secret)
       end
 
