@@ -29,7 +29,7 @@ RSpec.describe OrdersController, type: :controller do
     end
 
     it "shows all orders for a specific gateway if the gateway doesn't belong to the current_user, but current_user is an admin" do
-      login_user(create(:admin))
+      login_user(:admin)
       get :index, gateway_id: create(:gateway).id
       expect(response).not_to render_403 
     end
@@ -40,6 +40,38 @@ RSpec.describe OrdersController, type: :controller do
       expect(assigns(:orders).to_a.size).to eq(30)
       get :index, page: 2
       expect(assigns(:orders).to_a.size).to eq(3)
+    end
+
+  end
+
+  describe "show index" do
+
+    before(:each) do
+      login_user
+      @gateway = create(:gateway, user: @current_user)
+      @order   = create(:order, gateway_id: @gateway.straight_gateway_id)
+    end
+    
+    it "displays info about to order if it belongs to the gateway current_user owns" do
+      get :show, id: @order.id
+      expect(response).to render_template('show') 
+    end
+
+    it "displays info about to order if order belongs to gateway current_user doesn't own, but current_user is admin" do
+      login_user(:admin)
+      get :show, id: @order.id
+      expect(response).to render_template('show') 
+    end
+
+    it "renders 403 if order belongs to gateway current_user doesn't own" do
+      login_user
+      get :show, id: @order.id
+      expect(response).to render_403
+    end
+
+    it "renders 404 if order isn't found" do
+      get :show, id: 0
+      expect(response).to render_404
     end
 
   end

@@ -18,4 +18,15 @@ class OrdersController < ApplicationController
 
   end
 
+  def show
+    @order = StraightServer::Order[params[:id]]
+    if @order
+      @gateway = Gateway.where(straight_gateway_id: @order.gateway_id).first
+      render_404 unless @gateway
+      render_403 and return unless @gateway.user == current_user || current_user.admin?
+    else
+      render_404
+    end
+  end
+
 end
