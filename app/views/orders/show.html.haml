@@ -1,0 +1,33 @@
+.page.orders.show
+
+  %h2 Order (keychain id: ##{@order.keychain_id}), for #{link_to @gateway.name, @gateway}
+  
+  %table
+
+    %tr
+      %th Amount (BTC)
+      %td= @order.amount_in_btc(as: :string)
+
+    %tr
+      %th Bitcoin payment address
+      %td= @order.address
+
+    %tr
+      %th Transaction id
+      %td= @order.tid
+
+    %tr
+      %th Status
+      %td= StraightServer::Order::STATUSES.invert[@order.status]
+
+    %tr
+      %th Data
+      %td= @order.data.to_json.to_s
+
+    %tr
+      %th Callback response
+      %td= @order.callback_response
+
+    %tr
+      %th Created at
+      %td= @order.created_at

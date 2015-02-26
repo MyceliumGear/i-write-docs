@@ -20,4 +20,9 @@
     }
   }
 
+  &.show {
+    h2    { color: $colors_gray; }
+    table { @include resource-info-table }
+  }
+
 }
