@@ -83,12 +83,12 @@ class Gateway < ActiveRecord::Base
         default_currency: default_currency,
         active: active
       }
-      fields.merge(secret: @secret) if @secret
+      fields.merge!(secret: @secret) if @secret
       fields
     end
 
     def generate_secret
-      if new_record? || @regenerate_secret && @regenerate_secret == "1"
+      if new_record? || (@regenerate_secret && @regenerate_secret == "1")
         @secret = String.random(64)
       end
     end
