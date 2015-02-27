@@ -6,6 +6,6 @@
 jQuery(function($){
 
   $('.leftSidebar, .pageContainer').matchHeight();
-  $( ".simple_form select" ).chosen();
+  $( "select" ).chosen();
 
 });

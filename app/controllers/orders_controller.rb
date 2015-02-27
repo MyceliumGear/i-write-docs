@@ -12,12 +12,18 @@ class OrdersController < ApplicationController
       current_user.gateways unless current_user.admin?
     end
 
-    @orders = StraightServer::Order.where() # because #extension method below can only be called on Dataset obj
+    @orders = StraightServer::Order.reverse_order(:created_at)
     @orders = @orders.where(gateway_id: @gateways.map(&:id)) if @gateways
+    @orders = @orders.where(status: params[:status]) if params[:status]
     @orders = @orders.extension(:pagination).paginate(params[:page].try(:to_i) || 1, 30)
 
     if current_user.admin? && params[:gateway_id].blank?
       @gateway_ids = Gateway.where(straight_gateway_id: @orders.map(&:gateway_id))
+    end
+
+    if @gateways
+      @gateway_names_and_ids = {}
+      @gateways.each { |g| @gateway_names_and_ids[g.id] == g.name }
     end
 
   end

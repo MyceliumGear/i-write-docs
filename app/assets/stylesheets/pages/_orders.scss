@@ -1,10 +1,25 @@
 .page.orders {
 
   &.index {
-    .actions { text-align: right; }
+
     h2 { color: $colors_gray; }
+
+    .actions {
+      width: 100%; @include clearfix;
+      .activeFilters {
+        float: left; width: 50%;
+        .filter {
+          cursor: pointer;
+          background-color: $colors_light_gray; padding: 0.3em 0.8em; border-radius: 10px;
+          font-size: 80%; float: left; display: inline-block; margin-right: 0.3em;
+          span.close { color: $colors_red; }
+        }
+      }
+      .filters { width: 50%; float: right; text-align: right; select { text-align: left; } }
+    }
+
     .list {
-      margin: 2em 0;
+      margin: 0 0 0 0; position: relative; top: -1em;
       table {
         font-size: 85%;
         border-collapse: separate; border-spacing: 2px; width: 100%; clear: both; margin-top: 2em;
