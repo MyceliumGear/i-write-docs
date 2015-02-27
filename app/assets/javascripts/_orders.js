@@ -14,10 +14,10 @@ var urlParams;
 jQuery(function($){
 
   $(".page.orders.index .list tr.order").mouseover(function() {
-    $(this, "td").css({ opacity: 0.9 });
+    $(this).addClass('hover');
   });
   $(".page.orders.index .list tr.order").mouseout(function() {
-    $(this, "td").css({ opacity: 1 });
+    $(this).removeClass('hover');
   });
   $(".page.orders.index .list tr.order").click(function() {
     window.location = "/gateways/" + $(this).data('gatewayId') + "/orders/" + $(this).data('orderId');

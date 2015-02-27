@@ -9,7 +9,6 @@
       .activeFilters {
         float: left; width: 50%;
         .filter {
-          cursor: pointer;
           background-color: $colors_light_gray; padding: 0.3em 0.8em; border-radius: 10px;
           font-size: 80%; float: left; display: inline-block; margin-right: 0.3em;
           span.close { color: $colors_red; }
@@ -31,6 +30,13 @@
         tr.underpaid   td { background-color: #F6B246; }
         tr.overpaid    td { background-color: #D9685E; }
         tr.expired     td { background-color: #828F9B; }
+
+        tr.new.hover td { background-color: #B9CBDF;}
+        tr.paid.hover td { background-color: #55BD47; }
+        tr.unconfirmed.hover td { background-color: #F49E16; }
+        tr.underpaid.hover   td { background-color: #F49E16; }
+        tr.overpaid.hover    td { background-color: #D35145; }
+        tr.expired.hover     td { background-color: #748390; }
       }
     }
   }
