@@ -24,18 +24,22 @@ jQuery(function($){
   });
 
   $("select[name=filter_by_gateway]").change(function() {
-    add_filter('gateway_id', $(this).val());
+    urlParams['gateway_id'] = $(this).val();
+    redirect_to_filter_url();
   });
 
   $("select[name=filter_by_status]").change(function() {
-    add_filter('status', $(this).val());
+    urlParams['status'] = $(this).val();
+    redirect_to_filter_url();
   });
 
-  function add_filter(param, value) {
+  $(".activeFilters .filter").click(function() {
+    delete urlParams[$(this).data('filterName')];
+    redirect_to_filter_url();
+  });
+
+  function redirect_to_filter_url() {
     var loc = "/orders?";
-    console.log(urlParams);
-    urlParams[param] = value;
-    console.log(urlParams);
     for(param_name in urlParams) {
       loc = loc + param_name + '=' + urlParams[param_name] + '&';
     };

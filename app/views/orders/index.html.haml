@@ -11,9 +11,9 @@
 
       .activeFilters
         - if @gateways.size == 1
-          .filter Gateway: <b>#{@gateway.name} <span class="close">&times;</span></b>
+          .filter{ data: { filter_name: 'gateway_id'}} Gateway: <b>#{@gateway.name} <span class="close">&times;</span></b>
         - if params[:status]
-          .filter Status: <b>#{StraightServer::Order::STATUSES.invert[params[:status].to_i]} <span class="close">&times;</span></b> 
+          .filter{ data: { filter_name: 'status'}} Status: <b>#{StraightServer::Order::STATUSES.invert[params[:status].to_i]} <span class="close">&times;</span></b> 
 
       .filters
         - if @gateways && @gateways.size > 1
