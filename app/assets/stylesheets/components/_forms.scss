@@ -34,27 +34,28 @@ form {
   .float.field_with_errors input,
   .field_with_errors { textarea, input[type=text], input[type=password] { @include text-field-with-errors }}
 
-  select { width: 50%; }
-
-  input[type=text], input[type=password], input.string, textarea {
-
-    width: 99%;
-
-    border-radius: 5px; border: solid 1px #aaa; outline: none; padding: 0.3em; font-size: 100%;
-    @include inset-box-shadow(#ddd, 2px, 2px, 2px, 0px);
-
-    &:focus {
-      @include inset-box-shadow(#B1CDD8, 2px, 2px, 2px, 0px);
-      border: solid 1px #5592AA;
-    }
-
-    &.error { @include text-field-with-errors }
-
-  }
-
-  textarea { min-height: 100px; }
 
 }
+
+select { width: 50%; }
+textarea { min-height: 100px; }
+
+input[type=text], input[type=password], input.string, textarea {
+
+  width: 99%;
+
+  border-radius: 5px; border: solid 1px #aaa; outline: none; padding: 0.3em; font-size: 100%;
+  @include inset-box-shadow(#ddd, 2px, 2px, 2px, 0px);
+
+  &:focus {
+    @include inset-box-shadow(#B1CDD8, 2px, 2px, 2px, 0px);
+    border: solid 1px #5592AA;
+  }
+
+  &.error { @include text-field-with-errors }
+
+}
+
 
 ul.deviseMenu {
   text-align: center; font-size: 85%;

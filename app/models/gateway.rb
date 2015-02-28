@@ -10,7 +10,7 @@ class Gateway < ActiveRecord::Base
   serialize :exchange_rate_adapter_names
 
   validates :confirmations_required, :pubkey, :name,
-            :default_currency, :check_signature, :user,
+            :default_currency, :user,
             presence: true
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
@@ -22,8 +22,8 @@ class Gateway < ActiveRecord::Base
 
   before_validation :decide_on_the_signature
   before_save  :generate_secret
-  after_create :create_straight_gateway
-  after_update :update_straight_gateway
+  before_create :create_straight_gateway
+  before_update :update_straight_gateway
 
   def straight_gateway(reload: false)
     @straight_gateway = nil if reload
@@ -101,9 +101,9 @@ class Gateway < ActiveRecord::Base
     # do you keep a signature secret in the frontend? Exactly.
     def decide_on_the_signature
       if self.widget
-        self.check_signature = false
+        self.check_signature = "0"
       else
-        self.check_signature = true
+        self.check_signature = "1"
       end
     end
 

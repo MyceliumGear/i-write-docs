@@ -15,9 +15,18 @@
 
   %table
 
-    %tr
-      %th Merchant name
-      %td= @gateway.merchant_name
+
+    - if @gateway.widget
+
+      %tr.widget
+        %th Generate widget HTML code
+        %td
+          %label Set price:
+          %input#widget_price(type="text")
+          %span#widget_currency= @gateway.default_currency
+          %button.small.unlockable#generate_widget Get code
+
+          .generatedWidget= render partial: 'generated_widget'
 
     %tr
       %th Online store / site URL
