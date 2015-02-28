@@ -49,7 +49,7 @@ namespace :db do
             o = g.straight_gateway.create_order(
               amount: (1..100).to_a.sample,
               btc_denomination: 'mbtc',
-              gateway_id: g.straight_gateway.id,
+              gateway_id: g.straight_gateway_id,
             )
             o[:status] = statuses.sample
             o.save

@@ -53,7 +53,7 @@
 
     %tr
       %th Exchange rate providers
-      %td= @gateway.exchange_rate_adapter_names.join(", ")
+      %td= @gateway.exchange_rate_adapter_names.join(", ") if @gateway.exchange_rate_adapter_names.present?
 
     %tr
       %th Is active?

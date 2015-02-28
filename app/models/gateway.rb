@@ -20,7 +20,7 @@ class Gateway < ActiveRecord::Base
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
 
   before_save   :generate_secret
-  after_create  :create_straight_gateway
+  before_create :create_straight_gateway
   after_update  :update_straight_gateway
 
   def straight_gateway(reload: false)
@@ -66,7 +66,7 @@ class Gateway < ActiveRecord::Base
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
       )
-      update_column(:straight_gateway_id, self.id)
+      self.straight_gateway_id = @straight_gateway.id
     end
 
     def update_straight_gateway
@@ -75,13 +75,13 @@ class Gateway < ActiveRecord::Base
 
     def straight_server_gateway_fields
       fields = {
-        confirmations_required: confirmations_required,
-        pubkey: pubkey,
-        name:   name,
-        check_signature: check_signature,
-        exchange_rate_adapter_names: exchange_rate_adapter_names,
+        pubkey:           pubkey,
+        name:             name,
+        check_signature:  check_signature,
         default_currency: default_currency,
-        active: active
+        active:           active,
+        confirmations_required:      confirmations_required,
+        exchange_rate_adapter_names: exchange_rate_adapter_names
       }
       fields.merge!(secret: @secret) if @secret
       fields

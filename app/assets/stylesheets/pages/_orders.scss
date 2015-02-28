@@ -10,7 +10,7 @@
         float: left; width: 50%;
         .filter {
           background-color: $colors_light_gray; padding: 0.3em 0.8em; border-radius: 10px;
-          font-size: 80%; float: left; display: inline-block; margin-right: 0.3em;
+          font-size: 80%; float: left; display: inline-block; margin-right: 0.3em; cursor: pointer;
           span.close { color: $colors_red; }
         }
       }
