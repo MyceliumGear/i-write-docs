@@ -34,7 +34,6 @@ class OrdersController < ApplicationController
 
     @order = StraightServer::Order.where(keychain_id: params[:id], gateway_id: @gateway.straight_gateway_id).first
     render_404 and return unless @order
-    puts "Order gateway_id: #{@order.gateway_id}, Gateway, straight gateway id: #{@gateway.straight_gateway_id}"
     render_403 and return unless @order.gateway_id == @gateway.straight_gateway_id
   end
 
