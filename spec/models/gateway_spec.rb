@@ -16,6 +16,15 @@ RSpec.describe Gateway, type: :model do
       @gateway.exchange_rate_adapter_names = ""
       expect(@gateway.valid?).to be_truthy
     end
+
+    it "sets #check_signature to false for Widget gateways" do
+      @gateway.widget = true
+      @gateway.save
+      expect(@gateway.check_signature).to be_falsy 
+      @gateway.widget = false
+      @gateway.save
+      expect(@gateway.check_signature).to be_truthy
+    end
     
     describe "generating secret" do
 

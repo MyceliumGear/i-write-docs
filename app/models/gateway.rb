@@ -19,9 +19,11 @@ class Gateway < ActiveRecord::Base
   before_validation :split_exchange_rate_adapter_names!
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
 
-  before_save   :generate_secret
-  before_create :create_straight_gateway
-  after_update  :update_straight_gateway
+
+  before_validation :decide_on_the_signature
+  before_save  :generate_secret
+  after_create :create_straight_gateway
+  after_update :update_straight_gateway
 
   def straight_gateway(reload: false)
     @straight_gateway = nil if reload
@@ -90,6 +92,18 @@ class Gateway < ActiveRecord::Base
     def generate_secret
       if new_record? || (@regenerate_secret && @regenerate_secret == "1")
         @secret = String.random(64)
+      end
+    end
+
+    # Decides whether this Gateway will be in "require signature" mode
+    # or not. Normally that would be true, but for Widget-gateways we set
+    # #check_signature to false, because widget itself creates an order - how
+    # do you keep a signature secret in the frontend? Exactly.
+    def decide_on_the_signature
+      if self.widget
+        self.check_signature = false
+      else
+        self.check_signature = true
       end
     end
 

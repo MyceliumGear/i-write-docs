@@ -75,11 +75,11 @@ class GatewaysController < ApplicationController
         :exchange_rate_adapter_names,
         :description,
         :merchant_url,
-        :merchant_name,
         :country,
         :region,
         :city,
-        :regenerate_secret
+        :regenerate_secret,
+        :widget
       )
     end
 

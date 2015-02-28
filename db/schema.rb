@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150211191801) do
     t.string   "default_currency",            default: "BTC", null: false
     t.string   "callback_url"
     t.boolean  "check_signature",             default: true,  null: false
+    t.boolean  "widget",                      default: false, null: false
     t.boolean  "active",                      default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
@@ -27,11 +28,9 @@ ActiveRecord::Schema.define(version: 20150211191801) do
     t.boolean  "deleted",                     default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
-    t.string   "merchant_name"
     t.string   "country"
     t.string   "region"
     t.string   "city"
-    t.text     "db_config"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end

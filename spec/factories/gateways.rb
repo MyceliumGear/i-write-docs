@@ -14,12 +14,9 @@ FactoryGirl.define do
 
     description   "Yet another gateway"
     merchant_url  "mystore.com"
-    merchant_name "MyStore"
     country       "Somalia"
     region        "Central Somalia"
     city          "Mogadishu"
-
-    db_config nil # we use the default app wide config here
 
     sequence(:name) { |i| "Gateway #{i}"}
     association(:user)
