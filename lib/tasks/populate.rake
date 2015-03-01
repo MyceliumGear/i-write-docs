@@ -25,7 +25,7 @@ namespace :db do
           Gateway.create!(
             name: name,
             pubkey: pubkey,
-            user: @user ||= User.first
+            user: @user ||= User.last
           )
         end
         print "done\n"

@@ -6,7 +6,7 @@
 
 jQuery(function($){
 
-  $('.leftSidebar, .pageContainer').matchHeight();
-  $( "select" ).chosen();
+  $("select").chosen();
+  $(".leftSidebar, .pageContent").matchHeight();
 
 });

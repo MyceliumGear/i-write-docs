@@ -14,7 +14,7 @@
           span.close { color: $colors_red; }
         }
       }
-      .filters { width: 50%; float: right; text-align: right; select { text-align: left; } }
+      .filters { width: 50%; float: right; text-align: right; select { text-align: left; max-width: 150px; } }
     }
 
     .list {

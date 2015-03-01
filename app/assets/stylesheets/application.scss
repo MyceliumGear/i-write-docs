@@ -7,7 +7,14 @@
 @import 'pages/orders';
 @import 'components/chosen';
 
-body { min-width: 800px; }
+body {
+  min-width: 800px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+html, body { height: 100%; }
 
 .list .noRecords { text-align: center; color: $colors_gray; font-size: 90%; }
 .pages form { width: 50%; }
