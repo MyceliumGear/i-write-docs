@@ -20,6 +20,8 @@ gem 'country_select', github: 'stefanpenner/country_select'
 
 group :development do
   gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
   gem 'thin'
   gem 'faker'
 end

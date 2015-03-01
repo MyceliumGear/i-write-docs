@@ -33,7 +33,7 @@ module GearAdmin
     config.assets.logger = nil
 
     ::ADMIN_EMAILS  = File.readlines("#{Rails.root}/config/admin_emails.txt").map { |e| e.strip }
-    ::APP_ENV = YAML::load_file("#{Rails.root}/config/environment.yml").keys_to_sym
+    ::APP_ENV = YAML::load_file("#{Rails.root}/config/environment.yml")
     
     require 'will_paginate/sequel'
     require 'will_paginate/active_record'
