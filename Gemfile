@@ -17,6 +17,7 @@ gem 'straight-server'
 gem 'redis'
 gem 'mmmenu'
 gem 'country_select', github: 'stefanpenner/country_select'
+gem 'pg'
 
 group :development do
   gem 'capistrano-rails'
