@@ -9,4 +9,8 @@ jQuery(function($){
   $("select").chosen();
   $(".leftSidebar, .pageContent").matchHeight();
 
+  $("menu li").click(function() {
+    window.location = $("a", this).attr('href');
+  });
+
 });
