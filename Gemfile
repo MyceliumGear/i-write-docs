@@ -25,6 +25,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
   #gem 'rvm1-capistrano3', require: false
+  gem 'capistrano-passenger'
   gem 'capistrano-bundler'
   gem 'thin'
   gem 'faker'
