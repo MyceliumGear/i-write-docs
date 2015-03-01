@@ -13,16 +13,18 @@ gem 'string_master'
 gem 'will_paginate'
 gem 'frontend_notifier'
 gem 'nilify_blanks'
-gem 'straight-server'
 gem 'redis'
 gem 'mmmenu'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'pg'
 
+gem 'straight',        git: 'https://github.com/snitko/straight'
+gem 'straight-server', git: 'https://github.com/snitko/straight-server'
+
 group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
-  gem 'rvm1-capistrano3', require: false
+  #gem 'rvm1-capistrano3', require: false
   gem 'capistrano-bundler'
   gem 'thin'
   gem 'faker'

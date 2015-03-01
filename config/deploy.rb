@@ -1,9 +1,11 @@
+set :rvm1_ruby_version, "2.2-head"
+
 set :application, "gear-admin"
 set :default_env, { rvm_bin_path: '~/.rvm/bin' }
 
 set :scm, :git
 set :repo_url,  "deploy@gearpayments.com:/var/repos/gear-admin.git"
-set :log_level, :info
+set :log_level, :debug
 
 set :linked_files, %w{config/database.yml config/environment.yml config/admin_emails.txt}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system config/straight}
