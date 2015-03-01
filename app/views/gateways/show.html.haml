@@ -23,6 +23,7 @@
         %td
           %label Set price:
           %input#widget_price(type="text")
+          %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_id }
           %span#widget_currency= @gateway.default_currency
           %button.small.unlockable#generate_widget Get code
 
