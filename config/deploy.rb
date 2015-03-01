@@ -9,7 +9,7 @@ set :repo_url,  "deploy@gearpayments.com:/var/repos/gear-admin.git"
 set :log_level, :debug
 
 set :linked_files, %w{config/database.yml config/environment.yml config/secrets.yml config/admin_emails.txt}
-set :linked_dirs, %w{bin log tmp vendor/bundle public/system config/straight}
+set :linked_dirs, %w{log tmp vendor/bundle public/system config/straight}
 
 SSHKit.config.command_map[:rake]  = "bundle exec rake" #8
 SSHKit.config.command_map[:rails] = "bundle exec rails"
