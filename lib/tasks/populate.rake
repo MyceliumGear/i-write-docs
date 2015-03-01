@@ -1,7 +1,7 @@
 namespace :db do
   namespace :populate do
 
-    if Kernel.const_defined?("Faker")
+    #if Kernel.const_defined?("Faker")
 
       desc "removes gateways and orders"
       task clear: [:environment] do
@@ -60,7 +60,7 @@ namespace :db do
         print "done!\n"
       end
 
-    end
+    #end
 
   end
 end

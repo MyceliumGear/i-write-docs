@@ -28,7 +28,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-bundler'
   gem 'thin'
-  gem 'faker'
+  #gem 'faker'
 end
 
 group :assets do
