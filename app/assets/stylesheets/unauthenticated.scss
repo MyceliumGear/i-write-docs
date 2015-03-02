@@ -17,6 +17,7 @@ header {
       input[type=text], input[type=password], input.string, button, .button, input[type=submit] { border-radius: 10px; font-size: 150%; }
       button, .button, input[type=submit] { font-size: 100%;  }
       .form-actions { text-align: center; }
+      .orSignIn { margin-left: 1em; @include always-fresh; }
     }
 
   }

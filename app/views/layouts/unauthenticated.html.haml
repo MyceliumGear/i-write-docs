@@ -3,10 +3,10 @@
 
   %head
     = render partial: 'layouts/shared_head'
+    = javascript_include_tag 'jquery.matchHeight.js', 'chosen.jquery.js', 'application'
     = stylesheet_link_tag 'shared', 'unauthenticated', media: 'all'
 
   %body
-
     = render partial: "shared/frontend_notifier"
     = image_tag "ajax-loader.gif", class: 'ajaxLoader'
 
