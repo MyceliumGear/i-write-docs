@@ -10,8 +10,10 @@ class Gateway < ActiveRecord::Base
   serialize :exchange_rate_adapter_names
 
   validates :confirmations_required, :pubkey, :name,
-            :default_currency, :user,
+            :default_currency, :user, :orders_expiration_period,
             presence: true
+
+  validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 3600 }
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
   validates :name, :pubkey, uniqueness: true
@@ -82,6 +84,7 @@ class Gateway < ActiveRecord::Base
         check_signature:  check_signature,
         default_currency: default_currency,
         active:           active,
+        orders_expiration_period:    orders_expiration_period,
         confirmations_required:      confirmations_required,
         exchange_rate_adapter_names: exchange_rate_adapter_names
       }

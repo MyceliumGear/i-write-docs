@@ -79,7 +79,8 @@ class GatewaysController < ApplicationController
         :region,
         :city,
         :regenerate_secret,
-        :widget
+        :widget,
+        :orders_expiration_period
       )
     end
 

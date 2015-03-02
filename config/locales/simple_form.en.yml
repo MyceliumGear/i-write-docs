@@ -51,3 +51,4 @@ en:
         widget: Check this if you don't plan to use the API and integrate Gear into your online store, but simply would like to install a payment widget.
         merchant_name: In most cases, we assume it's the same as the Gateway's name 
         regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them. The new secret will displayed to you after you click the "Update Gateway" button.
+        orders_expiration_period: Number of seconds before the order expires due to customer not paying. Usually, default 15 minutes (900 seconds) - a current industry standard.

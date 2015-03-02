@@ -66,6 +66,12 @@
       %td= @gateway.callback_url
 
     %tr
+      %th Orders expiration period
+      %td
+        = @gateway.orders_expiration_period
+        seconds
+
+    %tr
       %th Exchange rate providers
       %td= @gateway.exchange_rate_adapter_names.join(", ") if @gateway.exchange_rate_adapter_names.present?
 
