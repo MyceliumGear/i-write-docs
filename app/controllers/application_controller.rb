@@ -52,8 +52,8 @@ class ApplicationController < ActionController::Base
         l1.add "Gateways", gateways_path, match_subpaths: true
         l1.add "Orders",   orders_path
         l1.add "Account",  edit_user_registration_path
+        l1.add "Documentation", "#"
         l1.add "Sign out", destroy_user_session_path
-
       end 
     end
 
