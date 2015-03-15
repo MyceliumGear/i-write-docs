@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :index]
   end
 
-  get  'wizard', to: 'wizard#start'
+  get  'wizard', to: 'wizard#step'
   post 'wizard', to: 'wizard#create_gateway'
 
 end

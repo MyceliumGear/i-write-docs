@@ -21,4 +21,10 @@
     .button { display: inline-block; }
   }
 
+  &.step3 {
+    ul { margin: 1em 0; }
+    li { margin: 0.5em 0; }
+    .widget { background-color: $colors_light_gray; padding: 1em; border-radius: 7px; }
+  }
+
 }

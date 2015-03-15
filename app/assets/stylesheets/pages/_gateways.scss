@@ -31,15 +31,6 @@
 
     .seeAllOrders { font-size: 80%; padding-left: 2em; position: relative; top: -0.15em; }
 
-    .widget {
-      input#widget_price { width: 50px; }
-      input#widget_title { width: 150px; }
-      button { position: relative; top: -2px; }
-      .generatedWidget {
-        display: none;
-      }
-    }
-
   }
 
 }

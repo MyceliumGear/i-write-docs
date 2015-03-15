@@ -1,0 +1,66 @@
+.page.wizard.step3
+
+  .title
+
+    %h1 Start accepting Bitcoin payments in three simple steps!
+    %p This wizard will guide through the process of adding a Bitcoin payment option to your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to your website.
+
+  %h1 Step 3: Add payment widget to your website
+
+  - if @gateway.site_type == "wordpress"
+
+    Your website is created using Wordpress. Please follow these steps to install our payment widget onto your website:
+
+    %ol
+      %li Step 1 describing how to open site admin panel and add a plugin
+      %li Step 2 explaining how to check the widget is working
+
+    %h2 ...and that's it!
+
+
+    %p Watch our video explaining how to that:
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Um63OQz3bjo" frameborder="0" allowfullscreen></iframe>
+
+  - elsif @gateway.site_type == "shopify"
+
+    Your website is created using Shopify. Please follow these steps to install our payment widget onto your website:
+
+    %ol
+      %li Step 1 describing how to open site admin panel and add a plugin
+      %li Step 2 explaining how to check the widget is working
+
+    %h2 ...and that's it!
+
+
+    %p Watch our video explaining how to that:
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Um63OQz3bjo" frameborder="0" allowfullscreen></iframe> 
+
+  - else @gateway.site_type == "shopify"
+
+    %b Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself. Here's what you should do:
+
+    %ol
+      %li Open your html page in text editor (such as Notepad, Notepad++, Vim, Emacs, Textmate or Sublime) and find a place where you would like the widget to appear.
+      %li Generate the widget code below, paste it into the chosen place and save the file:
+
+      .widget
+
+        %label
+          Set price:
+          %input#widget_price(type="text")
+        %label
+          Set title:
+          %input#widget_title(type="text")
+        %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_id }
+        %span#widget_currency= @gateway.default_currency
+        %button.small.unlockable#generate_widget Get code
+
+        .generatedWidget= render partial: 'gateways/generated_widget'
+
+      %li Upload that file onto your server
+      %li Repeat for every page you would like the widget to appear on
+
+    %h2 ...and that's it!
+
+    %p Watch our video explaining how to do that:
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Um63OQz3bjo" frameborder="0" allowfullscreen></iframe> 
