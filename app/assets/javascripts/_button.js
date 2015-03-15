@@ -1,12 +1,5 @@
 jQuery(function($){
 
-  jQuery.fn.center = function(obj) {
-    var loc = obj.offset();
-    this.css("top",(obj.outerHeight() - this.outerHeight()) / 2 + loc.top + 'px');
-    this.css("left", (loc.left + 10) + 'px');
-    return this;
-  }
-
   $("button, .button, input[type=submit]").click(function() {
     if(!$(this).hasClass('unlockable')) {
       $(this).addClass('locked');
@@ -17,7 +10,7 @@ jQuery(function($){
       } else if($(this).hasClass('big')) {
         $(".ajaxLoader").addClass('big'); 
       }
-      $(".ajaxLoader").center($(this));
+      $(".ajaxLoader").leftMiddle($(this));
       $(".ajaxLoader").show();
     }
   });

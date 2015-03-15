@@ -66,3 +66,9 @@ button {
   &.small { padding: 0.65em 1.5em; }
   &.big   { padding: 0.7em 2em; }
 }
+
+.button {
+  padding: 0.54em 2em; position: relative; top: 1px;
+  &.small { padding: 0.65em 1.5em; }
+  &.big   { padding: 0.7em 2em; }
+}

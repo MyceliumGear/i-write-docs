@@ -1,0 +1,20 @@
+.page.wizard
+
+  .title
+
+    %h1 Start accepting Bitcoin payments in three simple steps!
+    %p This wizard will guide through the process of adding a Bitcoin payment option to your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to your website.
+
+  %h1 Step 1: choose what is your website running on?
+
+  %table.siteBackendTypesSelector
+    %tr.icons
+      %td{ data: { site_type: 'wordpress' }}= image_tag "wizard/wordpress.png"
+      %td{ data: { site_type: 'shopify' }}= image_tag "wizard/shopify.png"
+      %td{ data: { site_type: 'html' }}= image_tag "wizard/html.png"
+      %td{ data: { site_type: 'unknown' }}= image_tag "wizard/i_dont_know.png"
+    %tr.names
+      %td{ data: { site_type: 'wordpress' }} It's a Wordpress Blog!
+      %td{ data: { site_type: 'shopify' }}   It's a Shopify store!
+      %td{ data: { site_type: 'html' }}      Custom website I have control over
+      %td{ data: { site_type: 'unknown' }}   I have no idea...

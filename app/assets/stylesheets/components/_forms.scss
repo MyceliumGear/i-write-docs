@@ -9,6 +9,8 @@ form {
 
   abbr[title=required] { display: none; }
   label { display: block; clear: both; margin-bottom: 0.2em; }
+  label span.helper { font-size: 90%; color: $colors_link; border-bottom: dotted 1px $colors_link; cursor: pointer; margin-left: 1em; }
+
   div.input, input[type=submit] { margin: 0.5em 0 1em 0; }
   .hint { display: block; font-size: 80%; color: $colors_gray; margin-top: 0.2em; line-height: 120%; }
 

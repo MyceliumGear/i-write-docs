@@ -1,0 +1,24 @@
+.page.wizard {
+
+  .title {
+    color: $colors_gray; margin-bottom: 2em;
+    p { font-size: 90%; }
+  }
+
+  table.siteBackendTypesSelector  {
+    margin-top: 5em;
+    td { text-align: center; cursor: pointer; width: 25%; height: 150px; }
+    td.pressed { background-color: #464D81; img { opacity: 0.4 }; }
+    tr.icons td { border-radius: 10px; }
+    tr.names td { font-weight: bold; padding: 0 3em; height: auto; vertical-align: top; }
+    tr.icons td:hover { background-color: #C0C3DD; }
+    tr.icons td.pressed:hover { background-color: #464D81; }
+  }
+
+  form {
+    .actions { width: 100%; text-align: center; }
+    input[type=submit] { display: inline-block; }
+    .button { display: inline-block; }
+  }
+
+}

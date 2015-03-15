@@ -1,0 +1,27 @@
+.page.wizard
+
+  .title
+
+    %h1 Start accepting Bitcoin payments in three simple steps!
+    %p This wizard will guide through the process of adding a Bitcoin payment option to your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to your website.
+
+  %h1 Step 2: Fill in your wallet public key and a little info about your site
+
+  = simple_form_for(@gateway, url: { controller: 'wizard', action: 'create_gateway' }) do |f|
+
+    .pure-g
+      .pure-u-12-24
+        .container
+          = f.input :name
+          = f.input :pubkey, label: 'BIP32 pubkey <span class="helper">How do I get one?</span>'.html_safe 
+      .pure-u-12-24
+        .container
+          = f.input :merchant_url
+          = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
+
+
+    = f.input :site_type, as: :hidden
+    
+    .actions
+      = link_to "Back", "/wizard", class: 'button'
+      = f.submit "Next"
