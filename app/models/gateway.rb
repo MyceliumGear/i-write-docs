@@ -103,7 +103,7 @@ class Gateway < ActiveRecord::Base
     # #check_signature to false, because widget itself creates an order - how
     # do you keep a signature secret in the frontend? Exactly.
     def decide_on_the_signature
-      if self.widget
+      if self.widget || self.site_type.present?
         self.check_signature = "0"
       else
         self.check_signature = "1"
