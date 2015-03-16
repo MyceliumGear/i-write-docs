@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight-server
-  revision: 449aa24ac3581dd0c4c98d89d94130f599d0f4d8
+  revision: 6921ba9d157ed423f27fd2d3a4b765e0bba2e610
   specs:
     straight-server (0.1.2)
       faye-websocket
@@ -201,7 +201,7 @@ GEM
     mmmenu (0.5.2)
     money-tree (0.8.9)
       ffi
-    multi_json (1.10.1)
+    multi_json (1.11.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
@@ -280,7 +280,7 @@ GEM
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
     satoshi-unit (0.1.7)
-    sequel (4.19.0)
+    sequel (4.20.0)
     sexp_processor (4.4.5)
     simple_form (3.1.0)
       actionpack (~> 4.0)

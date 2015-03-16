@@ -20,15 +20,15 @@
       %th Status
       %td= StraightServer::Order::STATUSES.invert[@order.status]
 
-    - unless @gateway.straight_gateway.default_currency.upcase == 'BTC'
+    - if @order.data && @order.data[:exchange_rate]
       %tr
-        %th Exhange rates
+        %th Exhange rate
         %td
-          At the time of purchase:
-          %b= "#{@gateway.straight_gateway.current_exchange_rate} #{@gateway.straight_gateway.default_currency.upcase}"
+          Value at the time of purchase:
+          %b= "#{@order.data[:exchange_rate][:price]*@order.amount_in_btc} #{@order.data[:exchange_rate][:currency]}"
           ,
-          Current:
-          %b= "#{@gateway.straight_gateway.current_exchange_rate} #{@gateway.straight_gateway.default_currency.upcase}"
+          Current value:
+          %b= "#{@gateway.straight_gateway.current_exchange_rate(@order.data[:exchange_rate][:currency])*@order.amount_in_btc} #{@order.data[:exchange_rate][:currency]}"
 
     %tr
       %th Data

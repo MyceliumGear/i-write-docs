@@ -25,7 +25,9 @@ namespace :db do
           Gateway.create!(
             name: name,
             pubkey: pubkey,
-            user: @user ||= User.last
+            user: @user ||= User.last,
+            default_currency: ["USD", "USD", "BTC"].sample,
+            exchange_rate_adapter_names: ["Coinbase", "Bitpay", "Kraken"]
           )
         end
         print "done\n"
