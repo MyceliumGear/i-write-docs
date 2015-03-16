@@ -15,6 +15,27 @@ GIT
       sort_alphabetical (~> 1.0)
 
 GIT
+  remote: https://github.com/snitko/straight
+  revision: c9736a410ffcd756889686e3694cf57ceae7e27e
+  specs:
+    straight (0.1.0)
+      money-tree
+      satoshi-unit
+
+GIT
+  remote: https://github.com/snitko/straight-server
+  revision: 449aa24ac3581dd0c4c98d89d94130f599d0f4d8
+  specs:
+    straight-server (0.1.2)
+      faye-websocket
+      goliath
+      logmaster (= 0.1.2)
+      ruby-hmac
+      satoshi-unit
+      sequel
+      straight
+
+GIT
   remote: https://github.com/tommeier/database_cleaner
   revision: 5ea0718c75af5bbfdde545b4abba6bf9516ea555
   branch: fix-superclass
@@ -166,7 +187,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     log4r (1.1.10)
-    logmaster (0.1.5)
+    logmaster (0.1.2)
       pony
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
@@ -282,17 +303,6 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    straight (0.1.0)
-      money-tree
-      satoshi-unit
-    straight-server (0.1.2)
-      faye-websocket
-      goliath
-      logmaster (= 0.1.5)
-      ruby-hmac
-      satoshi-unit
-      sequel
-      straight
     string_master (0.3.7)
       actionpack
     thin (1.6.3)
@@ -353,8 +363,8 @@ DEPENDENCIES
   simple_form
   spring
   sqlite3
-  straight
-  straight-server
+  straight!
+  straight-server!
   string_master
   thin
   turn
