@@ -11,5 +11,6 @@ Rails.application.routes.draw do
 
   get  'wizard', to: 'wizard#step'
   post 'wizard', to: 'wizard#create_gateway'
+  post 'wizard/detect_site_type', to: 'wizard#detect_site_type'
 
 end

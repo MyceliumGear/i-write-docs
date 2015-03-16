@@ -23,6 +23,34 @@ class WizardController < ApplicationController
     end
   end
 
+  require 'open-uri'
+  def detect_site_type
+    url      = params[:url]
+    url      = url.match(/\Ahttps?:\/\//) ? url : "http://" + url
+    url.chomp!('/')
+    begin
+      file     = open(url, allow_redirections: :all)
+      contents = file.read
+    rescue Errno::ECONNREFUSED, URI::InvalidURIError
+      render text: 'ERROR: connection to the website is refused' and return
+    end
+
+    if contents.match('<meta name="generator" content="WordPress')
+      render text: "wordpress"
+    elsif contents.match('var Shopify = Shopify')
+      render text: 'shopify'
+    else
+      begin
+        if open(url + '/wp-admin', allow_redirections: :all).status == ["200", "OK"]
+          render text: "wordpress" and return
+        end
+      rescue
+        # continue
+      end
+      render text: "unknown"
+    end
+  end
+
   private
 
     def gateway_params
