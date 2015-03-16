@@ -32,7 +32,7 @@ class WizardController < ApplicationController
       file     = open(url, allow_redirections: :all)
       contents = file.read
     rescue Errno::ECONNREFUSED, URI::InvalidURIError
-      render text: 'ERROR: connection to the website is refused' and return
+      render text: 'connectionError' and return
     end
 
     if contents.match('<meta name="generator" content="WordPress')

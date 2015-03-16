@@ -18,3 +18,26 @@
       %td{ data: { site_type: 'shopify' }}   It's a Shopify store!
       %td{ data: { site_type: 'html' }}      Custom website I have control over
       %td{ data: { site_type: 'unknown' }}   I have no idea...
+
+  .websiteTypeChecker
+
+    .form
+      %label Let's check what your website is running on. Insert your website URL:
+      %input(type="text" placeholder="http://")
+      %br
+      %button.small Check it!
+
+    .wordpress
+      Your site is running on <b>Wordpress</b> blog engine.
+      %b Choose option 1.
+
+    .shopify
+      Your site is running on <b>Shopify</b> engine.
+      %b Choose option 2.
+
+    .unknown
+      Your site seems to be running something else other than Shopify or Wordpress.
+      %b Choose option 3.
+
+    .connectionError
+      We were unable to connect to the URL you specified, sorry.

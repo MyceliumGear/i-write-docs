@@ -21,6 +21,16 @@
     .button { display: inline-block; }
   }
 
+  .websiteTypeChecker {
+    display: none;
+    width: 300px; margin: 0 auto; padding: 1em; border-radius: 7px; text-align: center; margin-top: 2em;
+    background-color: $colors_light_gray;
+    label { margin-bottom: 0.5em; display: block; }
+    input { width: 250px; }
+    div { display: none; }
+    .form { display: block; }
+  }
+
   &.step3 {
     ul { margin: 1em 0; }
     li { margin: 0.5em 0; }

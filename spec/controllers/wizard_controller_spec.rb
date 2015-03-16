@@ -21,7 +21,7 @@ RSpec.describe WizardController, type: :controller do
 
     it "returns error if URL is unreachable" do
       post :detect_site_type, url: 'non existent site url'
-      expect(response.body).to eq('ERROR: connection to the website is refused')
+      expect(response.body).to eq('connectionError')
     end
 
   end
