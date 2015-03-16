@@ -31,6 +31,8 @@
           %th(style="width: 50px;") status
           - unless @gateway
             %th Gateway
+          -#%th Exchange rate (at purchase)
+          -#%th Exchange rate (current)
           %th Created at
         - @orders.each do |o|
           %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { order_id: o.keychain_id, gateway_id: gateway_id_for_order(o) } }
