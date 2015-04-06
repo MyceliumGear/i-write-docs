@@ -31,7 +31,7 @@ class WizardController < ApplicationController
     begin
       file     = open(url, allow_redirections: :all)
       contents = file.read
-    rescue Errno::ECONNREFUSED, URI::InvalidURIError
+    rescue 
       render text: 'connectionError' and return
     end
 
