@@ -14,3 +14,7 @@ unauthenticated: # layout name
     - new
     - create
     - show
+  'devise/unlocks':
+    - new
+    - create
+    - show
