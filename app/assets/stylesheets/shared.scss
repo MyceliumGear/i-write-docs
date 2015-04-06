@@ -18,6 +18,7 @@ body { background-color: #D5DEE8; color: $colors_text; margin: 0 0 0 0; line-hei
 a         { color: $colors_link; }
 a:visited { color: $colors_link_visited; }
 a:active  { color: $colors_link_active; }
+span.eventTrigger { color: $colors_link; border-bottom: dotted 1px $colors_link; cursor: pointer; }
 
 .alwaysFresh {
   a:visited { color: $colors_link; }

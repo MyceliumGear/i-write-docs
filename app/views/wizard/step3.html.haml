@@ -45,14 +45,20 @@
 
       .widget
 
-        %label
-          Set price:
-          %input#widget_price(type="text")
-        %label
-          Set title:
-          %input#widget_title(type="text")
+        .item
+          %label
+            Product title:
+            %input.widgetTitle(type="text")
+          %label
+            Product price:
+            %input.widgetPrice(type="text")
+            %span= @gateway.default_currency
+          &nbsp;
+          %span.eventTrigger#add_product Add one more item
+
+        %span#widget_currency(style="display: none;")= @gateway.default_currency
+
         %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_id }
-        %span#widget_currency= @gateway.default_currency
         %button.small.unlockable#generate_widget Get code
 
         .generatedWidget= render partial: 'gateways/generated_widget'
