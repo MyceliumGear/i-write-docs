@@ -13,15 +13,17 @@ jQuery(function($){
       console.log("many products");
       var products = [];
       $(".item").each(function() {
-        if(!validate_price($(this).find('.widgetPrice').val())) { return; }
-        products.push($(this).find('.widgetTitle').val() + ':' + $(this).find('.widgetPrice').val());
+        var price = normalize_price($(this).find('.widgetPrice').val());
+        if(!validate_price(price)) { return; }
+        products.push($(this).find('.widgetTitle').val() + ':' + price);
       });
       console.log('data-products="' + products.join(',') + '"');
       widget_code_template = widget_code_template.replace(/data-products=".*?"/, 'data-products="' + products.join(',') + '"');
     } else {
-      if(!validate_price($(".item .widgetPrice").val())) { return; }
+      var price = normalize_price($(".item .widgetPrice").val());
+      if(!validate_price(price)) { return; }
       widget_code_template = widget_code_template.replace(/data-title=".*?"/, 'data-title="' + $(".item .widgetTitle").val() + '"');
-      widget_code_template = widget_code_template.replace(/data-price=".*?"/, 'data-price="' + $(".item .widgetPrice").val() + '"');
+      widget_code_template = widget_code_template.replace(/data-price=".*?"/, 'data-price="' + price + '"');
     }
 
     $(".widget .generatedWidget textarea").val(widget_code_template);
@@ -45,6 +47,10 @@ jQuery(function($){
     } else {
       return true;
     }
+  }
+
+  function normalize_price(price) {
+    return price.replace(',', '.');
   }
 
   $("#add_product").click(show_new_product_fields);
