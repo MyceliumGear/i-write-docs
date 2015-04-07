@@ -10,18 +10,16 @@ jQuery(function($){
     widget_code_template = widget_code_template.replace(/  +/g, '');
 
     if($(".widget .item").size() > 1) {
-      console.log("many products");
       var products = [];
       $(".item").each(function() {
         var price = normalize_price($(this).find('.widgetPrice').val());
-        if(!validate_price(price)) { return; }
+        if(!validate_price(price)) { return false; }
         products.push($(this).find('.widgetTitle').val() + ':' + price);
       });
-      console.log('data-products="' + products.join(',') + '"');
       widget_code_template = widget_code_template.replace(/data-products=".*?"/, 'data-products="' + products.join(',') + '"');
     } else {
       var price = normalize_price($(".item .widgetPrice").val());
-      if(!validate_price(price)) { return; }
+      if(!validate_price(price)) { return false; }
       widget_code_template = widget_code_template.replace(/data-title=".*?"/, 'data-title="' + $(".item .widgetTitle").val() + '"');
       widget_code_template = widget_code_template.replace(/data-price=".*?"/, 'data-price="' + price + '"');
     }
