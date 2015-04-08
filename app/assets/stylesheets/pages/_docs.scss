@@ -1,0 +1,17 @@
+.page.docs {
+
+  padding-bottom: 10em;
+
+  ul {
+    margin: 0 0 0 0;
+  }
+
+  .code { background-color: $colors_light_gray; border: solid 1px $colors_gray; padding: 1em; font-family: mono; border-radius: 7px; }
+
+  .nav {
+    margin: 3em 0; font-size: 90%; font-weight: bold;
+    .left  { float: left; width: 40%; }
+    .right { float: right; width: 40%; text-align: right; }
+  }
+
+}

@@ -1,0 +1,24 @@
+.page.docs
+
+  %h1 Documentation for Mycelium Gear payment processor
+
+  %p This documentation is primarily aimed at developers who would like to integrate Bitcoin payment processing into their online store or website. If you are not a developer, but you still would like to accept Bitcoin on your site, please opt out for creating a #{ link_to "simple payment widget", "wizard"}.
+
+  %p Mycelium Gear follows industry standards for processing payments, so if you have ever dealt with integrating any payment gateway (not necessarily a Bitcoin one), you should quickly understand how everything works and what to do. For those who've never worked with payment processing, we're going to explain every detail and demonstrate code examlpes.
+
+  %p Mycelium Gear is built using #{ link_to "straight", "" } and #{ link_to "straight-server" } opensource software. You might want to check the documentation for those to better undertsand the underlying mechanisms, but it is not necessary. Many of the things mentioned in straight-server will also be mentioned in the present documentation.
+
+  %h2 Table of contents
+
+  %ul
+
+    %li= link_to "Overview of the payment processing", "/docs/overview"
+    %li Creating a new gateway
+    %li
+      API
+      %ul
+        %li Creating orders
+        %li Checking order status manually
+        %li Order websocket
+        %li Receiving the order status change callback
+        %li Security concerns
