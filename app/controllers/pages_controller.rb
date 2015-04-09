@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def frontpage
     redirect_to gateways_path if current_user
   end
