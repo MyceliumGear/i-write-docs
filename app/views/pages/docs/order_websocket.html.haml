@@ -1,0 +1,25 @@
+.page.docs
+
+  %h1 #{ link_to "Documentation", "/docs"} / API / Order websocket
+
+  %p
+    Another way to track order status is to be continually connected to
+    its respective websocket. In fact, this is what the payment page your customer
+    is redirected to does. However, you may decide you don't want to use Mycelium Gear
+    payment page and present your customer with your own, customized one, that
+    will be on your own site. Or even if you are using a standard payment page, your
+    backend software may still want to connect to the order's websocket instead of
+    waiting for a callback request.
+
+  %p To connect to the websocket, you should use the following URL:
+
+  .code https://gateway.gear.mycelium.com/gateways/:gateway_id/orders/1/websocket
+
+  %p
+    When order status chenges, the websocket will return you order data in json,
+    exactly the same that would be returned as a response to a regular http request
+    #{ link_to "checking order status manually", "/docs/checking_order_status" }.
+
+  .nav
+    .left= link_to "&#8592; Previous (checking order status manually)".html_safe, "/docs/callback"
+    .right= link_to "Table of contents &#8594;".html_safe, "/docs"
