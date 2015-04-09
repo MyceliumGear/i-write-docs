@@ -22,11 +22,11 @@
       %b status
       %p Returns a numerical value which can be either of those:
       %ul
-        %li 1 - uncofirmed; transaction received, but not enough confirmations yet
-        %li 2 - paid in full
-        %li 3 - underpaid; not enough mmoney received
-        %li 4 - overpaid; too much has been received
-        %li 5 - expired; customer didn't pay in time
+        %li 1 &mdash; unconfirmed; transaction received, but not enough confirmations yet
+        %li 2 &mdash; paid in full
+        %li 3 &mdash; underpaid; not enough money received
+        %li 4 &mdash; overpaid; too much has been received
+        %li 5 &mdash; expired; customer didn't pay in time
     %li
       %b address
       %p The address to which a transaction was supposed to be made
@@ -35,14 +35,14 @@
       %p In case the status is 1,2,3 or 4 this will contain a Bitcoin transaction id
     %li
       %b data
-      %p This contains any data that was passed previously while #{ link_to "creating the order", "/docs/creating_orders" }. For example, if you passed <span class="code">hello_world</span> as data in the request that created that order, you will also get the same string back with a callback.
+      %p This contains any data that was passed previously while #{ link_to "creating the order", "/docs/creating_orders" }. For example, if you passed <span class="code">"hello world"</span> as data in the request that created that order, you will also get the same string back with a callback.
     %li
       %b signature
-      %p This is the most important piece of information in terms of security. You have to remember that anyone can make a request to that callback url of yours and basically fool your website into believing that a certain order was paid. In order to avoid that, Mycelium Gear uses signature to sign a callback request, so that you can verify it came from Mycelium Gear and not somebody else. We'll talk about it in detail below.
+      %p This is the most important piece of information in terms of security. You have to remember that anyone can make a request to that callback url of yours and basically fool your website into believing that a certain order was paid. In order to avoid that, Mycelium Gear uses signatures to sign a callback request, so that you can verify it came from Mycelium Gear and not somebody else. We'll talk about it in detail below.
 
   %h2 Callback signature
 
-  %p The problem with the callback signature is that it cannot be the same as the signature you used to sign your own request which created that order. This is because there's always a chance someone might have intercepted your request and now knows that signature with which he could then make a fake callback request. Therefore, Mycelium Gear signs request with a double signature. This is Ruby example of how you would calculate it:
+  %p The problem with a callback signature is that it cannot be the same as the signature you used to sign your own request which created that order. This is because there's always a chance someone might have intercepted your request and now knows that signature &mdash; with it he could then make a fake callback request. Therefore, Mycelium Gear signs its callback request with a double signature. This is a Ruby example of how you would calculate it:
 
   .code
     require 'openssl'<br/>
@@ -53,7 +53,7 @@
   %p
     In your callback handler you MUST calculate that signature and then make sure it matches
     the signature that was passed to you as a <span class="code">signature</span> in the callback request.
-    If it doesn't match, it means one of the two things: you made a mistake in while calculating it
+    If it doesn't match, it means one of the two things: you made a mistake while calculating it
     or the callback request is fake. Before you start getting all nervious,
     always consider the first option.
 

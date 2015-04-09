@@ -13,10 +13,10 @@
 
   %p To connect to the websocket, you should use the following URL:
 
-  .code https://gateway.gear.mycelium.com/gateways/:gateway_id/orders/1/websocket
+  .code https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders/1/websocket
 
   %p
-    When order status chenges, the websocket will return you order data in json,
+    where 1 is, obviously, your order id. When order status chenges, the websocket will return you order data in json,
     exactly the same that would be returned as a response to a regular http request
     #{ link_to "checking order status manually", "/docs/checking_order_status" }.
 
