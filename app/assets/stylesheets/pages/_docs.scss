@@ -1,14 +1,13 @@
 .page.docs {
 
   padding-bottom: 10em;
-
-  ul {
-    margin: 0 0 0 0;
-  }
-
+  ul { margin: 0 0 0 0; }
   ul.longText li { margin: 1em 0; }
+  h2 { margin-top: 2em; }
 
-  .code { background-color: $colors_light_gray; border: solid 1px $colors_gray; padding: 1em; font-family: mono; border-radius: 7px; }
+  .code { background-color: $colors_light_gray; border: solid 1px $colors_gray; font-family: mono; }
+  span.code { padding: 0.3em; font-size: 85%; border-radius: 4px; }
+  div.code { padding: 1em; border-radius: 7px; }
 
   .nav {
     margin: 3em 0; font-size: 90%; font-weight: bold;
