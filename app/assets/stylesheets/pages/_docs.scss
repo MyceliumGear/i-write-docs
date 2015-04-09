@@ -3,6 +3,8 @@
   padding-bottom: 10em;
   ul { margin: 0 0 0 0; }
   ul.longText li { margin: 1em 0; }
+  ul.longText ul li { margin: 0 0; }
+  ul p { margin: 0 0 0 0; }
   h2 { margin-top: 2em; }
 
   .code { background-color: $colors_light_gray; border: solid 1px $colors_gray; font-family: mono; }

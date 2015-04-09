@@ -27,6 +27,17 @@
     secret = 'a long string of random chars'<br/>
     OpenSSL::HMAC.digest('sha256', secret, "1").unpack("H*").first # "1" may be order_id here
 
+  %h2 Passing additional data
+  %p You may want to pass some additional data that will later be returned to you in the callback unchanged. This is useful if you wish to identify which record in your DB is associated with which order by something other than order_id.
+  
+  %p For example, supppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase first, then pass its id in the data param:
+
+  .code
+    POST /gateways/:api_gateway_id/orders?amount=1&order_id=1&<b>data=purchase_id_123</b>&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
+
+  %p Later on, when the callback request is issued, this <span class="code">data</span> param will be returned back in it and you'll be able to find that purchase in your DB.
+
+
   %h2 The response
 
   %p In response to the request above, you will receive the following json from Mycelium Gear:
@@ -59,7 +70,7 @@
     &nbsp;&nbsp;require 'json'<br/>
     &nbsp;&nbsp;require 'net/http'<br/>
 
-    <br/><br/>
+    <br/>
     &nbsp;&nbsp;uri = URI.parse("https://gateway.gear.mycelium.com")<br/>
     &nbsp;&nbsp;http = Net::HTTP.new(uri.host, uri.port)<br/>
     &nbsp;&nbsp;http.use_ssl = true<br/>
@@ -75,6 +86,9 @@
     &nbsp;&nbsp;order = JSON.parse(http.request(request).body).to_h
 
     <br/><br/>
+    = "#Let's create a purchase model in our app and save order_id with it"
+    Purchase.create(order_id: order.id ... )
+    <br/><br/>
     &nbsp;
     ="# Redirect our customer to the payment page"
     <br/>
@@ -82,3 +96,7 @@
     ='redirect_to "https://gateway.gear.mycelium.com/pay/#{order["payment_id"]}'
     <br/>
     end 
+
+  .nav
+    .left= link_to "&#8592; Previous (creating a new gateway)".html_safe, "/docs/creating_gateway"
+    .right= link_to "Next (receiving order status change callback) &#8594;".html_safe, "/docs/callback"
