@@ -1,0 +1,38 @@
+.page.docs
+
+  %h1 #{ link_to "Documentation", "/docs"} / Creating a new gateway
+
+  %p The first thing you will want to do after you sign up (and read the docs, of course) is to create a new <i>gateway</i>. Gateways are entities that create orders and process payments for a particular store. So, if you only have one online store, you will need to create one gateway.
+
+  %h2 Filling the form
+
+  %p To create a gateway, simply go to #{ link_to "this page", new_gateway_path } and start filling the form. Almost all of the fields are optional, but to help you understand what you're doing, below is the explanation for each field in that form (we marked the required fields with an asterisk *).
+
+  %ul.longText
+
+    %li <b>*Name</b> is what your customers will see on top of the payment page when they finally decide to make that purchase. It is also the name of the gateway you see as a merchant in the admin panel. While it doesn't affect anything in particular, it's simply a good idea to put something meaningful in there.
+
+    %li <b>Confirmations required</b> should probably be set to 0 unless your typical payment is very large. In Bitcoin, each transaction is considered complete only when you have 6 confirmations (which may take about an hour). However, you can still predict with a degree of certainty that the payment will reach you in 1 hour when a transaction has just been broadcasted. You don't generally want your customers to wait, thus industry standard is to use 0 confirmations. That way, as soon as your customer sends money from his wallet, we can detect it almost immediatelly and redirect him back to your website.
+
+    %li
+      <b>*BIP32 pubkey</b> is the most important of the fields. It usually looks like this:
+      .code xpub6AHA9hZDN11k2ijHMeS5QqHx2KP9aMBRhTDqANMnwVtdyw2TDYRmF8PjpvwUFcL1Et8Hj59S3gTSMcUQ5gAqTz3Wd8EsMTmF3DChhqPQBnU 
+      It is derived from your wallet's private key and using it Mycelium Gear is able to generate new addresses for each new order. Not all wallets support BIP32, but two of the most popular ones &mdash; #{ link_to "Mycelium", "https://mycelium.com/bitcoinwallet" } and #{ link_to "Electrum", "https://electrum.org" } &mdash; do. If you want to use Mycelium Gear you need to use one of them. If you're not sure how to obtain a BIP32 public key from either of these wallets, please watch our short videos explaining how to do that #{ link_to "for Electrum", "" } and #{ link_to "for Mycelium" }.
+
+    %li <b>Orders expiration period</b> is the time period in which a customer may pay for the order. If he doesn't pay within this period of time, an order is considered expired. The default is 900 seconds (15 minutes) which is an industry standard.
+
+    %li <b>Active</b> flag simply means this gateway is currently ready to process payments. If you need to stop accepting payments temporarily, you can always come back to that form (edit the existing gateway) and uncheck that checkbox.
+
+    %li <b>Currency conversion options</b> block allows you to control what currency your orders prices are displayed in and how do you convert that value into the appropriate amount of bitcoins. While the default currency setting is BTC, you might want to consider using USD, since the Bitcoin exchange rate is fluctuating and it's inconvenient to set prices in it. Currency rate provider fields allow you to choose which sources to use for the current exchange rate; the order matters here: we check with the first source, then if it fails (for example, if the exchange is temporarily down), we switch to the second one.
+
+    %li <b>Additional info about the merchant</b> block is completely optional, but we would welcome all merchants to fill it in. This will help us provide our customers with a better service. Those fields are not for compliance: Mycelium Gear doesn't handle the money (just watches the transactions on the blockchain) and is not subject to AML/KYC. We do not share that information with anyone.
+
+  %h2 Getting the gateway secret
+
+  %p After you click the "Create gateway" button below the form, if all fields are valid, you will be redirected to the gateway info page and will be presented with a <i>gateway secret</i>. <b>You must write it down</b> as it will not appear again anywhere. If you ever lose that secret, you will need to come back to that form (edit the gateway) and check the "Regenerate secret" checkbox; however this will invalidate your previous secret and any of your online stores that were using it will have to update it to the new one.
+
+  %p The secret key is essentially your signature with which all requests to the gateway are signed and the gateway knows it is you, and not some impostor, who's talking to it. We will explain how to use this secret key in detail in the next section.
+
+  .nav
+    .left= link_to "&#8592; Previous (overview)".html_safe, "/docs"
+    .right= link_to "Next (creating orders) &#8594;".html_safe, "/docs/creating_orders"

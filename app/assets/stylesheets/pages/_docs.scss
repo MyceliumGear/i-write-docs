@@ -6,6 +6,8 @@
     margin: 0 0 0 0;
   }
 
+  ul.longText li { margin: 1em 0; }
+
   .code { background-color: $colors_light_gray; border: solid 1px $colors_gray; padding: 1em; font-family: mono; border-radius: 7px; }
 
   .nav {
