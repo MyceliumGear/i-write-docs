@@ -11,7 +11,7 @@ class PagesController < ApplicationController
       render "pages/docs/index"
     else
       begin
-        render "pages/docs/#{params[:section]}"
+        render "pages/docs/#{params[:section]}", layout: 'application'
       rescue ActionView::MissingTemplate 
         render_404
       end

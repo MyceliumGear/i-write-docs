@@ -30,7 +30,7 @@
   %h2 Passing additional data
   %p You may want to pass some additional data that will later be returned to you in the callback, unchanged. This is useful if you wish to identify which record in your DB is associated with which order by something other than order_id.
   
-  %p For example, supppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase first, then pass its id in the data param:
+  %p For example, supppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase and pass its id in the data param:
 
   .code
     POST /gateways/:api_gateway_id/orders?amount=1&order_id=1&<b>data=purchase_id_123</b>&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
