@@ -46,6 +46,8 @@ class Gateway < ActiveRecord::Base
     names = Straight::ExchangeRate::Adapter.descendants.map do |a|
       a.to_s.sub("Straight::ExchangeRate::", '').sub("Adapter", '')
     end
+    names.delete_if { |a| ["Bitpay", "Coinbase"].include?(a) }
+    names
   end
 
   private
