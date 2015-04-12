@@ -27,7 +27,7 @@
           %label
             Set title:
             %input#widget_title(type="text")
-          %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_id }
+          %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_hashed_id }
           %span#widget_currency= @gateway.default_currency
           %button.small.unlockable#generate_widget Get code
 
@@ -73,7 +73,7 @@
 
     %tr
       %th API Gateway ID
-      %td= @gateway.straight_gateway_id
+      %td= @gateway.straight_gateway_hashed_id
 
     %tr
       %th Exchange rate providers

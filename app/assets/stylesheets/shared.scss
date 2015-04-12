@@ -20,6 +20,8 @@ a:visited { color: $colors_link_visited; }
 a:active  { color: $colors_link_active; }
 span.eventTrigger { color: $colors_link; border-bottom: dotted 1px $colors_link; cursor: pointer; }
 
+img.inlineIcon { float: left; margin: -1px 0.5em 0 0; }
+
 .alwaysFresh {
   a:visited { color: $colors_link; }
 }

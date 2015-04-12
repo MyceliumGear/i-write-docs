@@ -7,8 +7,6 @@ RSpec.describe GatewaysController, type: :controller do
   it_only_allows_resource_author_or_admin            [:show, :edit, :update, :destroy], :gateway
 
   before(:each) do
-    allow(StraightServer::Gateway).to receive_message_chain('create.id').and_return(*((1..100).to_a))
-    allow_any_instance_of(Gateway).to receive_message_chain('straight_gateway.update')
     login_user
   end
 

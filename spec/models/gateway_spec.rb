@@ -64,6 +64,7 @@ RSpec.describe Gateway, type: :model do
         expect(@straight_gateway.check_signature).to        eq(@gateway.check_signature)
         expect(@straight_gateway.exchange_rate_adapter_names).to eq(@gateway.exchange_rate_adapter_names)
         expect(@straight_gateway.active).to eq(@gateway.active)
+        expect(@straight_gateway.hashed_id).to eq(@gateway.straight_gateway_hashed_id)
       end
 
       it "updates a gateway with the changed fields from the model" do
@@ -80,7 +81,7 @@ RSpec.describe Gateway, type: :model do
       describe "finding orders" do
 
         before(:each) do
-          @orders = create_list(:order, 3, gateway_id: @gateway.straight_gateway_id)
+          @orders = create_list(:order, 3, gateway_id: @gateway.straight_gateway.id)
         end
 
         it "finds all orders for the gateway" do

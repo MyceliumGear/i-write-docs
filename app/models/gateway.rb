@@ -37,7 +37,7 @@ class Gateway < ActiveRecord::Base
   end
 
   def orders(reload: false, conditions: {}, paginate: {})
-    @orders = StraightServer::Order.where({gateway_id: id}.merge(conditions))
+    @orders = StraightServer::Order.where({gateway_id: straight_gateway.id}.merge(conditions))
     @orders = @orders.extension(:pagination).paginate(paginate[:page], paginate[:per_page]) if paginate.present?
     @orders = @orders.to_a
   end
@@ -70,7 +70,8 @@ class Gateway < ActiveRecord::Base
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
       )
-      self.straight_gateway_id = @straight_gateway.id
+      self.straight_gateway_id        = @straight_gateway.id
+      self.straight_gateway_hashed_id = @straight_gateway.hashed_id
     end
 
     def update_straight_gateway

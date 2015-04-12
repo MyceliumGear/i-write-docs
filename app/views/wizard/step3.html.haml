@@ -58,7 +58,7 @@
 
         %span#widget_currency(style="display: none;")= @gateway.default_currency
 
-        %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_id }
+        %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_hashed_id }
         %button.small.unlockable#generate_widget Get code
 
         .generatedWidget= render partial: 'gateways/generated_widget'
@@ -69,4 +69,4 @@
     %h2 ...and that's it!
 
     %p Watch our video explaining how to do that:
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Um63OQz3bjo" frameborder="0" allowfullscreen></iframe> 
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6BBuDDWu4G0" frameborder="0" allowfullscreen></iframe>
