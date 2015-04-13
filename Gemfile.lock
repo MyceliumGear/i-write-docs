@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight
-  revision: ed8391f060d658068fd08c2f5336a323a2799dc1
+  revision: 3f43701d24c315e75c18eecb11ba6fefb7bb5772
   specs:
     straight (0.1.0)
       money-tree
@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight-server
-  revision: 4e4f94b3b864e2d135718b5e5b51c5365f384723
+  revision: 295c99c8161eca3ec9acd3766351080725240bf7
   specs:
     straight-server (0.1.2)
       faye-websocket
