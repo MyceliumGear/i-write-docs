@@ -29,3 +29,7 @@ img.inlineIcon { float: left; margin: -1px 0.5em 0 0; }
 .regularText { color: $colors_text; }
 .gray { color: $colors_gray; }
 .center { text-align: center; }
+
+.code { background-color: $colors_light_gray; border: solid 1px $colors_gray; font-family: mono; }
+span.code { padding: 0.3em; font-size: 85%; border-radius: 4px; }
+div.code { padding: 1em; border-radius: 7px; overflow-x: auto; }
