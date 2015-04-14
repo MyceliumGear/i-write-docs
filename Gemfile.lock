@@ -24,7 +24,7 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight-server
-  revision: 295c99c8161eca3ec9acd3766351080725240bf7
+  revision: 2716d461919611180b0376cf07ae2f40b814d122
   specs:
     straight-server (0.1.2)
       faye-websocket
