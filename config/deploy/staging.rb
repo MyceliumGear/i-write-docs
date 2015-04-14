@@ -17,6 +17,7 @@ role :db,  %w{deploy@gearpayments.com}
 
 server 'gearpayments.com', user: 'deploy', roles: %w{web app db}
 set :deploy_to, "/var/www/#{fetch(:application)}/staging"
+set :branch, "staging"
 
 # Custom SSH Options
 # ==================
