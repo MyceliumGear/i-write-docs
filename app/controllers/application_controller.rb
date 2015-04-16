@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
 
         end
       end
+      self.class.layout "application"
     end
 
     def render_403
