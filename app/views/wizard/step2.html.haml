@@ -14,6 +14,9 @@
         .container
           = f.input :name
           = f.input :pubkey, label: 'BIP32 pubkey <span class="helper">How do I get one?</span>'.html_safe 
+          %p.moreFieldInfo
+            = image_tag "watch_icon.png", class: 'inlineIcon'
+            Watch a short video and learn how to export BIP32 pubkey from #{link_to "your Electrum", "https://www.youtube.com/watch?v=K0vackpsLsY", target: '_blank' } or #{ link_to "Mycelium wallet", "https://www.youtube.com/watch?v=FCh0dz9uuLc", target: '_blank' }.
       .pure-u-12-24
         .container
           = f.input :merchant_url

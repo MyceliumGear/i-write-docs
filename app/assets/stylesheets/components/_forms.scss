@@ -37,6 +37,8 @@ form {
   .field_with_errors { textarea, input[type=text], input[type=password] { @include text-field-with-errors }}
 
 
+  p.moreFieldInfo { font-size: 85%; font-weight: bold; }
+
 }
 
 select { width: 50%; }
