@@ -3,9 +3,9 @@
   - if @orders.present?
 
     - if @gateway
-      %h2 All orders for gateway <span class="regularText">#{@gateway.name}</span>
+      %h2.pageTitle All orders for gateway <b>#{@gateway.name}</b>
     - else
-      %h2 All orders for all gateways
+      %h2.pageTitle All orders for all gateways
 
     .actions
 

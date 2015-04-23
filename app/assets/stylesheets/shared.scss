@@ -33,3 +33,8 @@ img.inlineIcon { float: left; margin: -1px 0.5em 0 0; }
 .code { background-color: $colors_light_gray; border: solid 1px $colors_gray; font-family: mono; }
 span.code { padding: 0.3em; font-size: 85%; border-radius: 4px; }
 div.code { padding: 1em; border-radius: 7px; overflow-x: auto; }
+
+h1, h2 { font-weight: normal; margin-top: 0.5em; }
+h1, h2 { &.pageTitle { float: left; }}
+h1 { font-size: 300%; }
+h2 { font-size: 250%; }

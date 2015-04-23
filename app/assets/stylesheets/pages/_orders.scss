@@ -2,8 +2,6 @@
 
   &.index {
 
-    h2 { color: $colors_gray; }
-
     .actions {
       width: 100%; @include clearfix;
       .activeFilters {
