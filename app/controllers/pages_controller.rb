@@ -1,9 +1,13 @@
 class PagesController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, only: [:docs]
 
   def frontpage
-    redirect_to gateways_path if current_user
+    if current_user
+      redirect_to gateways_path
+    else
+      redirect_to new_user_session_path 
+    end
   end
 
   def docs
