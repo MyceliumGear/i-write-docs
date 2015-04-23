@@ -3,7 +3,8 @@
 .authenticated {
   #frontend_notification {
     margin-left: 300px;
-    .message { text-align: left; padding-left: 2em; }
+    height: 4em; font-size: 80%;
+    .message { text-align: left; padding: 0.8em 0 0 2em; font-size: 120%; }
     .info {
       position: relative; left: -300px;
       span.closingCounter { position: relative; top: -4px; }
