@@ -2,15 +2,7 @@
 
   &.index {
     .actions { text-align: right; }
-    .list {
-      margin: 2em 0;
-      table {
-        border-collapse: separate; border-spacing: 2px; width: 100%; clear: both; margin-top: 2em;
-        th { text-align: left; font-weight: bold; font-size: 85%; width: 30%; background-color: #9FB5D5; }
-        th, td { padding: 0.7em; }
-        td { background-color: #DCE5EF; }
-      }
-    }
+    .list { margin: 2em 0; }
   }
 
   &.new, &.edit {

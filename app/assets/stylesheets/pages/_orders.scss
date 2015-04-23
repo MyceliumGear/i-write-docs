@@ -18,23 +18,21 @@
     .list {
       margin: 0 0 0 0; position: relative; top: -1em;
       table {
-        font-size: 85%;
-        border-collapse: separate; border-spacing: 2px; width: 100%; clear: both; margin-top: 2em;
-        th { text-align: left; font-weight: bold; width: 30%; background-color: #9FB5D5; }
-        th { padding: 0.7em; }
-        td { background-color: #DCE5EF; padding: 0.2em 0.5em; cursor: pointer; }
-        tr.paid td { background-color: #74C969; }
-        tr.unconfirmed td { background-color: #F6B246; }
-        tr.underpaid   td { background-color: #F6B246; }
-        tr.overpaid    td { background-color: #D9685E; }
-        tr.expired     td { background-color: #828F9B; }
+        tr { cursor: pointer; }
+        td.amount { text-align: left; }
+        tr:hover td { background-color: #F6F5F3; }
 
-        tr.new.hover td { background-color: #B9CBDF;}
-        tr.paid.hover td { background-color: #55BD47; }
-        tr.unconfirmed.hover td { background-color: #F49E16; }
-        tr.underpaid.hover   td { background-color: #F49E16; }
-        tr.overpaid.hover    td { background-color: #D35145; }
-        tr.expired.hover     td { background-color: #748390; }
+        tr.paid td:last-child { border-right: solid 4px #74C969; }
+        tr.paid:hover td:last-child { border-right: solid 4px #55BD47; }
+
+        tr.unconfirmed td:last-child { border-right: solid 4px #F6B246; }
+        tr.unconfirmed:hover td:last-child { border-right: solid 4px #F49E16; }
+
+        tr.underpaid td:last-child { border-right: solid 4px #F6B246; }
+        tr.underpaid:hover td:last-child { border-right: solid 4px #F49E16; }
+
+        tr.overpaid td:last-child { border-right: solid 4px #D9685E; }
+        tr.overpaid:hover td:last-child { border-right: solid 4px #D35145; }
       }
     }
   }

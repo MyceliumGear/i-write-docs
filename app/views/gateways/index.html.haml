@@ -9,12 +9,12 @@
     - if @gateways.present?
 
       %table
-        %th Name
-        %th(style="width: 30px;") Active
-        %th BIP32 pubkey
-        %th(style="width: 70px;") Default currency
+        %th NAME
+        %th(style="width: 30px;") ACTIVE?
+        %th BIP32 PUBKEY
+        %th(style="width: 70px;") DEFAULT CURRENCY
         - if current_user.admin?
-          %th Owner
+          %th OWNER
         - @gateways.each do |g|
           %tr
             %td <b>#{link_to g.name, g}</b>

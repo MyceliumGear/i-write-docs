@@ -38,9 +38,8 @@
 
 @mixin resource-info-table {
   border-collapse: separate; border-spacing: 2px; width: 100%; clear: both; margin-top: 2em;
-  th { text-align: right; font-weight: bold; font-size: 85%; width: 30%; background-color: #DCE5EF; }
+  th { text-align: right; font-weight: bold; font-size: 85%; width: 30%; }
   th, td { padding: 0.7em; }
-  td { background-color: #DCE5EF; }
 }
 
 @mixin clearfix {

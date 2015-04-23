@@ -28,23 +28,24 @@
         %tr
           %th(style="width: 90px;") Amount (BTC)
           %th Address
-          %th(style="width: 50px;") status
           - unless @gateway
-            %th(style="width: 70px;") Gateway
-          %th(style="width: 110px;") Value <br/><small>(at the time of purchase)</small>
+            %th(style="width: 300px;") Gateway
+          %th(style="width: 70px;") Value <br/><small>(at the time of purchase)</small>
           %th(style="width: 250px;") Created at
+          %th(style="width: 50px;") status
+
         - @orders.each do |o|
           %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { order_id: o.keychain_id, gateway_id: gateway_id_for_order(o) } }
-            %td= o.amount_in_btc(as: :string)
+            %td.amount= o.amount_in_btc(as: :string)
             %td= o.address
-            %td
-              %b= StraightServer::Order::STATUSES.invert[o.status]
             - unless @gateway
               %td= o.gateway.name
             %td(style="width: 250px;")
               - if o.data && o.data[:exchange_rate]
                 = "#{(o.data[:exchange_rate][:price]*o.amount_in_btc).round(2)} #{o.data[:exchange_rate][:currency]}"
             %td= o.created_at
+            %td
+              %b= StraightServer::Order::STATUSES.invert[o.status]
 
       = will_paginate(@orders)
 
