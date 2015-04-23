@@ -25,39 +25,25 @@ button, .button, input[type=submit] {
 
   font-size: 100%; font-weight: bold; text-decoration: none; cursor: pointer;
 
-  margin: 0.5em 0 0.5em 0.5em; text-align: center; color: #fff !important; display: inline-block; position: relative;
-  font-weight: bold; text-shadow: 2px 2px 0px rgba(150, 150, 150, 1); 
-  border: solid 1px #525252; border-radius: 5px; text-shadow: #555 1px -1px;
+  margin: 0.5em 0 0.5em 0.5em; text-align: center; display: inline-block; position: relative;
+  font-weight: bold; border: solid 1px #8B8165; border-radius: 3px; text-shadow: #555 1px -1px;
   outline: none;
 
+	color:#505739 !important;
+	font-weight:bold;
+	text-shadow:0px 1px 0px #ffffff;
+
   @include disable-text-selection;
-  @include gradient-gray;
+  @include gradient-button;
 
   &:hover { @include box-shadow(#7D7D7D, 0px, 0px, 5px, 0px); }
 
   &.pressed  { @include gradient-gray-inverted; }
-  &.disabled { color: #AAB8CA; color: rgba(255, 255, 255, 0.5); opacity: 0.7; cursor: default; }
+  &.disabled { color: #AAB8CA; color: rgba(80, 87, 57, 0.5); opacity: 0.7; cursor: default; }
   &.disabled:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
 
-  &.locked { color: rgba(255, 255, 255, 0.9) !important; text-shadow: #777 1px -1px; opacity: 0.7; cursor: default; }  
+  &.locked { text-shadow: #fff 1px 1px; opacity: 0.7; cursor: default; }  
   &.locked:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
-
-
-  // Blue button
-  &.blue {
-
-  }
-
-  // Green button
-  &.green {
-
-  }
-
-  // Red button
-  &.red {
-    &.pressed { }
-    &.locked  { color: rgba(255, 255, 255, 0.8) !important; }  
-  }
 
 }
 

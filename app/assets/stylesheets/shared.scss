@@ -11,7 +11,7 @@ html, button, input, select, textarea,
 body { background-color: #F6F5F3; color: $colors_text; margin: 0 0 0 0; line-height: 150%; }
 
 .ajaxLoader {
-  display: none; position: absolute; z-index: 10;
+  display: none; position: absolute; z-index: 10; width: 12px;
  &.small { width: 10px; } 
 }
 
