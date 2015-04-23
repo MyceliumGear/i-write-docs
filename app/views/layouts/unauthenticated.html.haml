@@ -8,11 +8,12 @@
 
   %body
     = render partial: "shared/frontend_notifier"
-    = image_tag "ajax-loader.gif", class: 'ajaxLoader'
+    = image_tag "ajax-loader-dark.gif", class: 'ajaxLoader'
 
     %header
       = link_to root_path do
         .logo= image_tag "mycelium_gear_admin_logo.png"
 
     .pageContainer= yield
+
     = render partial: 'shared/google_analytics'

@@ -9,7 +9,7 @@
 	background-color:#eae0c2;
 }
 
-@mixin gradient-gray-inverted {
+@mixin gradient-button-inverted {
 	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ccc2a6), color-stop(1, #eae0c2));
 	background:-moz-linear-gradient(top, #ccc2a6 5%, #eae0c2 100%);
 	background:-webkit-linear-gradient(top, #ccc2a6 5%, #eae0c2 100%);
@@ -18,6 +18,30 @@
 	background:linear-gradient(to bottom, #ccc2a6 5%, #eae0c2 100%);
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ccc2a6', endColorstr='#eae0c2',GradientType=0);
 	background-color:#eae0c2;
+}
+
+@mixin gradient-on-dark-button {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #484860), color-stop(1, #292942));
+	background:-moz-linear-gradient(top, #484860 5%, #292942 100%);
+	background:-webkit-linear-gradient(top, #484860 5%, #292942 100%);
+	background:-o-linear-gradient(top, #484860 5%, #292942 100%);
+	background:-ms-linear-gradient(top, #484860 5%, #292942 100%);
+	background:linear-gradient(to bottom, #484860 5%, #292942 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#484860', endColorstr='#292942',GradientType=0);
+	background-color:#484860;
+
+}
+
+@mixin gradient-on-dark-button-inverted {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #292942), color-stop(1, #484860));
+	background:-moz-linear-gradient(top, #292942 5%, #484860 100%);
+	background:-webkit-linear-gradient(top, #292942 5%, #484860 100%);
+	background:-o-linear-gradient(top, #292942 5%, #484860 100%);
+	background:-ms-linear-gradient(top, #292942 5%, #484860 100%);
+	background:linear-gradient(to bottom, #292942 5%, #484860 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#292942', endColorstr='#484860',GradientType=0);
+	background-color:#484860;
+
 }
 
 @mixin gradient-current-menu {

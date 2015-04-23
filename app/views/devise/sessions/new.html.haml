@@ -1,10 +1,16 @@
-%h2 Log in
+.page
 
-= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .form-inputs
-    = f.input :email, required: false, autofocus: true
-    = f.input :password, required: false
-    = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-  .form-actions
-    = f.button :submit, "Sign in"
-= render "devise/shared/links"
+  .formBlock
+
+    %h2 ADMIN LOG IN
+
+    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      .form-inputs
+        = f.input :email, required: false, autofocus: true
+        = f.input :password, required: false
+      .form-actions
+        .checkBoxCenter
+          = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        = f.button :submit, "Sign in", class: 'onDark'
+
+  = render "devise/shared/links"

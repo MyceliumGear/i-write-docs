@@ -1,14 +1,16 @@
 .page.registration.new
 
-  %h2 Sign up
+  .formBlock
 
-  = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-    .form-inputs
-      = f.input :email, required: true, autofocus: true
-      = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
-      = f.input :password_confirmation, required: true
-      = f.input :name
-    .form-actions
-      = f.button :submit, "Sign up"
+    %h2.onDark SIGN UP AS A MERCHANT
+
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .form-inputs
+        = f.input :email, required: true, autofocus: true
+        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+        = f.input :password_confirmation, required: true
+        = f.input :name
+      .form-actions
+        = f.button :submit, "Sign up", class: 'onDark'
 
   = render "devise/shared/links"

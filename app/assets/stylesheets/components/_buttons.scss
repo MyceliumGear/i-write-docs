@@ -38,12 +38,23 @@ button, .button, input[type=submit] {
 
   &:hover { @include box-shadow(#7D7D7D, 0px, 0px, 5px, 0px); }
 
-  &.pressed  { @include gradient-gray-inverted; }
+  &.pressed  { @include gradient-button-inverted; }
   &.disabled { color: #AAB8CA; color: rgba(80, 87, 57, 0.5); opacity: 0.7; cursor: default; }
   &.disabled:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
 
   &.locked { text-shadow: #fff 1px 1px; opacity: 0.7; cursor: default; }  
   &.locked:hover { @include box-shadow(transparent, 0px, 0px, 5px, 0px); }
+
+
+  &.onDark {
+    @include gradient-on-dark-button;
+    -moz-box-shadow: 0px 1px 0px 0px #151523;
+    -webkit-box-shadow: 0px 1px 0px 0px #151523;
+    text-shadow: #151523 1px -1px;
+    border: solid 1px #27273F; 
+    color: #B3B3D0 !important;
+    &.pressed  { @include gradient-on-dark-button-inverted; }
+  }
 
 }
 
