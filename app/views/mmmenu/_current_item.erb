@@ -1,1 +1,4 @@
-<li class="current"><%= link_to text, link, options %></li>
+<li class="current">
+  <%= link_to text, link, options %>
+  <%= image_tag "sidebar_icons/#{text.downcase.sub(' ', '_')}.png" %>  
+</li>

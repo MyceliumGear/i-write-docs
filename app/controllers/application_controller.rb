@@ -49,11 +49,11 @@ class ApplicationController < ActionController::Base
     def prepare_menu
       return unless current_user
       mmmenu do |l1|
-        l1.add "Gateways", gateways_path, match_subpaths: true
-        l1.add "Orders",   orders_path
-        l1.add "Account",  edit_user_registration_path
-        l1.add "Documentation", "/docs"
-        l1.add "Sign out", destroy_user_session_path
+        l1.add "GATEWAYS", gateways_path, match_subpaths: true
+        l1.add "ORDERS",   orders_path
+        l1.add "ACCOUNT",  edit_user_registration_path
+        l1.add "DOCUMENTATION", "/docs"
+        l1.add "SIGN OUT", destroy_user_session_path
       end 
     end
 

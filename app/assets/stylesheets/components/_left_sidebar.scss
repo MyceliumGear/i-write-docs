@@ -2,19 +2,26 @@
 
 .leftSidebar {
 
-  background-color: #B8CCE0;
+  background-color: #1F1F29; font-size: 80%;
+  border-top: solid #171821 4em; 
   .container { padding: 0em; }
-  .logo { text-align: center; padding: 1em; }
+  .logo { text-align: center; padding: 1em; margin: 5em 0; img { width: 200px; } }
 
   menu {
-    padding: 0 0 0 0; margin: 0 0 0 0; border-bottom: solid 1px #A7BDD4;
+    padding: 0 0 0 0; margin: 0 0 0 0;
     ul {
       margin: 0 0 0 0; padding: 0 0 0 0; text-align: right;
-      a, a:visited { text-decoration: none; font-weight: bold; color: #2D405D; }
-      li { list-style: none; padding: 1em; border-top: solid 1px #A7BDD4; cursor: pointer; }
-      li.current { @include gradient-current-menu; }
-      li.current a { text-decoration: none; font-weight: bold; color: #2D405D; }
-      li:hover { background-color: #BFD1E3; }
+      a, a:visited { text-decoration: none; font-weight: bold; color: #606067; }
+      li {
+        list-style: none; padding: 1em 3em 1em 1em; cursor: pointer; border-right: solid 5px transparent; 
+        img { float: right; margin: 0.3em 0 0 2em; opacity: 0.4; }
+      }
+      li.current {
+        border-right: solid 5px #48DB63;
+        a { text-decoration: none; font-weight: bold; color: #919097; }
+        img { opacity: 0.7; }
+      }
+      li:hover { a { color: #919097;} img { opacity: 0.7; } }
     }
   }
 
