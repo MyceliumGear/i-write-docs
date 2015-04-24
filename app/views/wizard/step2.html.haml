@@ -2,7 +2,8 @@
 
   .title
 
-    %h1 Start accepting Bitcoin payments in three simple steps!
+    %p
+      %b Start accepting Bitcoin payments in three simple steps!
     %p This wizard will guide through the process of adding a Bitcoin payment option to your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to your website.
 
   %h1 Step 2: Fill in your wallet public key and a little info about your site
@@ -13,7 +14,7 @@
       .pure-u-12-24
         .container
           = f.input :name
-          = f.input :pubkey, label: 'BIP32 pubkey <span class="helper">How do I get one?</span>'.html_safe 
+          = f.input :pubkey, label: 'BIP32 pubkey <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="labelHint">What is BIP32?</a>'.html_safe 
           %p.moreFieldInfo
             = image_tag "watch_icon.png", class: 'inlineIcon'
             Watch a short video and learn how to export BIP32 pubkey from #{link_to "your Electrum", "https://www.youtube.com/watch?v=K0vackpsLsY", target: '_blank' } or #{ link_to "Mycelium wallet", "https://www.youtube.com/watch?v=FCh0dz9uuLc", target: '_blank' }.
