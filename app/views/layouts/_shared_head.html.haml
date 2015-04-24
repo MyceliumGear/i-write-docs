@@ -6,8 +6,8 @@
 /[if lte IE 8]
   = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
 
-  = stylesheet_link_tag "pure-grids-responsive-old-ie-min.css"
-  = stylesheet_link_tag "pure-grids-responsive-min.css"
+= stylesheet_link_tag "vendor/pure-grids-responsive-old-ie-min"
+= stylesheet_link_tag "vendor/pure-grids-responsive-min"
 
 = stylesheet_link_tag "frontend_notifier_custom"
 %link(href='http#{Rails.env.production? ? 's' : ''}://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css')
