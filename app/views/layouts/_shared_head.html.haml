@@ -5,11 +5,12 @@
 
 /[if lte IE 8]
   = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
-  = stylesheet_link_tag "http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-old-ie-min.css"
 
-= stylesheet_link_tag "http://yui.yahooapis.com/combo?pure/0.5.0/base-min.css&pure/0.5.0/grids-min.css&pure/0.5.0/grids-responsive-min.css"
+  = stylesheet_link_tag "pure-grids-responsive-old-ie-min.css"
+  = stylesheet_link_tag "pure-grids-responsive-min.css"
+
 = stylesheet_link_tag "frontend_notifier_custom"
-%link(href='http://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css')
+%link(href='http#{Rails.env.production? ? 's' : ''}://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css')
 
 = favicon_link_tag
 = yield :meta_tags
