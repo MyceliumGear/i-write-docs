@@ -20,7 +20,7 @@ body {
 
 html, body { height: 100%; }
 
-.list .noRecords { text-align: center; color: $colors_gray; font-size: 90%; }
+.list .noRecords { text-align: left; color: $colors_gray; font-size: 90%; clear: both; h3 { margin-bottom: 0.3em; } }
 .pages form { width: 50%; }
 
 

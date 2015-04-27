@@ -1,9 +1,13 @@
 .page.gateways.index
 
-  %h2.pageTitle Your gateways
+  %h2.pageTitle Your #{ params[:widget] ? "widgets" : "gateways" }
 
   .actions
-    = link_to "create gateway", new_gateway_path, class: "button small"
+    - if params[:widget]
+      = link_to "create widget", "/wizard", class: "button small"
+    - else
+      = link_to "create gateway", new_gateway_path, class: "button small"
+
 
   .list
     - if @gateways.present?
@@ -28,5 +32,8 @@
 
     - else
       .noRecords
-        %h2 You have not created any gateways yet
-        %p A gateway is a logical unit that serves one online store or website. For each store that you own, you need to create one gateway. You can then track all the orders associated with that gateway, along with their statuses and how much money was received.
+        %h3 You have not created any #{ params[:widget] ? "widgets" : "gateways" } yet
+        - if params[:widget]
+          A widget is a small block that you can install onto your website that will allow your users to instantly pay you with Bitcoin. It is the easiest way to accept payments with Gear.
+        - else
+          %p A gateway is a logical unit that serves one online store or website. For each store that you own, you need to create one gateway. You can then track all the orders associated with that gateway, along with their statuses and how much money was received.

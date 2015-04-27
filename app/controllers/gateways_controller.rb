@@ -6,6 +6,8 @@ class GatewaysController < ApplicationController
 
   def index
     @gateways = Gateway.where(deleted: false).includes(:user).order('created_at DESC')
+    @gateways = @gateways.where(widget: !params[:widget].blank?)
+
     unless current_user.admin?
       @gateways = @gateways.where(user_id: current_user.id)
     end
