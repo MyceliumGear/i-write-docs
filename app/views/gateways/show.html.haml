@@ -1,11 +1,13 @@
 .page.gateways.show
 
-  %h2= @gateway.name
-  = link_to "Edit settings", edit_gateway_path(@gateway), class: "button small editGateway"
+  .pure-g
+    .pure-u-12-24
+      %h2= @gateway.name
+    .pure-u-12-24
+      = link_to "Edit settings", edit_gateway_path(@gateway), class: "button small editGateway"
   
   - if @gateway.description.present?
     %p= @gateway.description
-
 
   - if flash[:gateway_secret]
     .secret
@@ -13,25 +15,31 @@
         Gateway settings saved. Please write this down. It is only displayed here once. This key is needed to access the API when creating orders and to sign callbacks. If you later lose this key, you will need to regenerate it.
       .value Your gateway secret is: <b>#{flash[:gateway_secret]}</b>
 
+
+  - if @gateway.widget
+
+    %h3 Generate widget HTML code
+    .widget
+      .item
+        %label
+          Product title:
+          %input.widgetTitle(type="text")
+        %label
+          Product price:
+          %input.widgetPrice(type="text")
+          %span= @gateway.default_currency
+        &nbsp;
+        %span.eventTrigger#add_product Add one more item
+
+      %span#widget_currency(style="display: none;")= @gateway.default_currency
+
+      %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_hashed_id }
+      %button.small.unlockable#generate_widget Get code
+
+      .generatedWidget= render partial: 'gateways/generated_widget'
+
+
   %table
-
-
-    - if @gateway.widget
-
-      %tr.widget
-        %th Generate widget HTML code
-        %td
-          %label
-            Set price:
-            %input#widget_price(type="text")
-          %label
-            Set title:
-            %input#widget_title(type="text")
-          %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_hashed_id }
-          %span#widget_currency= @gateway.default_currency
-          %button.small.unlockable#generate_widget Get code
-
-          .generatedWidget= render partial: 'generated_widget'
 
     %tr
       %th Online store / site URL

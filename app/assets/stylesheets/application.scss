@@ -49,3 +49,12 @@ table {
   td { background-color: #fff; }
 
 }
+
+.widget {
+  background-color: $colors_light_gray; padding: 1em; border-radius: 7px;
+  button { margin-top: 2em; }
+  .item {
+    margin-bottom: 0.3em;
+    span.eventTrigger { font-size: 80%; }
+  }
+}

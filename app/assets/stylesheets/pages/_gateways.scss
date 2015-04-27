@@ -10,7 +10,6 @@
   }
 
   &.show {
-    h2 { width: 50%; float: left; }
     .button.editGateway { float: right; }
 
     .secret {
@@ -24,4 +23,6 @@
     .seeAllOrders { font-size: 80%; padding-left: 2em; position: relative; top: -0.15em; }
 
   }
+
+
 }
