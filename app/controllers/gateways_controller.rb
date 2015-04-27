@@ -15,7 +15,7 @@ class GatewaysController < ApplicationController
   end
 
   def new
-    @gateway = Gateway.new
+    @gateway = Gateway.new(default_currency: 'USD')
   end
 
   def create

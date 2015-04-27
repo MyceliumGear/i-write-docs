@@ -3,7 +3,7 @@ class Gateway < ActiveRecord::Base
   nilify_blanks
 
   attr_reader   :straight_gateway
-  attr_accessor :secret, :regenerate_secret
+  attr_accessor :secret, :regenerate_secret, :convert_currency_to
 
   belongs_to :user
   serialize :db_config, Hash
@@ -48,6 +48,10 @@ class Gateway < ActiveRecord::Base
     end
     names.delete_if { |a| ["Bitpay", "Coinbase"].include?(a) }
     names
+  end
+
+  def convert_currency_to
+    "BTC"
   end
 
   private

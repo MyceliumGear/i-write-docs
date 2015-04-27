@@ -13,7 +13,8 @@
 
   .formBlock
     %h3 Currency conversion options
-    = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
+    = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "USD" ]
+    = f.input :convert_currency_to, as: :select, collection: ['BTC'], priority: [ "BTC" ]
     %label
       Exchange rate provider #1:
       = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-1]) 

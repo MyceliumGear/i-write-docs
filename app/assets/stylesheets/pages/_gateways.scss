@@ -6,7 +6,7 @@
   }
 
   &.new, &.edit {
-    select#gateway_default_currency, select#gateway_confirmations_required { width: 70px; }
+    select#gateway_default_currency, select#gateway_convert_currency_to, select#gateway_confirmations_required { width: 70px; }
   }
 
   &.show {

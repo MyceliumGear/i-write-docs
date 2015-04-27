@@ -2,7 +2,7 @@ class WizardController < ApplicationController
 
   def step
     if params[:step].to_i == 2
-      @gateway = Gateway.new(site_type: params[:site_type], widget: true)
+      @gateway = Gateway.new(site_type: params[:site_type], widget: true, default_currency: 'USD')
       render 'step2'
     elsif params[:step].to_i == 3
       @gateway = Gateway.find(params[:gateway_id])

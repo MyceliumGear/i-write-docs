@@ -22,6 +22,7 @@
         .container
           = f.input :merchant_url
           = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
+          = f.input :convert_currency_to, as: :select, collection: ['BTC'], priority: [ 'BTC' ]
           = f.input :widget, as: :hidden
 
 
