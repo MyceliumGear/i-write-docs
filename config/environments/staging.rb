@@ -85,11 +85,11 @@ Rails.application.configure do
     user_name:            "roman.snitko@gmail.com",
     password:             "_ZXIuzSn9D_qKyCaXAibuQ", # SMTP password is any valid API key
     authentication:       'login', # Mandrill supports 'plain' or 'login'
-    domain:               'admin.staging.gearpayments.com', # your domain to identify your server when connecting
+    domain:               'gearpayments.com', # your domain to identify your server when connecting
   }
 
   config.action_mailer.default_url_options = {
-    host: 'admin.stage.gearpayments.com'
+    host: 'gearpayments.com'
   }
 
 end
