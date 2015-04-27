@@ -5,6 +5,16 @@
     p { font-size: 90%; }
   }
 
+  .downloadWallets {
+    img { float: left; margin-right: 1em; margin-top: -1.2em; }
+    .wallets { margin: 2em 0; font-weight: bold; font-size: 150%; }
+    .wallet1 { float: left; margin-right: 4em; }
+    @media screen and (max-width: 1280px) {
+      .wallet1 { float: none; margin-bottom: 2em; }
+    }
+    clear: both;
+  }
+
   table.siteBackendTypesSelector  {
     margin-top: 5em;
     td { text-align: center; cursor: pointer; width: 25%; height: 150px; }
