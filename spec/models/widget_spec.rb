@@ -2,9 +2,20 @@ require 'rails_helper'
 
 RSpec.describe Widget, type: :model do
 
+  before(:each) do
+    @widget = create(:widget, widget_products_attributes: [{ title: 'Product1', price: 1.29}, { title: 'Product2', price: 2.40 }])
+  end
+
   it "creates a widget with multiple products" do
-    widget = create(:widget, widget_products_attributes: [{ title: 'Product1', price: 1.29}, { title: 'Product2', price: 2.40 }])
-    expect(widget.products).to have(2).products 
+    expect(@widget.products).to have(2).products 
+  end
+
+  it "removes products by their ids" do
+    @widget.update(widget_products_attributes: [{ title: 'Product3', price: 1.29}, { title: 'Product4', price: 2.40 }])
+    expect(@widget).to have(4).products
+    product_ids = @widget.products[2..3].map(&:id).join(',')
+    @widget.update(products_to_remove_ids: product_ids)
+    expect(@widget.reload).to have(2).products
   end
 
 end
