@@ -27,6 +27,8 @@ class Gateway < ActiveRecord::Base
   before_create :create_straight_gateway
   before_update :update_straight_gateway
 
+  has_one :widget
+
   def straight_gateway(reload: false)
     @straight_gateway = nil if reload
     @straight_gateway ||= StraightServer::Gateway[straight_gateway_id]

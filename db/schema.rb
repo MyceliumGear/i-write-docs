@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411193130) do
+ActiveRecord::Schema.define(version: 20150428065551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,5 +71,25 @@ ActiveRecord::Schema.define(version: 20150411193130) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+
+  create_table "widget_products", force: :cascade do |t|
+    t.integer  "widget_id"
+    t.string   "title"
+    t.float    "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "widget_products", ["widget_id"], name: "index_widget_products_on_widget_id", using: :btree
+
+  create_table "widgets", force: :cascade do |t|
+    t.integer  "gateway_id"
+    t.text     "fields"
+    t.boolean  "variable_price"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree
 
 end
