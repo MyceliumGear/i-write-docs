@@ -10,7 +10,8 @@ class Widget < ActiveRecord::Base
   belongs_to :gateway
   serialize  :fields
 
-  after_validation :remove_products_by_ids, on: :update
+  before_validation :split_fields
+  after_validation  :remove_products_by_ids, on: :update
 
   private
 
@@ -19,6 +20,10 @@ class Widget < ActiveRecord::Base
         products.where(id: products_to_remove_ids.split(',')).each { |product| product.delete }
         products.reload
       end
+    end
+
+    def split_fields
+      write_attribute(:fields, self.fields.split(/,\s?/)) unless self.fields.blank?
     end
 
 end

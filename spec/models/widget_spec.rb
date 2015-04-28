@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Widget, type: :model do
 
   before(:each) do
-    @widget = create(:widget, widget_products_attributes: [{ title: 'Product1', price: 1.29}, { title: 'Product2', price: 2.40 }])
+    @widget = create(:widget, fields: "field1, field2, *field3", widget_products_attributes: [{ title: 'Product1', price: 1.29}, { title: 'Product2', price: 2.40 }])
   end
 
   it "creates a widget with multiple products" do
@@ -16,6 +16,10 @@ RSpec.describe Widget, type: :model do
     product_ids = @widget.products[2..3].map(&:id).join(',')
     @widget.update(products_to_remove_ids: product_ids)
     expect(@widget.reload).to have(2).products
+  end
+
+  it "splits fields string into an array" do
+    expect(@widget.fields).to eq(['field1', 'field2', '*field3']) 
   end
 
 end
