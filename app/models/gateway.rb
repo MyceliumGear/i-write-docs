@@ -56,6 +56,10 @@ class Gateway < ActiveRecord::Base
     "BTC"
   end
 
+  def has_widget?
+    !check_signature
+  end
+
   private
 
     def validate_exchange_rate_adapter_names

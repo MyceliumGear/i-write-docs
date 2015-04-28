@@ -1,8 +1,36 @@
+@import 'mixins';
+
 .widget {
-  input.widgetPrice { width: 50px; }
-  input.widgetTitle { width: 150px; }
-  button { position: relative; top: -2px; }
-  .generatedWidget {
-    display: none;
+
+  .widgetCode {}
+  .settings {
+    background-color: #E3DFD9; padding: 0 0 0 0; border-radius: 7px;
+    .container {
+
+      padding: 1em;
+      h3 { margin: 0 0 0.2em 0; }
+
+      .hint { font-size: 85%; line-height: 120%; height: 5em; margin-top: 0px; }
+
+      img.add, img.remove { cursor: pointer; margin-bottom: -7px; }
+      .item { margin-bottom: 0.7em; }
+
+      input.error { @include text-field-with-errors; }
+      .errorMessage { margin-top: 0.5em; color: $colors_red; font-size: 90%; }
+
+      &.products {
+        input.title { width: 200px; }
+        input.price { width: 100px; }
+      }
+
+      &.fields {
+        label { cursor: pointer; }
+        label.required { margin-left: 1em; }
+        input.fieldName { width: 50%; }
+        img.add, img.remove { margin-left: 1em; }
+      }
+
+    }
   }
+
 }

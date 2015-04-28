@@ -16,27 +16,14 @@
       .value Your gateway secret is: <b>#{flash[:gateway_secret]}</b>
 
 
-  - if @gateway.widget
+  - if @gateway.has_widget?
 
-    %h3 Generate widget HTML code
-    .widget
-      .item
-        %label
-          Product title:
-          %input.widgetTitle(type="text")
-        %label
-          Product price:
-          %input.widgetPrice(type="text")
-          %span= @gateway.default_currency
-        &nbsp;
-        %span.eventTrigger#add_product Add one more item
+    = render partial: 'widgets/form'
 
-      %span#widget_currency(style="display: none;")= @gateway.default_currency
-
-      %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_hashed_id }
-      %button.small.unlockable#generate_widget Get code
-
-      .generatedWidget= render partial: 'gateways/generated_widget'
+    .widgetCode
+      %h3 Widget HTML code
+      This is your widget code. You will need to copy and paste it onto your page:
+      %textarea= render_to_string(template: 'widgets/_code', layout: false)
 
 
   %table

@@ -56,4 +56,12 @@
   display: inline-block;
 
 }
+
+@mixin text-field-with-errors {
+  background-color: $colors_pink;
+  border: solid 1px $colors_red;
+  @include inset-box-shadow(#ED8787, 2px, 2px, 2px, 0px);
+  &:focus { @include inset-box-shadow(#ED8787, 2px, 2px, 2px, 0px); border: solid 1px $colors_red; }
+}
+
 .clearfix { @include clearfix; }

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_unauthenticated_layout
   before_filter :prepare_menu
 
+  helper_method :render_to_string
+
   @@layouts = YAML.load_file("#{Rails.root}/config/layouts.yml")
 
   private

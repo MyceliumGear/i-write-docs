@@ -1,0 +1,44 @@
+.widget
+
+  .settings
+    .pure-g
+
+      .pure-u-12-24
+        .container.products
+          %h3 Add widget products
+          %p.hint
+            You can add multiple items that you're planning on selling &mdash; they will be displayed in a dropdown box inside the widget. If you only enter one item, widget will simply show it's title and price (no dropdown). If you leave even this one field blank, the widget will be a donation-like tool with a single field to enter the desired amount.
+          
+          - @widget.products.each do |product|
+
+            .product.item
+              %input.title{type: 'text', value: product.title}
+              %input.price{type: 'text', value: product.price}
+              = image_tag "remove_icon.png", title: 'Remove this product', class: 'remove'
+            
+          .product.item
+            %input.title{placeholder: "Product title", type: 'text'}
+            %input.price{placeholder: "Price in #{@gateway.default_currency}", type: 'text'}
+            = image_tag "add_icon.png", title: 'Add one more product', class: 'add'
+
+      .pure-u-12-24
+        .container.fields
+          %h3 Add custom fields to the widget
+          %p.hint
+            If you'd like your customers to leave some additional info, such as their email or delivery address, you need to add respective fields into your widget. Unless you keep at least an email field, people will be able to pay, but you will be unable to identify them. 
+
+          - if @widget.fields
+            - @widget.fields.each do |field|
+              .field.item
+                %input.fieldName{type: 'text', value: field}
+                %label.required
+                  = check_box_tag "field_required", 1, field =~ /\A\*/
+                  Field required
+                = image_tag "remove_icon.png", title: 'Remove this field', class: 'remove' 
+
+          .field.item
+            %input.fieldName{placeholder: "Field name, e.g. Email or Address", type: 'text'}
+            %label.required
+              %input.checkbox(type="checkbox")
+              Field required
+            = image_tag "add_icon.png", title: 'Add one more field', class: 'add' 

@@ -6,7 +6,7 @@ class GatewaysController < ApplicationController
 
   def index
     @gateways = Gateway.where(deleted: false).includes(:user).order('created_at DESC')
-    @gateways = @gateways.where(check_signature: !params[:widget].blank?)
+    @gateways = @gateways.where(check_signature: params[:widget].blank?)
 
     unless current_user.admin?
       @gateways = @gateways.where(user_id: current_user.id)
@@ -30,6 +30,7 @@ class GatewaysController < ApplicationController
   end
   
   def show
+    @widget = @gateway.widget
   end
 
   def edit
