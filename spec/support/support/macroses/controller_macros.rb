@@ -63,7 +63,7 @@ module ControllerMacros
 
     def it_should_render_404_if_the_resource_was_not_found(actions, options={})
       get_actions_hash(actions).each do |action, verb|
-        it "#{action} action should render 404 if the resource was not found" do
+        it "#{action} (#{verb.to_s.upcase}) action should render 404 if the resource was not found" do
           login_user(FactoryGirl.create(options[:with] || :user))
           yield(@current_user) if block_given?
           begin

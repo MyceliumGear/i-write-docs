@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :gateways do
     resources :orders, only: [:show, :index]
   end
+  resources :widgets
 
   get  'wizard', to: 'wizard#step'
   post 'wizard', to: 'wizard#create_gateway'
