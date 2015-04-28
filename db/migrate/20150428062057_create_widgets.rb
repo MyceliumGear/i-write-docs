@@ -7,5 +7,6 @@ class CreateWidgets < ActiveRecord::Migration
       t.timestamps null: false
     end
     add_index :widgets, :gateway_id, unique: true
+    remove_column :gateways, :widget
   end
 end

@@ -59,8 +59,7 @@ class WizardController < ApplicationController
         :name,
         :default_currency,
         :merchant_url,
-        :site_type,
-        :widget
+        :site_type
       )
     end
 

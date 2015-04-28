@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20150428065551) do
     t.string   "default_currency",            default: "BTC", null: false
     t.string   "callback_url"
     t.boolean  "check_signature",             default: true,  null: false
-    t.boolean  "widget",                      default: false, null: false
     t.boolean  "active",                      default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
