@@ -36,7 +36,7 @@ RSpec.describe GatewaysController, type: :controller do
 
     it "finds gateways that are widgets" do
       login_user(@merchant)
-      create_list(:gateway, 2, user: @merchant, widget: true)
+      create_list(:gateway, 2, user: @merchant, site_type: 'Wordpress')
       get :index, widget: 1
       expect(response).to render_template('index')
       expect(assigns(:gateways).size).to eq(2)

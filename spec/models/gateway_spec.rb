@@ -17,15 +17,17 @@ RSpec.describe Gateway, type: :model do
       expect(@gateway.valid?).to be_truthy
     end
 
-    it "sets #check_signature to false for Widget gateways" do
-      @gateway.widget = true
+    it "decides on signatures and creates a widget if needed" do
+      @gateway.site_type = "Wordpress"
       @gateway.save
-      expect(@gateway.check_signature).to be_falsy 
-      @gateway.widget = false
+      expect(@gateway.widget.fields).to eq(["*Email"])
+      expect(@gateway.check_signature).to be_falsey
+      @gateway.site_type = nil
       @gateway.save
       expect(@gateway.check_signature).to be_truthy
+      expect(@gateway.widget).to be_nil
     end
-    
+
     describe "generating secret" do
 
       it "generates a secret for a new record" do

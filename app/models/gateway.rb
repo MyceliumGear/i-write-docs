@@ -23,6 +23,7 @@ class Gateway < ActiveRecord::Base
 
 
   before_validation :decide_on_the_signature
+  before_validation :assign_widget
   before_save  :generate_secret
   before_create :create_straight_gateway
   before_update :update_straight_gateway
@@ -120,6 +121,15 @@ class Gateway < ActiveRecord::Base
         self.check_signature = "0"
       else
         self.check_signature = "1"
+      end
+    end
+
+    def assign_widget
+      if self.site_type.present?
+        self.widget = Widget.new(fields: '*Email')
+      else
+        self.widget.destroy if self.widget
+        self.widget = nil
       end
     end
 
