@@ -23,13 +23,20 @@ RSpec.describe Widget, type: :model do
   end
 
   it "updates existing prodcuts" do
-    @widget.update(product_updates: [ { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 2 } ])
+    @widget.update(product_updates: { '0' => { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 2 }})
     expect(@widget.products.first.price).to eq(2) 
   end
 
   it "invalidetes itself if any of the associated products is invalid" do
-    @widget.update(product_updates: [ { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 0 } ])
+    @widget.update(product_updates: { '0' => { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 0 }})
     expect(@widget.valid?).to be_falsy
+  end
+
+  it "validates fields names" do
+    @widget.update(fields: 'field with invalid chars ", field2')
+    expect(@widget.error_for_custom_field("field with invalid chars \"")).not_to be_blank 
+    @widget.update(fields: 'f, field2')
+    expect(@widget.error_for_custom_field("f")).not_to be_blank 
   end
 
 end

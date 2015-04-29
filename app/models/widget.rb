@@ -12,9 +12,15 @@ class Widget < ActiveRecord::Base
   belongs_to :gateway
   serialize  :fields
 
+  validate :validate_fields
+
   before_validation :split_fields
   before_validation :update_products,  on: :update
   after_save  :remove_products_by_ids, on: :update
+
+  def error_for_custom_field(field_name)
+    errors[:fields].try(:first).try(:[], field_name)
+  end
 
   private
 
@@ -26,7 +32,7 @@ class Widget < ActiveRecord::Base
     end
 
     def split_fields
-      write_attribute(:fields, self.fields.split(/,\s?/)) unless self.fields.blank?
+      write_attribute(:fields, self.fields.split(/,\s?/).uniq) unless self.fields.blank? || self.fields.kind_of?(Array)
     end
 
     def update_products
@@ -36,6 +42,22 @@ class Widget < ActiveRecord::Base
         product = product[1]
         products_by_id[product['id'].to_i].assign_attributes(title: product['title'], price: product['price'])
       end unless product_updates.blank?
+    end
+
+    def validate_fields
+      fields_errors = {}
+      fields.each do |f|
+        if f =~ /["'<>]/
+          fields_errors[f] ||= []
+          fields_errors[f] << "cannot contain the following characters: \", ', <, >"
+        end
+        if f.length < 2 || f.length > 30
+          fields_errors[f] ||= []
+          fields_errors[f] << "must be between 2 and 30 characters long"
+        end
+      end
+
+      errors.add(:fields, fields_errors) unless fields_errors.empty?
     end
 
 end

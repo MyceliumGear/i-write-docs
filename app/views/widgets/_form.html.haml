@@ -29,12 +29,14 @@
 
           - if @widget.fields
             - @widget.fields.each do |field|
-              .field.item
+              .field.item{ class: ('error' if @widget.error_for_custom_field(field))}
                 %input.fieldName{type: 'text', value: field}
                 %label.required
                   = check_box_tag "field_required", 1, field =~ /\A\*/
                   Field required
                 = image_tag "remove_icon.png", title: 'Remove this field', class: 'remove' 
+                - if @widget.error_for_custom_field(field)
+                  .errorMessage= @widget.errors[:fields][0][field].join(' and ')
 
           .field.item.new
             %input.fieldName{placeholder: "Field name, e.g. Email or Address", type: 'text'}
