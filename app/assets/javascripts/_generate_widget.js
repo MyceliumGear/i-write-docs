@@ -85,6 +85,14 @@ jQuery(function($){
         $(".widget").html('');
         $(".widget").append(form);
         form.find('.item.new').slideDown(300);
+        if(form.find('input.error').length > 0) {
+          FrontendNotifier.show("We've detected mistakes in the form, please fix them", "error");
+        } else {
+          FrontendNotifier.show("Changes saved, check out the widget look below", "success");
+        }
+      },
+      error: function() {
+        FrontendNotifier.show("Error on the server, we've been notified!", "error");
       }
     });
     products_to_remove_ids = [];
