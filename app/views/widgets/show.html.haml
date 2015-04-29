@@ -1,0 +1,70 @@
+= stylesheet_link_tag "gear-widget"
+
+%script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
+= javascript_include_tag "qrcode"
+= javascript_include_tag "payment-js-lib/gear-payment"
+= javascript_include_tag "gear-widget-iframe"
+
+#gear-widget{ data: { "websocket-port" => 80 }}
+
+  .productInfo
+    - if @widget.products.size > 1
+      .productSelector
+        %select
+          - @widget.products.each do |product|
+            %option{ value: product.title }= "#{product.title} - #{product.price} (#{@gateway.default_currency})"
+    - else
+      .title= @widget.products.first.title
+      .price <span class="amount">#{@widget.products.first.price}</span> <span class="currency">#{@gateway.default_currency}</span>
+
+    - unless @widget.fields.blank?
+      - @widget.fields.each do |f|
+        .field
+          %input{ name: f.sub("*", ''), placeholder: f }
+
+    %button.small#create_order Buy with Bitcoin
+
+  .paymentInfo.new
+    
+    %table
+      %tr
+        %td.qrcode
+          #qrcode
+        %td.info
+          %p.pleaseDeposit
+            Please send exactly <b class="amount"></b> BTC<br/>to the bitcoin address below:
+          %textarea.depositAddressString(readonly=true)
+
+
+    %p.timeLeft
+      Time left until the order expires:
+      %b{ class: "value", data: { time_left: "900" }} 15:00
+
+  .paymentInfo.paid
+    .title SUCCESS!
+    .statement We've received your payment of 1.29 BTC
+
+  .paymentInfo.underpaid
+    .title Not enough funds sent
+    .statement We've received your payment, but it was not enough. You should've sent <span class="amount"></span> BTC
+    %p transaction id is:
+    %textarea.transactionId(readonly=true)
+
+  .paymentInfo.connectionProblem
+    .title Connection problem
+    .statement Connection with the payment gateway was lost. Cannot reconnect to the payment gateway websocket to check the status of your payment. If you already made the transaction, don't worry about your payment: as soon as the the payment gateway comes back up, it's going to be processed and respected.
+
+  .paymentInfo.overpaid
+    .title You've sent too much
+    .statement We've received your payment, but it was too much. You should've sent <span class="amount"></span> BTC
+    %p transaction id is:
+    %textarea.transactionId(readonly=true)
+
+  .paymentInfo.expired
+    .title Order is expired
+    .statement You did not manage to pay in time, so we canceled the order.
+
+  .footer
+    Powered by 
+    .line
+    <a href="http://gear.mycelium.com">Mycelium Gear</a>

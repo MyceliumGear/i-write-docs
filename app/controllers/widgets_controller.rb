@@ -5,6 +5,7 @@ class WidgetsController < ApplicationController
   before_filter :check_if_gateway_owner, except: [:show]
 
   def show
+    render 'show', layout: false
   end
 
   def update

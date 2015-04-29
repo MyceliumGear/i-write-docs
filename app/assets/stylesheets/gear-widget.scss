@@ -1,0 +1,65 @@
+#gear-widget {
+
+  @import 'mixins';
+  @import 'components/buttons';
+
+  width: 250px; 
+  font-size: 85%;
+  font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
+
+  .footer {
+    border-radius: 0 0 5px 5px; padding: 0.3em; background-color: #C3DDF7; color: #4F6670; text-align: center; font-size: 80%;
+    a, a:visited, a:active { color: #1872CC; text-decoration: none; }
+    .line { display: inline-block; width: 3px; height: 10px; background-color: #5CA5C4; }
+  }
+
+  .productInfo, .paymentInfo {
+    border-radius: 5px 5px 0 0; background-color: #eee;
+    padding: 1em;
+  }
+
+  .productInfo {
+    text-align: center;
+    .title, .price { margin-bottom: 0.2em; }
+    .title { font-size: 100%; font-weight: bold; }
+    .productSelector { margin-bottom: 0.3em; }
+    .field { margin-bottom: 0.3em; 
+      input { border-radius: 5px; border: solid 1px #A1A1A1; padding: 0.3em; }
+    }
+  }
+
+  .paymentInfo {
+    display: none; font-size: 85%;
+
+    textarea { font-weight: bold; border: solid 1px #aaa; background-color: #fff; padding: 0.2em; border-radius: 3px; width: 100px; }
+
+    textarea.transactionId { width: 100%; height: auto; }
+    .title { font-weight: bold; }
+
+    &.new {
+      display: none;
+      table { width: 100%; border-spacing: 0px; border-collapse: collapse; }
+      td { vertical-align: top; padding: 0px; margin: 0px; }
+      td.info { padding-left: 1em; p { margin: 0 0 1em 0; } }
+      .qrcode { width: 100px; height: 100px; background-color: white; }
+    }
+
+    &.paid {
+      display: none;
+      text-align: center;
+      background-color: #F0FFD6; color: #69A600;
+    }
+
+    &.underpaid, &.connectionProblem {
+      display: none;
+      background-color: #FFE0D6; color: #D63200;
+    }
+
+    &.overpaid, &.expired {
+      display: none;
+      background-color: #FFEDC2; color: #D69600;
+    }
+
+  }
+
+}
