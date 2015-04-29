@@ -23,12 +23,12 @@ RSpec.describe Widget, type: :model do
   end
 
   it "updates existing prodcuts" do
-    @widget.update(product_updates: [ { 'id' => @widget.products.first.id, 'attributes' => { title: 'Product3', price: 2 }} ])
+    @widget.update(product_updates: [ { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 2 } ])
     expect(@widget.products.first.price).to eq(2) 
   end
 
   it "invalidetes itself if any of the associated products is invalid" do
-    @widget.update(product_updates: [ { 'id' => @widget.products.first.id, 'attributes' => { title: 'Product3', price: 0 }} ])
+    @widget.update(product_updates: [ { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 0 } ])
     expect(@widget.valid?).to be_falsy
   end
 

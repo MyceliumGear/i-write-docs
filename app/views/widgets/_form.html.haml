@@ -1,4 +1,4 @@
-.widget
+.widget{ data: { widget_id: @widget.id }}
 
   .settings
     .pure-g
@@ -11,12 +11,12 @@
           
           - @widget.products.each do |product|
 
-            .product.item
+            .product.item{ data: { product_id: product.id }}
               %input.title{type: 'text', value: product.title}
               %input.price{type: 'text', value: product.price}
               = image_tag "remove_icon.png", title: 'Remove this product', class: 'remove'
             
-          .product.item
+          .product.item.new
             %input.title{placeholder: "Product title", type: 'text'}
             %input.price{placeholder: "Price in #{@gateway.default_currency}", type: 'text'}
             = image_tag "add_icon.png", title: 'Add one more product', class: 'add'
@@ -36,9 +36,13 @@
                   Field required
                 = image_tag "remove_icon.png", title: 'Remove this field', class: 'remove' 
 
-          .field.item
+          .field.item.new
             %input.fieldName{placeholder: "Field name, e.g. Email or Address", type: 'text'}
             %label.required
-              %input.checkbox(type="checkbox")
+              %input.checkbox(type="checkbox" name="field_required")
               Field required
-            = image_tag "add_icon.png", title: 'Add one more field', class: 'add' 
+            = image_tag "add_icon.png", title: 'Add one more field', class: 'add'
+
+    .formActions
+      %button.small.save Save
+      .saveWarning You've made changes to the widget! Don't forget to save them now.

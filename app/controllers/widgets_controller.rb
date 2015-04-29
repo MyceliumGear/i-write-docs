@@ -9,7 +9,7 @@ class WidgetsController < ApplicationController
 
   def update
     @widget.update(widget_params)
-    @widget.reload
+    @widget.reload if @widget.errors.empty?
     render 'edit', layout: false
   end
 
@@ -27,7 +27,7 @@ class WidgetsController < ApplicationController
     end
 
     def widget_params
-      params.require(:widget).permit(:fields, :variable_price, :products_to_remove_ids, widget_products_attributes: [:title, :price])
+      params.require(:widget).permit(:fields, :variable_price, :products_to_remove_ids, widget_products_attributes: [:title, :price], product_updates: [:id, :title, :price])
     end
 
     def check_if_gateway_owner

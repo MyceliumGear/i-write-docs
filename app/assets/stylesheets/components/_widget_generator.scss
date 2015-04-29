@@ -31,6 +31,12 @@
       }
 
     }
+
+    .formActions {
+      padding: 1em; text-align: center;
+      .saveWarning { color: $colors_red; opacity: 0; }
+    }
+
   }
 
 }

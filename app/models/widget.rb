@@ -1,5 +1,7 @@
 class Widget < ActiveRecord::Base
 
+  nilify_blanks
+
   attr_accessor :products_to_remove_ids, :product_updates
 
   has_many :widget_products, validate: true
@@ -31,7 +33,8 @@ class Widget < ActiveRecord::Base
       products_by_id = {}
       products.each { |product| products_by_id[product.id] = product }
       product_updates.each do |product|
-        products_by_id[product['id']].assign_attributes(product['attributes'])
+        product = product[1]
+        products_by_id[product['id'].to_i].assign_attributes(title: product['title'], price: product['price'])
       end unless product_updates.blank?
     end
 
