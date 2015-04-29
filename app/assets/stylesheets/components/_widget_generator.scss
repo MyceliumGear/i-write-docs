@@ -16,10 +16,8 @@
       .item { margin-bottom: 0.7em; }
 
 
-      .item.error {
-        input { @include text-field-with-errors; }
-        .errorMessage { margin-top: 0.5em; color: $colors_red; font-size: 80%; line-height: 100%; }
-      }
+      input.error { @include text-field-with-errors; }
+      .errorMessage { margin-top: 0.5em; color: $colors_red; font-size: 80%; line-height: 100%; }
 
       &.products {
         input.title { width: 200px; }

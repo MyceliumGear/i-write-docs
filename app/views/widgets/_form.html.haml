@@ -11,10 +11,19 @@
           
           - @widget.products.each do |product|
 
-            .product.item{ data: { product_id: product.id }}
-              %input.title{type: 'text', value: product.title}
-              %input.price{type: 'text', value: product.price}
+            .product.item{ data: { product_id: product.id } }
+              %input.title{type: 'text', value: product.title, class: ('error' unless product.errors[:title].blank?)}
+              %input.price{type: 'text', value: product.price, class: ('error' unless product.errors[:title].blank?)}
               = image_tag "remove_icon.png", title: 'Remove this product', class: 'remove'
+              - unless product.errors.empty?
+                .errorMessage
+                  - if product.errors[:title].present?
+                    Title
+                    = product.errors[:title].join(' and ')
+                  %br
+                  - if product.errors[:price].present?
+                    Price
+                    = product.errors[:price].join(' and ')
             
           .product.item.new
             %input.title{placeholder: "Product title", type: 'text'}
@@ -29,8 +38,8 @@
 
           - if @widget.fields
             - @widget.fields.each do |field|
-              .field.item{ class: ('error' if @widget.error_for_custom_field(field))}
-                %input.fieldName{type: 'text', value: field}
+              .field.item
+                %input.fieldName{type: 'text', value: field, class: ('error' if @widget.error_for_custom_field(field))}
                 %label.required
                   = check_box_tag "field_required", 1, field =~ /\A\*/
                   Field required
