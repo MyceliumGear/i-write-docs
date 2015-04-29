@@ -13,10 +13,12 @@ jQuery(function($){
 
   $("body").on('click', ".widget .settings .remove", function() {
     products_to_remove_ids.push($(this).parents('.product').data('productId'));
+    show_save_widget_warning();
   });
 
   $("body").on('click', ".widget .settings .remove", function() {
     $(this).parents(".item").remove();
+    show_save_widget_warning();
   });
 
   $("body").on('change', '.widget .settings .fields input[name=field_required]', function() {
@@ -65,18 +67,23 @@ jQuery(function($){
       fields.push($(this).find("input.fieldName").val());
     });
 
+    sendUpdateRequest({
+      widget_products_attributes: new_products,
+      product_updates: product_updates,
+      fields: fields.join(','),
+      products_to_remove_ids: products_to_remove_ids.join(',')
+    });
+
+  });
+
+  var sendUpdateRequest = function(widget_data) {
     // Make request
     $.ajax({
       url: '/widgets/' + $(".widget").data('widgetId'),
       type: 'PATCH',
       data: {
         authenticity_token: AUTH_TOKEN,
-        widget: {
-          widget_products_attributes: new_products,
-          product_updates: product_updates,
-          fields: fields.join(','),
-          products_to_remove_ids: products_to_remove_ids.join(',')
-        }
+        widget: widget_data,
       },
       success: function(response) {
         $(".ajaxLoader").hide();
@@ -88,7 +95,9 @@ jQuery(function($){
         if(form.find('input.error').length > 0) {
           FrontendNotifier.show("We've detected mistakes in the form, please fix them", "error");
         } else {
-          FrontendNotifier.show("Changes saved, check out the widget look below", "success");
+          if(!widget_data.cancel) {
+            FrontendNotifier.show("Changes saved, check out the widget look below", "success");
+          }
         }
       },
       error: function() {
@@ -96,7 +105,10 @@ jQuery(function($){
       }
     });
     products_to_remove_ids = [];
+  }
 
+  $("body").on('click', ".widget .settings button.cancel", function() {
+    sendUpdateRequest({ cancel: '1'});
   });
 
   $("body").on("change", ".widget input", function() {
@@ -109,7 +121,9 @@ jQuery(function($){
 
   var show_save_widget_warning = function() {
     $(".widget .saveWarning").animate({ opacity: 1 });
+    $(".widget .cancel").removeClass('disabled');
   }
+
 
 
 });
