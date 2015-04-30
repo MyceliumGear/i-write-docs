@@ -5,7 +5,8 @@ class WizardController < ApplicationController
       @gateway = Gateway.new(site_type: params[:site_type], widget: true, default_currency: 'USD')
       render 'step2'
     elsif params[:step].to_i == 3
-      @gateway = Gateway.find(params[:gateway_id])
+      @gateway = Gateway.where(id: params[:gateway_id]).includes(:widget).first
+      @widget  = @gateway.widget
       render 'step3'
     else
       render 'step1'

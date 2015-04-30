@@ -8,6 +8,11 @@
 
   %h1 Step 3: Add payment widget to your website
 
+  = render partial: 'widgets/form'
+  = render partial: 'widgets/preview'
+
+  .installationInstructions
+
   - if @gateway.site_type == "wordpress"
 
     Your website is created using Wordpress. Please follow these steps to install our payment widget onto your website:
@@ -39,32 +44,8 @@
 
     %b Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself. Here's what you should do:
 
-    %ol
-      %li Open your html page in text editor (such as Notepad, Notepad++, Vim, Emacs, Textmate or Sublime) and find a place where you would like the widget to appear.
-      %li Generate the widget code below, paste it into the chosen place and save the file:
-
-      .widget
-
-        .item
-          %label
-            Product title:
-            %input.widgetTitle(type="text")
-          %label
-            Product price:
-            %input.widgetPrice(type="text")
-            %span= @gateway.default_currency
-          &nbsp;
-          %span.eventTrigger#add_product Add one more item
-
-        %span#widget_currency(style="display: none;")= @gateway.default_currency
-
-        %input#widget_gateway_id{ type: "hidden", value: @gateway.straight_gateway_hashed_id }
-        %button.small.unlockable#generate_widget Get code
-
-        .generatedWidget= render partial: 'gateways/generated_widget'
-
-      %li Upload that file onto your server
-      %li Repeat for every page you would like the widget to appear on
+    %li Upload that file onto your server
+    %li Repeat for every page you would like the widget to appear on
 
     %h2 ...and that's it!
 
