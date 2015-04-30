@@ -84,9 +84,8 @@ ActiveRecord::Schema.define(version: 20150428065551) do
   create_table "widgets", force: :cascade do |t|
     t.integer  "gateway_id"
     t.text     "fields"
-    t.boolean  "variable_price"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree
