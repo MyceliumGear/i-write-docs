@@ -97,6 +97,7 @@ jQuery(function($){
         } else {
           if(!widget_data.cancel) {
             FrontendNotifier.show("Changes saved, check out the widget look below", "success");
+            document.getElementById("gear-widget").contentDocument.location.reload(true);
           }
         }
       },
