@@ -10,7 +10,9 @@ jQuery(function($){
       } else if($(this).hasClass('big')) {
         $(".ajaxLoader").addClass('big'); 
       }
-      $(".ajaxLoader").leftMiddle($(this));
+      if($(".ajaxLoader").leftMiddle) {
+        $(".ajaxLoader").leftMiddle($(this));
+      }
       $(".ajaxLoader").show();
     }
   });
