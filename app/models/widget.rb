@@ -46,18 +46,20 @@ class Widget < ActiveRecord::Base
 
     def validate_fields
       fields_errors = {}
-      fields.each do |f|
-        if f =~ /["'<>]/
-          fields_errors[f] ||= []
-          fields_errors[f] << "cannot contain the following characters: \", ', <, >"
+      if fields.kind_of?(Array)
+        fields.each do |f|
+          if f =~ /["'<>]/
+            fields_errors[f] ||= []
+            fields_errors[f] << "cannot contain the following characters: \", ', <, >"
+          end
+          if f.length < 2 || f.length > 30
+            fields_errors[f] ||= []
+            fields_errors[f] << "must be between 2 and 30 characters long"
+          end
         end
-        if f.length < 2 || f.length > 30
-          fields_errors[f] ||= []
-          fields_errors[f] << "must be between 2 and 30 characters long"
-        end
-      end
 
-      errors.add(:fields, fields_errors) unless fields_errors.empty?
+        errors.add(:fields, fields_errors) unless fields_errors.empty?
+      end
     end
 
 end
