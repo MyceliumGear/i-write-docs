@@ -3,7 +3,7 @@
   @import 'mixins';
   @import 'components/buttons';
 
-  width: 250px; 
+  width: auto; 
   font-size: 85%;
   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 
@@ -40,8 +40,10 @@
       display: none;
       table { width: 100%; border-spacing: 0px; border-collapse: collapse; }
       td { vertical-align: top; padding: 0px; margin: 0px; }
-      td.info { padding-left: 1em; p { margin: 0 0 1em 0; } }
-      .qrcode { width: 100px; height: 100px; background-color: white; }
+      td.info { padding-left: 1em; p { margin: 0 0 1em 0; font-size: 85%; } }
+      .qrcode { width: 100px; height: 100px; }
+      #qrcode { background-color: white; }
+      .depositAddressString { width: 100%; }
     }
 
     &.paid {
