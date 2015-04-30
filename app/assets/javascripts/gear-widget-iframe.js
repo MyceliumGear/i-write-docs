@@ -20,8 +20,8 @@ jQuery(function($) {
 
   $("button#create_order").click(function() {
 
-    $(this).attr("disabled", "disabled");
-    $(this).val("Wait...");
+    $(this).attr("disabled", "disabled").addClass('disabled');
+    $(this).text("Wait...");
 
     var product_data = {};
     if($(".productInfo .productSelector select").val()) {
