@@ -42,6 +42,7 @@ jQuery(function($) {
     });
     if(form_errors.length > 0) {
       alert(form_errors.join("\n"));
+      $(this).removeAttr("disabled");
       return;
     }
 
