@@ -7,12 +7,6 @@ jQuery(function($) {
     
     document.getElementById('gear-widget').contentWindow.postMessage(
       {
-        gateway_id:     $('#gear-widget').data().gatewayId,
-        price:          $('#gear-widget').data().price,
-        currency:       $('#gear-widget').data().currency,
-        title:          $('#gear-widget').data().title,
-        products:       $('#gear-widget').data().products,
-        path:         window.location.pathname,
         gateway_host: target
       },
       target

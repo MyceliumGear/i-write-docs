@@ -3,9 +3,7 @@ jQuery(function($) {
   var gear_widget_settings = {};
   var widget_host          = {};
   GearPayment.payment_id = 0;
-  GearPayment.gateway_id = 0;
   GearPayment.gateway_id     = $('#gear-widget').data().gatewayId;
-  GearPayment.host           = $('#gear-widget').data().gatewayHost;
 
   GearPayment.update_gear_widget_height = function() {
     widget_host.source.postMessage({
@@ -16,6 +14,7 @@ jQuery(function($) {
 
   window.addEventListener('message', function(event) {
     widget_host = { source: event.source, origin: event.origin };
+    GearPayment.host = event.data.gateway_host;
     GearPayment.update_gear_widget_height();
   }, false);
 
@@ -29,6 +28,13 @@ jQuery(function($) {
       var product_title_and_price = $(".productInfo .productSelector select").val().split(':');
       product_data['product_title'] = product_title_and_price[0];
       var product_price = product_title_and_price[1];
+    } else if($("#variable_price").val()) {
+      product_price = $("#variable_price").val();
+      if(!product_price.match(/^[0-9]+\.?[0-9]*$/)) {
+        alert("Please insert correct amount, must be a number");
+        $(this).removeAttr("disabled");
+        return;
+      }
     } else {
       var product_price = $(".productInfo .price .amount").text();
     }
