@@ -23,7 +23,7 @@ class Gateway < ActiveRecord::Base
 
 
   before_validation :decide_on_the_signature
-  before_validation :assign_widget
+  before_validation :assign_widget, on: :create
   before_save  :generate_secret
   before_create :create_straight_gateway
   before_update :update_straight_gateway
