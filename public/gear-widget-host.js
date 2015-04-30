@@ -1,8 +1,6 @@
 jQuery(function($) {
 
   $('#gear-widget').load(function(){
-    // If widget states localhost as its target, we
-    // default to the same host on which the widget is hosted.
     var target = $('#gear-widget').data().targetDomain;
     
     document.getElementById('gear-widget').contentWindow.postMessage(

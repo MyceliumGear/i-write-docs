@@ -18,7 +18,10 @@ jQuery(function($) {
     GearPayment.update_gear_widget_height();
   }, false);
 
+
   $("button#create_order").click(function() {
+
+    if(GearPayment.host.match(/^https?:\/\/admin/)) { return; }
 
     $(this).attr("disabled", "disabled").addClass('disabled');
     $(this).text("Wait...");
