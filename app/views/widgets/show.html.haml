@@ -2,7 +2,7 @@
 
 %script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js")
 = javascript_include_tag "qrcode"
-= javascript_include_tag "payment-js-lib/gear-payment"
+= javascript_include_tag "/payment-js-lib/gear-payment.js"
 = javascript_include_tag "gear-widget-iframe"
 
 #gear-widget{ data: { "gateway-id" => @gateway.straight_gateway_hashed_id, "gateway-host" => APP_ENV['gateway_host'] }}
