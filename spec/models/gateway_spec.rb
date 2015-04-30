@@ -22,10 +22,6 @@ RSpec.describe Gateway, type: :model do
       @gateway.save
       expect(@gateway.widget.fields).to eq(["*Email"])
       expect(@gateway.check_signature).to be_falsey
-      @gateway.site_type = nil
-      @gateway.save
-      expect(@gateway.check_signature).to be_truthy
-      expect(@gateway.widget).to be_nil
     end
 
     describe "generating secret" do
