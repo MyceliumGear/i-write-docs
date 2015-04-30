@@ -13,9 +13,17 @@
         %select
           - @widget.products.each do |product|
             %option{ value: "#{product.title}:#{product.price}" }= "#{product.title} - #{product.price} (#{@gateway.default_currency})"
-    - else
+
+    - elsif @widget.products.size == 1
       .title= @widget.products.first.title
       .price <span class="amount">#{@widget.products.first.price}</span> <span class="currency">#{@gateway.default_currency}</span>
+
+    - else
+      .variableAmount
+        .title= @gateway.name
+        %p Amount to pay (in #{@gateway.default_currency}):
+        %input#variable_price{ type: 'text', placeholder: "Example: 1.29"} 
+
 
     - unless @widget.fields.blank?
       - @widget.fields.each do |f|
