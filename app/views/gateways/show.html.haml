@@ -20,10 +20,20 @@
 
     = render partial: 'widgets/form'
 
-    .widgetCode
-      %h3 Widget HTML code
-      This is your widget code. You will need to copy and paste it onto your page:
-      %textarea= render_to_string(template: 'widgets/_code', layout: false)
+    .widgetCodeAndPreview
+      .pure-g
+
+        .pure-u-12-24
+          .container.widgetCode
+            %h3 Widget HTML code
+            This is your widget code. You will need to copy and paste it onto your page:
+            %textarea= render_to_string(template: 'widgets/_code', layout: false)
+
+        .pure-u-12-24
+          .container
+            %h3 Widget perview
+            This is what your widget looks like with the current settings:
+            = render partial: 'widgets/code'
 
 
   %table

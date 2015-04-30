@@ -5,14 +5,14 @@
 = javascript_include_tag "payment-js-lib/gear-payment"
 = javascript_include_tag "gear-widget-iframe"
 
-#gear-widget{ data: { "websocket-port" => 80 }}
+#gear-widget{ data: { "gateway-id" => @gateway.straight_gateway_hashed_id, "gateway-host" => APP_ENV['gateway_host'] }}
 
   .productInfo
     - if @widget.products.size > 1
       .productSelector
         %select
           - @widget.products.each do |product|
-            %option{ value: product.title }= "#{product.title} - #{product.price} (#{@gateway.default_currency})"
+            %option{ value: "#{product.title}:#{product.price}" }= "#{product.title} - #{product.price} (#{@gateway.default_currency})"
     - else
       .title= @widget.products.first.title
       .price <span class="amount">#{@widget.products.first.price}</span> <span class="currency">#{@gateway.default_currency}</span>
@@ -20,7 +20,7 @@
     - unless @widget.fields.blank?
       - @widget.fields.each do |f|
         .field
-          %input{ name: f.sub("*", ''), placeholder: f }
+          %input{ name: f.sub("*", ''), placeholder: f, data: { required: (f =~ /\A\*/ ? "1" : "0" ) }}
 
     %button.small#create_order Buy with Bitcoin
 

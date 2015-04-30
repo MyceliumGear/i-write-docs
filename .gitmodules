@@ -1,0 +1,3 @@
+[submodule "app/assets/javascripts/payment-js-lib"]
+	path = app/assets/javascripts/payment-js-lib
+	url = deploy@straight:/var/repos/payment-js-lib.git

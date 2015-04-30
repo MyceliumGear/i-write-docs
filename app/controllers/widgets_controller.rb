@@ -5,6 +5,7 @@ class WidgetsController < ApplicationController
   before_filter :check_if_gateway_owner, except: [:show]
 
   def show
+    response.headers.delete('X-Frame-Options')
     render 'show', layout: false
   end
 
