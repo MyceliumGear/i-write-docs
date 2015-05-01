@@ -23,9 +23,6 @@ jQuery(function($) {
 
     if(GearPayment.host.match(/^https?:\/\/admin/)) { return; }
 
-    $(this).attr("disabled", "disabled").addClass('disabled');
-    $(this).text("Wait...");
-
     var product_data = {};
     if($(".productInfo .productSelector select").val()) {
       var product_title_and_price = $(".productInfo .productSelector select").val().split(':');
@@ -35,7 +32,6 @@ jQuery(function($) {
       product_price = $("#variable_price").val();
       if(!product_price.match(/^[0-9]+\.?[0-9]*$/)) {
         alert("Please insert correct amount, must be a number");
-        $(this).removeAttr("disabled");
         return;
       }
     } else {
@@ -51,9 +47,11 @@ jQuery(function($) {
     });
     if(form_errors.length > 0) {
       alert(form_errors.join("\n"));
-      $(this).removeAttr("disabled");
       return;
     }
+
+    $(this).attr("disabled", "disabled").addClass('disabled');
+    $(this).text("Wait...");
 
     $.ajax({
       method: 'POST',
