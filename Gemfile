@@ -24,13 +24,7 @@ gem 'straight',        git: 'https://github.com/snitko/straight'
 gem 'straight-server', git: 'https://github.com/snitko/straight-server'
 
 group :development do
-  gem 'capistrano-rails'
-  gem 'capistrano-rvm'
-  #gem 'rvm1-capistrano3', require: false
-  gem 'capistrano-passenger'
-  gem 'capistrano-bundler'
   gem 'thin'
-  #gem 'faker'
 end
 
 group :assets do
