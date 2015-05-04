@@ -7,70 +7,72 @@
 
 #gear-widget{ data: { "gateway-id" => @gateway.straight_gateway_hashed_id, "gateway-host" => APP_ENV['gateway_host'] }}
 
-  .productInfo
-    - if @widget.products.size > 1
-      .productSelector
-        %select
-          - @widget.products.each do |product|
-            %option{ value: "#{product.title}:#{product.price}" }= "#{product.title} - #{product.price} (#{@gateway.default_currency})"
+  .container
 
-    - elsif @widget.products.size == 1
-      .title= @widget.products.first.title
-      .price <span class="amount">#{@widget.products.first.price}</span> <span class="currency">#{@gateway.default_currency}</span>
+    .productInfo
+      - if @widget.products.size > 1
+        .productSelector
+          %select
+            - @widget.products.each do |product|
+              %option{ value: "#{product.title}:#{product.price}" }= "#{product.title} - #{product.price} (#{@gateway.default_currency})"
 
-    - else
-      .variableAmount
-        .title= @gateway.name
-        %p Amount to pay (in #{@gateway.default_currency}):
-        %input#variable_price{ type: 'text', placeholder: "Example: 1.29"} 
+      - elsif @widget.products.size == 1
+        .title= @widget.products.first.title
+        .price <span class="amount">#{@widget.products.first.price}</span> <span class="currency">#{@gateway.default_currency}</span>
 
-
-    - unless @widget.fields.blank?
-      - @widget.fields.each do |f|
-        .field
-          %input{ name: f.sub("*", ''), placeholder: f, data: { required: (f =~ /\A\*/ ? "1" : "0" ) }}
-
-    %button.small#create_order Buy with Bitcoin
-
-  .paymentInfo.new
-    
-    %table
-      %tr
-        %td.qrcode
-          #qrcode
-        %td.info
-          %p.pleaseDeposit
-            Please send exactly <b class="amount"></b> BTC<br/>to the bitcoin address below:
-          %textarea.depositAddressString(readonly=true)
+      - else
+        .variableAmount
+          .title= @gateway.name
+          %p Amount to pay (in #{@gateway.default_currency}):
+          %input#variable_price{ type: 'text', placeholder: "Example: 1.29"} 
 
 
-    %p.timeLeft
-      Time left until the order expires:
-      %b{ class: "value", data: { time_left: "900" }} 15:00
+      - unless @widget.fields.blank?
+        - @widget.fields.each do |f|
+          .field
+            %input{ name: f.sub("*", ''), placeholder: f, data: { required: (f =~ /\A\*/ ? "1" : "0" ) }}
 
-  .paymentInfo.paid
-    .title SUCCESS!
-    .statement We've received your payment of #{product.price} (#{@gateway.default_currency} BTC
+      %button.small#create_order Buy with Bitcoin
 
-  .paymentInfo.underpaid
-    .title Not enough funds sent
-    .statement We've received your payment, but it was not enough. You should've sent <span class="amount"></span> BTC
-    %p transaction id is:
-    %textarea.transactionId(readonly=true)
+    .paymentInfo.new
+      
+      %table
+        %tr
+          %td.qrcode
+            #qrcode
+          %td.info
+            %p.pleaseDeposit
+              Please send exactly <b class="amount"></b> BTC<br/>to the bitcoin address below:
+            %textarea.depositAddressString(readonly=true)
 
-  .paymentInfo.connectionProblem
-    .title Connection problem
-    .statement Connection with the payment gateway was lost. Cannot reconnect to the payment gateway websocket to check the status of your payment. If you already made the transaction, don't worry about your payment: as soon as the the payment gateway comes back up, it's going to be processed and respected.
 
-  .paymentInfo.overpaid
-    .title You've sent too much
-    .statement We've received your payment, but it was too much. You should've sent <span class="amount"></span> BTC
-    %p transaction id is:
-    %textarea.transactionId(readonly=true)
+      %p.timeLeft
+        Time left until the order expires:
+        %b{ class: "value", data: { time_left: "900" }} 15:00
 
-  .paymentInfo.expired
-    .title Order is expired
-    .statement You did not manage to pay in time, so we canceled the order.
+    .paymentInfo.paid
+      .title SUCCESS!
+      .statement We've received your payment of <span class="amount"></span> BTC
+
+    .paymentInfo.underpaid
+      .title Not enough funds sent
+      .statement We've received your payment, but it was not enough. You should've sent <span class="amount"></span> BTC
+      %p transaction id is:
+      %textarea.transactionId(readonly=true)
+
+    .paymentInfo.connectionProblem
+      .title Connection problem
+      .statement Connection with the payment gateway was lost. Cannot reconnect to the payment gateway websocket to check the status of your payment. If you already made the transaction, don't worry about your payment: as soon as the the payment gateway comes back up, it's going to be processed and respected.
+
+    .paymentInfo.overpaid
+      .title You've sent too much
+      .statement We've received your payment, but it was too much. You should've sent <span class="amount"></span> BTC
+      %p transaction id is:
+      %textarea.transactionId(readonly=true)
+
+    .paymentInfo.expired
+      .title Order is expired
+      .statement You did not manage to pay in time, so we canceled the order.
 
   .footer
     Powered by 
