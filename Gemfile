@@ -18,6 +18,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'pg'
 gem 'open_uri_redirections'
 gem 'sequel'
+gem 'httparty'
 
 gem 'straight',        git: 'https://github.com/snitko/straight'
 gem 'straight-server', git: 'https://github.com/snitko/straight-server'
