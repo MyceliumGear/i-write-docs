@@ -25,12 +25,13 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight-server
-  revision: 3808830fdcd65d31b71218e50c6e10174bc3dafd
+  revision: 214d6c91222636f55f2697c409b9bb292e76eca0
   specs:
-    straight-server (0.1.2)
+    straight-server (0.2.0)
       faye-websocket
       goliath
-      logmaster (= 0.1.2)
+      httparty
+      logmaster (= 0.1.5)
       ruby-hmac
       satoshi-unit
       sequel
@@ -174,7 +175,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.2)
     log4r (1.1.10)
-    logmaster (0.1.2)
+    logmaster (0.1.5)
       pony
     loofah (2.0.1)
       nokogiri (>= 1.5.9)
