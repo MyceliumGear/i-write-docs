@@ -43,6 +43,7 @@ task :environment do
   end
 
   set :branch, stage
+  set :rails_env, stage
   set :deploy_to, "/var/www/gear-admin/#{stage}"
 
   # For those using RVM, use this to load an RVM version@gemset.
