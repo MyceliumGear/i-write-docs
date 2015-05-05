@@ -3,7 +3,7 @@
   @import 'mixins';
   @import 'components/buttons';
 
-  width: auto; 
+  width: auto;
   font-size: 85%;
   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 
@@ -45,6 +45,7 @@
       #qrcode { background-color: white; }
       .depositAddressString { width: 100%; }
       .tapOrClickCaption { text-align: center; font-size: 60%; }
+      .timeLeft { text-align: center; }
     }
 
     &.processing { text-align: center; .loading { text-align: center; height: 5px; font-weight: bold; } }
