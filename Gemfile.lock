@@ -16,9 +16,10 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight
-  revision: 89b514737397e138bd4c1338ed2458817b7a3a68
+  revision: aacbea06500e083c0c5ba3489726e3599fb5f0d5
   specs:
-    straight (0.1.0)
+    straight (0.2.1)
+      httparty
       money-tree
       satoshi-unit
 
