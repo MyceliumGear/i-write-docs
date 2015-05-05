@@ -49,7 +49,8 @@ jQuery(function($) {
       if(seconds == 0) {
         if(minutes == 0) {
           $(".paymentInfo").hide();
-          $(".paymentInfo.expired").fadeIn(200);
+          $(".paymentInfo.processing").fadeIn(200);
+          GearPayment.show_processing_indicator();
           clearInterval(GearPayment.interval);
           return;
         } else {
@@ -61,6 +62,17 @@ jQuery(function($) {
       el.text(minutes + ":" + seconds_string);
       seconds--;
     }, 1000);
+  }
+
+  GearPayment.show_processing_indicator = function() {
+    setTimeout(function() {
+      if($(".paymentInfo .loading").text().length < 3) {
+        $(".paymentInfo .loading").text( $(".paymentInfo.processing .loading").text() + '.');
+      } else {
+        $(".paymentInfo .loading").text('');
+      }
+      GearPayment.show_processing_indicator();
+    }, 300);
   }
 
   GearPayment.connect_to_websocket = function() {

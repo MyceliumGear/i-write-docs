@@ -47,6 +47,8 @@
       .tapOrClickCaption { text-align: center; font-size: 60%; }
     }
 
+    &.processing { text-align: center; .loading { text-align: center; height: 5px; font-weight: bold; } }
+
     &.paid {
       display: none;
       text-align: center;

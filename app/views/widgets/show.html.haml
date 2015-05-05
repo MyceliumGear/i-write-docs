@@ -50,7 +50,11 @@
 
       %p.timeLeft
         Time left until the order expires:
-        %b{ class: "value", data: { time_left: "900" }} 15:00
+        %b{ class: "value", data: { time_left: @gateway.orders_expiration_period }}
+
+    .paymentInfo.processing
+      %p Your payment window has expired, but we're still trying to detect a transaction you might have made in the last seconds. It will not take longer than 30 seconds, please stay tuned.
+      %p.loading ...
 
     .paymentInfo.paid
       .title SUCCESS!
