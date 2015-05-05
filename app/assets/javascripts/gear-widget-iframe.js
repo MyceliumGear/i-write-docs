@@ -82,6 +82,7 @@ jQuery(function($) {
         $(".productInfo").hide();
         $(".amount").text(resp.amount_in_btc);
         $(".paymentInfo.new textarea.depositAddressString").val(resp.address);
+        $(".paymentInfo.new .qrcode a").attr('href', 'bitcoin:' + resp.address + '?amount=' + resp.amount_in_btc);
         $(".paymentInfo.new").show();
         GearPayment.update_gear_widget_height();
       }
