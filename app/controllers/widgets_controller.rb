@@ -25,7 +25,7 @@ class WidgetsController < ApplicationController
         @gateway = Gateway.where(straight_gateway_hashed_id: params[:id]).includes(:widget).first
         @widget  = @gateway.widget if @gateway
       end
-      render_404 unless @gateway && @widget
+      render_404 unless @gateway || @widget
     end
 
     def widget_params
