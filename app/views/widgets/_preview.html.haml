@@ -2,11 +2,43 @@
   .pure-g
 
     .pure-u-12-24
-      .container.widgetCode
-        %h3 Widget HTML code
-        This is your widget code. You will need to copy and paste it onto your page:
-        %textarea= render_to_string(template: 'widgets/_site_host_code', layout: false)
-        .hint You <b>don't</b> need to copy and and paste this code every time you change Widget settings. The code is always the same.
+
+
+      - if @gateway.site_type == "wordpress"
+
+        .installationInstructions
+          %h3 Your website is created using Wordpress
+          %p Please follow these steps to install our payment widget onto your website:
+
+          %ol
+            %li Download #{ link_to "Mycelium Gear wordpress plugin", "/mycelium-gear_wordpress_plugin.zip" } and install it into your Wordpress
+            %li
+              Use this Gateway id when setting up the widget:
+              %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id } 
+
+          %p ...and that's it!
+
+      - elsif @gateway.site_type == "joomla"
+
+        .installationInstructions
+          %h3 Your website is created using Joomla
+          %p Please follow these steps to install our payment widget onto your website:
+
+          %ol
+            %li Download #{ link_to "Mycelium Gear joomla plugin", "/mycelium-gear_joomla_plugin.zip" } and install it into your Wordpress
+            %li
+              Use this Gateway id when setting up the widget:
+              %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id } 
+
+          %p ...and that's it!
+      
+      - else
+
+        .container.widgetCode
+          %h3 Widget HTML code
+          This is your widget code. You will need to copy and paste it onto your page:
+          %textarea= render_to_string(template: 'widgets/_site_host_code', layout: false)
+          .hint You <b>don't</b> need to copy and and paste this code every time you change Widget settings. The code is always the same.
 
     .pure-u-12-24
       .container

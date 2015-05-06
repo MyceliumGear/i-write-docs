@@ -9,9 +9,9 @@ RSpec.describe WizardController, type: :controller do
       expect(response.body).to eq('wordpress')
     end
 
-    it "detects shopify" do
-      post :detect_site_type, url: 'http://personal-prints.com/'
-      expect(response.body).to eq('shopify')
+    it "detects joomla" do
+      post :detect_site_type, url: 'http://gsas.harvard.edu/'
+      expect(response.body).to eq('joomla')
     end
 
     it "returns a string containing site type" do

@@ -2,7 +2,7 @@ class WizardController < ApplicationController
 
   def step
     if params[:step].to_i == 2
-      @gateway = Gateway.new(site_type: params[:site_type], widget: true, default_currency: 'USD')
+      @gateway = Gateway.new(site_type: params[:site_type], default_currency: 'USD')
       render 'step2'
     elsif params[:step].to_i == 3
       @gateway = Gateway.where(id: params[:gateway_id]).includes(:widget).first
@@ -38,16 +38,16 @@ class WizardController < ApplicationController
 
     if contents.match('<meta name="generator" content="WordPress')
       render text: "wordpress"
-    elsif contents.match('var Shopify = Shopify')
-      render text: 'shopify'
+    elsif contents.match('<meta name="generator" content="Joomla')
+      render text: 'joomla'
     else
-      begin
-        if open(url + '/wp-admin', allow_redirections: :all).status == ["200", "OK"]
-          render text: "wordpress" and return
-        end
-      rescue
-        # continue
-      end
+      #begin
+        #if open(url + '/wp-admin', allow_redirections: :all).status == ["200", "OK"]
+          #render text: "wordpress" and return
+        #end
+      #rescue
+         #continue
+      #end
       render text: "unknown"
     end
   end

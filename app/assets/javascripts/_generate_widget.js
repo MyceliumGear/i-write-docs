@@ -125,6 +125,9 @@ jQuery(function($){
     $(".widget .cancel").removeClass('disabled');
   }
 
+  $('input.gatewayId').focus(function(event) {
+      setTimeout(function() {$('input.gatewayId').select();}, 0);
+  });
 
 
 });

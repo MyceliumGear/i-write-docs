@@ -45,7 +45,8 @@
   &.step3 {
     ul { margin: 1em 0; }
     li { margin: 0.5em 0; }
-    .installationInstructions { margin-top: 3em; }
+    .installationInstructions { padding: 1em; }
+    iframe { margin-top: 1em; }
   }
 
 }

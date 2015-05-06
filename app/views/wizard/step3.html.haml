@@ -11,39 +11,17 @@
   = render partial: 'widgets/form'
   = render partial: 'widgets/preview'
 
-  .installationInstructions
+  - if @gateway.site_type == "html" || !@gateway.site_type
 
-  - if @gateway.site_type == "wordpress"
+    .installationInstructions
 
-    Your website is created using Wordpress. Please follow these steps to install our payment widget onto your website:
+      %p Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself. Here's what you should do:
 
-    %ol
-      %li Download #{ link_to "Mycelium Gear wordpress plugin", "/mycelium-gear_wordpress_plugin.zip" } and install it into your Wordpress
-      %li Use this Gateway id: <span class="code">#{@gateway.straight_gateway_hashed_id}</span> when setting up the widget
+      %ol
+        %li Upload that file onto your server
+        %li Repeat for every page you would like the widget to appear on
 
-    %p Watch a short video showing how to install and use the plugin
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/eDnqU03Rwgg" frameborder="0" allowfullscreen></iframe>
+      %p Watch our video explaining how to that:
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/c193UA3pErY" frameborder="0" allowfullscreen></iframe>
 
-    %h2 ...and that's it!
-
-  - elsif @gateway.site_type == "joomla"
-
-    Your website is created using Joomla. Please follow these steps to install our payment widget onto your website:
-
-    %ol
-      %li Step 1 describing how to open site admin panel and add a plugin
-      %li Step 2 explaining how to check the widget is working
-
-    %h2 ...and that's it!
-
-  - else
-
-    %b Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself. Here's what you should do:
-
-    %li Upload that file onto your server
-    %li Repeat for every page you would like the widget to appear on
-
-    %p Watch our video explaining how to that:
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/c193UA3pErY" frameborder="0" allowfullscreen></iframe>
-
-    %h2 ...and that's it!
+      %p ...and that's it!
