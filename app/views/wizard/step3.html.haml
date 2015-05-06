@@ -26,9 +26,9 @@
 
     %h2 ...and that's it!
 
-  - elsif @gateway.site_type == "shopify"
+  - elsif @gateway.site_type == "joomla"
 
-    Your website is created using Shopify. Please follow these steps to install our payment widget onto your website:
+    Your website is created using Joomla. Please follow these steps to install our payment widget onto your website:
 
     %ol
       %li Step 1 describing how to open site admin panel and add a plugin
@@ -36,18 +36,14 @@
 
     %h2 ...and that's it!
 
-
-    %p Watch our video explaining how to that:
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/Um63OQz3bjo" frameborder="0" allowfullscreen></iframe> 
-
-  - else @gateway.site_type == "shopify"
+  - else
 
     %b Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself. Here's what you should do:
 
     %li Upload that file onto your server
     %li Repeat for every page you would like the widget to appear on
 
-    %h2 ...and that's it!
+    %p Watch our video explaining how to that:
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/c193UA3pErY" frameborder="0" allowfullscreen></iframe>
 
-    %p Watch our video explaining how to do that:
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/6BBuDDWu4G0" frameborder="0" allowfullscreen></iframe>
+    %h2 ...and that's it!
