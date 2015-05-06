@@ -1,11 +1,12 @@
 .page.orders.index
 
   - if @orders.present?
-
+  
     - if @gateway
+      - @page_title = "All orders for gateway #{@gateway.name}"
       %h2.pageTitle All orders for gateway <b>#{@gateway.name}</b>
     - else
-      %h2.pageTitle All orders for all gateways
+      %h2.pageTitle= @page_title = "All orders for all gateways"
 
     .actions
 

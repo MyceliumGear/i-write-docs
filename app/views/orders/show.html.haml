@@ -1,6 +1,6 @@
 .page.orders.show
 
-  %h2 Order ##{@order.keychain_id}, for #{link_to @gateway.name, @gateway}
+  %h2= @page_title = "Order ##{@order.keychain_id}, for #{link_to @gateway.name, @gateway}"
   
   %table
 
