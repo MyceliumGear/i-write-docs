@@ -1,5 +1,9 @@
 .pageContainer .topBar {
 
   height: 4em; background-color: #F3EEEB; font-size: 80%;
+  .container {
+    color: #B39980; padding: 1em 0 0px 0px; width: 97%; max-width: 100%; text-align: right;
+    a, a:visited { color: #83694E; }
+  }
 
 }
