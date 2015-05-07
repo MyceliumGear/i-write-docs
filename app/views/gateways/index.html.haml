@@ -26,7 +26,7 @@
             %td= g.pubkey.slice(0,16) + "..."
             %td= g.default_currency
             - if current_user.admin?
-              %td= link_to g.user.email, g.user
+              %td= g.user.email
 
       = will_paginate(@gateways)
 
