@@ -1,6 +1,9 @@
 .page.gateways.index
 
-  %h2.pageTitle= @page_title = "Your #{ params[:widget] ? "widgets" : "gateways" }"
+  - if current_user.admin?
+    %h2.pageTitle= @page_title = "Your #{ params[:widget] ? "widgets" : "gateways" }"
+  - else
+    %h2.pageTitle= @page_title = "All #{ params[:widget] ? "widgets" : "gateways" }"
 
   .actions
     - if params[:widget]
