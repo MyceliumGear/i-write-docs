@@ -25,6 +25,7 @@ class Gateway < ActiveRecord::Base
 
 
   before_validation :decide_on_the_signature
+  before_validation :set_default_exchange_rate_adapter_names
   before_validation :assign_widget, on: :create
   before_save  :generate_secret
   before_create :create_straight_gateway
@@ -140,6 +141,12 @@ class Gateway < ActiveRecord::Base
       else
         self.widget.destroy if self.widget
         self.widget = nil
+      end
+    end
+
+    def set_default_exchange_rate_adapter_names
+      if exchange_rate_adapter_names.blank?
+        self.exchange_rate_adapter_names = ["Bitstamp", "Kraken", "Btce"]
       end
     end
 

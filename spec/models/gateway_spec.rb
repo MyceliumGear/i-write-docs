@@ -28,6 +28,18 @@ RSpec.describe Gateway, type: :model do
       expect(@gateway.check_signature).to be_falsey
     end
 
+    it "sets default exchange rate adapters" do
+      @gateway.exchange_rate_adapter_names = nil
+      @gateway.save
+      expect(@gateway.exchange_rate_adapter_names).to eq(["Bitstamp", "Kraken", "Btce"]) 
+      @gateway.exchange_rate_adapter_names = nil
+      @gateway.save
+      expect(@gateway.exchange_rate_adapter_names).to eq(["Bitstamp", "Kraken", "Btce"])
+      @gateway.exchange_rate_adapter_names = ["Kraken", "AverageRate", "Bitstamp"]
+      @gateway.save
+      expect(@gateway.exchange_rate_adapter_names).to eq(["Kraken", "AverageRate", "Bitstamp"]) 
+    end
+
     describe "generating secret" do
 
       it "generates a secret for a new record" do
