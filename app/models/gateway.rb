@@ -77,7 +77,7 @@ class Gateway < ActiveRecord::Base
     def validate_pubkey_is_bip32
       begin
         MoneyTree::Node.from_serialized_address(pubkey)
-      rescue ArgumentError => e
+      rescue Exception => e
         errors.add(:pubkey, "doesn't look like a BIP32 pubkey")
       end
     end

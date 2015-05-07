@@ -5,7 +5,7 @@ FactoryGirl.define do
     check_signature        true
 
     sequence(:pubkey) do |i|
-      "xpub6AHA9hZDN11k2ijHMeS5QqHx2KP9aMBRhTDqANMnwVtdyw2TDYRmF8PjpvwUFcL1Et8Hj59S3gTSMcUQ5gAqTz3Wd8EsMTmF3DChhqPQBn#{i}"
+      MoneyTree::Master.new.to_serialized_address(:public) 
     end
     default_currency            'BTC'
     callback_url                'http://0.0.0.0/my_store_callback'
