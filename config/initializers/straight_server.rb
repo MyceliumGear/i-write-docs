@@ -20,6 +20,7 @@ STRAIGHT_SERVER_INITIALIZER.read_config_file
 
 db = STRAIGHT_SERVER_INITIALIZER.connect_to_db
 db.extension(:connection_validator)
+db.pool.connection_validation_timeout = 600
 
 STRAIGHT_SERVER_INITIALIZER.setup_redis_connection
 
