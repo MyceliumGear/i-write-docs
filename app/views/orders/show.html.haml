@@ -1,6 +1,8 @@
+- @page_title = "Order ##{@order.keychain_id}, for #{link_to @gateway.name, @gateway}"
+
 .page.orders.show
 
-  %h2= @page_title = "Order ##{@order.keychain_id}, for #{link_to @gateway.name, @gateway}"
+  %h2 Order ##{@order.keychain_id}, for #{link_to @gateway.name, @gateway}
   
   %table
 
@@ -32,7 +34,10 @@
 
     %tr
       %th Data
-      %td= @order.data.to_json.to_s
+      %td
+        - @order.data.each do |k,v|
+          <b>#{k.split("_").map(&:capitalize).join(' ')}</b>: #{v}
+          
 
     %tr
       %th Callback response
