@@ -18,9 +18,7 @@ RSpec.describe Gateway, type: :model do
     end
     
     it "validates pubkey is BIP32 valid pubkey" do
-      expect(@gateway.errors[:pubkey]).to be_empty
-      @gateway.update(pubkey: 'invalid xpub key')
-      expect(@gateway.errors[:pubkey]).not_to be_empty
+      expect( -> { create(:gateway, pubkey: 'invalid pubkey') }).to raise_exception(ActiveRecord::RecordInvalid)
     end
 
     it "decides on signatures and creates a widget if needed" do

@@ -46,7 +46,7 @@ en:
       gateway:
         name: This will to appear on the payment page for each customer to see
         confirmations_required: Bitcoin confirmations for a transaction to be considered accepted by the gateway. Unless you have reasons to believe some of your customers are going to be frauds, we recommend setting it to 0.
-        pubkey: We're going to generate addresses for each order using this key. They key starts with "xpub".
+        pubkey: We're going to generate addresses for each order using this key. They key starts with "xpub". For security reasons, YOU WILL NOT BE ABLE TO CHANGE IT.
         default_currency: If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Rememver, that unless you choose BTC, at least one of the selected Bitcoin exchange rate providers must support that currency.
         convert_currency_to: "Currently, we don't support automatic conversion. Support for EUR within the EU is coming soon"
         callback_url: When the status of the order changes (for example from NEW to PAID), Gear will send an http request to the following URL. The request will include additional order data (consult the documentation). This field may be left blank in which case no callback request will be sent.

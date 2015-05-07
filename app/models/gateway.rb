@@ -4,6 +4,7 @@ class Gateway < ActiveRecord::Base
 
   attr_reader   :straight_gateway
   attr_accessor :secret, :regenerate_secret, :convert_currency_to
+  attr_readonly :pubkey
 
   belongs_to :user
   serialize :db_config, Hash
