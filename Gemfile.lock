@@ -16,18 +16,18 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight
-  revision: aacbea06500e083c0c5ba3489726e3599fb5f0d5
+  revision: 04cc507f9ad067083c4d10e5084da6e33d7a7132
   specs:
-    straight (0.2.1)
+    straight (0.2.2)
       httparty
       money-tree
       satoshi-unit
 
 GIT
   remote: https://github.com/snitko/straight-server
-  revision: 214d6c91222636f55f2697c409b9bb292e76eca0
+  revision: bf4a6cc18754803ca7440670529c4d85c7597b50
   specs:
-    straight-server (0.2.0)
+    straight-server (0.2.1)
       faye-websocket
       goliath
       httparty
@@ -35,7 +35,7 @@ GIT
       ruby-hmac
       satoshi-unit
       sequel
-      straight
+      straight (= 0.2.2)
 
 GIT
   remote: https://github.com/tommeier/database_cleaner
@@ -201,7 +201,7 @@ GEM
     pg (0.18.1)
     pony (1.11)
       mail (>= 2.0)
-    rack (1.6.0)
+    rack (1.6.1)
     rack-accept-media-types (0.9)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
