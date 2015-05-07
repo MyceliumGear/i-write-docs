@@ -20,6 +20,7 @@ class Gateway < ActiveRecord::Base
 
   before_validation :split_exchange_rate_adapter_names!
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
+  validate          :validate_pubkey_is_bip32
 
 
   before_validation :decide_on_the_signature
@@ -70,6 +71,14 @@ class Gateway < ActiveRecord::Base
         rescue
           errors.add(:exchange_rate_adapter_names, "includes adapter #{a}Adapter which is not available")
         end
+      end
+    end
+
+    def validate_pubkey_is_bip32
+      begin
+        MoneyTree::Node.from_serialized_address(pubkey)
+      rescue ArgumentError => e
+        errors.add(:pubkey, "doesn't look like a BIP32 pubkey")
       end
     end
 

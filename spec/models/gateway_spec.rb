@@ -16,6 +16,12 @@ RSpec.describe Gateway, type: :model do
       @gateway.exchange_rate_adapter_names = ""
       expect(@gateway.valid?).to be_truthy
     end
+    
+    it "validates pubkey is BIP32 valid pubkey" do
+      expect(@gateway.errors[:pubkey]).to be_empty
+      @gateway.update(pubkey: 'invalid xpub key')
+      expect(@gateway.errors[:pubkey]).not_to be_empty
+    end
 
     it "decides on signatures and creates a widget if needed" do
       @gateway.site_type = "Wordpress"
