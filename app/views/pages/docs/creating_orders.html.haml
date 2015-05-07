@@ -4,11 +4,11 @@
 
   %h1 #{ link_to "Documentation", "/docs"} / API / Creating orders
 
-  %p Creating an order is the first step towards accepting the payment. Generally, you'd want to create an order AFTER your customer clicks "Complete purchase" or a similar button in your online store. After you created an order using our RESTFUL API, you can then redirect user to the Mycelium Gear payment page associated with this order.
+  %p Creating an order is the first step towards accepting a payment. Generally, you want to create an order AFTER your customer clicks "Complete purchase" or a similar button in your online store. After you create an order using our RESTFUL API, you can redirect the user to the Mycelium Gear payment page associated with this order.
 
   %h2 The request and the signature
 
-  %p In order to create an order, you must issue an https request to <span class="code">https://gateway.gear.mycelium.com/gateways/:gateway_id/orders</span> with at least two params &mdash; <span class="code">amount</span> and <span class="code">signature</span> &mdash; the former determining the amount to be paid for this order. The amount should be in the currency you've set for the gateway previously. If the gateway currency is BTC, then the amount is normally in satoshis. So, the request may look like this:
+  %p To create an order, you must issue a POST request to <span class="code">https://gateway.gear.mycelium.com/gateways/:gateway_id/orders</span> with at least two params &mdash; <span class="code">amount</span> and <span class="code">signature</span> &mdash; the former determining the amount to be paid for this order. The amount should be in the currency you have previously set for the gateway. If the gateway currency is BTC, then the amount is normally in satoshis. So, the request may look like this:
 
   .code
     https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders?amount=1
@@ -17,7 +17,7 @@
     You can get the <span class="code">api_gateway_id</span> value from your
     gateway's info in the admin panel.
 
-  %p This url is now almost corrrect only it currently lacks a signature. Signatures are necessary because you HAVE to make sure that when somebody accesses your gateway's RESTful API it is your store only, and not somebody else. For that purpose, you're gonna need to provide a signature. A <i></i>signature</i> is a HMAC SHA256 hash of the secret and an order id. Because you need order id, it means you have to actually provide it manually in the params. It can be any integer > 0, but it's better that it is a consecutive integer, so keep track of order ids in your application. Obviously, if an order with such an id already exists, the request will be rejected. Then the request becomes this: 
+  %p In order for this url to be complete, you must add a signature. Signatures are necessary, because you HAVE to make sure that when somebody accesses your gateway's RESTful API, it is accessed by your store only, and not by somebody else. A <i>signature</i> is an HMAC SHA256 hash of the secret and the order id. Because you need the order id, it means you have to actually provide it manually in the params. It can be any integer > 0, but it's better if it is a consecutive integer, so keep track of your order ids in your application. Be aware that if an order id has been previously used, the request will be rejected. With the id and signature, the request will look like this:
 
   .code
     POST /gateways/:api_gateway_id/orders?amount=1&order_id=1&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
@@ -29,15 +29,15 @@
     secret = 'a long string of random chars'<br/>
     OpenSSL::HMAC.digest('sha256', secret, "1").unpack("H*").first # "1" may be order_id here
 
-  %h2 Passing additional data
-  %p You may want to pass some additional data that will later be returned to you in the callback, unchanged. This is useful if you wish to identify which record in your DB is associated with which order by something other than order_id.
+  %h2 Sending additional data
+  %p You may want to send some additional data with the transaction that will later be returned to you, unchanged, in the callback. This is useful if you wish to identify which record in your DB is associated with which order by using something other than order_id.
   
-  %p For example, supppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase and pass its id in the data param:
+  %p For example, suppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase and send its id in the data param:
 
   .code
     POST /gateways/:api_gateway_id/orders?amount=1&order_id=1&<b>data=purchase_id_123</b>&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
 
-  %p Later on, when the callback request is issued, this <span class="code">data</span> param will be returned back in it and you'll be able to find that purchase in your DB.
+  %p Later on, when the callback request is issued, this <span class="code">data</span> param will be returned back with it and you'll be able to find that purchase in your DB.
 
 
   %h2 The response
@@ -47,14 +47,14 @@
   .code
     { status: 0, amount: 1, address: "12REjGNsZfdWj5kWTuMZ2p6WPeyWFWwUT8", tid: null, id: 1298, payment_id: "<b>5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163</b>", amount_in_btc: "0.00000001"}
 
-  %p Now this information is very useful. With it, you can either manually display the payment address to the customer on your website (so he doesn't even have to leave your site), or you can redirect him to the Mycelium Gear payment page using the <span class="code">payment_id</span>. The payment page url for redirection will then be:
+  %p With this information, you can either manually display the payment address to the customer on your website (so he doesn't even have to leave your site), or you can redirect him to the Mycelium Gear payment page using the <span class="code">payment_id</span>. The payment page url for redirection will then be:
 
   .code
     https://gateway.gear.mycelium.com/pay/<b>5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163</b>
 
   %h2 Code example in Ruby and Rails
 
-  %p Suppose you have a Rails controller with the action called <span class="code">complete_purchase</span> which handles customers requests when they hit the "Complete purchase" button on your site. This is what a code in it may look like:
+  %p Suppose you have a Rails controller with an action called <span class="code">complete_purchase</span> which handles customer requests when they hit the "Complete purchase" button on your site. This is what code for it may look like:
 
   .code
     require 'openssl'<br/>

@@ -56,6 +56,6 @@
       - if @gateway
         %h2 Nobody created orders with your gateway <span class="regularText">#{@gateway.name}</span> yet.
       - else
-        %h2 Nobody created orders with your gateways yet.
+        %h2 No one has created orders with your gateways yet.
 
-      %p An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. That order contains an exact amount of bitcoins to be paid, payment Bitcoin address and other information. Gear tracks order statuses and when your customer makes a payment, it detects the transaction and changes order status accordingly, also issuing a callback (if set).
+      %p An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set).

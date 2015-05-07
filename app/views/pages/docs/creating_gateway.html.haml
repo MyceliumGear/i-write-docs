@@ -8,32 +8,32 @@
 
   %h2 Filling the form
 
-  %p To create a gateway, simply go to #{ link_to "this page", new_gateway_path } and start filling the form. Almost all of the fields are optional, but to help you understand what you're doing, below is the explanation for each field in that form (we marked the required fields with an asterisk *).
+  %p To create a gateway, simply go to #{ link_to "this page", new_gateway_path } and fill out the form. Almost all of the fields are optional, and are explained below (required fields are marked with an asterisk *).
 
   %ul.longText
 
-    %li <b>*Name</b> is what your customers will see on top of the payment page when they finally decide to make that purchase. It is also the name of the gateway you see as a merchant in the admin panel. While it doesn't affect anything in particular, it's simply a good idea to put something meaningful in there.
+    %li <b>*Name</b> is what your customers will see at the top of the payment page when they try to make a purchase. It is also the name of the gateway that you see as a merchant in the admin panel. While it does not affect anything in particular, it's a good idea to put something meaningful in there.
 
-    %li <b>Confirmations required</b> should probably be set to 0 unless your typical payment is very large. In Bitcoin, each transaction is considered complete only when you have 6 confirmations (which may take about an hour). However, you can still predict with a degree of certainty that the payment will reach you in 1 hour when a transaction has just been broadcasted. You don't generally want your customers to wait, thus industry standard is to use 0 confirmations. That way, as soon as your customer sends money from his wallet, we can detect it almost immediatelly and redirect him back to your website.
+    %li <b>Confirmations required</b> should typically be set to 0, unless you expect large payment amounts. In Bitcoin, each transaction is considered completely settled only when you have 6 confirmations (which may take about an hour). However, you can still assume with a degree of certainty that the payment will get processed and settled in one hour as soon as the transaction has been broadcasted to the Bitcoin network. You generally don't want your customers to wait, thus the current industry standard is to accept transactions with 0 confirmations. That way, as soon as your customer sends money from his wallet, we can detect that transaction and redirect him back to your website.
 
     %li
-      <b>*BIP32 pubkey</b> is the most important of the fields. It usually looks like this:
+      <b>*BIP32 pubkey</b> is the most important of the fields, and looks similar to this (beginning with xpub):
       .code xpub6AHA9hZDN11k2ijHMeS5QqHx2KP9aMBRhTDqANMnwVtdyw2TDYRmF8PjpvwUFcL1Et8Hj59S3gTSMcUQ5gAqTz3Wd8EsMTmF3DChhqPQBnU 
-      It is derived from your wallet's private key and using it Mycelium Gear is able to generate new addresses for each new order. Not all wallets support BIP32, but two of the most popular ones &mdash; #{ link_to "Mycelium", "https://mycelium.com/bitcoinwallet" } and #{ link_to "Electrum", "https://electrum.org" } &mdash; do. If you want to use Mycelium Gear you need to use one of them. If you're not sure how to obtain a BIP32 public key from either of these wallets, please watch our short videos explaining how to do that #{ link_to "for Electrum", "" } and #{ link_to "for Mycelium" }.
+      It is based on Bitcoin BIP32 standard, and is derived from your wallet's private key. Mycelium Gear uses it to generate new address for each new order. Not all wallets support BIP32, but two of the most popular ones &mdash; #{ link_to "Mycelium", "https://mycelium.com/bitcoinwallet" } and #{ link_to "Electrum", "https://electrum.org" } &mdash; do. You must use a wallet that supports BIP32 to use Mycelium Gear. If you're not sure how to obtain a BIP32 public key from either of these wallets, these short videos explain how to do that #{ link_to "for Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4" } and #{ link_to "for Mycelium", "https://www.youtube.com/watch?v=-CN_I8vfEL4" }.
 
-    %li <b>Orders expiration period</b> is the time period in which a customer may pay for the order. If he doesn't pay within this period of time, an order is considered expired. The default is 900 seconds (15 minutes) which is an industry standard.
+    %li <b>Order expiration period</b> is the period of time during which a customer has to pay for the order. If he does not pay in time, the order is considered expired. The default is 900 seconds (15 minutes) which is an industry standard.
 
-    %li <b>Active</b> flag simply means this gateway is currently ready to process payments. If you need to stop accepting payments temporarily, you can always come back to that form (edit the existing gateway) and uncheck that checkbox.
+    %li <b>Active</b> flag simply means that this gateway is currently ready to process payments. If you need to temporarily stop accepting payments, you can always come back to that form (edit the existing gateway) and uncheck that checkbox.
 
-    %li <b>Currency conversion options</b> block allows you to control what currency your orders prices are displayed in and how you convert that value into the appropriate amount of bitcoins. While the default currency setting is BTC, you might want to consider using USD, since the Bitcoin exchange rate is fluctuating and it's inconvenient to set prices in it. Currency rate provider fields allow you to choose which sources to use for the current exchange rate; the order matters here: we check with the first source, then if it fails (for example, if the exchange is temporarily down), we switch to the second one.
+    %li <b>Currency conversion options</b> section allows you to choose what currency your order prices are displayed in, and which bitcoin price source to use to convert that value into the appropriate amount of bitcoins. The default setting is USD and you probably want to leave it that way, since the Bitcoin exchange rate can fluctuate substantially, making it inconvenient to set prices in BTC. The exchange rate provider fields allow you to choose which sources to use for the current exchange rate. exchange rates are checked in the order set here, with subsequent providers only checked if the previous provider is unavailable for some reason.
 
-    %li <b>Additional info about the merchant</b> block is completely optional, but we would welcome all merchants to fill it in. This will help us provide our customers with a better service. Those fields are not for compliance: Mycelium Gear doesn't handle the money (just watches the transactions on the blockchain) and is not subject to AML/KYC. We do not share that information with anyone.
+    %li <b>Additional info about the merchant</b> block is completely optional, but we would prefer if merchants fill it, since this will help us provide our customers with better service. This information is not used for compliance &mdash; Mycelium Gear does not handle any money (just watches the transactions on the blockchain) and is not subject to AML/KYC &mdash; and we do not share this information with anyone.
 
   %h2 Getting the gateway secret
 
   %p After you click the "Create gateway" button below the form, if all fields are valid, you will be redirected to the gateway info page and will be presented with a <i>gateway secret</i>. <b>You must write it down</b> as it will not appear again anywhere. If you ever lose that secret, you will need to come back to that form (edit the gateway) and check the "Regenerate secret" checkbox; however this will invalidate your previous secret and any of your online stores that were using it will have to update it to the new one.
 
-  %p The secret key is essentially your signature with which all requests to the gateway are signed and the gateway knows it is you, and not some impostor, who's talking to it. We will explain how to use this secret key in detail in the next section.
+  %p The secret key is essentially a signature that all your requests to the gateway are signed with, which the gateway uses to verify that it's you who is talking to it, and not some impostor. We will explain how to use this secret key in detail in the next section.
 
   .nav
     .left= link_to "&#8592; Previous (overview)".html_safe, "/docs"

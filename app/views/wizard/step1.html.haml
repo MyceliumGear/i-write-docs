@@ -6,12 +6,12 @@
 
     %p
       %b Start accepting Bitcoin payments in three simple steps!
-    %p This wizard will guide through the process of adding a Bitcoin payment option to your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to your website. If instead of adding a widget, you'd like to integrate payments using our API, please consult our #{ link_to "API documentation", "/docs"} and #{ link_to "proceed to create a gateway", new_gateway_path }.
+    %p This wizard will guide through the process of adding the option to receive Bitcoin payments on your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to edit your website. If instead of adding a widget, you'd like to integrate payments using our API, please consult our #{ link_to "API documentation", "/docs"} and #{ link_to "proceed to create a gateway", new_gateway_path }.
   
   .downloadWallets
 
-    %h3 Download the wallet:
-    %p Before you start you need to download and install either Mycelium or Electrum wallet. Those wallets support BIP32 pubkeys which will allow us to direct the money your customers pay you straight into your wallet
+    %h3 Download the wallet
+    %p Before you start, you first need to download and install either Mycelium or Electrum wallet. These wallets support BIP32 pubkeys which Mycelium Gear can use to send your customer payments straight into your wallet.
     .wallets
       .wallet1
         = image_tag "wallets/mycelium_logo.png"
@@ -21,7 +21,7 @@
         = link_to "Download Electrum wallet", "https://electrum.org/#download"
   .clearfix
 
-  %h2 Step 1: choose what is your website running on?
+  %h2 Step 1: Choose what platform your website is running on?
 
   %table.siteBackendTypesSelector
     %tr.icons
@@ -52,7 +52,7 @@
       %b Choose option 2.
 
     .unknown
-      Your site seems to be running something else other than Joomla or Wordpress.
+      Your site seems to be running something else besides Joomla or Wordpress.
       %b Choose option 3.
 
     .connectionError

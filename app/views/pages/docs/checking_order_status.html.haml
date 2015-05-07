@@ -5,30 +5,30 @@
   %h1 #{ link_to "Documentation", "/docs"} / API / Checking order status manually
 
   %p
-    Although being notified through a callback is the standard way to let your
-    website know that order status has changed, it may sometimes be not enough.
-    For example, your website may be down and may not be able to process the callback,
-    even though it was issued. And even though Mycelium Gear will try to issue new callback
-    requests to try and reach your website again and again, it will only keep doing that for an hour, after which
-    it will stop.
+    Although being notified through a callback is the standard way of letting your
+    website know that an order status has changed, sometimes it may not be enough.
+    For example, your website may be down and may not be able to process the callback
+    at the time it was issued. Even though Mycelium Gear will keep attempting to issue new callback
+    requests to try and reach your website, it will only keep doing it for an hour, after which
+    it will quit.
 
   %p
-    Thus, it is important to have another reliable mechanism to check order statuses.
-    To check the current status of the order, simply issue the following GET request:
+    Thus, it is important to have another reliable method of checking the status of orders.
+    To check the current status of an order, simply issue the following GET request:
 
   .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/orders/1
 
   %p
-    where <span class="code">:api_gateway_id</span> is the API id of your gateway you can look up
-    on its info page and 1 is your order id. The response will return you a json similar to what a callback might
+    where <span class="code">:api_gateway_id</span> is the API id of your gateway, which you can look up
+    on its info page and <span class="code">1</span> is your order id. The response will return a json similar to what a callback might
     have passed to you via params:
 
   .code
     {"status": 2,<br/>"amount":1,<br/>"address":"1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q",<br/>"tid":"f0f9205e41bf1b79cb7634912e86bb840cedf8b1d108bd2faae1651ca79a5838",<br/>"id":1 }
 
   %p
-    Remember thatyou should only use this manual check in case you suspect a callback may have missed you.
-    It should not be a standard practice to keep quering Mycelium Gear server for a particular order status ever n seconds.
+    You should use this manual check only if you suspect that you may have missed a callback.
+    It should not be standard practice to keep querying the Mycelium Gear server every few seconds just to check the status of a particular order.
 
   .nav
     .left= link_to "&#8592; Previous (receiving order status change callback)".html_safe, "/docs/callback"

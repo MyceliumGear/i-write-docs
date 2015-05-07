@@ -7,7 +7,7 @@
         .container.products
           %h3 Add widget products
           %p.hint
-            You can add multiple items that you're planning on selling &mdash; they will be displayed in a dropdown box inside the widget. If you only enter one item, widget will simply show it's title and price (no dropdown). If you leave even this one field blank, the widget will be a donation-like tool with a single field to enter the desired amount.
+            You can add multiple items that you wish to sell &mdash; they will be displayed in a dropdown box inside the widget. If you enter only one item, the widget will simply show that item's title and price (no dropdown). You can also configure the widget to work as a donation tool by leaving this field blank, which will cause it to only display a field to enter the desired donation amount.
           
           - @widget.products.each do |product|
 
@@ -35,7 +35,7 @@
         .container.fields
           %h3 Add custom fields to the widget
           %p.hint
-            If you'd like your customers to leave some additional info, such as their email or delivery address, you need to add respective fields into your widget. Unless you keep at least an email field, people will be able to pay, but you will be unable to identify them. 
+            If you would like your customers to leave some additional info, such as their email or delivery address, you need to add these respective fields into your widget. If you do not set up at least an email field, customers will still be able to pay, but you will not be able to associate orders with customers.
 
           - if @widget.fields
             - @widget.fields.each do |field|
@@ -58,4 +58,4 @@
     .formActions
       %button.small.save Save
       %button.small.cancel.disabled Cancel changes
-      .saveWarning You've made changes to the widget! Don't forget to save them now.
+      .saveWarning You've made changes to the widget! Don't forget to save!

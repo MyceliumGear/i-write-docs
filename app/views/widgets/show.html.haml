@@ -58,21 +58,21 @@
 
     .paymentInfo.paid
       .title SUCCESS!
-      .statement We've received your payment of <span class="amount"></span> BTC
+      .statement We have received your payment of <span class="amount"></span> BTC
 
     .paymentInfo.underpaid
       .title Not enough funds sent
-      .statement We've received your payment, but it was not enough. You should've sent <span class="amount"></span> BTC
+      .statement We have received your payment, but it was not enough. You should've sent <span class="amount"></span> BTC
       %p transaction id is:
       %textarea.transactionId(readonly=true)
 
     .paymentInfo.connectionProblem
       .title Connection problem
-      .statement Connection with the payment gateway was lost. Cannot reconnect to the payment gateway websocket to check the status of your payment. If you already made the transaction, don't worry about your payment: as soon as the the payment gateway comes back up, it's going to be processed and respected.
+      .statement Connection to the payment gateway was lost. Cannot reconnect to the payment gateway to check the status of your payment. If you have already made the transaction, don't worry, as soon as the the payment gateway comes back up, it's going to be processed and accepted.
 
     .paymentInfo.overpaid
-      .title You've sent too much
-      .statement We've received your payment, but it was too much. You should've sent <span class="amount"></span> BTC
+      .title You have sent too much
+      .statement We have received your payment, but it was overpaid. You should have sent <span class="amount"></span> BTC
       %p transaction id is:
       %textarea.transactionId(readonly=true)
 
