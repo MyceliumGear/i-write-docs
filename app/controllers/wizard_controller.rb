@@ -6,6 +6,7 @@ class WizardController < ApplicationController
       render 'step2'
     elsif params[:step].to_i == 3
       @gateway = Gateway.where(id: params[:gateway_id]).includes(:widget).first
+      render_404 and return unless @gateway
       @widget  = @gateway.widget
       render 'step3'
     else
