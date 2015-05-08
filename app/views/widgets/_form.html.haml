@@ -37,7 +37,7 @@
           %p.hint
             If you would like your customers to leave some additional info, such as their email or delivery address, you need to add these respective fields into your widget. If you do not set up at least an email field, customers will still be able to pay, but you will not be able to associate orders with customers.
 
-          - if @widget.fields
+          - if @widget.fields && !@widget.fields.empty?
             - @widget.fields.each do |field|
               .field.item
                 %input.fieldName{type: 'text', value: field, class: ('error' if @widget.error_for_custom_field(field))}
