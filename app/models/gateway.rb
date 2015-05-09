@@ -19,13 +19,12 @@ class Gateway < ActiveRecord::Base
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
   validates :name, :pubkey, uniqueness: true
 
-  before_validation :split_exchange_rate_adapter_names!
+  before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
 
 
   before_validation :decide_on_the_signature
-  before_validation :set_default_exchange_rate_adapter_names
   before_validation :assign_widget, on: :create
   before_save  :generate_secret
   before_create :create_straight_gateway
@@ -84,12 +83,6 @@ class Gateway < ActiveRecord::Base
       end
     end
 
-    def split_exchange_rate_adapter_names!
-      if self.exchange_rate_adapter_names.kind_of?(String)
-        self.exchange_rate_adapter_names = self.exchange_rate_adapter_names.split(/,\s*/)
-      end
-    end
-
     def create_straight_gateway
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
@@ -144,11 +137,31 @@ class Gateway < ActiveRecord::Base
       end
     end
 
+    # Exchange rate adapters ###############################
+
     def set_default_exchange_rate_adapter_names
       if exchange_rate_adapter_names.blank?
         self.exchange_rate_adapter_names = ["Bitstamp", "Kraken", "Btce"]
       end
     end
+
+
+    def split_exchange_rate_adapter_names!
+      if self.exchange_rate_adapter_names.kind_of?(String)
+        self.exchange_rate_adapter_names = self.exchange_rate_adapter_names.split(/,\s*/)
+      end
+    end
+
+    # Currently, some users who chose EUR may get a CurrencyNotSupported error.
+    # This is because many exchange rate provides don't support it.
+    # A quick hack for now is to use Bitpay, because they have lots of supported currencies.
+    def add_fallback_exchange_rate_adapter
+      if exchange_rate_adapter_names && exchange_rate_adapter_names.last != "Bitpay"
+        self.exchange_rate_adapter_names = exchange_rate_adapter_names + ["Bitpay"]
+      end
+    end
+
+    #######################################################
 
   
 end
