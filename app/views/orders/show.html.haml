@@ -36,7 +36,7 @@
       %th Data
       %td
         - @order.data.each do |k,v|
-          <b>#{k.split("_").map(&:capitalize).join(' ')}</b>: #{v}
+          <b>#{k.to_s.split("_").map(&:capitalize).join(' ')}</b>: #{v}
           
 
     %tr
