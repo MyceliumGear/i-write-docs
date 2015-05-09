@@ -28,7 +28,7 @@ jQuery(function($) {
       var product_title_and_price = $(".productInfo .productSelector select").val().split(':');
       product_data['product_title'] = product_title_and_price[0];
       var product_price = product_title_and_price[1];
-    } else if($("#variable_price").val()) {
+    } else if($("#variable_price").length > 0) {
       product_price = $("#variable_price").val();
       if(!product_price.match(/^[0-9]+\.?[0-9]*$/)) {
         alert("Please insert correct amount, must be a number");
