@@ -2,7 +2,7 @@
 
   = f.input :name
   = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
-  = f.input :pubkey
+  = f.input :pubkey, disabled: !@gateway.new_record?
   %p.moreFieldInfo
     = image_tag "watch_icon.png", class: 'inlineIcon'
     Watch a short video and learn how to export BIP32 pubkey from #{link_to "your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank' } or #{ link_to "Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank' }.<br/>
