@@ -18,7 +18,7 @@ class OrdersController < ApplicationController
     @orders = @orders.extension(:pagination).paginate(params[:page].try(:to_i) || 1, 30)
 
     if current_user.admin? && params[:gateway_id].blank?
-      @gateway_ids = Gateway.where(straight_gateway_id: @orders.map(&:gateway_id))
+      @gateways = Gateway.where(straight_gateway_id: @orders.map(&:gateway_id))
     end
 
     if @gateways
