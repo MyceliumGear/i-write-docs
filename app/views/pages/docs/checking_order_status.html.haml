@@ -16,12 +16,11 @@
     Thus, it is important to have another reliable method of checking the status of orders.
     To check the current status of an order, simply issue the following GET request:
 
-  .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/orders/1
+  .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/orders/:payment_id
 
   %p
     where <span class="code">:api_gateway_id</span> is the API id of your gateway, which you can look up
-    on its info page and <span class="code">1</span> is your order id. The response will return a json similar to what a callback might
-    have passed to you via params:
+    on its info page and <span class="code">:payment_id</span> is the way you identify your order (it was returned to you initially when you created the order). The response will return a json similar to what a callback might have passed to you via params:
 
   .code
     {"status": 2,<br/>"amount":1,<br/>"address":"1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q",<br/>"tid":"f0f9205e41bf1b79cb7634912e86bb840cedf8b1d108bd2faae1651ca79a5838",<br/>"id":1 }
