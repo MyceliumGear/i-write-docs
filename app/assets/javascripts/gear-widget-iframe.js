@@ -93,9 +93,9 @@ jQuery(function($) {
     this.select(); 
   });
 
-  $(".qrcode a").click(function() {
+  $("a").click(function() {
     widget_host.source.postMessage({
-      eventName: 'payment-redirect',
+      eventName: 'redirect',
       location: $(this).attr('href')
     }, widget_host.origin);
     return false;
