@@ -15,6 +15,9 @@ jQuery(function($) {
     if(event.data.eventName == 'gear-widget-height-change') {
       $('#gear-widget').animate({ height: event.data.newHeight });
     }
+    if(event.data.eventName == 'payment-redirect') {
+      window.location = event.data.location;
+    }
   });
 
 });
