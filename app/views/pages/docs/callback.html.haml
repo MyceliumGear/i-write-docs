@@ -9,14 +9,14 @@
   %p Important information is passed in this http request as url params. Here's what a typical callback may look like:
 
   .code
-    GET https://worldsbestshoes.com/payments/callback?order_id=1&amount=1&status=2&address=1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q&tid=tid1&data=some+random+data?signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
+    GET https://worldsbestshoes.com/payments/callback?order_id=1&amount=1&status=2&address=1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q&tid=tid1&data=some+random+data&keychain_id=1&last_keychain_id=1?signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
 
   %p The following list explains in detail the information and parameters in the GET callback request:
 
   %ul.longText
     %li
       %b order_id
-      %p An internal id of the order. This is how you can find the corresponding purchase record in your database.
+      %p An internal id of the order. This is how you can find the corresponding purchase record in your database. It is also used for the signature
     %li
       %b amount
       %p This is the amount that has been (or was supposed to be) paid
@@ -44,7 +44,7 @@
 
   %h2 Callback signature
 
-  %p The problem with a callback signature is that it cannot be the same as the signature you used to sign your own request which created that order. This is because there's always a chance someone might have intercepted your request and now knows that signature &mdash; which he could then use make a fake callback request. Therefore, Mycelium Gear signs its callback request with a double signature. This is a Ruby example of how you would calculate it:
+  %p The problem with a callback signature is that it cannot be the same as the signature you used to sign your own request which created that order. This is because there's always a chance someone might have intercepted your request and now knows that signature &mdash; which he could then use make a fake callback request. Therefore, Mycelium Gear doesn't use <span class="code">keychain_id</span> for the signature (as you did, when creating an order), but rather uses that internal <span class="code">order_id</span>. It also doesn't use <span class="code">keychain_id</span> because two or more orders may share it.
 
   .code
     require 'openssl'<br/>
