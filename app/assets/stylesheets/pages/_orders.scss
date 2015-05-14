@@ -20,6 +20,7 @@
       table {
         tr { cursor: pointer; }
         td.amount { text-align: left; }
+        td.address sup { font-weight: bold; color: #96470D; }
         tr:hover td { background-color: #F6F5F3; }
 
         tr.paid td:last-child { border-right: solid 4px #74C969; }

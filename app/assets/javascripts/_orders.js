@@ -23,7 +23,7 @@ jQuery(function($){
     $(this).removeClass('hover');
   });
   $(".page.orders.index .list tr.order").click(function() {
-    window.location = "/gateways/" + $(this).data('gatewayId') + "/orders/" + $(this).data('orderId');
+    window.location = "/gateways/" + $(this).data('gatewayId') + "/orders/" + $(this).data('paymentId');
   });
 
   $("select[name=filter_by_gateway]").change(function() {

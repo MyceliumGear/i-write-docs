@@ -53,13 +53,13 @@ RSpec.describe OrdersController, type: :controller do
     end
     
     it "displays info about to order if it belongs to the gateway current_user owns" do
-      get :show, id: @order.id, gateway_id: @gateway.id
+      get :show, id: @order.payment_id, gateway_id: @gateway.id
       expect(response).to render_template('show') 
     end
 
     it "displays info about to order if order belongs to gateway current_user doesn't own, but current_user is admin" do
       login_user(:admin)
-      get :show, id: @order.id, gateway_id: @gateway.id
+      get :show, id: @order.payment_id, gateway_id: @gateway.id
       expect(response).to render_template('show') 
     end
 

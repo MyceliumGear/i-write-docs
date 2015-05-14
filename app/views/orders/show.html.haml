@@ -12,7 +12,10 @@
 
     %tr
       %th Bitcoin payment address
-      %td= @order.address
+      %td
+        = @order.address
+        - if @order.reused > 0
+          %b ( times reused: #{@order.reused} )
 
     %tr
       %th Transaction id

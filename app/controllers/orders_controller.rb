@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     @gateway = Gateway.find(params[:gateway_id])
     render_403 and return unless @gateway.user == current_user || current_user.admin?
 
-    @order = StraightServer::Order.where(keychain_id: params[:id], gateway_id: @gateway.straight_gateway_id).first
+    @order = StraightServer::Order.where(payment_id: params[:id], gateway_id: @gateway.straight_gateway_id).first
     render_404 and return unless @order
     render_403 and return unless @order.gateway_id == @gateway.straight_gateway_id
   end

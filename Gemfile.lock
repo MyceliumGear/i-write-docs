@@ -25,9 +25,9 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight-server
-  revision: bf4a6cc18754803ca7440670529c4d85c7597b50
+  revision: 5a7283374ba4d93204a13c4f1bfd1df98d272f67
   specs:
-    straight-server (0.2.1)
+    straight-server (0.2.2)
       faye-websocket
       goliath
       httparty
@@ -164,7 +164,7 @@ GEM
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
     http_parser.rb (0.6.0)
-    httparty (0.13.3)
+    httparty (0.13.4)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)

@@ -36,9 +36,12 @@
           %th(style="width: 50px;") status
 
         - @orders.each do |o|
-          %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { order_id: o.keychain_id, gateway_id: gateway_id_for_order(o) } }
+          %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { payment_id: o.payment_id, gateway_id: gateway_id_for_order(o) } }
             %td.amount= o.amount_in_btc(as: :string)
-            %td= o.address
+            %td.address
+              = o.address
+              - if o.reused > 0
+                %sup reused: #{o.reused}
             - unless @gateway
               %td= o.gateway.name
             %td(style="width: 250px;")
