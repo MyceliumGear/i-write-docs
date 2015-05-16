@@ -27,7 +27,7 @@
   .code
     require 'openssl'<br/>
     secret = 'a long string of random chars'<br/>
-    OpenSSL::HMAC.digest('sha256', secret, "1").unpack("H*").first # "1" may be order_id here
+    OpenSSL::HMAC.digest('sha256', secret, "1").unpack("H*").first # "1" is keychain_id here
 
   %h2 Sending additional data
   %p You may want to send some additional data with the transaction that will later be returned to you, unchanged, in the callback. This is useful if you wish to identify which record in your DB is associated with which order by using something other than order_id.
@@ -70,7 +70,7 @@
   %p
     If you have 20 orders in a row and try to create another one, Gear will see that and will
     automatically reuse the <span class="code">keychain_id</span> (and consequently, the address too) of the 20-th order. It will
-    also set the 21-st order's <span class="code">reused</span> field to the value of <span class="code">1</span>. You will is it marked as reused in the admin panel too.
+    also set the 21-st order's <span class="code">reused</span> field to the value of <span class="code">1</span>. You will see it marked as reused in the admin panel too.
 
   %p
     CAUTION: It is very important to make sure that you don't accidentally provide <span class="code">keychain_id</span>
