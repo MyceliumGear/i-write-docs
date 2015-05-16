@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/snitko/straight
-  revision: 04cc507f9ad067083c4d10e5084da6e33d7a7132
+  revision: 8f73555cc347c87c921d28fd58cee31ba614a30b
   specs:
     straight (0.2.2)
       httparty
