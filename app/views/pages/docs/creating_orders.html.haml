@@ -115,8 +115,10 @@
     &nbsp;&nbsp;order = JSON.parse(http.request(request).body).to_h
 
     <br/><br/>
+    &nbsp;
     = "#Let's create a purchase model in our app and save order_id with it"
-    Purchase.create(order_id: order.id ... )
+    <br/>
+    &nbsp;&nbsp;Purchase.create(order_id: order.id ... )
     <br/><br/>
     &nbsp;
     ="# Redirect our customer to the payment page"
