@@ -104,7 +104,8 @@ class Gateway < ActiveRecord::Base
         active:           active,
         orders_expiration_period:    orders_expiration_period,
         confirmations_required:      confirmations_required,
-        exchange_rate_adapter_names: exchange_rate_adapter_names
+        exchange_rate_adapter_names: exchange_rate_adapter_names,
+        update_secret:               @regenerate_secret == "1"
       }
       fields.merge!(secret: @secret) if @secret
       fields
