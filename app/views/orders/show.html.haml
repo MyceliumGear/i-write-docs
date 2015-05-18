@@ -25,15 +25,16 @@
       %th Status
       %td= StraightServer::Order::STATUSES.invert[@order.status]
 
-    - if @order.data && @order.data[:exchange_rate]
+    - if @order.data && @order.data.kind_of?(Hash) && @order.data[:exchange_rate]
+      - exchange_rate = @order.data.delete(:exchange_rate)
       %tr
         %th Exhange rate
         %td
           Value at the time of purchase:
-          %b= "#{@order.data[:exchange_rate][:price]*@order.amount_in_btc} #{@order.data[:exchange_rate][:currency]}"
+          %b= "#{exchange_rate[:price]*@order.amount_in_btc} #{exchange_rate[:currency]}"
           ,
           Current value:
-          %b= "#{@gateway.straight_gateway.current_exchange_rate(@order.data[:exchange_rate][:currency])*@order.amount_in_btc} #{@order.data[:exchange_rate][:currency]}"
+          %b= "#{@gateway.straight_gateway.current_exchange_rate(exchange_rate[:currency])*@order.amount_in_btc} #{exchange_rate[:currency]}"
 
     %tr
       %th Data
