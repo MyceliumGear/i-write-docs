@@ -45,7 +45,7 @@
             - unless @gateway
               %td= o.gateway.name
             %td(style="width: 250px;")
-              - if o.data && o.data[:exchange_rate]
+              - if o.data && o.kind_of?(Hash) && o.data[:exchange_rate]
                 = "#{(o.data[:exchange_rate][:price]*o.amount_in_btc).round(2)} #{o.data[:exchange_rate][:currency]}"
             %td= o.created_at
             %td
