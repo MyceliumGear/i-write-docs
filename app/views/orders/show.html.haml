@@ -39,7 +39,7 @@
     %tr
       %th Data
       %td
-        - if @order.data && @order.data.kind_of?(Hash
+        - if @order.data && @order.data.kind_of?(Hash)
           - @order.data.each do |k,v|
             <b>#{k.to_s.split("_").map(&:capitalize).join(' ')}</b>: #{v}
         - else
