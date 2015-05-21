@@ -1,17 +1,18 @@
 body { margin: 0 0 0 0; padding: 0 0 0 0; }
+@import 'mixins';
+
 #gear-widget {
 
-  @import 'mixins';
-  @import 'components/buttons';
+  @import 'components/widget_button';
 
   width: auto;
   font-size: 85%;
   font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 
   .footer {
-    border-radius: 0 0 5px 5px; padding: 0.3em; background-color: #C3DDF7; color: #4F6670; text-align: center; font-size: 80%;
-    a, a:visited, a:active { color: #1872CC; text-decoration: none; }
-    .line { display: inline-block; width: 3px; height: 10px; background-color: #5CA5C4; }
+    border-radius: 0 0 5px 5px; padding: 0.3em; background-color: #EFDAAE; color: #A66821; text-align: center; font-size: 80%;
+    a, a:visited, a:active { color: #4D290F; text-decoration: none; }
+    .line { display: inline-block; width: 3px; height: 10px; background-color: #A66821; }
   }
 
   .productInfo, .paymentInfo {
@@ -27,6 +28,7 @@ body { margin: 0 0 0 0; padding: 0 0 0 0; }
     input { border-radius: 5px; border: solid 1px #A1A1A1; padding: 0.3em; }
     .variableAmount { margin: 0.5em 0; p { margin-bottom: 0px; } }
     .field { margin-bottom: 0.3em; }
+    .button { margin: 0.5em 0 0 0; }
   }
 
   .paymentInfo {

@@ -19,7 +19,7 @@ jQuery(function($) {
   }, false);
 
 
-  $("button#create_order").click(function() {
+  $("#create_order").click(function() {
 
     if(GearPayment.host.match(/^https?:\/\/admin/)) { return; }
 
