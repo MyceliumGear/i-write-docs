@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: utf8
+  username: user
+  password:
+  host: localhost
+
+development:
+  <<: *default
+  database: gear_admin_dev
+
+test:
+  <<: *default
+  database: gear_admin_test
+
+production:
+  <<: *default
+  database: gear_admin_dev
