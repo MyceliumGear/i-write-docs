@@ -22,8 +22,12 @@ Installing locally
     
     * database.yml (has a .sample file)
     * environment.yml (has a .sample file)
+    * secrets.yml (has a sample file)
 
-2. Since the Rails app uses `straight-server` gem it actually requires its config files too. You need two versions of those config files: for the development and test environments. Here's the best approach:
+2. Create `gear_admin_dev` and `gear_admin_test` databases in Postgres, edit database.yml accordingly.
+
+3. Since the Rails app uses `straight-server` gem it actually requires its config files too. You need two versions of those config files:
+for the development and test environments. Here's the best approach:
 
     * Create a `config/straight` directory
     * in that directory create a symlink called `development` which points to `~/.straight` dir,
@@ -31,9 +35,13 @@ Installing locally
     * create a symlink called `test` which points to the spec config in your local repo of the
     `straight-server` (for example, on my machine it's `~/Work/straight/server/spec/.straight/`)
     
-3. Create admin_emails.txt file (to be removed soon), you can leave it empty.
+4. Create admin_emails.txt file (to be removed soon), you can leave it empty.
 
-After doing all that and running `bundle install` you shoul be able to successfully run the unit tests
+5. Edit your `~/.straight/config.yml` file, uncomment the Redis-related section and also change `gateway_source` to `db`.
+
+6. Run `bundle install`, then 'rake db:migrate'
+
+After doing all that you should be able to successfully run the unit tests
 with `rspec spec`.
 
 Using nginx locally
