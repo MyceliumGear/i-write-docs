@@ -12,7 +12,7 @@ Dependencies
 ------------
 * Postgresql server
 * Redis server
-* straight-server (doesn't need to be launched)
+* straight-server (doesn't need to be launched at the time of running the Rails app, but you should've launched it at least once)
 * Ruby 2.2
 
 Installing locally
@@ -39,7 +39,7 @@ for the development and test environments. Here's the best approach:
 
 5. Edit your `~/.straight/config.yml` file, uncomment the Redis-related section and also change `gateway_source` to `db`.
 
-6. Run `bundle install`, then 'rake db:migrate'
+6. Run `bundle install`, then `rake db:migrate`
 
 After doing all that you should be able to successfully run the unit tests
 with `rspec spec`.
@@ -70,4 +70,4 @@ Here's what you should do:
 
         127.0.0.1 admin.gear.loc
         
-4. Restart nginx with `sudo service nginx restart`
+4. Restart nginx
