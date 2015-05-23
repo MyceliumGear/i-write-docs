@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
+	attr_accessor :gauth_token
 
-  devise :database_authenticatable, :registerable,
+  devise :google_authenticatable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 

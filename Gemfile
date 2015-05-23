@@ -19,6 +19,7 @@ gem 'pg'
 gem 'open_uri_redirections'
 gem 'sequel'
 gem 'httparty'
+gem 'devise_google_authenticator', '0.3.16'
 
 gem 'straight',        git: 'https://github.com/snitko/straight'
 gem 'straight-server', git: 'https://github.com/snitko/straight-server'
