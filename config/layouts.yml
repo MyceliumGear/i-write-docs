@@ -18,3 +18,5 @@ unauthenticated: # layout name
     - new
     - create
     - show
+  'devise/checkga':
+    - show
