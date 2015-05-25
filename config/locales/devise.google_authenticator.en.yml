@@ -3,9 +3,12 @@ en:
     submit_token: "Check Token"
     submit_token_title: "Please enter your Google Authenticator token:"
     registration:
-      title: "Your QR Code:"
+      title: "2FA Authentication:"
+      instructions: "Need help? Read"
       nice_request: "Would you like to enable Google Authenticator?"
-      qrstatus: "Google Authenticator Status:"
+      qrstatus: |-
+                  Google Authenticator Status
+                  (enabled when checkbox is checked)  
       enter_token: "Please enter your token number to continue"
       submit: "Continue..."
       newtoken: "Generate new token"

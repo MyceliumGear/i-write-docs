@@ -1,19 +1,22 @@
 %h2
   = I18n.t('title', {:scope => 'devise.registration'})
+= I18n.t('instructions', {:scope => 'devise.registration'})
+= link_to 'documentation', 'https://support.google.com/accounts/answer/1066447?hl=en'
+%br
+%br
 
 = google_authenticator_qrcode(resource)
 
-= form_for(resource, :as => resource_name, :url => [:refresh, resource_name, :displayqr], :html => {:method => :post}) do |f|
+= simple_form_for(resource, :as => resource_name, :url => [:refresh, resource_name, :displayqr], :html => {:method => :post}) do |f|
   %p
     = f.submit(I18n.t('newtoken', {:scope => 'devise.registration'}))
 
-= form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f|
+= simple_form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f|
   = devise_error_messages!
   %h3
     = I18n.t('nice_request', {:scope => 'devise.registration'})
   %p
-    = f.label :gauth_enabled, I18n.t('qrstatus', {:scope => 'devise.registration'})
-    = f.check_box :gauth_enabled
+    = f.input_field :gauth_enabled, as: :boolean, inline_label: I18n.t('qrstatus', {:scope => 'devise.registration'})
     = f.hidden_field :tmpid, value: @tmpid
   %p
     = f.label :gauth_token, I18n.t('enter_token', {:scope => 'devise.registration'})

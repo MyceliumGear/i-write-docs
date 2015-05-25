@@ -7,8 +7,14 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
   helper_method :render_to_string
+  helper_method :gauth_enabled_user?
 
   @@layouts = YAML.load_file("#{Rails.root}/config/layouts.yml")
+
+  # Helper method to see if user has 2fa authentication enabled
+  def gauth_enabled_user?
+    current_user.gauth_enabled == '1' ? true : false
+  end
 
   private
 
@@ -57,7 +63,7 @@ class ApplicationController < ActionController::Base
         l1.add "ORDERS",   orders_path
         l1.add "ACCOUNT",  edit_user_registration_path
         l1.add "DOCUMENTATION", "/docs"
-        l1.add "2FA AUTHENTICATION", user_displayqr_path
+        l1.add "2FA AUTHENTICATION", user_displayqr_path unless gauth_enabled_user?
         l1.add "SIGN OUT", destroy_user_session_path
       end 
     end
@@ -70,5 +76,6 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up)        << :name
       devise_parameter_sanitizer.for(:account_update) << :name
     end
+
 
 end

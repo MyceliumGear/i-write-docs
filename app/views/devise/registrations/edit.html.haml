@@ -14,11 +14,15 @@
       %h3 If you want to change the password, enter the new one and confirm it again in the second field
       = f.input :password, label: "New passsword", autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false
       = f.input :password_confirmation, label: "New password again", hint: "to confirm it and make sure you didn't make any mistakes)", required: false
-
     %p
       %h3 
       = f.input :current_password, label: "To save changes, you must enter the current password", required: true
   .form-actions
     = f.button :submit, "Save changes"
-
+%p
+  IT IS HIGHLY RECOMMENDED TO HAVE 2FA AUTHENTICATION ENABLED
+  %br
+  Current status:
+  = gauth_enabled_user? ? 'enabled' : 'disabled'
+  = button_to 'Configure 2FA authentication', user_displayqr_path, method: :get
 /Unhappy? #{link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete}
