@@ -2,6 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require 'dotenv'
+Dotenv.load ".env.#{Rails.env}.local", ".env.#{Rails.env}", '.env'
+
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -34,7 +37,7 @@ module GearAdmin
 
     ::ADMIN_EMAILS  = File.readlines("#{Rails.root}/config/admin_emails.txt").map { |e| e.strip }
     ::APP_ENV = YAML::load_file("#{Rails.root}/config/environment.yml")
-    
+
     require 'will_paginate/sequel'
     require 'will_paginate/active_record'
 

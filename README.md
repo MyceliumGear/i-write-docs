@@ -15,8 +15,93 @@ Dependencies
 * straight-server (doesn't need to be launched at the time of running the Rails app, but you should've launched it at least once)
 * Ruby 2.2
 
-Installing locally
-------------------
+Installing locally with Docker
+------------------------------
+Development environment is managed by [Docker Compose](https://larry-price.com/blog/2015/02/26/a-quick-guide-to-using-docker-compose-previously-fig).
+
+All required dependencies are installed using following commands. It takes some time and bandwidth.
+
+    docker pull postgres:9.4.1
+    docker pull redis:3.0.1
+    docker-compose build
+    docker-compose up
+
+Then containers can be stopped/started with:
+
+    docker-compose stop
+    docker-compose start
+
+Consider adding following lines to your `~/.ssh/config`
+
+    Host 127.0.0.1
+    StrictHostKeyChecking no
+    UserKnownHostsFile /dev/null
+
+And the following to your `/etc/hosts`:
+
+    127.0.0.1 admin.gear.loc
+
+`web` container can be easily accessed via ssh:
+
+    bin/ssh_web
+
+Make sure you created the following files:
+
+    * config/database.yml (has a .sample file)
+    * config/environment.yml (has a .sample file)
+    * config/secrets.yml (has a .sample file)
+    * config/admin_emails.txt (leave it empty)
+    * .env.development.local  (has a .sample file)
+    * .env.test.local  (has a .sample file)
+
+Since the Rails app uses `straight-server` gem it actually requires its config files too. You need two versions of those config files:
+for the development and test environments. Here's the best approach:
+
+    cd vendor/gems
+    git clone https://github.com/snitko/straight
+    git clone https://github.com/snitko/straight-server
+    cd ../..
+    mkdir config/straight
+    cd config/straight
+    ln -fs /home/app/.straight development
+    ln -fs ../../vendor/gems/straight-server/spec/.straight test
+
+Then inside `web` container:
+
+    cd /gear-admin
+    bin/setup
+
+It will install gems and then fail. Now run:
+
+    bin/straight-server
+
+It will generate sample config end exit. Edit it:
+
+    vim /home/app/.straight/config.yml
+
+    * set `gateway_source: db`.
+    * uncomment the Redis-related section and set `host: redis`, `port: 6379`, `db: 1`
+
+Also, edit `vendor/gems/straight-server/spec/.straight/config.yml`:
+
+    cd vendor/gems/straight-server
+    vim spec/.straight/config.yml
+
+    * in the Redis-related section set `host: redis`, `db: 2`
+
+    git update-index --assume-unchanged spec/.straight/config.yml
+
+Now re-run `bin/setup` inside `web` container, it should succeed.
+
+After doing all that you should be able to successfully run the unit tests with `bin/rspec spec`.
+
+To make the app available on you host machine on [admin.gear.loc](http://admin.gear.loc/) run:
+
+    sudo service nginx restart
+    bin/rails s
+
+Installing locally manually
+---------------------------
 
 1. After cloning the repo, make sure you create the following files in `/config`:
     

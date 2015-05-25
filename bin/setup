@@ -9,8 +9,8 @@ Dir.chdir APP_ROOT do
   # Add necessary setup steps to this file:
 
   puts "== Installing dependencies =="
-  system "gem install bundler --conservative"
-  system "bundle check || bundle install"
+  system "sudo gem install bundler --conservative"
+  system "bundle check --path vendor/bundle || bundle install --path vendor/bundle"
 
   # puts "\n== Copying sample files =="
   # unless File.exist?("config/database.yml")
@@ -24,6 +24,6 @@ Dir.chdir APP_ROOT do
   system "rm -f log/*"
   system "rm -rf tmp/cache"
 
-  puts "\n== Restarting application server =="
-  system "touch tmp/restart.txt"
+  # puts "\n== Restarting application server =="
+  # system "touch tmp/restart.txt"
 end
