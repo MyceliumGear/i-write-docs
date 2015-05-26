@@ -6,7 +6,7 @@ gem 'haml-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'meta-tags', require: 'meta_tags'
-gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notification.git'
+gem 'exception_notification', git: 'https://github.com/smartinez87/exception_notification'
 gem 'jquery-rails'
 gem 'string_master'
 gem 'will_paginate'
@@ -19,6 +19,7 @@ gem 'pg'
 gem 'open_uri_redirections'
 gem 'sequel'
 gem 'httparty'
+gem 'dotenv'
 
 gem 'straight',        git: 'https://github.com/snitko/straight'
 gem 'straight-server', git: 'https://github.com/snitko/straight-server'
@@ -42,6 +43,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass' 
+  gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass'
   gem 'turn', require: false # Pretty printed test output
 end

@@ -1,0 +1,3 @@
+#!/bin/sh
+chmod 600 ./config/docker/dummy_id_rsa
+exec ssh app@127.0.0.1 -p30022 -i./config/docker/dummy_id_rsa -oForwardAgent=yes $@
