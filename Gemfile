@@ -28,6 +28,8 @@ gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
 
 group :development do
   gem 'thin'
+  gem 'mina'
+  gem 'mina-sidekiq'
 end
 
 group :assets do
