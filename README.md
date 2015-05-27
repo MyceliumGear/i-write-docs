@@ -119,12 +119,20 @@ for the development and test environments. Here's the best approach:
     which is a standard directory for the `straight-server` config file.
     * create a symlink called `test` which points to the spec config in your local repo of the
     `straight-server` (for example, on my machine it's `~/Work/straight/server/spec/.straight/`)
+
+4. straight-server and straight gems are installed from the local path (see the gem files). This
+is needed so we can control each environment and what version/build of the gem is being used. In development,
+you can simply link to the directories where your `straight` and `straight-server` repos are placed.
+For example, assuming you're in the admin-app directory:
+
+    ln -s ~/Work/straight-server vendor/gems/straight-server
+    ln -s ~/Work/straight        vendor/gems/straight-engine
     
-4. Create admin_emails.txt file (to be removed soon), you can leave it empty.
+5. Create admin_emails.txt file (to be removed soon), you can leave it empty.
 
-5. Edit your `~/.straight/config.yml` file, uncomment the Redis-related section and also change `gateway_source` to `db`.
+6. Edit your `~/.straight/config.yml` file, uncomment the Redis-related section and also change `gateway_source` to `db`.
 
-6. Run `bundle install`, then `rake db:migrate`
+7. Run `bundle install`, then `rake db:migrate`
 
 After doing all that you should be able to successfully run the unit tests
 with `rspec spec`.

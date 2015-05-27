@@ -342,8 +342,8 @@ DEPENDENCIES
   simple_form
   spring
   sqlite3
-  straight!
-  straight-server!
+  straight (= 0.2.2)!
+  straight-server (= 0.2.3)!
   string_master
   thin
   turn
