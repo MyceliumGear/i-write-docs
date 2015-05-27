@@ -32,6 +32,8 @@ module GearAdmin
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.assets.logger = nil
 

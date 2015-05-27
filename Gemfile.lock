@@ -92,6 +92,8 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     certifi (14.5.14)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -101,6 +103,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     columnize (0.9.0)
+    connection_pool (2.2.0)
     countries (0.11.3)
       currencies (~> 0.4.2)
       i18n_data (~> 0.6.0)
@@ -161,6 +164,7 @@ GEM
       html2haml (>= 1.0.1)
       railties (>= 4.0.1)
     hike (1.2.3)
+    hitimes (1.2.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -209,6 +213,8 @@ GEM
     rack-accept-media-types (0.9)
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
+    rack-protection (1.5.3)
+      rack
     rack-respond_to (0.9.8)
       rack-accept-media-types (>= 0.6)
     rack-test (0.6.3)
@@ -239,6 +245,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     redis (3.2.1)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
     rspec-collection_matchers (1.1.2)
@@ -272,9 +280,19 @@ GEM
     satoshi-unit (0.1.7)
     sequel (4.22.0)
     sexp_processor (4.5.1)
+    sidekiq (3.3.4)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.1.1)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
     spring (1.3.5)
@@ -297,6 +315,8 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
+    timers (4.0.1)
+      hitimes
     turn (0.9.6)
       ansi
     tzinfo (1.2.2)
@@ -343,7 +363,9 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   sentry-raven!
   sequel
+  sidekiq
   simple_form
+  sinatra
   spring
   sqlite3
   straight (= 0.2.2)!
