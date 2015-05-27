@@ -15,34 +15,33 @@ GIT
       activesupport (>= 3.0.4)
 
 GIT
-  remote: https://github.com/snitko/straight
-  revision: bc3b1f4c20461d20898ba1635e2adf734f6f479c
+  remote: https://github.com/tommeier/database_cleaner
+  revision: 5ea0718c75af5bbfdde545b4abba6bf9516ea555
+  branch: fix-superclass
+  specs:
+    database_cleaner (1.1.1)
+
+PATH
+  remote: vendor/gems/straight-engine
   specs:
     straight (0.2.2)
       httparty
       money-tree
       satoshi-unit
 
-GIT
-  remote: https://github.com/snitko/straight-server
-  revision: 54af0a776b663f224bb25ceeaec7c435acd68892
+PATH
+  remote: vendor/gems/straight-server
   specs:
-    straight-server (0.2.2)
+    straight-server (0.2.3)
       faye-websocket
       goliath
       httparty
       logmaster (= 0.1.5)
+      money-tree (= 0.9.0)
       ruby-hmac
       satoshi-unit
       sequel
       straight (= 0.2.2)
-
-GIT
-  remote: https://github.com/tommeier/database_cleaner
-  revision: 5ea0718c75af5bbfdde545b4abba6bf9516ea555
-  branch: fix-superclass
-  specs:
-    database_cleaner (1.1.1)
 
 GEM
   remote: https://rubygems.org/

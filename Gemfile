@@ -21,8 +21,8 @@ gem 'sequel'
 gem 'httparty'
 gem 'dotenv'
 
-gem 'straight',        git: 'https://github.com/snitko/straight'
-gem 'straight-server', git: 'https://github.com/snitko/straight-server'
+gem 'straight',        path: 'vendor/gems/straight-engine'
+gem 'straight-server', path: 'vendor/gems/straight-server'
 
 group :development do
   gem 'thin'

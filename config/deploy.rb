@@ -38,8 +38,10 @@ task :environment do
   stage_param = ENV['to']
   if stage_param == 'production'
     set :stage, 'production'
+    invoke :'rvm:use[ruby-ruby-2.2-head@staging]'
   else
     set :stage, 'staging'
+    invoke :'rvm:use[ruby-ruby-2.2-head@production]'
   end
 
   set :branch, stage
@@ -47,7 +49,6 @@ task :environment do
   set :deploy_to, "/var/www/gear-admin/#{stage}"
 
   # For those using RVM, use this to load an RVM version@gemset.
-  invoke :'rvm:use[ruby-ruby-2.2-head]'
 end
 
 # Put any custom mkdir's in here for when `mina setup` is ran.
@@ -74,6 +75,7 @@ task :deploy => :environment do
     # instance of your project.
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
+    invoke :'link_straight_gems_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
@@ -83,6 +85,14 @@ task :deploy => :environment do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
     end
+  end
+end
+
+task :link_straight_gems_paths => :environment do
+  in_directory "#{deploy_to}/shared/vendor/gems" do
+    queue "rm straight*"
+    queue "ln -s $(gem path straight) ./straight-engine"
+    queue "ln -s $(gem path straight-server) ./straight-server"
   end
 end
 
