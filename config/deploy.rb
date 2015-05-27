@@ -20,7 +20,7 @@ set :rvm_path, '/usr/local/rvm/scripts/rvm'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'config/environment.yml', 'config/admin_emails.txt', 'config/secrets.yml', 'log', 'config/straight']
+set :shared_paths, ['config/database.yml', 'config/environment.yml', 'config/admin_emails.txt', 'config/secrets.yml', 'log', 'config/straight', 'vendor/gems']
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -38,10 +38,10 @@ task :environment do
   stage_param = ENV['to']
   if stage_param == 'production'
     set :stage, 'production'
-    invoke :'rvm:use[ruby-ruby-2.2-head@staging]'
+    invoke :'rvm:use[ruby-ruby-2.2-head@production]'
   else
     set :stage, 'staging'
-    invoke :'rvm:use[ruby-ruby-2.2-head@production]'
+    invoke :'rvm:use[ruby-ruby-2.2-head@staging]'
   end
 
   set :branch, stage
@@ -90,7 +90,7 @@ end
 
 task :link_straight_gems_paths => :environment do
   in_directory "#{deploy_to}/shared/vendor/gems" do
-    queue "rm straight*"
+    queue "rm -f straight*"
     queue "ln -s $(gem path straight) ./straight-engine"
     queue "ln -s $(gem path straight-server) ./straight-server"
   end
