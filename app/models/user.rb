@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :timeoutable
 
-  enum role: { merchant: 0, admin: 1 }
+  enum role: [:merchant, :admin]
 
   has_many :gateways
 

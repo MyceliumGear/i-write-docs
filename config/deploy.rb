@@ -27,7 +27,7 @@ task :environment do
     invoke :'rvm:use[ruby-ruby-2.2-head@staging]'
   end
 
-  set :branch, 'sidekiq' # TODO: return `stage` before merge
+  set :branch, stage
   set :rails_env, stage
   set :deploy_to, "/var/www/gear-admin/#{stage}"
 end
