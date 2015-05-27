@@ -3,7 +3,7 @@ web:
   working_dir: /gear-admin
   volumes:
     - .:/gear-admin
-    - ../straight:/gear-admin/vendor/gems/straight
+    - ../straight:/gear-admin/vendor/gems/straight-engine
     - ../straight-server:/gear-admin/vendor/gems/straight-server
   privileged: true
   ports:
