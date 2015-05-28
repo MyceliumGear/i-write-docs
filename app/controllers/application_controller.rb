@@ -64,6 +64,7 @@ class ApplicationController < ActionController::Base
         l1.add "ACCOUNT",  edit_user_registration_path
         l1.add "DOCUMENTATION", "/docs"
         l1.add "TWO FACTOR AUTH", user_displayqr_path unless gauth_enabled_user?
+        l1.add "UPDATES",   updates_path
         l1.add "SIGN OUT", destroy_user_session_path
       end 
     end
