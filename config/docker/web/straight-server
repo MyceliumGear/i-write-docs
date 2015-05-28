@@ -1,0 +1,3 @@
+#!/bin/bash -l
+cd /gear-admin
+bin/straight-server
