@@ -27,5 +27,8 @@ ADD profile /home/app/.profile
 RUN chown -R app: /home/app \
     && chmod 750 /home/app
 ADD gear-admin /etc/nginx/conf.d/gear-admin.conf
+ADD admin-app /home/app/admin-app
+ADD widget-app /home/app/widget-app
+ADD straight-server /home/app/straight-server
 EXPOSE 22
 ENTRYPOINT ["/usr/sbin/sshd",  "-D"]
