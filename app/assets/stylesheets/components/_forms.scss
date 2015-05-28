@@ -20,7 +20,7 @@ form {
     input[type=text], input[type=password], input.string, textarea { width: 100%; }
   }
 
-  label.radio { cursor: pointer; }
+  label.radio, label.checkbox { cursor: pointer; }
 
   span.error { display: block; color: $colors_red; margin: 0.3em 0 1em 0; }
 

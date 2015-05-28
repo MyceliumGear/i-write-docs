@@ -1,0 +1,27 @@
+form.edit_user {
+
+  p.twoFactorAuth {
+    &.red   { color: $colors_red; }
+    &.green { color: $colors_green; }
+    img { margin-top: 0.2em; margin-right: 0.5em; float: left; }
+  }
+
+}
+
+.page.twoFactorAuth {
+  
+  table {
+    width: 500px;
+    td { background-color: transparent; vertical-align: top; text-align: left; }
+    td.qrcode { width: 200px; }
+    td.instructions { padding-left: 1em; }
+  }
+
+  form.edit_user {
+    width: 400px;
+    .user_gauth_token, #user_gauth_token { width: 150px; }
+    div.user_gauth_token { width: 200px; float: left; }
+    .submit { margin-top: 3em; text-align: left; }
+  }
+
+}

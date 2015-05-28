@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
         l1.add "ORDERS",   orders_path
         l1.add "ACCOUNT",  edit_user_registration_path
         l1.add "DOCUMENTATION", "/docs"
-        l1.add "2FA AUTHENTICATION", user_displayqr_path unless gauth_enabled_user?
+        l1.add "TWO FACTOR AUTH", user_displayqr_path unless gauth_enabled_user?
         l1.add "SIGN OUT", destroy_user_session_path
       end 
     end

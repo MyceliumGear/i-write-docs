@@ -1,26 +1,36 @@
-%h2
-  = I18n.t('title', {:scope => 'devise.registration'})
-= I18n.t('instructions', {:scope => 'devise.registration'})
-= link_to 'documentation', 'https://support.google.com/accounts/answer/1066447?hl=en'
-%br
-%br
+.page.twoFactorAuth
 
-= google_authenticator_qrcode(resource)
+  %h2
+    = I18n.t('title', scope: 'devise.registration')
 
-= simple_form_for(resource, :as => resource_name, :url => [:refresh, resource_name, :displayqr], :html => {:method => :post}) do |f|
-  %p
-    = f.submit(I18n.t('newtoken', {:scope => 'devise.registration'}))
+  %table
+    %tr
+      %td.qrcode= google_authenticator_qrcode(resource)
+      %td.instructions
+        %p You need to download #{link_to "Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" } app on your phone now and then scan this QR code with it.
+        %p
+          = I18n.t('instructions', scope: 'devise.registration')
+          = link_to 'documentation', 'https://support.google.com/accounts/answer/1066447?hl=en'
 
-= simple_form_for(resource, :as => resource_name, :url => [resource_name, :displayqr], :html => { :method => :put }) do |f|
-  = devise_error_messages!
-  %h3
-    = I18n.t('nice_request', {:scope => 'devise.registration'})
-  %p
-    = f.input_field :gauth_enabled, as: :boolean, inline_label: I18n.t('qrstatus', {:scope => 'devise.registration'})
-    = f.hidden_field :tmpid, value: @tmpid
-  %p
-    = f.label :gauth_token, I18n.t('enter_token', {:scope => 'devise.registration'})
-    = f.number_field :gauth_token, :autocomplete => :off 
+        = simple_form_for(resource, as: resource_name, url: [:refresh, resource_name, :displayqr], html: {method: :post}) do |f|
 
-  %p
-    = f.submit I18n.t('submit', {:scope => 'devise.registration'})
+          %p
+            = f.submit(I18n.t('newtoken', {scope: 'devise.registration'}))
+
+  = simple_form_for(resource, as: resource_name, url: [resource_name, :displayqr], html: { method: :put }) do |f|
+
+    = devise_error_messages!
+
+
+
+    %p= I18n.t('enter_token', scope: 'devise.registration')
+
+    %p
+      = f.input_field :gauth_enabled, as: :boolean, inline_label: I18n.t('qrstatus', scope: 'devise.registration')
+      = f.hidden_field :tmpid, value: @tmpid
+
+    %p
+      = f.input :gauth_token, autocomplete: :off, label: "TOKEN"
+      .submit= f.submit I18n.t('submit', scope: 'devise.registration'), class: 'small'
+
+

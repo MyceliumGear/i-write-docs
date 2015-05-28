@@ -325,7 +325,7 @@ DEPENDENCIES
   country_select!
   database_cleaner!
   devise
-  devise_google_authenticator (= 0.3.16)
+  devise_google_authenticator
   exception_notification!
   factory_girl_rails
   frontend_notifier
