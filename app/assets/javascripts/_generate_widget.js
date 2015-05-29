@@ -32,7 +32,7 @@ jQuery(function($){
   });
 
   $("body").on('click', ".widget .settings button.save", function() {
-    
+
     // Collect new products data
     var new_products    = [];
     var product_updates = [];
@@ -97,7 +97,10 @@ jQuery(function($){
         } else {
           if(!widget_data.cancel) {
             FrontendNotifier.show("Changes saved, check out the widget look below", "success");
-            document.getElementById("gear-widget").contentDocument.location.reload(true);
+            var widget = document.getElementById('gear-widget');
+            var target = widget.getAttribute('src');
+            widget.contentWindow.postMessage({eventName: "reload"}, target);
+            setTimeout(function() { widget.contentWindow.postMessage({}, target); }, 2000);
           }
         }
       },
