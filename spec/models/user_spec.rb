@@ -20,4 +20,19 @@ describe User, type: :model do
     end
   end
 
+  describe "#updates_email_subscription_level" do
+
+    it "is valid only within [nil] + UpdateItem.priorities " do
+      user = build(:user)
+      ([nil] + UpdateItem.priorities.values).each do |level|
+        user.updates_email_subscription_level = level
+        expect(user).to be_valid
+      end
+
+      user.updates_email_subscription_level = UpdateItem.priorities.values.last + 1
+      expect(user).to_not be_valid
+    end
+
+  end
+
 end

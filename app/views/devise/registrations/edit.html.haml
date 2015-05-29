@@ -5,6 +5,7 @@
   .form-inputs
     = f.input :name
     = f.input :email, required: true, autofocus: true
+    = f.input :updates_email_subscription_level, collection: UpdateItem.priorities, include_blank: "none"
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p
         Currently waiting confirmation for: #{resource.unconfirmed_email}

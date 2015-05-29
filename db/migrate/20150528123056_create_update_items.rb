@@ -7,5 +7,9 @@ class CreateUpdateItems < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+
+    add_column :users, :last_read_update_id, :integer
+    add_column :users, :updates_email_subscription_level, :integer
+    add_index  :users, :updates_email_subscription_level
   end
 end

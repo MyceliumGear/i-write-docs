@@ -7,6 +7,9 @@ class User < ActiveRecord::Base
 
   enum role: [:merchant, :admin]
 
+  validates :updates_email_subscription_level, inclusion: {
+    in: UpdateItem.priorities.values }, allow_nil: true
+
   has_many :gateways
 
   def admin?

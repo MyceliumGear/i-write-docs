@@ -1,5 +1,8 @@
-= simple_form_for(@changelog) do |f|
+= simple_form_for(@update_item, url: { controller: :updates }) do |f|
   = f.error_notification
+  = f.input :priority, collection: UpdateItem.priorities.keys
+  = f.input :subject, as: :string
+  = f.input :body
 
   .form-inputs
 

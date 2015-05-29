@@ -1,19 +1,12 @@
-%h1 Listing changelogs
+%h1 Updates
 
-%table
-  %thead
-    %tr
-      %th
-      %th
-      %th
+%ul
+  - @updates.each do |update|
+    %li
+      = update.created_at.strftime("%b %e, %Y")
+      %b= update.subject
+      %p= update.body
 
-  %tbody
-    - @changelogs.each do |changelog|
-      %tr
-        %td= link_to 'Show', changelog
-        %td= link_to 'Edit', edit_changelog_path(changelog)
-        %td= link_to 'Destroy', changelog, :method => :delete, :data => { :confirm => 'Are you sure?' }
+= will_paginate @updates
 
-%br
-
-= link_to 'New Changelog', new_changelog_path
+= link_to 'New Changelog', new_update_path if current_user.admin?
