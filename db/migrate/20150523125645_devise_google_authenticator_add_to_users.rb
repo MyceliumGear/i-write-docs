@@ -1,6 +1,6 @@
 class DeviseGoogleAuthenticatorAddToUsers < ActiveRecord::Migration
 
-  def self.up
+  def up
 
     change_table :users do |t|
       t.string  :gauth_secret
@@ -16,7 +16,7 @@ class DeviseGoogleAuthenticatorAddToUsers < ActiveRecord::Migration
 
   end
   
-  def self.down
+  def down
     change_table :users do |t|
       t.remove :gauth_secret, :gauth_enabled, :gauth_tmp, :gauth_tmp_datetime
     end
