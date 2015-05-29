@@ -7,13 +7,20 @@
         .container.products
           %h3 Add widget products
           %p.hint
-            You can add multiple items that you wish to sell &mdash; they will be displayed in a dropdown box inside the widget. If you enter only one item, the widget will simply show that item's title and price (no dropdown). You can also configure the widget to work as a donation tool by leaving this field blank, which will cause it to only display a field to enter the desired donation amount.
-          
+            You can add multiple items that you wish to sell &mdash; they will be displayed in a dropdown box inside the widget.
+            If you enter only one item, the widget will simply show that item's title and price (no dropdown).
+            You can also configure the widget to work as a donation tool by leaving this field blank,
+            which will cause it to only display a field to enter the desired donation amount.
+            Checkbox "Singular" means that product quantity field will not be shown.
+
           - @widget.products.each do |product|
 
             .product.item{ data: { product_id: product.id } }
               %input.title{type: 'text', value: product.title, class: ('error' unless product.errors[:title].blank?)}
               %input.price{type: 'text', value: product.price, class: ('error' unless product.errors[:price].blank?)}
+              %label
+                %input.singular{type: 'checkbox', checked: product.singular?}
+                Singular
               = image_tag "remove_icon.png", title: 'Remove this product', class: 'remove'
               - unless product.errors.empty?
                 .errorMessage
@@ -25,10 +32,13 @@
                     .message
                       Price
                       = product.errors[:price].join(' and ')
-            
+
           .product.item.new
             %input.title{placeholder: "Product title", type: 'text'}
-            %input.price{placeholder: "Price in #{@gateway.default_currency}", type: 'text'}
+            %input.price{placeholder: "#{@gateway.default_currency}", type: 'text'}
+            %label
+              %input.singular{type: 'checkbox', checked: true}
+              Singular
             = image_tag "add_icon.png", title: 'Add one more product', class: 'add'
 
       .pure-u-12-24
@@ -44,7 +54,7 @@
                 %label.required
                   = check_box_tag "field_required", 1, field =~ /\A\*/
                   Field required
-                = image_tag "remove_icon.png", title: 'Remove this field', class: 'remove' 
+                = image_tag "remove_icon.png", title: 'Remove this field', class: 'remove'
                 - if @widget.error_for_custom_field(field)
                   .errorMessage= @widget.errors[:fields][0][field].join(' and ')
 
