@@ -11,14 +11,16 @@ form.edit_user {
 .page.twoFactorAuth {
   
   table {
-    width: 500px;
+    width: 600px; line-height: 120%;
     td { background-color: transparent; vertical-align: top; text-align: left; }
     td.qrcode { width: 200px; }
     td.instructions { padding-left: 1em; }
+    .backup { font-size: 80%; line-height: 120%; margin: 1em 0; color: $colors_red; input { margin-top: 0.5em;} }
   }
 
-  form.edit_user {
-    width: 400px;
+
+  form.setupTwoFactor {
+    width: 600px;
     .user_gauth_token, #user_gauth_token { width: 150px; }
     div.user_gauth_token { width: 200px; float: left; }
     .submit { margin-top: 3em; text-align: left; }

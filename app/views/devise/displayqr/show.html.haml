@@ -7,21 +7,19 @@
     %tr
       %td.qrcode= google_authenticator_qrcode(resource)
       %td.instructions
-        %p You need to download #{link_to "Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" } app on your phone now and then scan this QR code with it.
-        %p
-          = I18n.t('instructions', scope: 'devise.registration')
-          = link_to 'documentation', 'https://support.google.com/accounts/answer/1066447?hl=en'
+        You need to download #{link_to "Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" } app on your phone now and then scan this QR code with it.
+
+        .backup
+          You might want to back this string up somehwere in case you lose your phone.
+          Without it, you won't be able to recover your access to Mycelium Gear.
+          %input{ type: 'text', value: "otpauth://totp/#{otpauth_user(username_from_email(resource.email), current_user.class.ga_appname ||Rails.application.class.parent_name )}?secret=#{resource.gauth_secret}"}
 
         = simple_form_for(resource, as: resource_name, url: [:refresh, resource_name, :displayqr], html: {method: :post}) do |f|
+          = f.submit(I18n.t('newtoken', {scope: 'devise.registration'}))
 
-          %p
-            = f.submit(I18n.t('newtoken', {scope: 'devise.registration'}))
-
-  = simple_form_for(resource, as: resource_name, url: [resource_name, :displayqr], html: { method: :put }) do |f|
+  = simple_form_for(resource, as: resource_name, url: [resource_name, :displayqr], html: { method: :put, class: 'setupTwoFactor' }) do |f|
 
     = devise_error_messages!
-
-
 
     %p= I18n.t('enter_token', scope: 'devise.registration')
 
