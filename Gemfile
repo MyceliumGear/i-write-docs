@@ -6,7 +6,6 @@ gem 'haml-rails'
 gem 'devise'
 gem 'simple_form'
 gem 'meta-tags', require: 'meta_tags'
-gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notification.git'
 gem 'jquery-rails'
 gem 'string_master'
 gem 'will_paginate'
@@ -20,9 +19,11 @@ gem 'open_uri_redirections'
 gem 'sequel'
 gem 'httparty'
 gem 'devise_google_authenticator'
+gem 'dotenv'
+gem 'sentry-raven', git: 'https://github.com/getsentry/raven-ruby.git'
 
-gem 'straight',        git: 'https://github.com/snitko/straight'
-gem 'straight-server', git: 'https://github.com/snitko/straight-server'
+gem 'straight',        "0.2.2", path: 'vendor/gems/straight-engine'
+gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
 
 group :development do
   gem 'thin'
@@ -43,6 +44,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass' 
+  gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass'
   gem 'turn', require: false # Pretty printed test output
 end

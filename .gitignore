@@ -23,3 +23,7 @@ public/robots.txt
 
 .DS_Store
 !.gitkeep
+
+vendor/gems/straight*
+vendor/bundle
+.env.*.local

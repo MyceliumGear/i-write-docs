@@ -1,0 +1,3 @@
+app_host: http://admin.gear.loc
+gateway_host: http://gear.loc
+gear_widget_host_js: http://gear.loc/gear-widget-host.js

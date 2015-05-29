@@ -1,0 +1,24 @@
+web:
+  build: config/docker/web
+  working_dir: /gear-admin
+  volumes:
+    - .:/gear-admin
+    - ../straight:/gear-admin/vendor/gems/straight-engine
+    - ../straight-server:/gear-admin/vendor/gems/straight-server
+  privileged: true
+  ports:
+    - "127.0.0.1:30022:22"
+    - "127.0.0.1:80:80"
+  links:
+    - db
+    - redis
+
+db:
+  image: postgres:9.4.1
+  ports:
+    - "127.0.0.1:5432:5432"
+
+redis:
+  image: redis:3.0.1
+  ports:
+    - "127.0.0.1:6379:6379"

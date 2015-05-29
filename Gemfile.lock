@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/smartinez87/exception_notification.git
-  revision: 7414336f358c03201165081fb9a2a9b34ad25107
-  specs:
-    exception_notification (4.1.0)
-      actionmailer (>= 3.0.4)
-      activesupport (>= 3.0.4)
-
-GIT
   remote: git://github.com/stefanpenner/country_select.git
   revision: 335b2287cc0a160caa49fdf4696f4e55fc8560bf
   specs:
@@ -15,27 +7,12 @@ GIT
       sort_alphabetical (~> 1.0)
 
 GIT
-  remote: https://github.com/snitko/straight
-  revision: 8f73555cc347c87c921d28fd58cee31ba614a30b
+  remote: https://github.com/getsentry/raven-ruby.git
+  revision: 9a86bc2fc93de98a5064f923cbd0d4507b3dd3cc
   specs:
-    straight (0.2.2)
-      httparty
-      money-tree
-      satoshi-unit
-
-GIT
-  remote: https://github.com/snitko/straight-server
-  revision: d46f97abf4378a55e9929629607b6dae21d8868d
-  specs:
-    straight-server (0.2.2)
-      faye-websocket
-      goliath
-      httparty
-      logmaster (= 0.1.5)
-      ruby-hmac
-      satoshi-unit
-      sequel
-      straight (= 0.2.2)
+    sentry-raven (0.13.2)
+      certifi
+      faraday (>= 0.7.6)
 
 GIT
   remote: https://github.com/tommeier/database_cleaner
@@ -43,6 +20,28 @@ GIT
   branch: fix-superclass
   specs:
     database_cleaner (1.1.1)
+
+PATH
+  remote: vendor/gems/straight-engine
+  specs:
+    straight (0.2.2)
+      httparty
+      money-tree
+      satoshi-unit
+
+PATH
+  remote: vendor/gems/straight-server
+  specs:
+    straight-server (0.2.3)
+      faye-websocket
+      goliath
+      httparty
+      logmaster (= 0.1.5)
+      money-tree (= 0.9.0)
+      ruby-hmac
+      satoshi-unit
+      sequel
+      straight (= 0.2.2)
 
 GEM
   remote: https://rubygems.org/
@@ -93,6 +92,7 @@ GEM
     builder (3.2.2)
     byebug (4.0.5)
       columnize (= 0.9.0)
+    certifi (14.5.14)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -118,6 +118,7 @@ GEM
       devise (~> 3.2)
       rotp (~> 1.6)
     diff-lcs (1.2.5)
+    dotenv (2.0.1)
     em-synchrony (1.0.4)
       eventmachine (>= 1.0.0.beta.1)
     em-websocket (0.3.8)
@@ -131,6 +132,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
     faye-websocket (0.9.2)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
@@ -167,7 +170,7 @@ GEM
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
     http_parser.rb (0.6.0)
-    httparty (0.13.4)
+    httparty (0.13.5)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
@@ -190,10 +193,11 @@ GEM
     mini_portile (0.6.2)
     minitest (5.6.1)
     mmmenu (0.5.2)
-    money-tree (0.8.9)
+    money-tree (0.9.0)
       ffi
     multi_json (1.11.0)
     multi_xml (0.5.5)
+    multipart-post (2.0.0)
     nilify_blanks (1.2.1)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -326,7 +330,7 @@ DEPENDENCIES
   database_cleaner!
   devise
   devise_google_authenticator
-  exception_notification!
+  dotenv
   factory_girl_rails
   frontend_notifier
   haml-rails
@@ -342,12 +346,13 @@ DEPENDENCIES
   rspec-collection_matchers
   rspec-rails
   sass-rails (~> 4.0.3)
+  sentry-raven!
   sequel
   simple_form
   spring
   sqlite3
-  straight!
-  straight-server!
+  straight (= 0.2.2)!
+  straight-server (= 0.2.3)!
   string_master
   thin
   turn
