@@ -3,7 +3,7 @@ en:
     submit_token: "Confirm"
     submit_token_title: "Please enter your Google Authenticator token:"
     registration:
-      title: "Two factor Authentication setup"
+      title: "Two factor Authentication"
       instructions: "Need help? Read"
       qrstatus: "Two factor authentication ENABLED? (check for YES)"
       enter_token: "To continue, enter the digits (TOKEN) you see in you Google Authenticator app, check (or uncheck) the checkbox below and click CONTINUE"
