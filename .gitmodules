@@ -4,3 +4,6 @@
 [submodule "public/payment-js-lib"]
 	path = public/payment-js-lib
 	url = deploy@straight:/var/repos/payment-js-lib.git
+[submodule "widget_app"]
+	path = widget_app
+	url = deploy@straight:/var/repos/gear-widget-app.git
