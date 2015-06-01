@@ -40,7 +40,11 @@ class Widget < ActiveRecord::Base
       products.each { |product| products_by_id[product.id] = product }
       product_updates.each do |product|
         product = product[1]
-        products_by_id[product['id'].to_i].assign_attributes(title: product['title'], price: product['price'])
+        products_by_id[product['id'].to_i].assign_attributes(
+          title:    product['title'],
+          price:    product['price'],
+          singular: product['singular'],
+        )
       end unless product_updates.blank?
     end
 
