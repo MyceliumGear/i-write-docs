@@ -32,29 +32,34 @@ jQuery(function($){
   });
 
   $("body").on('click', ".widget .settings button.save", function() {
-    
+
     // Collect new products data
     var new_products    = [];
     var product_updates = [];
     $(".widget .product").each(function() {
-      var title = $(this).find("input.title").val();
-      var price = $(this).find("input.price").val();
+      var product = $(this);
+      var id = product.data("productId");
+      var title = product.find("input.title").val();
+      var price = product.find("input.price").val();
+      var singular = product.find('input.singular').prop('checked') && '1' || '0';
       // If product is new, let's add it to the list
-      if(!$(this).data("productId")) {
+      if(!id) {
         if(title != '' || price != '') {
           new_products.push(
             {
-              title: $(this).find("input.title").val(),
-              price: $(this).find("input.price").val()
+              title: title,
+              price: price,
+              singular: singular
             }
           )
         }
       } else {
         product_updates.push(
           {
-            id: $(this).data("productId"),
-            title: $(this).find("input.title").val(),
-            price: $(this).find("input.price").val()
+            id: id,
+            title: title,
+            price: price,
+            singular: singular
           }
         )
       }
@@ -97,7 +102,10 @@ jQuery(function($){
         } else {
           if(!widget_data.cancel) {
             FrontendNotifier.show("Changes saved, check out the widget look below", "success");
-            document.getElementById("gear-widget").contentDocument.location.reload(true);
+            var widget = document.getElementById('gear-widget');
+            var target = widget.getAttribute('src');
+            widget.contentWindow.postMessage({eventName: "reload"}, target);
+            setTimeout(function() { widget.contentWindow.postMessage({}, target); }, 2000);
           }
         }
       },
