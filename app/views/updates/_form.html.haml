@@ -1,4 +1,4 @@
-= simple_form_for(@update_item, url: { controller: :updates }) do |f|
+= simple_form_for(@update_item, url: url) do |f|
   = f.error_notification
   = f.input :priority, collection: UpdateItem.priorities.keys
   = f.input :subject, as: :string

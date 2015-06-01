@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
 
   has_many :gateways
 
+  scope :subscribed_to, ->(level) { 
+    where("updates_email_subscription_level <= ?", UpdateItem.priorities[level])
+  }
+
   def admin?
     role == 'admin'
   end

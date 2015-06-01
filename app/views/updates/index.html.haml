@@ -1,12 +1,26 @@
-%h1 Updates
+.page.updates
+  %h1 Updates
 
-%ul
-  - @updates.each do |update|
-    %li
-      = update.created_at.strftime("%b %e, %Y")
-      %b= update.subject
-      %p= update.body
+  %ul
+    - @updates.each do |update|
+      %li
+        = update.created_at.strftime("%b %e, %Y")
+        %b
+          - if current_user.admin?
+            = link_to update.subject, edit_update_path(update)
+          - else
+            = update.subject
+        %span(class="#{update.priority}")= "[#{update.priority}]"
 
-= will_paginate @updates
+        - if current_user.admin?
+          = " / "
+          - if update.sent_at
+            = "send at #{update.sent_at.strftime("%b %e, %Y")}"
+          - else
+            = link_to 'Send', delivery_update_path(update), method: :post
+            = link_to 'Delete', update_path(update), method: :delete
+        %p= update.body.html_safe
 
-= link_to 'New Changelog', new_update_path if current_user.admin?
+  = will_paginate @updates
+
+  = link_to 'New Update', new_update_path if current_user.admin?

@@ -1,7 +1,5 @@
-%h1 Editing changelog
+%h1 Editing update
 
-= render 'form'
+= render 'form', url: update_path(@update_item)
 
-= link_to 'Show', @changelog
-\|
-= link_to 'Back', changelogs_path
+= link_to 'Back', updates_path

@@ -4,6 +4,7 @@ class CreateUpdateItems < ActiveRecord::Migration
       t.integer :priority, default: 0
       t.text :subject
       t.text :body
+      t.datetime :sent_at
 
       t.timestamps null: false
     end

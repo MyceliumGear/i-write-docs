@@ -1,0 +1,11 @@
+.page.updates {
+  // ul { list-style: none; padding:0; margin:0; }
+  // li { padding-left: 1em;  text-indent: -.7em; }
+  // li:before { content: "• "; color: red; }
+  ul li span {
+    color: black;
+    &.critical { color: #FF3333; }
+    &.important { color: #FF9900; }
+    &.regular { color: #6699CC; }
+  }
+}
