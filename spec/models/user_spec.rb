@@ -26,8 +26,36 @@ describe User, type: :model do
 
   end
 
+  describe "#has_unreaded_updates?" do
+
+    it "returns true" do
+      level = UpdateItem.priorities[:important]
+      user = create(:user, updates_email_subscription_level: level)
+
+      expect {
+        create(:update_item, priority: :important)
+      }.to change { user.has_unreaded_updates? }.from(false).to(true)
+    end
+
+    it "returns false" do
+      level = UpdateItem.priorities[:important]
+      user = create(:user, updates_email_subscription_level: level)
+
+      expect {
+        create(:update_item, priority: :regular)
+      }.to_not change { user.has_unreaded_updates? }
+
+    end
+
+    it "returns false without updates_email_subscription_level" do
+      user = create(:user, updates_email_subscription_level: nil)
+      expect(user).to_not be_has_unreaded_updates
+    end
+
+  end
+
   describe "when asked if admin" do
-    
+
     it "returns true when user has admin role" do
       user = User.new(role: :admin)
       expect(user).to be_admin

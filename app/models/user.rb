@@ -20,6 +20,13 @@ class User < ActiveRecord::Base
     role == 'admin'
   end
 
+  def has_unreaded_updates?
+    return false unless updates_email_subscription_level
+
+    UpdateItem.exists?(["id > ? AND priority >= ?",
+      last_read_update_id.to_i, updates_email_subscription_level])
+  end
+
   protected
 
     def send_devise_notification(notification, *args)

@@ -57,6 +57,8 @@ class ApplicationController < ActionController::Base
 
     def prepare_menu
       return unless current_user
+      updates_icon = current_user.has_unreaded_updates? && "new_updates" || "updates"
+
       mmmenu do |l1|
         l1.add "GATEWAYS", gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ]
         l1.add "WIDGETS",  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]]
@@ -64,7 +66,7 @@ class ApplicationController < ActionController::Base
         l1.add "ACCOUNT",  edit_user_registration_path
         l1.add "DOCUMENTATION", "/docs"
         l1.add "TWO FACTOR AUTH", user_displayqr_path unless gauth_enabled_user?
-        l1.add "UPDATES",   updates_path
+        l1.add "UPDATES",   updates_path, icon: updates_icon
         l1.add "SIGN OUT", destroy_user_session_path
       end 
     end

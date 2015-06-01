@@ -2,7 +2,7 @@ class UpdatesController < ApplicationController
   before_action :authenticate_user!
   before_action :authenticate_admin!, only: [:delivery, :new, :create, :edit, :update, :destroy]
   before_action :set_update_item, only: [:delivery, :edit, :update, :destroy]
-  #before_action :reset_last_read_update, only: :index
+  before_action :reset_last_read_update, only: :index
 
   def index
     @updates = UpdateItem.newest.paginate(page: params[:page], per_page: 10)
@@ -16,7 +16,7 @@ class UpdatesController < ApplicationController
 
     users = User.subscribed_to(@update_item.priority)
     users.find_each do |u|
-      UserMailer.update(u, @update_item).deliver_later
+      UserMailer.update_item(u, @update_item).deliver_later
     end
 
     @update_item.touch :sent_at
@@ -54,6 +54,7 @@ class UpdatesController < ApplicationController
   end
 
   private
+
     def set_update_item
       @update_item = UpdateItem.find(params[:id])
     end

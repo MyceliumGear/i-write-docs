@@ -1,4 +1,4 @@
 <li>
   <%= link_to text, link, options %>
-  <%= image_tag "sidebar_icons/#{text.downcase.gsub(' ', '_')}.png" %>  
+  <%= image_tag "sidebar_icons/#{(icon || text).downcase.gsub(' ', '_')}.png" %>  
 </li>

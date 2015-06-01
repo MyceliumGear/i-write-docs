@@ -5,12 +5,11 @@
     - @updates.each do |update|
       %li
         = update.created_at.strftime("%b %e, %Y")
-        %b
+        %b.subject(class="#{update.priority}")
           - if current_user.admin?
             = link_to update.subject, edit_update_path(update)
           - else
             = update.subject
-        %span(class="#{update.priority}")= "[#{update.priority}]"
 
         - if current_user.admin?
           = " / "
