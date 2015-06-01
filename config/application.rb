@@ -36,6 +36,8 @@ module GearAdmin
       Devise::Mailer.layout "email"
     end
 
+    config.active_job.queue_adapter = :sidekiq
+
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.assets.logger = nil
 

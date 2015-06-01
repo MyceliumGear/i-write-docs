@@ -22,12 +22,16 @@ gem 'devise_google_authenticator'
 gem 'dotenv'
 gem 'sentry-raven', git: 'https://github.com/getsentry/raven-ruby.git'
 gem 'roadie-rails'
+gem 'sinatra', require: nil
+gem 'sidekiq'
 
-gem 'straight',        "0.2.2", path: 'vendor/gems/straight-engine'
+gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
 
 group :development do
   gem 'thin'
+  gem 'mina'
+  gem 'mina-sidekiq'
 end
 
 group :assets do
