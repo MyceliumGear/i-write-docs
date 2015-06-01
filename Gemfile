@@ -21,6 +21,7 @@ gem 'httparty'
 gem 'devise_google_authenticator'
 gem 'dotenv'
 gem 'sentry-raven', git: 'https://github.com/getsentry/raven-ruby.git'
+gem 'roadie-rails'
 
 gem 'straight',        "0.2.2", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
