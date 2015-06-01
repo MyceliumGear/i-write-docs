@@ -24,9 +24,9 @@ GIT
 PATH
   remote: vendor/gems/straight-engine
   specs:
-    straight (0.2.2)
+    straight (0.2.3)
       httparty
-      money-tree
+      money-tree (= 0.9.0)
       satoshi-unit
 
 PATH
@@ -41,7 +41,7 @@ PATH
       ruby-hmac
       satoshi-unit
       sequel
-      straight (= 0.2.2)
+      straight
 
 GEM
   remote: https://rubygems.org/
@@ -376,7 +376,7 @@ DEPENDENCIES
   sinatra
   spring
   sqlite3
-  straight (= 0.2.2)!
+  straight (= 0.2.3)!
   straight-server (= 0.2.3)!
   string_master
   thin
