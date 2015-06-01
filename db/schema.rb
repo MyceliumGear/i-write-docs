@@ -78,11 +78,12 @@ ActiveRecord::Schema.define(version: 20150528123056) do
     t.string   "gauth_tmp"
     t.datetime "gauth_tmp_datetime"
     t.integer  "last_read_update_id"
-    t.integer  "updates_email_subscription_level"
+    t.integer  "updates_email_subscription_level", default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["last_read_update_id"], name: "index_users_on_last_read_update_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   add_index "users", ["updates_email_subscription_level"], name: "index_users_on_updates_email_subscription_level", using: :btree

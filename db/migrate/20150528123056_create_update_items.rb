@@ -10,7 +10,8 @@ class CreateUpdateItems < ActiveRecord::Migration
     end
 
     add_column :users, :last_read_update_id, :integer
-    add_column :users, :updates_email_subscription_level, :integer
+    add_column :users, :updates_email_subscription_level, :integer, default: 0
     add_index  :users, :updates_email_subscription_level
+    add_index  :users, :last_read_update_id
   end
 end

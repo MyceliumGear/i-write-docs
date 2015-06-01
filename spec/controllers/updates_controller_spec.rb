@@ -34,7 +34,7 @@ describe UpdatesController, type: :controller do
   describe "POST #delivery" do
 
     before(:each) do
-      login_user(create(:admin))
+      login_user(create(:admin, updates_email_subscription_level: nil))
     end
 
     it "sends email to users" do
