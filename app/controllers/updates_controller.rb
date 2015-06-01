@@ -64,7 +64,7 @@ class UpdatesController < ApplicationController
     end
 
     def authenticate_admin!
-      render_403 unless current_user.admin?
+      render_403 and return unless current_user.admin?
     end
 
     def reset_last_read_update
