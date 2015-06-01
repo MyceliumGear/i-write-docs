@@ -22,7 +22,7 @@ RSpec.describe Widget, type: :model do
     expect(@widget.fields).to eq(['field1', 'field2', '*field3']) 
   end
 
-  it "updates existing prodcuts" do
+  it "updates existing products" do
     @widget.update(product_updates: { '0' => { 'id' => @widget.products.first.id, 'title' => 'Product3', 'price' => 2 }})
     expect(@widget.products.first.price).to eq(2) 
   end

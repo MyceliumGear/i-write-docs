@@ -38,14 +38,4 @@ RSpec.describe WidgetsController, type: :controller do
 
   end
 
-  describe "show action" do
-
-    it "finds widget by straight_gateway_hashed_id" do
-      get :show, id: @gateway.straight_gateway_hashed_id
-      expect(response).to render_template('show')
-      expect(assigns(:widget)).to eq(@widget)
-    end
-
-  end
-
 end
