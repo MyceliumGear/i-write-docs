@@ -2,13 +2,13 @@ require 'rails_helper'
 
 describe User, type: :model do
 
-  describe ".roles" do
+  context "roles" do
     it "returns current collection" do
       expect(User.roles).to eql({ "merchant" => 0, "admin" => 1 })
     end
   end
 
-  describe "#admin?" do
+  describe "when asked if admin" do
     it "returns true when user has admin role" do
       user = User.new(role: :admin)
       expect(user).to be_admin
