@@ -1,4 +1,6 @@
 FROM ruby:2.2.1-wheezy
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
+RUN echo "deb http://nginx.org/packages/mainline/debian/ wheezy nginx" >> /etc/apt/sources.list
 RUN apt-get update -qq \
     && apt-get install --no-install-recommends -y -q \
         build-essential \
@@ -24,6 +26,9 @@ ADD dummy_id_rsa.pub /home/app/.ssh/authorized_keys
 ADD profile /home/app/.profile
 RUN chown -R app: /home/app \
     && chmod 750 /home/app
-ADD gear-admin /etc/nginx/sites-enabled/gear-admin
+ADD gear-admin /etc/nginx/conf.d/gear-admin.conf
+ADD admin-app /home/app/admin-app
+ADD widget-app /home/app/widget-app
+ADD straight-server /home/app/straight-server
 EXPOSE 22
 ENTRYPOINT ["/usr/sbin/sshd",  "-D"]
