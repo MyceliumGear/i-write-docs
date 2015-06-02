@@ -1,6 +1,5 @@
 require 'sequel'
 require 'straight'
-require 'logmaster'
 require 'openssl'
 require 'base64'
 Sequel.extension :migration
