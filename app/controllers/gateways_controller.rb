@@ -85,6 +85,7 @@ class GatewaysController < ApplicationController
         :widget,
         :orders_expiration_period,
         :receive_payments_notifications,
+        :address_derivation_scheme,
       )
     end
 

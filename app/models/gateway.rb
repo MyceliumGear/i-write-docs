@@ -22,7 +22,7 @@ class Gateway < ActiveRecord::Base
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
-
+  validate :validate_address_derivation_scheme
 
   before_validation :decide_on_the_signature
   before_validation :assign_widget, on: :create
@@ -86,6 +86,18 @@ class Gateway < ActiveRecord::Base
       end
     end
 
+    def validate_address_derivation_scheme
+      unless address_derivation_scheme.blank?
+        self.address_derivation_scheme = address_derivation_scheme.to_s.strip.downcase
+        valid = true
+        valid &&= address_derivation_scheme.include?('n')
+        valid &&= (address_derivation_scheme.split('/').uniq - %w{m n 0 1}).empty?
+        unless valid
+          errors.add :address_derivation_scheme, "doesn't look like address derivation scheme"
+        end
+      end
+    end
+
     def create_straight_gateway
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
@@ -109,7 +121,8 @@ class Gateway < ActiveRecord::Base
         confirmations_required:      confirmations_required,
         exchange_rate_adapter_names: exchange_rate_adapter_names,
         update_secret:               @regenerate_secret == "1",
-        callback_url:                callback_url
+        callback_url:                callback_url,
+        address_derivation_scheme:   address_derivation_scheme,
       }
       fields.merge!(secret: @secret) if @secret
       fields

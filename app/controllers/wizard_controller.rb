@@ -63,6 +63,7 @@ class WizardController < ApplicationController
         :merchant_url,
         :site_type,
         :receive_payments_notifications,
+        :address_derivation_scheme,
       )
     end
 
