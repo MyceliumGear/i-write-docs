@@ -32,6 +32,9 @@ class Gateway < ActiveRecord::Base
 
   has_one :widget
 
+  scope :has_widget, -> { where(check_signature: false) }
+  scope :receives_payments_notifications, -> { where(receive_payments_notifications: true) }
+
   def straight_gateway(reload: false)
     @straight_gateway = nil if reload
     @straight_gateway ||= StraightServer::Gateway[straight_gateway_id]
@@ -165,5 +168,5 @@ class Gateway < ActiveRecord::Base
 
     #######################################################
 
-  
+
 end

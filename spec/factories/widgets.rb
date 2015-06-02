@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :widget do
-    association :gateway
-    fields "*address,name,*email"
+    initialize_with { create(:widget_gateway).widget }
   end
 end

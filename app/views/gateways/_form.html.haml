@@ -16,13 +16,13 @@
     = f.input :convert_currency_to, as: :select, collection: ['BTC'], priority: [ "BTC" ]
     %label
       Exchange rate provider #1:
-      = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-1]) 
+      = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-1])
     %label
       Exchange rate provider #2:
-      = select_tag "exchange_rate_adapter_name_2", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-2]) 
+      = select_tag "exchange_rate_adapter_name_2", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-2])
     %label
       Exchange rate provider #3:
-      = select_tag "exchange_rate_adapter_name_3", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-3]) 
+      = select_tag "exchange_rate_adapter_name_3", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-3])
 
     %span.hint If one exchange rate provider fails due to being unreachable, the other one will be used automatically. Remember, this only applies if the gateway's default currency is different from BTC.
     = f.input :exchange_rate_adapter_names, as: :hidden
@@ -38,5 +38,8 @@
 
   - unless @gateway.new_record?
     = f.input :regenerate_secret, as: :boolean
-    
+
+  - if @gateway.has_widget?
+    = f.input :receive_payments_notifications, label: 'Send notifications about new payments to my email'
+
   = f.submit

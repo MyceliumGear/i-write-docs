@@ -24,6 +24,7 @@ gem 'sentry-raven', git: 'https://github.com/getsentry/raven-ruby.git'
 gem 'roadie-rails'
 gem 'sinatra', require: nil
 gem 'sidekiq'
+gem 'sidetiq'
 
 gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: false
 gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: false
@@ -50,5 +51,6 @@ end
 
 group :test do
   gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass'
+  gem 'timecop'
   gem 'turn', require: false # Pretty printed test output
 end

@@ -33,7 +33,7 @@ class WizardController < ApplicationController
     begin
       file     = open(url, allow_redirections: :all)
       contents = file.read
-    rescue 
+    rescue
       render text: 'connectionError' and return
     end
 
@@ -61,7 +61,8 @@ class WizardController < ApplicationController
         :name,
         :default_currency,
         :merchant_url,
-        :site_type
+        :site_type,
+        :receive_payments_notifications,
       )
     end
 

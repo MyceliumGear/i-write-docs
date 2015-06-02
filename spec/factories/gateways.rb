@@ -5,7 +5,7 @@ FactoryGirl.define do
     check_signature        true
 
     sequence(:pubkey) do |i|
-      MoneyTree::Master.new.to_bip32(:public) 
+      MoneyTree::Master.new.to_bip32(:public)
     end
     default_currency            'BTC'
     callback_url                'http://0.0.0.0/my_store_callback'
@@ -18,9 +18,11 @@ FactoryGirl.define do
     region        "Central Somalia"
     city          "Mogadishu"
 
-    sequence(:name) { |i| "Gateway #{i}"}
+    sequence(:name) { |i| "Gateway #{i}#{Time.now.to_i}"}
     association(:user)
 
+    factory :widget_gateway do
+      site_type 'meah'
+    end
   end
-
 end
