@@ -1,7 +1,9 @@
+require 'sequel'
+require 'straight'
+require 'logmaster'
 require 'openssl'
 require 'base64'
-
-Sequel.extension :migration
+require 'straight-server'
 
 # Connect to straght's DB before loading the models
 class StraightServerInitializer
