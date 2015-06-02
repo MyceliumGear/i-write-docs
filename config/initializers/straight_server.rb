@@ -5,10 +5,7 @@ require 'openssl'
 require 'base64'
 Sequel.extension :migration
 
-require 'straight-server/utils/hash_string_to_sym_keys'
-require 'straight-server/random_string'
-require 'straight-server/config'
-require 'straight-server/initializer'
+require 'straight-server'
 
 # Connect to straght's DB before loading the models
 class StraightServerInitializer

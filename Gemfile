@@ -25,8 +25,8 @@ gem 'roadie-rails'
 gem 'sinatra', require: nil
 gem 'sidekiq'
 
-gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: false
-gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: false
+gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: nil
+gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: nil
 
 group :development do
   gem 'thin'
