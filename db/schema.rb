@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150529080846) do
     t.boolean  "active",                      default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
-    t.integer  "straight_gateway_id"
     t.boolean  "deleted",                     default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150529080846) do
     t.datetime "updated_at",                                  null: false
     t.integer  "orders_expiration_period",    default: 900,   null: false
     t.string   "site_type"
+    t.integer  "straight_gateway_id"
     t.string   "straight_gateway_hashed_id"
   end
 

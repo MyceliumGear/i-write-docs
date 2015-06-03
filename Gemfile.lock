@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/frootloops/mmmenu.git
-  revision: e75bd3b00735bc299043ba1773caf984d1e8c6c0
+  remote: git://github.com/snitko/mmmenu.git
+  revision: 4d7fbb42767e79f6e243cd84e718ea53443c3564
   specs:
     mmmenu (0.5.2)
 
