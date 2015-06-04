@@ -91,4 +91,6 @@ Rails.application.configure do
     host: 'gearpayments.com'
   }
 
+  config.roadie.url_options = { host: "gearpayments.com", scheme: "http" }
+
 end

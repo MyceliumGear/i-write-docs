@@ -91,5 +91,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {
     host: 'admin.gear.mycelium.com'
   }
+  
+  config.roadie.url_options = { host: "admin.gear.mycelium.com", scheme: "https" }
 
 end
