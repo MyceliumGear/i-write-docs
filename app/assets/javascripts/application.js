@@ -4,6 +4,7 @@
 //= require _orders
 //= require _wizard
 //= require lib/_frontend_notifier/
+//= require jquery_ujs
 
 jQuery(function($){
 

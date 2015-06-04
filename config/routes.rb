@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :index]
   end
   resources :widgets
+  resources :updates do
+    post :delivery, on: :member
+  end
 
   get  'wizard', to: 'wizard#step'
   post 'wizard', to: 'wizard#create_gateway'

@@ -1,0 +1,9 @@
+@import 'colors';
+
+.page.updates {
+  ul li .subject {
+    &.critical { color: $colors_red; }
+    &.important { color: $colors_orange; }
+    &.regular { color: #000000; }
+  }
+}

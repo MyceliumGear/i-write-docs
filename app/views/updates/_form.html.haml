@@ -1,0 +1,10 @@
+= simple_form_for(@update_item, url: url) do |f|
+  = f.error_notification
+  = f.input :priority, collection: UpdateItem.priorities.keys
+  = f.input :subject, as: :string
+  = f.input :body
+
+  .form-inputs
+
+  .form-actions
+    = f.button :submit

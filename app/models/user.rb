@@ -7,10 +7,24 @@ class User < ActiveRecord::Base
 
   enum role: [:merchant, :admin]
 
+  validates :updates_email_subscription_level, inclusion: {
+    in: UpdateItem.priorities.values }, allow_nil: true
+
   has_many :gateways
+
+  scope :subscribed_to, ->(level) { 
+    where("updates_email_subscription_level <= ?", UpdateItem.priorities[level])
+  }
 
   def admin?
     role == 'admin'
+  end
+
+  def has_unreaded_updates?
+    return false unless updates_email_subscription_level
+
+    UpdateItem.exists?(["id > ? AND priority >= ?",
+      last_read_update_id.to_i, updates_email_subscription_level])
   end
 
   protected

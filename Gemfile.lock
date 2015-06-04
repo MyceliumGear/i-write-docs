@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/snitko/mmmenu.git
+  revision: 4d7fbb42767e79f6e243cd84e718ea53443c3564
+  specs:
+    mmmenu (0.5.2)
+
+GIT
   remote: git://github.com/stefanpenner/country_select.git
   revision: 335b2287cc0a160caa49fdf4696f4e55fc8560bf
   specs:
@@ -203,7 +209,6 @@ GEM
       mina
     mini_portile (0.6.2)
     minitest (5.6.1)
-    mmmenu (0.5.2)
     money-tree (0.9.0)
       ffi
     multi_json (1.11.0)
@@ -373,7 +378,7 @@ DEPENDENCIES
   meta-tags
   mina
   mina-sidekiq
-  mmmenu
+  mmmenu!
   nilify_blanks
   open_uri_redirections
   pg
