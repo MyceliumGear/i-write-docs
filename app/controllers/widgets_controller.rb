@@ -4,11 +4,6 @@ class WidgetsController < ApplicationController
   before_filter :find_widget
   before_filter :check_if_gateway_owner, except: [:show]
 
-  def show
-    response.headers.delete('X-Frame-Options')
-    render 'show', layout: false
-  end
-
   def update
     @widget.update(widget_params)
     @widget.reload if @widget.errors.empty?
@@ -29,7 +24,7 @@ class WidgetsController < ApplicationController
     end
 
     def widget_params
-      params.require(:widget).permit(:fields, :variable_price, :products_to_remove_ids, widget_products_attributes: [:title, :price], product_updates: [:id, :title, :price])
+      params.require(:widget).permit(:fields, :variable_price, :products_to_remove_ids, widget_products_attributes: [:title, :price, :singular], product_updates: [:id, :title, :price, :singular])
     end
 
     def check_if_gateway_owner

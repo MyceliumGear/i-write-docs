@@ -1,0 +1,23 @@
+body { margin: 0; padding: 0; font-family: "Roboto", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif; }
+
+a { color: #C9C9DE; }
+
+.container {
+  background: #f4f4f4; margin: 0; padding: 0;
+  .content { border-collapse: collapse; padding-left: 20px; padding-right: 20px; color: #FFFFFF; }
+}
+
+.table-container {
+  border-spacing: 0; background: #1F1F29;
+
+  .header {
+    border-collapse: collapse;
+    table { border-spacing: 5; }
+    .header-top { font-size: 0; line-height: 0; border-collapse: collapse; }
+    .header-content { text-align: left; border-collapse: collapse; padding: 20px 0; }
+    .header-bottom { font-size: 0; line-height: 0; border-collapse: collapse; }
+  }
+}
+
+.footer-container { border-spacing: 0; }
+.footer { text-align: center; font-size: 12px; line-height: 18px; color: #888888; border-collapse: collapse; padding: 20px 0px 5px; }

@@ -1,0 +1,4 @@
+#!/bin/bash -l
+sudo service nginx restart
+cd /gear-admin
+bin/rails s

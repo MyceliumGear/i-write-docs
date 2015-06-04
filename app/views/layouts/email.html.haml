@@ -1,0 +1,39 @@
+!!!
+%html{ lang: "en" }
+  %head
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type" }/
+    %meta{ content: "width=device-width, initial-scale=1", name: "viewport" }/
+    %meta{ content: "IE=edge", "http-equiv": "X-UA-Compatible"}/
+    %meta{ content: "telephone=no", name: "format-detection"}/
+    = stylesheet_link_tag('email')
+
+  %body(bgcolor="#1F1F29" leftmargin="0" marginheight="0" marginwidth="0" topmargin="0")
+    .container(bgcolor="#1F1F29" marginheight="0" marginwidth="0")
+      %table.table-container(bgcolor="#1F1F29" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%")
+        %tbody
+          %tr
+            %td.header
+              %table(align="center" border="0" cellpadding="0" cellspacing="0" width="600")
+                %tbody
+                  %tr.header-top
+                    %td(height="30")
+                  %tr.header-content
+                    %td(align="left" valign="middle")
+                      = link_to image_tag("mycelium_gear_admin_logo.png"), root_url
+                  %tr.header-bottom
+                    %td(height="10")
+              %table(align="center" bgcolor="#484860" border="0" cellpadding="0" cellspacing="0" width="600")
+                %tbody
+                  %tr
+                    %td.content
+                      = yield
+              %table.footer-container(align="center" border="0" cellpadding="0" cellspacing="0" width="100%")
+                %tbody
+                  %tr
+                    %td.footer(align="center")
+                      ©
+                      %span Mycelium Gear
+                      %br/
+                      %span= link_to 'follow us on Twitter', 'https://twitter.com/MyceliumGear'
+                      %br/
+                      %br/

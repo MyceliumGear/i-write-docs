@@ -1,5 +1,7 @@
 - @page_title = "Confirm your account"
 
-%p Welcome #{@email}!
-%p You can confirm your account email through the link below:
-%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+%p Welcome!
+%p
+  You can confirm your account email through the link below:
+  %br/
+  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)

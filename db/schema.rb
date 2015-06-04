@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150523125645) do
+ActiveRecord::Schema.define(version: 20150529080846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,15 +42,24 @@ ActiveRecord::Schema.define(version: 20150523125645) do
 
   add_index "gateways", ["user_id"], name: "index_gateways_on_user_id", using: :btree
 
+  create_table "update_items", force: :cascade do |t|
+    t.integer  "priority",   default: 0
+    t.text     "subject"
+    t.text     "body"
+    t.datetime "sent_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.integer  "role",                   default: 0
-    t.string   "email",                                null: false
-    t.string   "encrypted_password",                   null: false
+    t.integer  "role",                             default: 0
+    t.string   "email",                                          null: false
+    t.string   "encrypted_password",                             null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,   null: false
+    t.integer  "sign_in_count",                    default: 0,   null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -59,28 +68,33 @@ ActiveRecord::Schema.define(version: 20150523125645) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",        default: 0,   null: false
+    t.integer  "failed_attempts",                  default: 0,   null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "gauth_secret"
-    t.string   "gauth_enabled",          default: "f"
+    t.string   "gauth_enabled",                    default: "f"
     t.string   "gauth_tmp"
     t.datetime "gauth_tmp_datetime"
+    t.integer  "last_read_update_id"
+    t.integer  "updates_email_subscription_level", default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["last_read_update_id"], name: "index_users_on_last_read_update_id", using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  add_index "users", ["updates_email_subscription_level"], name: "index_users_on_updates_email_subscription_level", using: :btree
 
   create_table "widget_products", force: :cascade do |t|
     t.integer  "widget_id"
     t.string   "title"
     t.float    "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "singular",   default: true, null: false
   end
 
   add_index "widget_products", ["widget_id"], name: "index_widget_products_on_widget_id", using: :btree

@@ -88,7 +88,7 @@ RSpec.describe Gateway, type: :model do
       end
 
       it "shows gateway stats about orders" do
-        expect(@gateway.order_counters).to eq({new: 0, unconfirmed: 0, paid: 0, underpaid: 0, overpaid: 0, expired: 0 })
+        expect(@gateway.order_counters).to eq({new: 0, unconfirmed: 0, paid: 0, underpaid: 0, overpaid: 0, expired: 0, canceled: 0 })
       end
 
 
