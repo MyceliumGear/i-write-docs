@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150602131750) do
     t.string   "gauth_tmp"
     t.datetime "gauth_tmp_datetime"
     t.integer  "last_read_update_id"
-    t.integer  "updates_email_subscription_level", default: 0
+    t.integer  "updates_email_subscription_level", default: 1
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
