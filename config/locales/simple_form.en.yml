@@ -39,6 +39,8 @@ en:
         exchange_rate_adapter_names: Exchange rate providers
         default_currency: Default currency for prices
         convert_currency_to: Convert each payment to
+      user:
+        updates_email_subscription_level: Send me updates
     placeholders:
       gateway:
         pubkey: xpubxxx

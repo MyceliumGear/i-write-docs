@@ -12,7 +12,7 @@ gem 'will_paginate'
 gem 'frontend_notifier'
 gem 'nilify_blanks'
 gem 'redis'
-gem 'mmmenu'
+gem 'mmmenu', github: 'snitko/mmmenu'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'pg'
 gem 'open_uri_redirections'
@@ -26,8 +26,8 @@ gem 'sinatra', require: nil
 gem 'sidekiq'
 gem 'sidetiq'
 
-gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: false
-gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: false
+gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: nil
+gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: nil
 
 group :development do
   gem 'thin'

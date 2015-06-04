@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'no-reply@gearpayments.com'
+  default from: "info@gear.mycelium.com"
   layout 'email'
 end
