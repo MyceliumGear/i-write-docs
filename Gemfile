@@ -12,7 +12,7 @@ gem 'will_paginate'
 gem 'frontend_notifier'
 gem 'nilify_blanks'
 gem 'redis'
-gem 'mmmenu'
+gem 'mmmenu', github: 'snitko/mmmenu'
 gem 'country_select', github: 'stefanpenner/country_select'
 gem 'pg'
 gem 'open_uri_redirections'
@@ -21,12 +21,17 @@ gem 'httparty'
 gem 'devise_google_authenticator'
 gem 'dotenv'
 gem 'sentry-raven', git: 'https://github.com/getsentry/raven-ruby.git'
+gem 'roadie-rails'
+gem 'sinatra', require: nil
+gem 'sidekiq'
 
-gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine'
-gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
+gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: nil
+gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: nil
 
 group :development do
   gem 'thin'
+  gem 'mina'
+  gem 'mina-sidekiq'
 end
 
 group :assets do

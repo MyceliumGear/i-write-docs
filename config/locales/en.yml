@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  user_mailer:
+    update_item:
+      subject: New update from gear.mycelium.com

@@ -32,6 +32,12 @@ module GearAdmin
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
 
+    config.to_prepare do
+      Devise::Mailer.layout "email"
+    end
+
+    config.active_job.queue_adapter = :sidekiq
+
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.assets.logger = nil
 
@@ -40,7 +46,5 @@ module GearAdmin
 
     require 'will_paginate/sequel'
     require 'will_paginate/active_record'
-
-
   end
 end

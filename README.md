@@ -50,6 +50,7 @@ Make sure you created the following files:
     * config/database.yml (has a .sample file)
     * config/environment.yml (has a .sample file)
     * config/secrets.yml (has a .sample file)
+    * config/sidekiq.yml (has a .sample file)
     * config/admin_emails.txt (leave it empty)
     * .env.development.local  (has a .sample file)
     * .env.test.local  (has a .sample file)
