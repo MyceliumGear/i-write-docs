@@ -14,6 +14,11 @@ RSpec.describe WizardController, type: :controller do
       expect(response.body).to eq('joomla')
     end
 
+    it "detects drupal" do
+      post :detect_site_type, url: 'http://www.transportation.gov/'
+      expect(response.body).to eq('drupal')
+    end
+
     it "returns a string containing site type" do
       post :detect_site_type, url: 'http://mycelium.com'
       expect(response.body).to eq('unknown')

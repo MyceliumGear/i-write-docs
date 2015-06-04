@@ -35,12 +35,13 @@ class WizardController < ApplicationController
       contents = file.read
     rescue 
       render text: 'connectionError' and return
-    end
-
+    end 
     if contents.match('<meta name="generator" content="WordPress')
       render text: "wordpress"
     elsif contents.match('<meta name="generator" content="Joomla')
       render text: 'joomla'
+    elsif contents.match('<meta name="generator" content="Drupal')
+      render text: 'drupal'
     else
       #begin
         #if open(url + '/wp-admin', allow_redirections: :all).status == ["200", "OK"]
