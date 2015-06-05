@@ -16,7 +16,7 @@ jQuery(function($){
   }
 
   jQuery.fn.center = function(obj) {
-    var loc = obj.offset();
+    var loc = $(this).offset();
     this.css("top",(obj.outerHeight() - this.outerHeight()) / 2 + loc.top + 'px');
     this.css("left", (obj.outerWidth() - this.outerWidth()) / 2 + loc.left + 'px');
     return this;
