@@ -46,6 +46,20 @@
 
           %p ...and that's it!
 
+      - elsif @gateway.site_type == "modx"
+
+        .installationInstructions
+          %h3 Your website is created using MODX
+          %p Please follow these steps to install our payment widget onto your website:
+
+          %ol
+            %li Download #{ link_to "Mycelium Gear modx plugin", "/mycelium-gear_modx_plugin.zip" } and install it into your MODX
+            %li
+              Use this Gateway id when setting up the widget:
+              %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
+
+          %p ...and that's it!
+
       - else
 
         .container.widgetCode

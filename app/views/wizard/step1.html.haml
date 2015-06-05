@@ -34,8 +34,8 @@
     %tr.names
       %td{ data: { site_type: 'wordpress' }} It's a Wordpress Blog!
       %td{ data: { site_type: 'joomla' }}    It's on Joomla CMS!
-      %td{ data: { site_type: 'drupal' }}   It's on Drupal!
-      %td{ data: { site_type: 'modx' }}   It's on MODX!
+      %td{ data: { site_type: 'drupal' }}   It's on Drupal CMS!
+      %td{ data: { site_type: 'modx' }}   It's on MODX CMS!
       %td{ data: { site_type: 'html' }}      Custom website I have control over
       %td{ data: { site_type: 'unknown' }}   I have no idea...
 
@@ -55,9 +55,17 @@
       Your site is running on <b>Joomla</b> CMS.
       %b Choose option 2.
 
+    .drupal
+      Your site is running on <b>Drupal</b> CMS.
+      %b Choose option 3.
+
+    .modx
+      Your site is running on <b>MODX</b> CMS.
+      %b Choose option 4.
+
     .unknown
       Your site seems to be running something else besides Joomla or Wordpress.
-      %b Choose option 3.
+      %b Choose option 5.
 
     .connectionError
       We were unable to connect to the URL you specified, sorry.
