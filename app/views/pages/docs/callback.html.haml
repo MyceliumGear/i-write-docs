@@ -9,7 +9,7 @@
   %p Important information is passed in this http request as url params. Here's what a typical callback may look like:
 
   .code
-    GET https://worldsbestshoes.com/payments/callback?order_id=1&amount=1&status=2&address=1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q&tid=tid1&data=some+random+data&keychain_id=1&last_keychain_id=1&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
+    GET https://worldsbestshoes.com/payments/callback?order_id=1&amount=1&status=2&address=1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q&tid=tid1&callback_data=some+random+data&keychain_id=1&last_keychain_id=1&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
 
   %p The following list explains in detail the information and parameters in the GET callback request:
 
@@ -36,8 +36,8 @@
       %b tid
       %p If the status is 1,2,3 or 4, this will contain a Bitcoin transaction id
     %li
-      %b data
-      %p This contains any additional data that was sent along with the transaction while #{ link_to "creating the order", "/docs/creating_orders" }. For example, if you sent <span class="code">"hello world"</span> as data in the request that created that order, you will also get the same string back with a callback.
+      %b callback_data
+      %p This contains any additional data that was sent along with the transaction while #{ link_to "creating the order", "/docs/creating_orders" }. For example, if you sent <span class="code">"hello world"</span> as data in the request that created that order, you will also get the same string back with a callback - as the value for the <span class="code">callback_data</span> key within the returned json.
     %li
       %b signature
       %p This is the most important piece of information in regards to security. Keep in mind that anyone can make a request to that callback url of yours and basically fool your website into believing that a certain order was paid. In order to avoid that, Mycelium Gear uses signatures to sign a callback request, so that you can verify it came from Mycelium Gear and not somebody else. This is explained in detail below.
