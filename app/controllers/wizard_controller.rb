@@ -25,15 +25,15 @@ class WizardController < ApplicationController
     end
   end
 
-  require 'open-uri'
+  RESPONSE_LIMIT = 3.megabytes
   def detect_site_type
     url      = params[:url]
     url      = url.match(/\Ahttps?:\/\//) ? url : "http://" + url
     url.chomp!('/')
     begin
-      file     = open(url, allow_redirections: :all)
+      file     = open(url, allow_redirections: :all, progress_proc: lambda { |size| raise if size > RESPONSE_LIMIT })
       contents = file.read
-    rescue 
+    rescue
       render text: 'connectionError' and return
     end
 
