@@ -57,3 +57,4 @@ en:
         merchant_name: In most cases, we assume it's the same as the Gateway's name 
         regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them. The new secret will displayed to you after you click the "Update Gateway" button.
         orders_expiration_period: Number of seconds before the order expires due to customer not paying. Usually, default 15 minutes (900 seconds) - a current industry standard.
+        address_derivation_scheme: "If you choose the wrong one, your wallet may not be able to detect the transactions. Make sure you know which wallet you are using."
