@@ -51,6 +51,10 @@
       %td= @gateway.pubkey.slice(0,16) + "..."
 
     %tr
+      %th Address derivation scheme
+      %td= @gateway.address_derivation_scheme
+
+    %tr
       %th Default currency
       %td= @gateway.default_currency
 
