@@ -17,29 +17,31 @@ ActiveRecord::Schema.define(version: 20150529080846) do
   enable_extension "plpgsql"
 
   create_table "gateways", force: :cascade do |t|
-    t.integer  "confirmations_required",      default: 0,     null: false
-    t.string   "pubkey",                                      null: false
-    t.string   "name",                                        null: false
-    t.string   "default_currency",            default: "BTC", null: false
+    t.integer  "confirmations_required",         default: 0,     null: false
+    t.string   "pubkey",                                         null: false
+    t.string   "name",                                           null: false
+    t.string   "default_currency",               default: "BTC", null: false
     t.string   "callback_url"
-    t.boolean  "check_signature",             default: true,  null: false
-    t.boolean  "active",                      default: true,  null: false
+    t.boolean  "check_signature",                default: true,  null: false
+    t.boolean  "active",                         default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
-    t.boolean  "deleted",                     default: false, null: false
+    t.integer  "straight_gateway_id"
+    t.boolean  "deleted",                        default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
     t.string   "country"
     t.string   "region"
     t.string   "city"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.integer  "orders_expiration_period",    default: 900,   null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.integer  "orders_expiration_period",       default: 900,   null: false
     t.string   "site_type"
-    t.integer  "straight_gateway_id"
     t.string   "straight_gateway_hashed_id"
+    t.boolean  "receive_payments_notifications", default: false, null: false
   end
 
+  add_index "gateways", ["receive_payments_notifications"], name: "index_gateways_on_receive_payments_notifications", using: :btree
   add_index "gateways", ["user_id"], name: "index_gateways_on_user_id", using: :btree
 
   create_table "update_items", force: :cascade do |t|

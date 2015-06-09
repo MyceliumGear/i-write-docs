@@ -1,0 +1,8 @@
+- orders.each do |order|
+  %li
+    Address:
+    %a{href: gateway_order_url(gateway_id: gateway.id, id: order.payment_id)}
+      = "#{order.address}"
+    - if order.description
+      %br/
+      = "Description: #{order.description}"
