@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "info@gear.mycelium.com"
+  default from: Rails.application.secrets.mailer_sender
   layout 'email'
 end

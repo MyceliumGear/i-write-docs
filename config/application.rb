@@ -33,7 +33,10 @@ module GearAdmin
     end
 
     config.to_prepare do
-      Devise::Mailer.layout "email"
+      Devise::Mailer.instance_exec do
+        layout "email"
+        default from: Rails.application.secrets.mailer_sender
+      end
     end
 
     config.active_job.queue_adapter = :sidekiq
