@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150602131750) do
+ActiveRecord::Schema.define(version: 20150604102049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150602131750) do
     t.boolean  "active",                         default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
-    t.integer  "straight_gateway_id"
     t.boolean  "deleted",                        default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
@@ -37,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150602131750) do
     t.datetime "updated_at",                                     null: false
     t.integer  "orders_expiration_period",       default: 900,   null: false
     t.string   "site_type"
+    t.integer  "straight_gateway_id"
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
     t.string   "address_derivation_scheme"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150602131750) do
     t.string   "gauth_tmp"
     t.datetime "gauth_tmp_datetime"
     t.integer  "last_read_update_id"
-    t.integer  "updates_email_subscription_level", default: 1
+    t.integer  "updates_email_subscription_level", default: 0
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
