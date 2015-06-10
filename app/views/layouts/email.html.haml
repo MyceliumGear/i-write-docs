@@ -31,9 +31,10 @@
                 %tbody
                   %tr
                     %td.footer(align="center")
-                      ©
-                      %span Mycelium Gear
+                      © Mycelium Gear
                       %br/
-                      %span= link_to 'follow us on Twitter', 'https://twitter.com/MyceliumGear'
+                      = link_to t("mailer.layout.settings"), edit_user_registration_url
+                      %br/
+                      = link_to t("mailer.layout.twitter"), 'https://twitter.com/MyceliumGear'
                       %br/
                       %br/

@@ -1,0 +1,17 @@
+%ul
+  - @data.each do |gateway, new_orders|
+    %li
+      Widget:
+      %a{href: gateway_url(id: gateway.id)}
+        = gateway.name
+      %ul
+        - if new_orders[:paid]
+          = render partial: 'orders', locals: {orders: new_orders[:paid], gateway: gateway}
+          %br/
+        - new_orders.each do |status, orders|
+          - next if status == :paid
+          %li
+            = status.to_s.capitalize
+            %ul
+              = render partial: 'orders', locals: {orders: orders, gateway: gateway}
+              %br/

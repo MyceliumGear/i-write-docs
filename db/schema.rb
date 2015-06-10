@@ -11,35 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150529080846) do
+ActiveRecord::Schema.define(version: 20150604102049) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "gateways", force: :cascade do |t|
-    t.integer  "confirmations_required",      default: 0,     null: false
-    t.string   "pubkey",                                      null: false
-    t.string   "name",                                        null: false
-    t.string   "default_currency",            default: "BTC", null: false
+    t.integer  "confirmations_required",         default: 0,     null: false
+    t.string   "pubkey",                                         null: false
+    t.string   "name",                                           null: false
+    t.string   "default_currency",               default: "BTC", null: false
     t.string   "callback_url"
-    t.boolean  "check_signature",             default: true,  null: false
-    t.boolean  "active",                      default: true,  null: false
+    t.boolean  "check_signature",                default: true,  null: false
+    t.boolean  "active",                         default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
     t.integer  "straight_gateway_id"
-    t.boolean  "deleted",                     default: false, null: false
+    t.boolean  "deleted",                        default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
     t.string   "country"
     t.string   "region"
     t.string   "city"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.integer  "orders_expiration_period",    default: 900,   null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.integer  "orders_expiration_period",       default: 900,   null: false
     t.string   "site_type"
     t.string   "straight_gateway_hashed_id"
+    t.boolean  "receive_payments_notifications", default: false, null: false
+    t.string   "address_derivation_scheme"
   end
 
+  add_index "gateways", ["receive_payments_notifications"], name: "index_gateways_on_receive_payments_notifications", using: :btree
   add_index "gateways", ["user_id"], name: "index_gateways_on_user_id", using: :btree
 
   create_table "update_items", force: :cascade do |t|
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150529080846) do
     t.string   "gauth_tmp"
     t.datetime "gauth_tmp_datetime"
     t.integer  "last_read_update_id"
-    t.integer  "updates_email_subscription_level", default: 0
+    t.integer  "updates_email_subscription_level", default: 1
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

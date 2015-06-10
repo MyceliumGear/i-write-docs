@@ -25,15 +25,15 @@ class WizardController < ApplicationController
     end
   end
 
-  require 'open-uri'
+  RESPONSE_LIMIT = 3.megabytes
   def detect_site_type
     url      = params[:url]
     url      = url.match(/\Ahttps?:\/\//) ? url : "http://" + url
     url.chomp!('/')
     begin
-      file     = open(url, allow_redirections: :all)
+      file     = open(url, allow_redirections: :all, progress_proc: lambda { |size| raise if size > RESPONSE_LIMIT })
       contents = file.read
-    rescue 
+    rescue
       render text: 'connectionError' and return
     end 
     if contents.match('<meta name="generator" content="WordPress')
@@ -62,7 +62,9 @@ class WizardController < ApplicationController
         :name,
         :default_currency,
         :merchant_url,
-        :site_type
+        :site_type,
+        :receive_payments_notifications,
+        :address_derivation_scheme,
       )
     end
 

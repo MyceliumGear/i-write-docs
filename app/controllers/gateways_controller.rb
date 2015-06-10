@@ -28,7 +28,7 @@ class GatewaysController < ApplicationController
       render 'new'
     end
   end
-  
+
   def show
     @widget = @gateway.widget
   end
@@ -83,7 +83,9 @@ class GatewaysController < ApplicationController
         :city,
         :regenerate_secret,
         :widget,
-        :orders_expiration_period
+        :orders_expiration_period,
+        :receive_payments_notifications,
+        :address_derivation_scheme,
       )
     end
 

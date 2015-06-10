@@ -32,12 +32,12 @@
   %h2 Sending additional data
   %p You may want to send some additional data with the transaction that will later be returned to you, unchanged, in the callback. This is useful if you wish to identify which record in your DB is associated with which order by using something other than order_id.
   
-  %p For example, suppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase and send its id in the data param:
+  %p For example, suppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase and send its id in the callback_data param:
 
   .code
-    POST /gateways/:api_gateway_id/orders?amount=1&keychain_id=1&<b>data=purchase_id_123</b>&signature=ffbe476de9c28687b05e10a4507259f69b3b17de51106dee525a73d17b85b84f
+    POST /gateways/:api_gateway_id/orders?amount=1&keychain_id=1&<b>callback_data=purchase_id_123</b>&signature=ffbe476de9c28687b05e10a4507259f69b3b17de51106dee525a73d17b85b84f
 
-  %p Later on, when the callback request is issued, this <span class="code">data</span> param will be returned back with it and you'll be able to find that purchase in your DB.
+  %p Later on, when the callback request is issued, this <span class="code">callback_data</span> param will be returned back with it and you'll be able to find that purchase in your DB.
 
 
   %h2 The response
@@ -45,7 +45,7 @@
   %p In response to the request above, you will receive the following json from Mycelium Gear:
 
   .code
-    { "status": 0, "amount":1, "address":"12REjGNsZfdWj5kWTuMZ2p6WPeyWFWwUT8", "tid":null, "id":1298, "<b>5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163</b>", "amount_in_btc":"0.00000001", "keychain_id":1, "last_keychain_id":1 }
+    { "status": 0, "amount":1, "address":"12REjGNsZfdWj5kWTuMZ2p6WPeyWFWwUT8", "tid":null, "id":1298, payment_id:"<b>5fb72e26b23cef0900779487698893b6f566e9b8386dfb57bfabe30448b7b163</b>", "amount_in_btc":"0.00000001", "keychain_id":1, "last_keychain_id":1 }
 
   %p With this information, you can either manually display the payment address to the customer on your website (so he doesn't even have to leave your site), or you can redirect him to the Mycelium Gear payment page using the <span class="code">payment_id</span>. The payment page url for redirection will then be:
 
