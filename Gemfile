@@ -26,8 +26,8 @@ gem 'sinatra', require: nil
 gem 'sidekiq'
 gem 'sidetiq'
 
-gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine', require: nil
-gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server', require: nil
+gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine'
+gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
 
 group :development do
   gem 'thin'
