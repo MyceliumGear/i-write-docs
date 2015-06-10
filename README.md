@@ -59,9 +59,13 @@ Since the Rails app uses `straight-server` gem it actually requires its config f
 for the development and test environments. Here's the best approach:
 
     cd .. # into something like ~/Projects
-    git clone https://github.com/snitko/straight
-    git clone https://github.com/snitko/straight-server
-    cd admin-app
+    git clone https://github.com/snitko/straight.git
+    git clone https://github.com/snitko/straight-server.git
+    git clone https://github.com/MyceliumGear/straight-payment-ui.git
+    cd straight-payment-ui
+    git submodule init
+    git submodule update
+    cd ../admin-app
     mkdir config/straight
     cd config/straight
     ln -fs /home/app/.straight development
