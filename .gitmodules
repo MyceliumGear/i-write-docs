@@ -1,9 +1,9 @@
 [submodule "app/assets/javascripts/payment-js-lib"]
 	path = app/assets/javascripts/payment-js-lib
-	url = deploy@straight:/var/repos/payment-js-lib.git
+	url = deploy@gear:/var/repos/payment-js-lib.git
 [submodule "public/payment-js-lib"]
 	path = public/payment-js-lib
-	url = deploy@straight:/var/repos/payment-js-lib.git
+	url = deploy@gear:/var/repos/payment-js-lib.git
 [submodule "widget-app"]
 	path = widget-app
-	url = deploy@straight:/var/repos/gear-widget-app.git
+	url = deploy@gear:/var/repos/gear-widget-app.git

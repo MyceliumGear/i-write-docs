@@ -4,7 +4,6 @@ require 'mina/git'
 require 'mina/rvm'
 require "mina_sidekiq/tasks"
 
-set :domain, 'deploy@straight'
 set :port, 22
 set :repository, '/var/repos/gear-admin.git'
 set :forward_agent, true
@@ -21,14 +20,24 @@ task :environment do
   stage_param = ENV['to']
   if stage_param == 'production'
     set :stage, 'production'
+    set :rails_env, 'production'
+    set :domain, 'deploy@gear.mycelium.com'
+    set :branch, 'production'
     invoke :'rvm:use[ruby-ruby-2.2-head@production]'
-  else
+  elsif stage_param == 'staging'
     set :stage, 'staging'
-    invoke :'rvm:use[ruby-ruby-2.2-head@staging]'
+    set :rails_env, 'staging'
+    set :domain, 'deploy@staging.gearpayments.com'
+    set :branch, 'staging'
+    invoke :'rvm:use[ruby-ruby-2.2@staging]'
+  else
+    set :rails_env, 'staging'
+    set :stage, 'staging-b'
+    set :domain, 'deploy@staging.gearpayments.com'
+    set :branch, (ENV['branch'] || 'master')
+    invoke :'rvm:use[ruby-ruby-2.2@staging-b]'
   end
 
-  set :branch, stage
-  set :rails_env, stage
   set :deploy_to, "/var/www/gear-admin/#{stage}"
 end
 
