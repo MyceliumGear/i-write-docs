@@ -81,3 +81,9 @@ task :link_straight_gems_paths => :environment do
     queue "ln -s $(gem path straight-server) ./straight-server"
   end
 end
+
+task :restart_rails do
+  queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
+  queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
+  invoke :'sidekiq:restart'
+end
