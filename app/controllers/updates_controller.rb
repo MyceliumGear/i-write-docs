@@ -5,7 +5,7 @@ class UpdatesController < ApplicationController
   before_action :reset_last_read_update, only: :index
 
   def index
-    @updates = UpdateItem.newest.paginate(page: params[:page], per_page: 10)
+    @updates = UpdateItem.newest_first.paginate(page: params[:page], per_page: 10)
   end
 
   def delivery
@@ -14,13 +14,23 @@ class UpdatesController < ApplicationController
       return redirect_to updates_path, notice: notice
     end
 
+    # TODO: move to UpdatesMailer
     users = User.subscribed_to(@update_item.priority)
     users.find_each do |u|
       UserMailer.update_item(u, @update_item).deliver_later
     end
 
-    @update_item.touch :sent_at
+    @update_item.sent! if users.present?
     redirect_to updates_path, notice: "#{users.count} users will get this update"
+  end
+
+  def deliver_unsent
+    counters = UpdatesMailer.deliver_unsent_updates_later
+    result = ''
+    counters.each do |k, v|
+      result.concat "each of #{v} users will get #{k} updates; "
+    end
+    redirect_to updates_path, notice: result.presence || "No one will get no updates"
   end
 
   def new
