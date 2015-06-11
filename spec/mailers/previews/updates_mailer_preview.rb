@@ -9,6 +9,6 @@ class UpdatesMailerPreview < ActionMailer::Preview
       ).concat(
         FactoryGirl.create_list(:regular_update, 5)
       )
-    UpdatesMailer.updates_mail(user: @@user, updates: @@updates)
+    UpdatesMailer.updates_mail(@@user, @@updates)
   end
 end

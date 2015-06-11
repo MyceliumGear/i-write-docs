@@ -1,6 +1,6 @@
 class UpdatesMailer < ApplicationMailer
 
-  def updates_mail(user:, updates:)
+  def updates_mail(user, updates)
     @user = user
     @updates = updates
     mail(to: @user.email)
@@ -8,7 +8,7 @@ class UpdatesMailer < ApplicationMailer
 
   def self.deliver_unsent_updates_later
     each_unsent_batch do |user, updates|
-      updates_mail(user: user, updates: updates).deliver_later
+      updates_mail(user, updates).deliver_later
       updates.each(&:sent!)
     end
   end
