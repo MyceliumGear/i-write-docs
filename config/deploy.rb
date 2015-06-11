@@ -3,6 +3,8 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
 require "mina_sidekiq/tasks"
+# /etc/sudoers should contain:
+# deploy ALL=(root) NOPASSWD: /sbin/restart, /sbin/start
 
 set :port, 22
 set :repository, '/var/repos/gear-admin.git'
@@ -78,7 +80,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      invoke :'sidekiq:restart'
+      queue "sudo restart sidekiq_#{stage} || sudo start sidekiq_#{stage}"
     end
   end
 end
@@ -94,5 +96,5 @@ end
 task :restart_rails do
   queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
   queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-  invoke :'sidekiq:restart'
+  queue "sudo restart sidekiq_#{stage} || sudo start sidekiq_#{stage}"
 end

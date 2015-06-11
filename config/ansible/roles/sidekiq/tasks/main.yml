@@ -1,0 +1,7 @@
+---
+- name: Copy sidekiq upstart script
+  template: src=sidekiq.conf.j2
+            dest=/etc/init/sidekiq_{{ item.name }}.conf
+            owner=root group=root mode=644
+  with_items: provision_apps
+  tags: sidekiq
