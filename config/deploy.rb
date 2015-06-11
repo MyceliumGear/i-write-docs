@@ -3,6 +3,8 @@ require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
 require "mina_sidekiq/tasks"
+require "yaml"
+require "slack-notifier"
 # /etc/sudoers should contain:
 # deploy ALL=(root) NOPASSWD: /sbin/restart, /sbin/start
 
@@ -76,6 +78,8 @@ task :deploy => :environment do
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
+    invoke :'deploy:cleanup'
+    invoke :'notify_slack'
 
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
@@ -97,4 +101,14 @@ task :restart_rails do
   queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
   queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
   queue "sudo restart sidekiq_#{stage} || sudo start sidekiq_#{stage}"
+end
+
+task :notify_slack => :environment do
+  APP_ENV = YAML::load_file("#{File.dirname(__FILE__)}/environment.yml")
+  notifier = Slack::Notifier.new(
+    APP_ENV['slack_hook_url'],
+    channel: '#general',
+    username: "#{stage} deployment"
+  )
+  notifier.ping "*Admin App* was just deployed to *#{stage}* from branch *#{branch}*", icon_url: "http://staging.gearpayments.com/images/deployment_#{stage}.png"
 end

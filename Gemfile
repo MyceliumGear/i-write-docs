@@ -33,6 +33,7 @@ group :development do
   gem 'thin'
   gem 'mina'
   gem 'mina-sidekiq'
+  gem 'slack-notifier'
 end
 
 group :assets do
