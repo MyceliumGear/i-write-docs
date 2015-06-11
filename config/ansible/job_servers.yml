@@ -1,0 +1,4 @@
+---
+- hosts: job_servers
+  roles:
+    - sidekiq
