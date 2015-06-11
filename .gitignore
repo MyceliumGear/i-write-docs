@@ -27,3 +27,7 @@ public/robots.txt
 vendor/gems/straight*
 vendor/bundle
 .env.*.local
+
+# ansible vars
+/config/ansible/inventories/group_vars/stage
+/config/ansible/inventories/group_vars/*.old

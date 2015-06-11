@@ -169,3 +169,19 @@ Here's what you should do:
         127.0.0.1 admin.gear.loc
         
 4. Restart nginx
+
+Infrastructure provisioning
+---------------------------
+
+1. Install Ansible:
+
+        sudo apt-add-repository ppa:rquillo/ansible
+        sudo apt-get update
+        sudo apt-get install ansible
+
+2. Create provisioning key, `ssh-add` it locally and add its public part to the `~/.ssh/authorized_keys` on server.
+
+4. Deploy all the things:
+
+        bin/decrypt_secrets
+        ansible-playbook -i config/ansible/inventories/stage config/ansible/site.yml

@@ -1,0 +1,16 @@
+[servers]
+staging.gearpayments.com ansible_ssh_user=root
+
+[database_servers:children]
+servers
+
+[application_servers:children]
+servers
+
+[job_servers:children]
+servers
+
+[stage:children]
+database_servers
+application_servers
+job_servers
