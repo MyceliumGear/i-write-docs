@@ -35,6 +35,10 @@ class Gateway < ActiveRecord::Base
   scope :has_widget, -> { where(check_signature: false) }
   scope :receives_payments_notifications, -> { where(receive_payments_notifications: true) }
 
+  after_initialize do
+    self.address_derivation_scheme = "m/0/n" if new_record? && address_derivation_scheme.nil?
+  end
+
   def straight_gateway(reload: false)
     @straight_gateway = nil if reload
     @straight_gateway ||= StraightServer::Gateway[straight_gateway_id]
