@@ -11,7 +11,7 @@
     %ul
       - @updates.each do |update|
         %li
-          = update.created_at.strftime("%b %e, %Y")
+          = update.created_at.strftime(I18n.t('strftime.date'))
           %b.subject(class="#{update.priority}")
             - if current_user.admin?
               = link_to update.subject, edit_update_path(update)
@@ -21,12 +21,14 @@
           - if current_user.admin?
             = " / "
             - if update.sent_at
-              = "send at #{update.sent_at.strftime("%b %e, %Y")}"
+              = "send at #{update.sent_at.strftime(I18n.t('strftime.timestamp'))}"
             - else
-              = link_to 'Send', delivery_update_path(update), method: :post
+              = link_to 'Send', delivery_update_path(update), method: :post, data: {confirm: "Are you sure?"}
               = link_to 'Delete', update_path(update), method: :delete
           %p= update.body.html_safe
 
     = will_paginate @updates
 
-  = link_to 'New Update', new_update_path if current_user.admin?
+  -  if current_user.admin?
+    = link_to 'New Update', new_update_path
+    = link_to 'Send unsent', deliver_unsent_updates_path, method: :post, data: {confirm: "Are you sure?"}

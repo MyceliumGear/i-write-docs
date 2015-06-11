@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   resources :widgets
   resources :updates do
     post :delivery, on: :member
+    collection do
+      post :deliver_unsent
+    end
   end
 
   get  'wizard', to: 'wizard#step'
