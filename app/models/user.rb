@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   scope :subscribed_to, ->(level) { 
     where("updates_email_subscription_level <= ?", UpdateItem.priorities[level])
   }
+  scope :subscribed_to_updates, -> {
+    where.not(updates_email_subscription_level: nil)
+  }
 
   def admin?
     role == 'admin'

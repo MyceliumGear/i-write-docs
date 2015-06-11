@@ -6,3 +6,6 @@ en:
   user_mailer:
     update_item:
       subject: New update from gear.mycelium.com
+  strftime:
+    date: "%b %e, %Y"
+    timestamp: "%F %T %z"
