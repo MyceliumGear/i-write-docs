@@ -51,6 +51,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'webmock', require: false
+  gem 'vcr', require: false
   gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass'
   gem 'timecop'
   gem 'turn', require: false # Pretty printed test output
