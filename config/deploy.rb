@@ -2,7 +2,6 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
-require "mina_sidekiq/tasks"
 require "yaml"
 require "slack-notifier"
 # /etc/sudoers should contain:
@@ -70,7 +69,6 @@ task :deploy => :environment do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
-    invoke :'sidekiq:quiet'
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'link_straight_gems_paths'
@@ -84,7 +82,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-      queue "sudo restart sidekiq_#{stage} || sudo start sidekiq_#{stage}"
+      invoke :'restart_sidekiq'
     end
   end
 end
@@ -97,10 +95,10 @@ task :link_straight_gems_paths => :environment do
   end
 end
 
-task :restart_rails do
+task :restart_rails => :environment do
   queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
   queue "touch #{deploy_to}/#{current_path}/tmp/restart.txt"
-  queue "sudo restart sidekiq_#{stage} || sudo start sidekiq_#{stage}"
+  invoke :'restart_sidekiq'
 end
 
 task :notify_slack => :environment do
@@ -111,4 +109,11 @@ task :notify_slack => :environment do
     username: "#{stage} deployment"
   )
   notifier.ping "*Admin App* was just deployed to *#{stage}* from branch *#{branch}*", icon_url: "http://staging.gearpayments.com/images/deployment_#{stage}.png"
+end
+
+# Because default mina-sidekiq tasks don't work for some reason
+task :restart_sidekiq => :environment do
+  queue "kill $(cat /var/www/gear-admin/#{stage}/shared/pids/sidekiq.pid)"
+  queue "cd #{deploy_to}/current && bin/bundle exec sidekiq -d -e staging -C /var/www/gear-admin/#{stage}/current/config/sidekiq.yml -i 0 -P /var/www/gear-admin/#{stage}/shared/pids/sidekiq.pid -L /var/www/gear-admin/#{stage}/current/log/sidekiq.log"
+  queue "sleep 1" # Not enough time for daemon to be spawned, we need this!
 end
