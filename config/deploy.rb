@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
+require 'mina_sidekiq/tasks'
 require "yaml"
 require "slack-notifier"
 # /etc/sudoers should contain:
@@ -69,6 +70,7 @@ task :deploy => :environment do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
+    invoke :'sidekiq:quiet' 
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'link_straight_gems_paths'
@@ -113,7 +115,6 @@ end
 
 # Because default mina-sidekiq tasks don't work for some reason
 task :restart_sidekiq => :environment do
-  queue "kill $(cat /var/www/gear-admin/#{stage}/shared/pids/sidekiq.pid)"
-  queue "cd #{deploy_to}/current && bin/bundle exec sidekiq -d -e staging -C /var/www/gear-admin/#{stage}/current/config/sidekiq.yml -i 0 -P /var/www/gear-admin/#{stage}/shared/pids/sidekiq.pid -L /var/www/gear-admin/#{stage}/current/log/sidekiq.log"
+  invoke :'sidekiq:restart'
   queue "sleep 1" # Not enough time for daemon to be spawned, we need this!
 end
