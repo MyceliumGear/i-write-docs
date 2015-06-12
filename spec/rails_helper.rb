@@ -3,6 +3,8 @@ ENV['RAILS_ENV'] ||= 'test'
 require 'spec_helper'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
+require 'webmock/rspec'
+require 'vcr'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -26,6 +28,11 @@ ActiveRecord::Migration.maintain_test_schema!
 
 class Sequel::Model
   alias :find_by_id :[]
+end
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/fixtures/vcr'
+  config.hook_into :webmock
 end
 
 RSpec.configure do |config|

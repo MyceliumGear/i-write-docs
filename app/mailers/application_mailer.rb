@@ -1,5 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
   include Roadie::Rails::Automatic
+  helper ApplicationHelper
 
   default from: Rails.application.secrets.mailer_sender
   layout 'email'

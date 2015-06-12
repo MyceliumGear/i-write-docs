@@ -7,4 +7,9 @@ module ApplicationHelper
     nil
   end
 
+  def blockchain_url(tid: nil)
+    if tid
+      link_to "#{tid[0, 5]}..#{tid[-5, 5]}", "https://blockchain.info/tx/#{tid}"
+    end
+  end
 end

@@ -5,22 +5,30 @@ RSpec.describe WizardController, type: :controller do
   describe "detect_site_type action" do
 
     it "detects wordpress" do
-      post :detect_site_type, url: 'https://wordpress.org/news/'
+      VCR.use_cassette 'wordpress.org' do
+        post :detect_site_type, url: 'https://wordpress.org/news/'
+      end
       expect(response.body).to eq('wordpress')
     end
 
     it "detects joomla" do
-      post :detect_site_type, url: 'http://gsas.harvard.edu/'
+      VCR.use_cassette 'gsas.harvard.edu' do
+        post :detect_site_type, url: 'http://gsas.harvard.edu/'
+      end
       expect(response.body).to eq('joomla')
     end
 
     it "detects drupal" do
-      post :detect_site_type, url: 'http://www.transportation.gov/'
+      VCR.use_cassette 'transportation.gov' do
+        post :detect_site_type, url: 'http://www.transportation.gov/'
+      end
       expect(response.body).to eq('drupal')
     end
 
     it "returns a string containing site type" do
-      post :detect_site_type, url: 'http://mycelium.com'
+      VCR.use_cassette 'mycelium.com' do
+        post :detect_site_type, url: 'http://mycelium.com'
+      end
       expect(response.body).to eq('unknown')
     end
 
