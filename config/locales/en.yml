@@ -9,3 +9,4 @@ en:
   strftime:
     date: "%b %e, %Y"
     timestamp: "%F %T %z"
+    time_with_zone: "%T %Z"

@@ -1,9 +1,10 @@
 %ul
   - @data.each do |gateway, new_orders|
     %li
-      Widget:
-      %a{href: gateway_url(id: gateway.id)}
-        = gateway.name
+      Received payments for your widget
+      %a{href: gateway_url(id: gateway.id)}= gateway.name
+      %br/
+      &nbsp;
       %ul
         - if new_orders[:paid]
           = render partial: 'orders', locals: {orders: new_orders[:paid], gateway: gateway}
