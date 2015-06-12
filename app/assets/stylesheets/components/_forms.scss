@@ -39,7 +39,7 @@ textarea { min-height: 100px; }
 
 input[type=text], input[type=password], input.string, textarea {
 
-  width: 99%;
+  width: 96%;
 
   border-radius: 2px; border: solid 1px #aaa; outline: none; padding: 0.4em 0.7em; font-size: 100%;
   @include inset-box-shadow(#ddd, 2px, 2px, 2px, 0px);

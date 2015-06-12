@@ -70,6 +70,11 @@ class Gateway < ActiveRecord::Base
     !check_signature
   end
 
+  def generate_addresses(range)
+    return unless straight_gateway.address_provider == Straight::AddressProvider::Bip32
+    range.map { |i| [i, straight_gateway.address_provider.new_address({keychain_id: i}, straight_gateway)] }
+  end
+
   private
 
     def validate_exchange_rate_adapter_names
