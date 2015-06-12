@@ -24,18 +24,21 @@ task :environment do
   stage_param = ENV['to']
   if stage_param == 'production'
     set :stage, 'production'
+    set :git_remote, 'production-server'
     set :rails_env, 'production'
     set :domain, 'deploy@gear.mycelium.com'
     set :branch, 'production'
     invoke :'rvm:use[ruby-ruby-2.2-head@production]'
   elsif stage_param == 'staging'
     set :stage, 'staging'
+    set :git_remote, 'staging-server'
     set :rails_env, 'staging'
     set :domain, 'deploy@staging.gearpayments.com'
     set :branch, 'staging'
     invoke :'rvm:use[ruby-ruby-2.2@staging]'
   else
     set :rails_env, 'staging'
+    set :git_remote, 'staging-server'
     set :stage, 'staging-b'
     set :domain, 'deploy@staging.gearpayments.com'
     set :branch, (ENV['branch'] || 'master')
@@ -65,7 +68,8 @@ end
 desc "Deploys the current version to the server."
 task :deploy => :environment do
   to :before_hook do
-    # Put things to run locally before ssh
+    # So we don't have to do it manually
+    queue "git push #{git_remote} #{branch}"
   end
   deploy do
     # Put things that will set up an empty directory into a fully set-up
