@@ -2,6 +2,7 @@ require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
 require 'mina/rvm'
+require 'mina_sidekiq/tasks'
 require "yaml"
 require "slack-notifier"
 # /etc/sudoers should contain:
@@ -23,18 +24,21 @@ task :environment do
   stage_param = ENV['to']
   if stage_param == 'production'
     set :stage, 'production'
+    set :git_remote, 'production-server'
     set :rails_env, 'production'
     set :domain, 'deploy@gear.mycelium.com'
     set :branch, 'production'
     invoke :'rvm:use[ruby-ruby-2.2-head@production]'
   elsif stage_param == 'staging'
     set :stage, 'staging'
+    set :git_remote, 'staging-server'
     set :rails_env, 'staging'
     set :domain, 'deploy@staging.gearpayments.com'
     set :branch, 'staging'
     invoke :'rvm:use[ruby-ruby-2.2@staging]'
   else
     set :rails_env, 'staging'
+    set :git_remote, 'staging-server'
     set :stage, 'staging-b'
     set :domain, 'deploy@staging.gearpayments.com'
     set :branch, (ENV['branch'] || 'master')
@@ -64,11 +68,13 @@ end
 desc "Deploys the current version to the server."
 task :deploy => :environment do
   to :before_hook do
-    # Put things to run locally before ssh
+    # So we don't have to do it manually
+    queue "git push #{git_remote} #{branch}"
   end
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
+    invoke :'sidekiq:quiet' 
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'link_straight_gems_paths'
@@ -113,7 +119,6 @@ end
 
 # Because default mina-sidekiq tasks don't work for some reason
 task :restart_sidekiq => :environment do
-  queue "kill $(cat /var/www/gear-admin/#{stage}/shared/pids/sidekiq.pid)"
-  queue "cd #{deploy_to}/current && bin/bundle exec sidekiq -d -e staging -C /var/www/gear-admin/#{stage}/current/config/sidekiq.yml -i 0 -P /var/www/gear-admin/#{stage}/shared/pids/sidekiq.pid -L /var/www/gear-admin/#{stage}/current/log/sidekiq.log"
+  invoke :'sidekiq:restart'
   queue "sleep 1" # Not enough time for daemon to be spawned, we need this!
 end
