@@ -108,9 +108,8 @@ task :restart_rails => :environment do
 end
 
 task :notify_slack => :environment do
-  APP_ENV = YAML::load_file("#{File.dirname(__FILE__)}/environment.yml")
   notifier = Slack::Notifier.new(
-    APP_ENV['slack_hook_url'],
+    'https://hooks.slack.com/services/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',
     channel: '#general',
     username: "#{stage} deployment"
   )
