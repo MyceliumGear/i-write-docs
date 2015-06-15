@@ -1,4 +1,5 @@
 ---
 - hosts: job_servers
   roles:
+    - dotenv
     - sidekiq

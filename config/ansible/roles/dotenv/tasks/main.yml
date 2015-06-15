@@ -1,0 +1,7 @@
+---
+- name: Copy dotenv files
+  template: src=dotenv.j2
+            dest={{ item.dir }}/.env.{{ item.env }}
+            owner={{ deploy_user }} group={{ deploy_user }} mode=440
+  with_items: provision_apps
+  tags: dotenv

@@ -10,7 +10,11 @@ servers
 [job_servers:children]
 servers
 
+[straight_servers:children]
+servers
+
 [stage:children]
 database_servers
 application_servers
 job_servers
+straight_servers
