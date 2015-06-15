@@ -78,6 +78,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'link_straight_gems_paths'
+    invoke :'copy_dotenv'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
@@ -99,6 +100,10 @@ task :link_straight_gems_paths => :environment do
     queue "ln -s $(gem path straight) ./straight-engine"
     queue "ln -s $(gem path straight-server) ./straight-server"
   end
+end
+
+task :copy_dotenv => :environment do
+  queue "cp #{deploy_to}/#{shared_path}/.env* ."
 end
 
 task :restart_rails => :environment do
