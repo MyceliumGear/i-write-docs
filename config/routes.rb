@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   post 'wizard/detect_site_type', to: 'wizard#detect_site_type'
 
   get 'docs/(:section)', to: 'pages#docs'
+  get 'test_error_reporting', to: 'pages#test_error_reporting'
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
