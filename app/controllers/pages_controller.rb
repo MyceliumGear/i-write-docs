@@ -21,5 +21,9 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def test_error_reporting
+    raise "This error should be reported!"
+  end
   
 end
