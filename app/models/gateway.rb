@@ -71,8 +71,8 @@ class Gateway < ActiveRecord::Base
   end
 
   def generate_addresses(range)
-    return unless straight_gateway.address_provider == Straight::AddressProvider::Bip32
-    range.map { |i| [i, straight_gateway.address_provider.new_address({keychain_id: i}, straight_gateway)] }
+    return unless straight_gateway.address_provider.instance_of?(Straight::AddressProvider::Bip32)
+    range.map { |i| [i, straight_gateway.address_provider.new_address(keychain_id: i)] }
   end
 
   private
