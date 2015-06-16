@@ -1,0 +1,7 @@
+---
+- name: Copy straight config
+  template: src=config.yml.j2
+            dest={{ item.straight.CONFIG_DIR }}/config.yml
+            owner={{ deploy_user }} group={{ deploy_user }} mode=440
+  with_items: provision_apps
+  tags: straight

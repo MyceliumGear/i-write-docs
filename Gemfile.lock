@@ -47,7 +47,7 @@ PATH
       ruby-hmac
       satoshi-unit
       sequel
-      straight
+      straight (= 0.2.3)
 
 GEM
   remote: https://rubygems.org/

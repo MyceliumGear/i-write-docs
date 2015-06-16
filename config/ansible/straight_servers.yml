@@ -1,0 +1,4 @@
+---
+- hosts: straight_servers
+  roles:
+    - straight
