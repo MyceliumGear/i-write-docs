@@ -78,7 +78,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'link_straight_gems_paths'
-    invoke :'copy_dotenv'
+    invoke :'copy_dotenv' unless stage == "production"
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
     invoke :'rails:assets_precompile'
