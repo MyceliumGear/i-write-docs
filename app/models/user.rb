@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessor :gauth_token
+  attr_accessor :gauth_token
 
   devise :google_authenticatable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
     in: UpdateItem.priorities.values }, allow_nil: true
 
   has_many :gateways
+  has_many :address_providers
 
   scope :subscribed_to, ->(level) { 
     where("updates_email_subscription_level <= ?", UpdateItem.priorities[level])
@@ -18,10 +19,6 @@ class User < ActiveRecord::Base
   scope :subscribed_to_updates, -> {
     where.not(updates_email_subscription_level: nil)
   }
-
-  def admin?
-    role == 'admin'
-  end
 
   def has_unreaded_updates?
     return false unless updates_email_subscription_level

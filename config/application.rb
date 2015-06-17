@@ -44,6 +44,8 @@ module GearAdmin
     config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
     config.assets.logger = nil
 
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
+
     ::ADMIN_EMAILS  = File.readlines("#{Rails.root}/config/admin_emails.txt").map { |e| e.strip }
     ::APP_ENV = YAML::load_file("#{Rails.root}/config/environment.yml")
 

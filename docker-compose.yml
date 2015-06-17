@@ -6,6 +6,7 @@ web:
     - ../straight:/gear-admin/vendor/gems/straight-engine
     - ../straight-server:/gear-admin/vendor/gems/straight-server
     - ../straight-payment-ui:/gear-admin/vendor/gems/straight-payment-ui
+    - ../address-providers:/gear-admin/vendor/gems/address-providers
   privileged: true
   ports:
     - "127.0.0.1:30022:22"

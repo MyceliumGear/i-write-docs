@@ -1,0 +1,31 @@
+.page.exchanges.show.cashila
+  %h3= @address_provider.display_name
+
+  %h4 Verification status
+  %table
+    %tr
+      %th Status
+      %td= @actual_state['status']
+    - if @actual_state['rejected_reason']
+      %tr
+        %th Rejection reason
+        %td= @actual_state['rejected_reason']
+
+  %h4 Details
+  %table
+    - AddressProviders::Cashila::USER_DETAILS.each do |key|
+      %tr
+        %th= key.to_s.humanize
+        %td= @actual_state[key.to_s]
+
+  %h4 Documents
+  - AddressProviders::Cashila::FILES.each do |key|
+    %p
+      = I18n.t("address_providers.cashila.#{key}")
+      %table
+        - @actual_state[key.to_s].each do |k, v|
+          %tr
+            %th= k.humanize
+            %td= v ? "Yes" : "No"
+
+  = link_to "Edit", edit_address_provider_path(@address_provider), class: 'button small'

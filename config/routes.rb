@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :index]
   end
   resources :widgets
+  resources :address_providers, path: 'exchanges'
+
   resources :updates do
     post :delivery, on: :member
     collection do

@@ -61,6 +61,7 @@ for the development and test environments. Here's the best approach:
     cd .. # into something like ~/Projects
     git clone https://github.com/snitko/straight.git
     git clone https://github.com/snitko/straight-server.git
+    git clone https://github.com/MyceliumGear/address-providers.git
     git clone https://github.com/MyceliumGear/straight-payment-ui.git
     cd straight-payment-ui
     git submodule init
@@ -78,7 +79,8 @@ Then inside `web` container:
 
 It will install gems and then fail. Now run:
 
-    bin/straight-server
+    cd /gear-admin/vendor/gems/straight-server
+    bundle exec bin/straight-server
 
 It will generate sample config end exit. Edit it:
 
@@ -94,8 +96,6 @@ Also, edit `vendor/gems/straight-server/spec/.straight/config.yml`:
 
     * in the Redis-related section set `host: redis`, `db: 2`
 
-    git update-index --assume-unchanged spec/.straight/config.yml
-
 Now re-run `bin/setup` inside `web` container, it should succeed.
 
 After doing all that you should be able to successfully run the unit tests with `bin/rspec spec`.
@@ -104,6 +104,38 @@ To make the app available on you host machine on [admin.gear.loc](http://admin.g
 
     sudo service nginx restart
     bin/rails s
+
+### `straight-server` addons installation:
+
+    cd ~/.straight
+    ln -s /gear-admin/vendor/gems/straight-payment-ui/
+    ln -s /gear-admin/vendor/gems/address-providers/
+    vim addons.yml
+
+Paste:
+
+    payment_ui:
+      path: straight-payment-ui/lib/payment_ui
+      module: PaymentUI
+    cashila:
+      path: address-providers/cashila/lib/addon
+      module: Cashila
+
+Save.
+
+    vim AddonsGemfile
+
+Paste:
+
+    eval_gemfile '/home/app/.straight/straight-payment-ui/Gemfile'
+    eval_gemfile '/home/app/.straight/address-providers/cashila/Gemfile'
+
+Save.
+
+    cd /gear-admin/vendor/gems/straight-server
+    bundle --path .bundle/bundle
+    ~/straight-server
+
 
 Installing locally manually
 ---------------------------

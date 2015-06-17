@@ -1,5 +1,6 @@
 class DeviseRegistrationsController < Devise::RegistrationsController
-  before_filter :configure_permitted_parameters
+
+  before_action :configure_permitted_parameters
 
   def create
     build_resource(sign_up_params)
@@ -25,15 +26,19 @@ class DeviseRegistrationsController < Devise::RegistrationsController
     end
   end
 
-  protected
 
-    def after_sign_up_path_for(resource)
-      '/wizard'
+  protected def after_sign_up_path_for(_)
+    wizard_path
+  end
+
+  protected def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:account_update) do |user_params|
+      user_params.permit(
+        devise_parameter_sanitizer.send(:attributes_for, :account_update) + [
+          :name,
+          :updates_email_subscription_level,
+        ]
+      )
     end
-
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.for(:account_update)
-        .push(:updates_email_subscription_level)
-    end
-
+  end
 end

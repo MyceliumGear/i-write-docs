@@ -1,0 +1,18 @@
+- html = {id: provider_class.type}
+- html[:style] = "display:none;" if hidden
+- model = provider || provider_class.new
+= simple_form_for(model, url: model.persisted? ? address_provider_path(model)  : address_providers_path, html: html) do |f|
+  %input{type: 'hidden', name: 'type', value: provider_class.type}
+  = f.input :name
+  = f.simple_fields_for :user_details do |ud|
+    = ud.input :first_name, input_html: {value: model.first_name}
+    = ud.input :last_name, input_html: {value: model.last_name}
+    = ud.input :address, input_html: {value: model.address}
+    = ud.input :postal_code, input_html: {value: model.postal_code}
+    = ud.input :city, input_html: {value: model.city}
+    = ud.input :country_code, selected: model.country_code
+  = f.simple_fields_for :files do |d|
+    = d.input :'gov-id-front', as: :file, label: I18n.t('address_providers.cashila.gov-id-front')
+    = d.input :'gov-id-back', as: :file, label: I18n.t('address_providers.cashila.gov-id-back')
+    = d.input :residence, as: :file, label: I18n.t('address_providers.cashila.residence')
+  = f.submit 'Submit'
