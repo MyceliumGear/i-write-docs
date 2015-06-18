@@ -14,7 +14,7 @@ class Gateway < ActiveRecord::Base
             :default_currency, :user, :orders_expiration_period,
             presence: true
 
-  validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 3600 }
+  validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1800 }
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
   validates :name, :pubkey, uniqueness: true
