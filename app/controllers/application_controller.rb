@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :prepare_menu
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+
   helper_method :render_to_string
   helper_method :gauth_enabled_user?
 

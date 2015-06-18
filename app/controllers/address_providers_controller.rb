@@ -72,7 +72,6 @@ class AddressProvidersController < ApplicationController
       else
         current_user.address_providers
       end.find(params[:id])
-    render_404 unless @address_provider
   end
 
   private def permitted_params(klass)
