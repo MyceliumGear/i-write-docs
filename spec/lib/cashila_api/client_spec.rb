@@ -75,19 +75,16 @@ RSpec.describe CashilaAPI::Client do
       end
 
       it "syncs account" do
-        @address_provider = AddressProviders::Cashila.new(
-          user:         User.new(email: 'alerticus@gmail.com'),
-          user_details: {
-            first_name:   'Example',
-            last_name:    'Xample',
-            address:      'somewhere',
-            postal_code:  '000000',
-            city:         'Vilnius',
-            country_code: 'LT',
-          }
-        )
+        details = {
+          first_name:   'Example',
+          last_name:    'Xample',
+          address:      'somewhere',
+          postal_code:  '000000',
+          city:         'Vilnius',
+          country_code: 'LT',
+        }
         VCR.use_cassette 'cashila_sync_account' do
-          @result = @client.sync_account(@address_provider)
+          @result = @client.sync_account(email: 'alerticus@gmail.com', details: details)
         end
         expect(@result).to eq({})
 
@@ -112,6 +109,35 @@ RSpec.describe CashilaAPI::Client do
           @result = @client.verification_status
         end
         expect(@result).to eq("status" => "pending", "first_name" => "Example", "last_name" => "Xample", "address" => "somewhere", "city" => "Vilnius", "postal_code" => "000000", "country_code" => "LT", "gov-id-front" => {"present" => true, "approved" => false}, "gov-id-back" => {"present" => true, "approved" => false}, "residence" => {"present" => true, "approved" => false})
+      end
+
+      it "syncs recipient" do
+        details = {
+          name:         'Example Xample',
+          address:      'somewhere',
+          postal_code:  '000000',
+          city:         'Vilnius',
+          country_code: 'LT',
+          bic:          'BPHKPLPK',
+          iban:         'LT121000011101001000',
+        }
+        id    = 'af1cfdf9-be92-46a4-b6b0-a606a86b1e7a'
+        VCR.use_cassette 'cashila_create_recipient' do
+          @result = @client.sync_recipient(details)
+        end
+        expect(@result).to eq id
+
+        details[:id] = id
+        details[:name] = 'Rena Med'
+        VCR.use_cassette 'cashila_update_recipient' do
+          @result = @client.sync_recipient(details)
+        end
+        expect(@result).to eq id
+
+        VCR.use_cassette 'cashila_get_recipient' do
+          @result = @client.get_recipient(id)
+        end
+        expect(@result).to eq("id" => id, "name" => "Rena Med", "address" => "somewhere", "postal_code" => "000000", "city" => "Vilnius", "country_code" => "LT", "country_name" => "Lithuania", "last_used" => "2015-06-18T17:49:29+0000")
       end
     end
   end

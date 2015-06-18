@@ -15,4 +15,12 @@
     = d.input :'gov-id-front', as: :file, label: I18n.t('address_providers.cashila.gov-id-front')
     = d.input :'gov-id-back', as: :file, label: I18n.t('address_providers.cashila.gov-id-back')
     = d.input :residence, as: :file, label: I18n.t('address_providers.cashila.residence')
+  = f.simple_fields_for :user_details do |rd|
+    = rd.input :recipient_name, input_html: {value: model.recipient_name}
+    = rd.input :recipient_address, input_html: {value: model.recipient_address}
+    = rd.input :recipient_postal_code, input_html: {value: model.recipient_postal_code}
+    = rd.input :recipient_city, input_html: {value: model.recipient_city}
+    = rd.input :recipient_country_code, selected: model.recipient_country_code
+    = rd.input :recipient_bic, input_html: {value: model.recipient_bic}
+    = rd.input :recipient_iban, input_html: {value: model.recipient_iban}
   = f.submit 'Submit'

@@ -38,14 +38,15 @@ module CashilaAPI
       result
     end
 
-    # @param [AddressProviders::Cashila] address_provider
-    def sync_account(address_provider)
+    # @param [String] email
+    # @param [Hash] details keys: first_name, last_name, address, postal_code, city, country_code
+    def sync_account(email:, details:)
       response = connection(sign: true).put('/api/v1/account') do |req|
         req.body = MultiJson.dump(
           account:      {
-            email: address_provider.user.email,
+            email: email,
           },
-          verification: address_provider.user_details,
+          verification: details,
         )
       end
       parse_response(response)
@@ -62,6 +63,22 @@ module CashilaAPI
           parse_response(response)
         end
       end
+    end
+
+    # @param [Hash] details keys: id (optional), name, address, postal_code, city, country_code, iban, bic
+    def sync_recipient(details)
+      return if !details || details.empty?
+      details = details.dup
+      id = details.delete(:id)
+      response = connection(sign: true).put("/api/v1/recipients#{id.to_s.empty? ? '' : "/#{id}"}") do |req|
+        req.body = MultiJson.dump(details)
+      end
+      parse_response(response)['id']
+    end
+
+    def get_recipient(id)
+      response = connection(sign: true).get("/api/v1/recipients/#{id}")
+      parse_response(response)
     end
 
     def verification_status
