@@ -31,7 +31,7 @@ class AddressProvidersController < ApplicationController
     rescue ActiveRecord::RecordInvalid => ex
       render :new
     rescue => ex
-      flash[:error] = ex.message
+      flash.now[:error] = ex.message
       render :new
     end
   end
@@ -47,7 +47,7 @@ class AddressProvidersController < ApplicationController
     rescue ActiveRecord::RecordInvalid => ex
       render :edit
     rescue => ex
-      flash[:error] = ex.message
+      flash.now[:error] = ex.message
       render :edit
     end
   end
