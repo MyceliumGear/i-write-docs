@@ -1,5 +1,3 @@
-require 'cashila_api'
-
 module AddressProviders
   class Cashila < AddressProvider
 

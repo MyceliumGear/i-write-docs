@@ -27,6 +27,7 @@ gem 'roadie-rails'
 gem 'sinatra', require: nil
 gem 'sidekiq'
 gem 'sidetiq'
+gem 'cashila-api', github: 'MyceliumGear/cashila-api'
 
 gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
