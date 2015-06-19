@@ -11,6 +11,10 @@
       %td= @order.amount_in_btc(as: :string)
 
     %tr
+      %th Paid Amount (BTC)
+      %td= @order.amount_in_btc(field: @order.amount_paid, as: :string)
+
+    %tr
       %th Bitcoin payment address
       %td
         = @order.address
