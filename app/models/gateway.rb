@@ -25,6 +25,7 @@ class Gateway < ActiveRecord::Base
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
   validate :validate_address_derivation_scheme
+  validate :validate_default_currency
 
   before_validation :decide_on_the_signature
   before_validation :assign_widget, on: :create
@@ -113,6 +114,14 @@ class Gateway < ActiveRecord::Base
         valid &&= (address_derivation_scheme.split('/').uniq - %w{m n 0 1}).empty?
         unless valid
           errors.add :address_derivation_scheme, "doesn't look like address derivation scheme"
+        end
+      end
+    end
+
+    def validate_default_currency
+      if address_provider && default_currency.present?
+        unless address_provider.class::CURRENCIES.include?(default_currency.to_s.upcase)
+          errors.add :default_currency, "#{address_provider.display_name} doesn't support this currency"
         end
       end
     end
