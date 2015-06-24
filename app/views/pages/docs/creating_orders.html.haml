@@ -8,26 +8,22 @@
 
   %h2 The request and the signature
 
-  %p To create an order, you must issue a POST request to <span class="code">https://gateway.gear.mycelium.com/gateways/:gateway_id/orders</span> with at least two params &mdash; <span class="code">amount</span> and <span class="code">signature</span> &mdash; the former determining the amount to be paid for this order. The amount should be in the currency you have previously set for the gateway. If the gateway currency is BTC, then the amount is normally in satoshis. So, the request may look like this:
+  %p
+    To create an order, you should issue a
+    %a{href: '/docs/signed_request'} signed
+    POST request to <span class="code">https://gateway.gear.mycelium.com/gateways/:gateway_id/orders</span> with at least one param &mdash; <span class="code">amount</span> &mdash; it determines the amount to be paid for this order. The amount should be in the currency you have previously set for the gateway. If the gateway currency is BTC, then the amount is normally in satoshis. So, the request may look like this:
 
   .code
-    https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders?amount=1
+    POST https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders?amount=1
 
   %p
     You can get the <span class="code">api_gateway_id</span> value from your
     gateway's info in the admin panel.
 
-  %p In order for this url to be complete, you must add a signature. Signatures are necessary, because you HAVE to make sure that when somebody accesses your gateway's RESTful API, it is accessed by your store only, and not by somebody else. A <i>signature</i> is an HMAC SHA256 hash of the secret and <span class="code">keychain_id</span>. Keychain id is used to generate an address for the next order. It can be any integer > 0, but it's better if it is a consecutive integer, so keep track of your order ids in your application. With the id and signature, the request will look like this:
+  %p Keychain id is used to generate an address for the next order. It can be any integer > 0, but it's better if it is a consecutive integer, so keep track of your order ids in your application. With the keychain id, the request will look like this:
 
   .code
-    POST /gateways/:api_gateway_id/orders?amount=1&keychain_id=1&signature=ffbe476de9c28687b05e10a4507259f69b3b17de51106dee525a73d17b85b84f
-
-  %p Below is an example of obtaining that signature in Ruby:
-
-  .code
-    require 'openssl'<br/>
-    secret = 'a long string of random chars'<br/>
-    OpenSSL::HMAC.digest('sha256', secret, "1").unpack("H*").first # "1" is keychain_id here
+    POST /gateways/:api_gateway_id/orders?amount=1&keychain_id=1
 
   %h2 Sending additional data
   %p You may want to send some additional data with the transaction that will later be returned to you, unchanged, in the callback. This is useful if you wish to identify which record in your DB is associated with which order by using something other than order_id.
@@ -35,7 +31,7 @@
   %p For example, suppose you have a <span class="code">Purchase</span> model in your Rails app. You then might want to create a purchase and send its id in the callback_data param:
 
   .code
-    POST /gateways/:api_gateway_id/orders?amount=1&keychain_id=1&<b>callback_data=purchase_id_123</b>&signature=ffbe476de9c28687b05e10a4507259f69b3b17de51106dee525a73d17b85b84f
+    POST /gateways/:api_gateway_id/orders?amount=1&keychain_id=1&<b>callback_data=purchase_id_123</b>
 
   %p Later on, when the callback request is issued, this <span class="code">callback_data</span> param will be returned back with it and you'll be able to find that purchase in your DB.
 
@@ -79,55 +75,11 @@
     when you create or check order status. Make sure yu always track <span class="code">last_keychain_id</span> in your application - it is normally returned
     to you in the json with the other order info when you create or check orders.
 
-  %h2 Code example in Ruby and Rails
+  %h2 Code example
 
   %p Suppose you have a Rails controller with an action called <span class="code">complete_purchase</span> which handles customer requests when they hit the "Complete purchase" button on your site. This is what code for it may look like:
 
   .code
-    require 'openssl'<br/>
-    SECRET = 'a long string of random chars'<br/>
+    %pre= render partial: 'pages/docs/code/create_order'
 
-    <br/>
-    def complete_purchase<br/>
-    &nbsp;&nbsp;signature = OpenSSL::HMAC.digest('sha256', SECRET, "1").unpack("H*").first # "1" may be order_id here
-    &nbsp;&nbsp;
-
-    <br/><br/> 
-    &nbsp;
-    ='# Make a request, get payment_id'
-    <br/>
-    &nbsp;&nbsp;require 'json'<br/>
-    &nbsp;&nbsp;require 'net/http'<br/>
-
-    <br/>
-    &nbsp;&nbsp;uri = URI.parse("https://gateway.gear.mycelium.com")<br/>
-    &nbsp;&nbsp;http = Net::HTTP.new(uri.host, uri.port)<br/>
-    &nbsp;&nbsp;http.use_ssl = true<br/>
-    &nbsp;&nbsp;http.verify_mode = OpenSSL::SSL::VERIFY_NONE<br/>
-    &nbsp;
-    = 'request = Net::HTTP::Post.new('
-    <br/>&nbsp;&nbsp;&nbsp;
-    = '"/gateways/#{gateway_id}/orders?amount=#{params[:amount]}&keychain_id=#{params[:keychain_id]}&signature=#{signature}"'
-    <br/>&nbsp;&nbsp;
-    = ')'
-    <br/>
-    &nbsp;&nbsp;request.add_field('Content-Type', 'application/json')<br/>
-    &nbsp;&nbsp;order = JSON.parse(http.request(request).body).to_h
-
-    <br/><br/>
-    &nbsp;
-    = "#Let's create a purchase model in our app and save order_id with it"
-    <br/>
-    &nbsp;&nbsp;Purchase.create(order_id: order.id ... )
-    <br/><br/>
-    &nbsp;
-    ="# Redirect our customer to the payment page"
-    <br/>
-    &nbsp;
-    ='redirect_to "https://gateway.gear.mycelium.com/pay/#{order["payment_id"]}'
-    <br/>
-    end 
-
-  .nav
-    .left= link_to "&#8592; Previous (creating a new gateway)".html_safe, "/docs/creating_gateway"
-    .right= link_to "Next (receiving order status change callback) &#8594;".html_safe, "/docs/callback"
+  = render partial: 'pages/docs/navigation', locals: {page: 'creating_orders'}

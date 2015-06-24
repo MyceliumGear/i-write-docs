@@ -44,6 +44,4 @@
 
     %li A <b>Callback</b> is an http request that is issued by the <i>payment processor</i> whenever an <i>order</i> changes its status. Each gateway allows you to set a URL to which this request is issued. You have to program your site so that it can process this request, extract the necessary information, and make proper use of it.
 
-  .nav
-    .left= link_to "&#8592; Back to the table of contents".html_safe, "/docs"
-    .right= link_to "Next (creating a gateway) &#8594;".html_safe, "/docs/creating_gateway"
+  = render partial: 'pages/docs/navigation', locals: {page: 'overview'}

@@ -1,0 +1,13 @@
+- @page_title = "Order cancellation | API Documentation"
+
+.page.docs
+
+  %h1 #{ link_to "Documentation", "/docs"} / API / Order cancellation
+
+  %p
+    If user cancels his purchase, it's better to cancel the Mycelium Gear order as well.
+
+  .code
+    %pre= render partial: 'pages/docs/code/order_cancellation'
+
+  = render partial: 'pages/docs/navigation', locals: {page: 'order_cancellation'}

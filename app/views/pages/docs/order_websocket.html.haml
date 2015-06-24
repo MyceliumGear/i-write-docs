@@ -22,6 +22,4 @@
     exactly the same data that would be returned as a response to a regular http request
     #{ link_to "checking order status manually", "/docs/checking_order_status" }.
 
-  .nav
-    .left= link_to "&#8592; Previous (checking order status manually)".html_safe, "/docs/callback"
-    .right= link_to "Table of contents &#8594;".html_safe, "/docs"
+  = render partial: 'pages/docs/navigation', locals: {page: 'order_websocket'}
