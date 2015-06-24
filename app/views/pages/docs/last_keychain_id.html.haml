@@ -1,0 +1,17 @@
+- @page_title = "Receiving last keychain id from specific gateway | API Documentation"
+
+.page.docs
+  %h1 #{link_to "Documentation", "/docs"} / API / Receiving last keychain id from specific gateway
+
+  %p
+    You can get last keychain id for a specific gateway with the following request:
+
+  .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/last_keychain_id
+
+  %p
+    In response you can get something like:
+
+  .code {"gateway_id": 1, "last_keychain_id": 10}
+
+  .nav
+    .left= link_to "&#8592; Previous (order websocket)".html_safe, "/docs/order_websocket"
