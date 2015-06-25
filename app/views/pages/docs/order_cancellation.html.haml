@@ -4,10 +4,7 @@
 
   %h1 #{ link_to "Documentation", "/docs"} / API / Order cancellation
 
-  %p
-    If user cancels his purchase, it's better to cancel the Mycelium Gear order as well.
-
-  .code
-    %pre= render partial: 'pages/docs/code/order_cancellation'
+  :markdown
+    #{render partial: 'pages/docs/md/order_cancellation.md'}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'order_cancellation'}

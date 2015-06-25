@@ -4,64 +4,7 @@
 
   %h1 #{ link_to "Documentation", "/docs"} / API / Receiving order status change callback
 
-  %p Whenever an order status changes, Mycelium Gear issues a GET http request to the url specified in the gateway's <i>callback</i> field (if you filled it) or in the order's callback_url param. This way it lets your site know that the payment was either successful or has failed for some reason. This http request is also sometimes called a <i>webhook</i>, although we prefer not to use that term.
-
-  %p Important information is passed in this http request as url params. Here's what a typical callback may look like:
-
-  .code
-    GET https://worldsbestshoes.com/payments/callback?order_id=1&amount=1&amount_in_btc=0.00000001&amount_paid_in_btc=0.00000001&status=2&address=1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q&tid=tid1&keychain_id=1&last_keychain_id=1&callback_data=some+random+data
-
-  %p Also, request will have special header:
-
-  .code
-    X-Signature: S2P8A16+RPaegTzJnb0Eg91csb1SExjdnvadABmQvfoIry4POBp6WbA6UOSqXojzRevyC8Ya/5QrQTnNxIb4og==
-
-  %p The following list explains in detail the information and parameters in the GET callback request:
-
-  %ul.longText
-    %li
-      %b order_id
-      %p An internal id of the order. This is how you can find the corresponding purchase record in your database. It is also used for the signature
-    %li
-      %b amount
-      %p This is the amount in the gateway's currency that was supposed to be paid
-    %li
-      %b amount_in_btc
-      %p This is the amount in btc that was supposed to be paid
-    %li
-      %b amount_paid_in_btc
-      %p This is the amount in btc that has been paid
-    %li
-      %b status
-      %p Returns a numerical value which can be either of the following:
-      %ul
-        %li 1 &mdash; 1 &mdash; unconfirmed; transaction was received, but does not have enough confirmations yet
-        %li 2 &mdash; paid in full
-        %li 3 &mdash; underpaid; not enough money received
-        %li 4 &mdash; overpaid; too much has been received
-        %li 5 &mdash; expired; customer did not pay in time
-        %li 6 &mdash; canceled; customer has canceled the order
-    %li
-      %b address
-      %p The Bitcoin address to which a transaction was supposed to be made
-    %li
-      %b tid
-      %p If the status is 1,2,3 or 4, this will contain a Bitcoin transaction id
-    %li
-      %b callback_data
-      %p This contains any additional data that was sent along with the transaction while #{ link_to "creating the order", "/docs/creating_orders" }. For example, if you sent <span class="code">"hello world"</span> as data in the request that created that order, you will also get the same string back with a callback - as the value for the <span class="code">callback_data</span> key within the returned json.
-    %li
-      %b X-Signature header
-      %p This is the most important piece of information in regards to security. Keep in mind that anyone can make a request to that callback url of yours and basically fool your website into believing that a certain order was paid. In order to avoid that, Mycelium Gear uses signatures to sign a callback request, so that you can verify it came from Mycelium Gear and not somebody else. This is explained in detail below.
-
-  %h2 Callback signature
-
-  %p
-    It's generated in the same way as a signature for a
-    %a{href: '/docs/signed_request'} signed
-    API requests, except that it uses blank X-Nonce. If you're using Ruby, callback signature can be verified via straight-server-kit gem.
-
-  .code
-    %pre= render partial: 'pages/docs/code/callback_validation'
+  :markdown
+    #{render partial: 'pages/docs/md/callback.md'}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'callback'}

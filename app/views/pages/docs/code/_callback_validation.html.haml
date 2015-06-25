@@ -1,8 +1,0 @@
-:plain
-  if StraightServerKit.valid_callback?(signature:   headers['X-Signature'],
-                                       request_uri: @env['REQUEST_URI'],
-                                       secret:      gateway_secret)
-    # update order
-  else
-    # log incident and return 200
-  end

@@ -112,6 +112,7 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     certifi (14.5.14)
+    coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -207,6 +208,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
+    kramdown (1.7.0)
     log4r (1.1.10)
     logmaster (0.1.5)
       pony
@@ -392,6 +394,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   cashila-api!
+  coderay
   country_select!
   database_cleaner!
   devise
@@ -404,6 +407,7 @@ DEPENDENCIES
   httparty
   ice_nine
   jquery-rails
+  kramdown
   meta-tags
   mina
   mina-sidekiq

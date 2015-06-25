@@ -1,7 +1,0 @@
-:plain
-  Base64StrictEncode(
-    HMAC-SHA512(
-      REQUEST_METHOD + REQUEST_URI + SHA512(X-Nonce + REQUEST_BODY),
-      GATEWAY_SECRET
-    )
-  )
