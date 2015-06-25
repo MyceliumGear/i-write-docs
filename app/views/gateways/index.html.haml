@@ -18,6 +18,7 @@
       %table
         %th NAME
         %th(style="width: 30px;") ACTIVE?
+        %th(style="wiTH: 80px;") TEST MODE?
         %th BIP32 PUBKEY
         %th(style="width: 70px;") DEFAULT CURRENCY
         - if current_user.admin?
@@ -26,6 +27,7 @@
           %tr
             %td <b>#{link_to g.name, g}</b>
             %td= g.active ? "Yes" : "No"
+            %td= g.test_mode ? "Yes" : "No"
             %td= g.pubkey.slice(0,16) + "..."
             %td= g.default_currency
             - if current_user.admin?

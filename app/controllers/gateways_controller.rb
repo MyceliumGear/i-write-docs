@@ -91,6 +91,8 @@ class GatewaysController < ApplicationController
         :regenerate_secret,
         :region,
         :widget,
+		:test_mdoe,
+		:test_pubkey,
       )
     end
 

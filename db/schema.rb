@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615122634) do
+ActiveRecord::Schema.define(version: 20150625141006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,8 +52,9 @@ ActiveRecord::Schema.define(version: 20150615122634) do
     t.integer  "straight_gateway_id"
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
-    t.string   "address_derivation_scheme"
-    t.integer  "address_provider_id"
+    t.string   "address_derivation_scheme",
+	t.integer  "address_provider_id",
+    t.boolean  "test_mode",                      default: true
   end
 
   add_index "gateways", ["receive_payments_notifications"], name: "index_gateways_on_receive_payments_notifications", using: :btree

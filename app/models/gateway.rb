@@ -148,6 +148,7 @@ class Gateway < ActiveRecord::Base
         check_signature:  check_signature,
         default_currency: default_currency,
         active:           active,
+        test_mode:        test_mode,
         orders_expiration_period:    orders_expiration_period,
         confirmations_required:      confirmations_required,
         exchange_rate_adapter_names: exchange_rate_adapter_names,
