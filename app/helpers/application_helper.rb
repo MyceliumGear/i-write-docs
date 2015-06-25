@@ -12,4 +12,10 @@ module ApplicationHelper
       link_to "#{tid[0, 5]}..#{tid[-5, 5]}", "https://blockchain.info/tx/#{tid}"
     end
   end
+
+  def user_address_providers
+    current_user.address_providers.map do |provider|
+      ["#{provider.class::CURRENCIES.join(' ')} | #{provider.display_name}", provider.id]
+    end
+  end
 end

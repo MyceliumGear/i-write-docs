@@ -16,16 +16,19 @@
       .pure-u-12-24
         .container
           = f.input :name
-          = f.input :pubkey, label: 'BIP32 pubkey <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="labelHint">What is BIP32?</a>'.html_safe
-          %p.moreFieldInfo
-            = image_tag "watch_icon.png", class: 'inlineIcon'
-            Watch a short video and learn how to export BIP32 pubkey from #{link_to "your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank' } or #{ link_to "Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank' }.
-          = f.input :address_derivation_scheme, as: :select, collection: [["m/0/n - Mycelium wallet Android, Electrum", "m/0/n"], ["n — Mycelium wallet iOS", "n"]], value_method: :last, label_method: :first
+          .formBlock
+            %p.moreFieldInfo
+              These settings are not required if payments will go through exchange.
+            = f.input :pubkey, label: 'BIP32 pubkey <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="labelHint">What is BIP32?</a>'.html_safe
+            %p.moreFieldInfo
+              = image_tag "watch_icon.png", class: 'inlineIcon'
+              Watch a short video and learn how to export BIP32 pubkey from #{link_to "your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank' } or #{ link_to "Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank' }.
+            = f.input :address_derivation_scheme, as: :select, collection: [["m/0/n - Mycelium wallet Android, Electrum", "m/0/n"], ["n — Mycelium wallet iOS", "n"]], value_method: :last, label_method: :first
       .pure-u-12-24
         .container
           = f.input :merchant_url
           = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
-          = f.input :convert_currency_to, as: :select, collection: ['BTC'], priority: [ 'BTC' ]
+          = f.input :convert_currency_to, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
 
     .pure-g
       .pure-u-12-24

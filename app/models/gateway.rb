@@ -3,26 +3,29 @@ class Gateway < ActiveRecord::Base
   nilify_blanks
 
   attr_reader   :straight_gateway
-  attr_accessor :secret, :regenerate_secret, :convert_currency_to
-  attr_readonly :pubkey
+  attr_accessor :secret, :regenerate_secret
+  attr_readonly :pubkey, :address_provider_id
 
   belongs_to :user
+  belongs_to :address_provider
   serialize :db_config, Hash
   serialize :exchange_rate_adapter_names
 
-  validates :confirmations_required, :pubkey, :name,
+  validates :confirmations_required, :name,
             :default_currency, :user, :orders_expiration_period,
             presence: true
 
   validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1800 }
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
-  validates :name, :pubkey, uniqueness: true
+  validates :name, uniqueness: true
+  validates :pubkey, uniqueness: true, presence: true, unless: :address_provider
 
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
   validate :validate_address_derivation_scheme
+  validate :validate_default_currency
 
   before_validation :decide_on_the_signature
   before_validation :assign_widget, on: :create
@@ -63,7 +66,13 @@ class Gateway < ActiveRecord::Base
   end
 
   def convert_currency_to
-    "BTC"
+    address_provider_id || 'BTC'
+  end
+
+  def convert_currency_to=(value)
+    if value.to_i > 0
+      self.address_provider = AddressProvider.find(value.to_i)
+    end
   end
 
   def has_widget?
@@ -71,8 +80,9 @@ class Gateway < ActiveRecord::Base
   end
 
   def generate_addresses(range)
-    return unless straight_gateway.address_provider.instance_of?(Straight::AddressProvider::Bip32)
-    range.map { |i| [i, straight_gateway.address_provider.new_address(keychain_id: i)] }
+    return if straight_gateway[:address_provider] != 'Bip32'
+    provider = straight_gateway.address_provider
+    range.map { |i| [i, provider.new_address(keychain_id: i)] }
   end
 
   private
@@ -88,6 +98,7 @@ class Gateway < ActiveRecord::Base
     end
 
     def validate_pubkey_is_bip32
+      return if pubkey.blank?
       begin
         MoneyTree::Node.from_bip32(pubkey)
       rescue Exception => e
@@ -107,12 +118,23 @@ class Gateway < ActiveRecord::Base
       end
     end
 
+    def validate_default_currency
+      if address_provider && default_currency.present?
+        unless address_provider.class::CURRENCIES.include?(default_currency.to_s.upcase)
+          errors.add :default_currency, "#{address_provider.display_name} doesn't support this currency"
+        end
+      end
+    end
+
     def create_straight_gateway
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
       )
       self.straight_gateway_id        = @straight_gateway.id
       self.straight_gateway_hashed_id = @straight_gateway.hashed_id
+      if address_provider
+        address_provider.sync_credentials(self)
+      end
     end
 
     def update_straight_gateway
@@ -121,7 +143,7 @@ class Gateway < ActiveRecord::Base
 
     def straight_server_gateway_fields
       fields = {
-        pubkey:           pubkey,
+        pubkey:           pubkey.presence,
         name:             name,
         check_signature:  check_signature,
         default_currency: default_currency,
@@ -132,6 +154,7 @@ class Gateway < ActiveRecord::Base
         update_secret:               @regenerate_secret == "1",
         callback_url:                callback_url,
         address_derivation_scheme:   address_derivation_scheme,
+        address_provider:            address_provider ? address_provider.class.type : 'Bip32',
       }
       fields.merge!(secret: @secret) if @secret
       fields

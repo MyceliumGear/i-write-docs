@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_filter :prepare_menu
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_404
+
   helper_method :render_to_string
   helper_method :gauth_enabled_user?
 
@@ -63,6 +65,7 @@ class ApplicationController < ActionController::Base
         l1.add "GATEWAYS", gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ]
         l1.add "WIDGETS",  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]]
         l1.add "ORDERS",   orders_path
+        l1.add "EXCHANGES", address_providers_path
         l1.add "ACCOUNT",  edit_user_registration_path
         l1.add "DOCUMENTATION", "/docs"
         l1.add "TWO FACTOR AUTH", user_displayqr_path unless gauth_enabled_user?

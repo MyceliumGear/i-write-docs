@@ -10,3 +10,8 @@ en:
     date: "%b %e, %Y"
     timestamp: "%F %T %z"
     time_with_zone: "%T %Z"
+  address_providers:
+    cashila:
+      gov-id-front: Government issued ID (front side)
+      gov-id-back: Government issued ID (back side, optional)
+      residence: Document which proves residence status

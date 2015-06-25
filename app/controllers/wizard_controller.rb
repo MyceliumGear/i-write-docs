@@ -58,13 +58,14 @@ class WizardController < ApplicationController
 
     def gateway_params
       params.require(:gateway).permit(
-        :pubkey,
-        :name,
+        :address_derivation_scheme,
+        :convert_currency_to,
         :default_currency,
         :merchant_url,
-        :site_type,
+        :name,
+        :pubkey,
         :receive_payments_notifications,
-        :address_derivation_scheme,
+        :site_type,
       )
     end
 
