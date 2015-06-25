@@ -5,7 +5,7 @@ FactoryGirl.define do
     check_signature        true
 
     sequence(:pubkey) do |i|
-      MoneyTree::Master.new.to_bip32(:public)
+      BTC::Keychain.new(seed: "test#{i}").xpub
     end
     default_currency            'BTC'
     callback_url                'http://0.0.0.0/my_store_callback'

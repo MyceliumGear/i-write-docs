@@ -100,9 +100,9 @@ class Gateway < ActiveRecord::Base
     def validate_pubkey_is_bip32
       return if pubkey.blank?
       begin
-        MoneyTree::Node.from_bip32(pubkey)
-      rescue Exception => e
-        errors.add(:pubkey, "doesn't look like a BIP32 pubkey")
+        BTC::Keychain.new(xpub: pubkey)
+      rescue
+        errors.add :pubkey, "doesn't look like a BIP32 pubkey"
       end
     end
 
