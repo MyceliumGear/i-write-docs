@@ -14,9 +14,12 @@
 
   %p
     Thus, it is important to have another reliable method of checking the status of orders.
-    To check the current status of an order, simply issue the following GET request:
+    To check the current status of an order, issue the following
+    %a{href: '/docs/signed_request'} signed
+    GET request:
 
-  .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/orders/:payment_id
+  .code
+    GET https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders/:payment_id
 
   %p
     where <span class="code">:api_gateway_id</span> is the API id of your gateway, which you can look up
@@ -29,6 +32,4 @@
     You should use this manual check only if you suspect that you may have missed a callback.
     It should not be standard practice to keep querying the Mycelium Gear server every few seconds just to check the status of a particular order.
 
-  .nav
-    .left= link_to "&#8592; Previous (receiving order status change callback)".html_safe, "/docs/callback"
-    .right= link_to "Next (order websocket) &#8594;".html_safe, "/docs/order_websocket"
+    = render partial: 'pages/docs/navigation', locals: {page: 'checking_order_status'}

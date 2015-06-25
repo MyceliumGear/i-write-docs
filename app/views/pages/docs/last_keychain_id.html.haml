@@ -13,5 +13,5 @@
 
   .code {"gateway_id": 1, "last_keychain_id": 10}
 
-  .nav
-    .left= link_to "&#8592; Previous (order websocket)".html_safe, "/docs/order_websocket"
+  = render partial: 'pages/docs/navigation', locals: {page: 'last_keychain_id'}
+

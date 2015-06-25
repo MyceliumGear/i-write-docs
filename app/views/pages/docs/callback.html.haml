@@ -4,60 +4,7 @@
 
   %h1 #{ link_to "Documentation", "/docs"} / API / Receiving order status change callback
 
-  %p Whenever an order status changes, Mycelium Gear issues a GET http request to the url specified in the gateway's <i>callback</i> field (if you filled it). This way it lets your site know that the payment was either successful or has failed for some reason. This http request is also sometimes called a <i>webhook</i>, although we prefer not to use that term.
+  :markdown
+    #{render partial: 'pages/docs/md/callback.md'}
 
-  %p Important information is passed in this http request as url params. Here's what a typical callback may look like:
-
-  .code
-    GET https://worldsbestshoes.com/payments/callback?order_id=1&amount=1&amount_in_btc=0.00000001&amount_paid_in_btc=0.00000001&status=2&address=1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q&tid=tid1&callback_data=some+random+data&keychain_id=1&last_keychain_id=1&signature=aa14c26b2ae892a8719b0c2c57f162b967bfbfbdcc38d8883714a0680cf20467
-
-  %p The following list explains in detail the information and parameters in the GET callback request:
-
-  %ul.longText
-    %li
-      %b order_id
-      %p An internal id of the order. This is how you can find the corresponding purchase record in your database. It is also used for the signature
-    %li
-      %b amount
-      %p This is the amount that has been (or was supposed to be) paid
-    %li
-      %b status
-      %p Returns a numerical value which can be either of the following:
-      %ul
-        %li 1 &mdash; 1 &mdash; unconfirmed; transaction was received, but does not have enough confirmations yet
-        %li 2 &mdash; paid in full
-        %li 3 &mdash; underpaid; not enough money received
-        %li 4 &mdash; overpaid; too much has been received
-        %li 5 &mdash; expired; customer did not pay in time
-    %li
-      %b address
-      %p The Bitcoin address to which a transaction was supposed to be made
-    %li
-      %b tid
-      %p If the status is 1,2,3 or 4, this will contain a Bitcoin transaction id
-    %li
-      %b callback_data
-      %p This contains any additional data that was sent along with the transaction while #{ link_to "creating the order", "/docs/creating_orders" }. For example, if you sent <span class="code">"hello world"</span> as data in the request that created that order, you will also get the same string back with a callback - as the value for the <span class="code">callback_data</span> key within the returned json.
-    %li
-      %b signature
-      %p This is the most important piece of information in regards to security. Keep in mind that anyone can make a request to that callback url of yours and basically fool your website into believing that a certain order was paid. In order to avoid that, Mycelium Gear uses signatures to sign a callback request, so that you can verify it came from Mycelium Gear and not somebody else. This is explained in detail below.
-
-  %h2 Callback signature
-
-  %p The problem with a callback signature is that it cannot be the same as the signature you used to sign your own request which created that order. This is because there's always a chance someone might have intercepted your request and now knows that signature &mdash; which he could then use make a fake callback request. Therefore, Mycelium Gear doesn't use <span class="code">keychain_id</span> for the signature (as you did, when creating an order), but rather uses that internal <span class="code">order_id</span>. It also doesn't use <span class="code">keychain_id</span> because two or more orders may share it.
-
-  .code
-    require 'openssl'<br/>
-    secret = 'a long string of random chars'<br/> 
-    h1 = OpenSSL::HMAC.digest('sha256', secret, "1").unpack("H*").first # 1 is order_id<br/>
-    h2 = OpenSSL::HMAC.digest('sha256', secret, h1).unpack("H*").first<br/> 
-
-  %p
-    In your callback handler you MUST calculate that signature and then make sure it matches
-    the signature that was passed to you as a <span class="code">signature</span> in the callback request.
-    If it does not match, it means one of two things: you made a mistake while calculating it
-    or the callback request is fake. Make sure to consider and verify the first possibility before assuming the request is fake.
-
-  .nav
-    .left= link_to "&#8592; Previous (creating orders)".html_safe, "/docs/creating_orders"
-    .right= link_to "Next (checking order status manually) &#8594;".html_safe, "/docs/checking_order_status"
+  = render partial: 'pages/docs/navigation', locals: {page: 'callback'}

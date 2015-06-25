@@ -35,6 +35,4 @@
 
   %p The secret key is essentially a signature that all your requests to the gateway are signed with, which the gateway uses to verify that it's you who is talking to it, and not some impostor. We will explain how to use this secret key in detail in the next section.
 
-  .nav
-    .left= link_to "&#8592; Previous (overview)".html_safe, "/docs"
-    .right= link_to "Next (creating orders) &#8594;".html_safe, "/docs/creating_orders"
+  = render partial: 'pages/docs/navigation', locals: {page: 'creating_gateway'}
