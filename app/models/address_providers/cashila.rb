@@ -49,25 +49,25 @@ module AddressProviders
       validate!
       sync_account
       save!
+      upload_docs
+      self.recipient_id = api_client.sync_recipient(recipient_details)
+      save!
     end
 
 
     def sync_account
-      client = api_client
-
       if token.blank? || secret.blank?
-        self.credentials = client.request_signup
+        self.credentials = api_client.request_signup
       end
+      api_client.sync_account(email: user.email, details: user_details)
+    end
 
-      client.sync_account(email: user.email, details: user_details)
-
-      self.recipient_id = client.sync_recipient(recipient_details)
-
+    def upload_docs
       docs = files.present? && FILES.each_with_object({}) do |k, h|
         next unless (file = files[k])
         h[k] = file.read
       end
-      client.upload_docs(docs) unless docs.blank?
+      api_client.upload_docs(docs) unless docs.blank?
     end
 
     def api_client

@@ -28,11 +28,12 @@ class AddressProvidersController < ApplicationController
     begin
       @address_provider.sync_and_save
       redirect_to address_provider_path(@address_provider)
-    rescue ActiveRecord::RecordInvalid => ex
-      render :new
+    rescue ActiveRecord::RecordInvalid
+      # form will render errors
+      @address_provider.persisted? ? render(:edit) : render(:new)
     rescue => ex
       flash.now[:error] = ex.message
-      render :new
+      @address_provider.persisted? ? render(:edit) : render(:new)
     end
   end
 
@@ -44,7 +45,8 @@ class AddressProvidersController < ApplicationController
     begin
       @address_provider.sync_and_save
       redirect_to address_provider_path(@address_provider)
-    rescue ActiveRecord::RecordInvalid => ex
+    rescue ActiveRecord::RecordInvalid
+      # form will render errors
       render :edit
     rescue => ex
       flash.now[:error] = ex.message
