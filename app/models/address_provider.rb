@@ -5,7 +5,7 @@ class AddressProvider < ActiveRecord::Base
   validates :user, presence: true
 
   def display_name
-    name || self.class.type
+    name.presence || self.class.type
   end
 
 
