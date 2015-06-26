@@ -1,12 +1,18 @@
+- @page_title = "New | Exchanges"
 - default_provider = AddressProviders::Cashila
 
-%select#address_provider
-  - AddressProvider.providers.each do |provider|
-    %option{value: provider.type, selected: provider == default_provider}
-      = provider::CURRENCIES.join(' ')
-      —
-      = provider.type
+.page.address_providers.new
 
-- AddressProvider.providers.each do |provider|
-  - current = @address_provider && @address_provider.instance_of?(provider)
-  = render partial: "address_providers/forms/#{provider.type.underscore}", locals: {provider: current ? @address_provider : nil, provider_class: provider, hidden: @address_provider ? !current : provider != default_provider}
+  %select#address_provider
+    - AddressProvider.providers.each do |provider|
+      %option{value: provider.type, selected: provider == default_provider}
+        = provider::CURRENCIES.join(' ')
+        —
+        = provider.type
+
+  - if @address_provider && @address_provider.errors[:type]
+    %p.error= @address_provider.errors[:type].join(', ')
+
+  - AddressProvider.providers.each do |provider|
+    - current = @address_provider && @address_provider.instance_of?(provider)
+    = render partial: "address_providers/forms/#{provider.type.underscore}", locals: {provider: current ? @address_provider : nil, provider_class: provider, hidden: @address_provider ? !current : provider != default_provider}
