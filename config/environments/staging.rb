@@ -87,10 +87,10 @@ Rails.application.configure do
     domain:               'gearpayments.com', # your domain to identify your server when connecting
   }
 
-  config.action_mailer.default_url_options = {
-    host: 'gearpayments.com'
-  }
+  host = Rails.application.secrets.mailer_sender.split('@')[-1]
 
-  config.roadie.url_options = { host: "gearpayments.com", scheme: "http" }
+  config.action_mailer.default_url_options = {host: host}
+
+  config.roadie.url_options = {host: host, scheme: 'http'}
 
 end
