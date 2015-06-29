@@ -75,7 +75,7 @@ module AddressProviders
         token:     token.presence,
         secret:    secret.presence,
         client_id: Rails.application.secrets.cashila_client_id,
-        url:       Rails.application.secrets.cashila_url,
+        url:       Rails.env.production? ? CashilaAPI::PRODUCTION_URL : CashilaAPI::TEST_URL,
       )
     end
 
