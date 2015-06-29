@@ -66,6 +66,8 @@ class WizardController < ApplicationController
         :pubkey,
         :receive_payments_notifications,
         :site_type,
+        :test_mode,
+        :test_pubkey,
       )
     end
 
