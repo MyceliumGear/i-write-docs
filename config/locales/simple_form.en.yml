@@ -35,6 +35,7 @@ en:
       gateway:
         widget: Gateway for a Widget
         pubkey: BIP32 pubkey
+        test_pubkey: BIP32 test pubkey
         merchant_url: URL of the website / online store
         exchange_rate_adapter_names: Exchange rate providers
         default_currency: Default currency for prices
@@ -45,15 +46,18 @@ en:
     placeholders:
       gateway:
         pubkey: xpubxxx
+        test_pubkey: tpubxxx
     hints:
       gateway:
         name: This will to appear on the payment page for each customer to see
         confirmations_required: Bitcoin confirmations for a transaction to be considered accepted by the gateway. Unless you have reasons to believe some of your customers are going to be frauds, we recommend setting it to 0.
         pubkey: We're going to generate addresses for each order using this key. The key starts with "xpub". For security reasons, YOU WILL NOT BE ABLE TO CHANGE IT.
         default_currency: If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Remember, that unless you choose BTC, at least one of the selected Bitcoin exchange rate providers must support that currency.
+        test_pubkey: Same as pubkey, but for TESTNET. You can't enable test mode without it.
         convert_currency_to: You can add more convertation options by configuring <a href="/exchanges/new" target="_blank">new exchange</a> and refreshing this page.
         callback_url: When the status of the order changes (for example from NEW to PAID), Gear will send an http request to the following URL. The request will include additional order data (consult the documentation). This field may be left blank in which case no callback request will be sent.
         active: Unchecking this checkbox means new Orders will be turned down and customers will be unable to pay. This can be used when maintenance is being done.
+        test_mode: When test mode activated all transactions going throught TESTNET, for testing purpose only
         widget: Check this if you don't plan to use the API and integrate Gear into your online store, but simply would like to install a payment widget.
         merchant_name: In most cases, we assume it's the same as the Gateway's name 
         regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them. The new secret will displayed to you after you click the "Update Gateway" button.

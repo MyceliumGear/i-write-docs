@@ -17,6 +17,7 @@ FactoryGirl.define do
     country       "Somalia"
     region        "Central Somalia"
     city          "Mogadishu"
+    test_mode     false
 
     sequence(:name) { |i| "Gateway #{i}#{Time.now.to_i}"}
     association(:user)

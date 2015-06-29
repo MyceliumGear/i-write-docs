@@ -97,6 +97,10 @@
     %tr
       %th Is active?
       %td= @gateway.active ? "Yes" : "No"
+      
+    %tr
+      %th In test mode?
+      %td= @gateway.test_mode ? "Yes" : "No"
 
     %tr
       %th Orders stat
