@@ -4,23 +4,38 @@
 = simple_form_for(model, url: model.persisted? ? address_provider_path(model)  : address_providers_path, html: html) do |f|
   %input{type: 'hidden', name: 'type', value: provider_class.type}
   -#= f.input :name
+
+  %h3 Fill in verification info
   = f.simple_fields_for :user_details do |ud|
-    = ud.input :first_name, input_html: {value: model.first_name}
-    = ud.input :last_name, input_html: {value: model.last_name}
-    = ud.input :address, input_html: {value: model.address}
-    = ud.input :postal_code, input_html: {value: model.postal_code}
-    = ud.input :city, input_html: {value: model.city}
-    = ud.input :country_code, selected: model.country_code
+    %table
+      %tr
+        %td= ud.input :first_name, input_html: {value: model.first_name}
+        %td= ud.input :last_name, input_html: {value: model.last_name}
+      %tr
+        %td= ud.input :address, input_html: {value: model.address}
+        %td= ud.input :postal_code, input_html: {value: model.postal_code, style: 'width: 100px;'}
+      %tr
+        %td= ud.input :city, input_html: {value: model.city}
+        %td= ud.input :country_code, selected: model.country_code, label: "Country"
+
   = f.simple_fields_for :files do |d|
-    = d.input :'gov-id-front', as: :file, label: I18n.t('address_providers.cashila.gov-id-front')
-    = d.input :'gov-id-back', as: :file, label: I18n.t('address_providers.cashila.gov-id-back')
-    = d.input :residence, as: :file, label: I18n.t('address_providers.cashila.residence')
+    %table
+      %tr
+        %td= d.input :'gov-id-front', as: :file, label: I18n.t('address_providers.cashila.gov-id-front')
+        %td= d.input :'gov-id-back', as: :file, label: I18n.t('address_providers.cashila.gov-id-back')
+        %td= d.input :residence, as: :file, label: I18n.t('address_providers.cashila.residence')
+
+  %h3 Fill in bank account info
   = f.simple_fields_for :user_details do |rd|
     = rd.input :recipient_name, input_html: {value: model.recipient_name}
-    = rd.input :recipient_address, input_html: {value: model.recipient_address}
-    = rd.input :recipient_postal_code, input_html: {value: model.recipient_postal_code}
-    = rd.input :recipient_city, input_html: {value: model.recipient_city}
-    = rd.input :recipient_country_code, selected: model.recipient_country_code
-    = rd.input :recipient_bic, input_html: {value: model.recipient_bic}
-    = rd.input :recipient_iban, input_html: {value: model.recipient_iban}
+    %table
+      %tr
+        %td= rd.input :recipient_address, input_html: {value: model.recipient_address}
+        %td= rd.input :recipient_postal_code, input_html: {value: model.recipient_postal_code, style: 'width: 100px;'}
+      %tr
+        %td= rd.input :recipient_city, input_html: {value: model.recipient_city}
+        %td= rd.input :recipient_country_code, selected: model.recipient_country_code, label: "Recipient country"
+      %tr
+        %td= rd.input :recipient_bic, input_html: {value: model.recipient_bic}, label: 'BIC'
+        %td= rd.input :recipient_iban, input_html: {value: model.recipient_iban}, label: 'IBAN'
   = f.submit 'Submit'

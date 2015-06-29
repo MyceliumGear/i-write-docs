@@ -12,6 +12,7 @@
 @import 'pages/docs';
 @import 'pages/two_factor_auth';
 @import 'pages/updates';
+@import 'pages/exchanges';
 @import 'components/chosen';
 
 body {
@@ -47,8 +48,15 @@ table {
   font-size: 90%;
   border-collapse: collapse; border-spacing: 0px; width: 100%; clear: both; margin-top: 2em;
 
-  th, td { padding: 0.7em;  text-align: center; }
+  th, td { padding: 0.7em; text-align: center; }
   th { background-color: #BBB5AE; color: #fff; font-weight: bold; font-size: 85%; width: 30%; font-weight: normal; }
   td { background-color: #fff; }
 
+}
+
+form table {
+  font-size: 100%;
+  border-collapse: collapse; border-spacing: 0px; width: 100%; clear: both; margin-top: 0em;
+  th, td { padding: 0 2em 0 0; text-align: left; }
+  td { background-color: transparent; }
 }

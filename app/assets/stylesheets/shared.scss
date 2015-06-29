@@ -38,3 +38,5 @@ h1, h2 { font-weight: normal; margin-top: 0.5em; }
 h1, h2 { &.pageTitle { float: left; }}
 h1 { font-size: 300%; line-height: 100%; }
 h2 { font-size: 250%; line-height: 100%; }
+
+p.explanation { color: $colors_gray; }

@@ -1,7 +1,8 @@
-.page.address_providers {
+.page.exchanges {
 
   &.new {
-
+    h3 { margin: 2em 0 1em 0; font-size: 150%; }
     p.error { color: $colors_red; }
   }
+
 }
