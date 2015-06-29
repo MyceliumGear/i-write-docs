@@ -13,12 +13,17 @@
   = simple_form_for(@gateway, url: { controller: 'wizard', action: 'create_gateway' }) do |f|
 
     .pure-g
+      .pure-u-24-24
+        .container
+          %p
+            If you wish to convert all payments into fiat money, you need to
+            %a{href: new_address_provider_path} configure exchange
+            first.
       .pure-u-12-24
         .container
           = f.input :name
-          .formBlock
-            %p.moreFieldInfo
-              These settings are not required if payments will go through exchange.
+          = f.input :convert_currency_to, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
+          .formBlock.btc-only-fields{style: @gateway.convert_currency_to == 'BTC' ? '' : 'display: none;'}
             = f.input :pubkey, label: 'BIP32 pubkey <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="labelHint">What is BIP32?</a>'.html_safe
             %p.moreFieldInfo
               = image_tag "watch_icon.png", class: 'inlineIcon'
@@ -28,7 +33,6 @@
         .container
           = f.input :merchant_url
           = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
-          = f.input :convert_currency_to, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
 
     .pure-g
       .pure-u-12-24

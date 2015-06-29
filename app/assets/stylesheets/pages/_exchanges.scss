@@ -1,6 +1,7 @@
-.page.exchanges {
+.page.address_providers {
 
-  &.show.cashila {
+  &.new {
 
+    p.error { color: $colors_red; }
   }
 }
