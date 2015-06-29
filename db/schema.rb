@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20150627152747) do
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
     t.string   "address_derivation_scheme"
-    t.boolean  "test_mode",                      default: true
+    t.boolean  "test_mode",                      default: false
     t.string   "test_pubkey"
     t.integer  "address_provider_id"
   end
