@@ -5,4 +5,12 @@
     p.error { color: $colors_red; }
   }
 
+  &.show {
+    h3 { display: block; float: left; width: 50%; }
+    .actions { float: right; width: 50%; text-align: right; }
+    .successfulSubmissionNote {
+      border: dashed 1px $colors_light_gray; background-color: $colors_yellow; padding: 1em; font-weight: bold; 
+    }
+  }
+
 }

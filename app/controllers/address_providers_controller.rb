@@ -30,6 +30,7 @@ class AddressProvidersController < ApplicationController
     @address_provider.user = @current_user
     begin
       @address_provider.sync_and_save
+      flash[:success] = "Submission successful"
       redirect_to address_provider_path(@address_provider)
     rescue ActiveRecord::RecordInvalid
       # form will render errors
@@ -47,6 +48,7 @@ class AddressProvidersController < ApplicationController
     @address_provider.assign_attributes(permitted_params(@address_provider.class))
     begin
       @address_provider.sync_and_save
+      flash[:success] = "Submission successful"
       redirect_to address_provider_path(@address_provider)
     rescue ActiveRecord::RecordInvalid
       # form will render errors
