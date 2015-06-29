@@ -3,9 +3,10 @@ class AddressProvider < ActiveRecord::Base
   belongs_to :user
 
   validates :user, presence: true
+  validates :type, uniqueness: {scope: :user_id, message: "exchange of this type is already present"}
 
   def display_name
-    name || self.class.type
+    name.presence || self.class.type
   end
 
 

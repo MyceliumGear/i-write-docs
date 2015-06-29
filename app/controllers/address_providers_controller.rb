@@ -12,6 +12,9 @@ class AddressProvidersController < ApplicationController
       else
         @current_user.address_providers
       end.paginate(page: params[:page].try(:to_i) || 1)
+    unless @address_providers.present?
+      redirect_to new_address_provider_url
+    end
   end
 
   def show
@@ -28,11 +31,12 @@ class AddressProvidersController < ApplicationController
     begin
       @address_provider.sync_and_save
       redirect_to address_provider_path(@address_provider)
-    rescue ActiveRecord::RecordInvalid => ex
-      render :new
+    rescue ActiveRecord::RecordInvalid
+      # form will render errors
+      @address_provider.persisted? ? render(:edit) : render(:new)
     rescue => ex
       flash.now[:error] = ex.message
-      render :new
+      @address_provider.persisted? ? render(:edit) : render(:new)
     end
   end
 
@@ -44,7 +48,8 @@ class AddressProvidersController < ApplicationController
     begin
       @address_provider.sync_and_save
       redirect_to address_provider_path(@address_provider)
-    rescue ActiveRecord::RecordInvalid => ex
+    rescue ActiveRecord::RecordInvalid
+      # form will render errors
       render :edit
     rescue => ex
       flash.now[:error] = ex.message

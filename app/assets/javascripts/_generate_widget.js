@@ -114,7 +114,7 @@ jQuery(function($){
       }
     });
     products_to_remove_ids = [];
-  }
+  };
 
   $("body").on('click', ".widget .settings button.cancel", function() {
     sendUpdateRequest({ cancel: '1'});
@@ -128,10 +128,20 @@ jQuery(function($){
     show_save_widget_warning();
   });
 
+  // affects both widget wizard and gateway form
+  $('body').on('change', 'select[name="gateway[convert_currency_to]"]', function () {
+    if ($(this).val() == 'BTC') {
+      $('.btc-only-fields').slideDown();
+      $('.btc-only-fields .chosen-container').attr('style', 'width: 50%'); // it has 0 width if rendered hidden
+    } else {
+      $('.btc-only-fields').slideUp();
+    }
+  });
+
   var show_save_widget_warning = function() {
     $(".widget .saveWarning").animate({ opacity: 1 });
     $(".widget .cancel").removeClass('disabled');
-  }
+  };
 
   $('input.gatewayId').focus(function(event) {
       setTimeout(function() {$('input.gatewayId').select();}, 0);

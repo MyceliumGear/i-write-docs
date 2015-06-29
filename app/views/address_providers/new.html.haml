@@ -1,19 +1,18 @@
-- default_currency = 'EUR'
-- default_provider = AddressProvider.providers_by_currency[default_currency][0]
+- @page_title = "New | Exchanges"
+- default_provider = AddressProviders::Cashila
 
-- if @address_provider
-  = render partial: "address_providers/forms/#{@address_provider.class.type.underscore}", locals: {provider: @address_provider, provider_class: @address_provider.class, hidden: false}
-- else
-  %select#currency{name: 'currency'}
-    - AddressProvider.providers_by_currency.each_key do |currency|
-      %option{value: currency, selected: currency == default_currency}
-        = currency
+.page.address_providers.new
 
-  - AddressProvider.providers_by_currency.each do |currency, providers|
-    %select#address_provider{name: "#{currency}_providers"}
-      - providers.each do |provider|
-        %option{value: provider.type, selected: provider == default_provider}
-          = provider.type
+  %select#address_provider
+    - AddressProvider.providers.each do |provider|
+      %option{value: provider.type, selected: provider == default_provider}
+        = provider::CURRENCIES.join(' ')
+        —
+        = provider.type
+
+  - if @address_provider && @address_provider.errors[:type]
+    %p.error= @address_provider.errors[:type].join(', ')
 
   - AddressProvider.providers.each do |provider|
-    = render partial: "address_providers/forms/#{provider.type.underscore}", locals: {provider: nil, provider_class: provider, hidden: provider != default_provider}
+    - current = @address_provider && @address_provider.instance_of?(provider)
+    = render partial: "address_providers/forms/#{provider.type.underscore}", locals: {provider: current ? @address_provider : nil, provider_class: provider, hidden: @address_provider ? !current : provider != default_provider}
