@@ -26,6 +26,7 @@ class Gateway < ActiveRecord::Base
   validate          :validate_pubkey_is_bip32
   validate :validate_address_derivation_scheme
   validate :validate_default_currency
+  validate :validate_test_pubkey_in_test_mode
 
   before_validation :decide_on_the_signature
   before_validation :assign_widget, on: :create
@@ -126,6 +127,12 @@ class Gateway < ActiveRecord::Base
       end
     end
 
+    def validate_test_pubkey_in_test_mode
+      if test_mode && test_pubkey.blank?
+        errors.add :test_pubkey, "can't be epmty if test mdoe activates"
+      end
+    end
+
     def create_straight_gateway
       @straight_gateway = StraightServer::Gateway.create(
         straight_server_gateway_fields.merge({order_class: "StraightServer::Order"})
@@ -143,12 +150,13 @@ class Gateway < ActiveRecord::Base
 
     def straight_server_gateway_fields
       fields = {
-        pubkey:           pubkey.presence,
-        name:             name,
-        check_signature:  check_signature,
-        default_currency: default_currency,
-        active:           active,
-        test_mode:        test_mode,
+        pubkey:                      pubkey.presence,
+        test_pubkey:                 test_pubkey,
+        name:                        name,
+        check_signature:             check_signature,
+        default_currency:            default_currency,
+        active:                      active,
+        test_mode:                   test_mode,
         orders_expiration_period:    orders_expiration_period,
         confirmations_required:      confirmations_required,
         exchange_rate_adapter_names: exchange_rate_adapter_names,

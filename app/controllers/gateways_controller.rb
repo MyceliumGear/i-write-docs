@@ -78,11 +78,13 @@ class GatewaysController < ApplicationController
         :callback_url,
         :city,
         :confirmations_required,
-        :convert_currency_to,
-        :country,
+        :test_pubkey,
         :default_currency,
-        :description,
+        :test_mode,
+		    :convert_currency_to,
+		    :country,
         :exchange_rate_adapter_names,
+		    :description,
         :merchant_url,
         :name,
         :orders_expiration_period,
@@ -91,8 +93,6 @@ class GatewaysController < ApplicationController
         :regenerate_secret,
         :region,
         :widget,
-		:test_mdoe,
-		:test_pubkey,
       )
     end
 
