@@ -1,4 +1,4 @@
-.page.address_providers.index
+.page.exchanges.index
 
   - if current_user.admin?
     %h2.pageTitle= @page_title = "All exchanges"
@@ -7,6 +7,8 @@
 
   .actions
     = link_to "add exchange", new_address_provider_path, class: 'button small'
+
+  .clearfix
 
   .list
     - if @address_providers.present?
