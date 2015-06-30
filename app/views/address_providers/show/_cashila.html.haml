@@ -7,8 +7,9 @@
   .actions= link_to "Edit", edit_address_provider_path(@address_provider), class: 'button small'
   .clearfix
 
-  - if flash[:success]
-    .successfulSubmissionNote Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been created. As soon as the documents and information are verified, you'll be able to use this exchange to #{link_to "create Gateways", new_gateway_path} and #{link_to "Widgets", "/wizard" } that will convert to EUR and send money directly to your bank account. Remember, that if you already have a gateway or a widget, you will need to create a new one in order to use EUR payouts with it.
+  - if flash[:success].to_s.end_with? 'created'
+    .successfulSubmissionNote Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been created. Now you're able to use this exchange to #{link_to "create Gateways", new_gateway_path} and #{link_to "Widgets", "/wizard" } that will convert to EUR and send money directly to your bank account. Your payout limits will be adjusted as soon as the documents and information are verified. Remember, that if you already have a gateway or a widget, you will need to create a new one in order to use EUR payouts with it.
+  -#- elsif flash[:success].end_with? 'updated'
 
   %table
     %tr
@@ -21,7 +22,9 @@
 
   %h4 Details
   %table
+    - hidden_keys = %i{recipient_bic recipient_iban}.to_set
     - AddressProviders::Cashila::USER_DETAILS.each do |key|
+      - next if hidden_keys.include?(key) && @actual_state[key.to_s].blank?
       %tr
         %th= key.to_s.humanize
         %td= @actual_state[key.to_s]
