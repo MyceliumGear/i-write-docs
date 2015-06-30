@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     @orders = StraightServer::Order.reverse_order(:created_at)
     @orders = @orders.where(gateway_id: @gateways.map(&:straight_gateway_id)) if @gateways
     @orders = @orders.where(status: params[:status]) if params[:status]
+    @orders_filtered = @gateways || params[:status]
     @orders = @orders.extension(:pagination).paginate(params[:page].try(:to_i) || 1, 30)
 
     if current_user.admin? && params[:gateway_id].blank?
