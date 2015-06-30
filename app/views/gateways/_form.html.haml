@@ -1,10 +1,11 @@
 - btc_only_fields_style = @gateway.convert_currency_to == 'BTC' ? '' : 'display: none;'
 = simple_form_for(@gateway) do |f|
 
-  %p
-    If you wish to convert all payments into fiat money, you need to
-    %a{href: new_address_provider_path} configure exchange
-    first.
+  - if @current_user.address_providers.count == 0
+    %p
+      If you wish to convert all payments into fiat money, you need to
+      %a{href: new_address_provider_path} configure an exchange
+      first.
 
   = f.input :name
   = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
