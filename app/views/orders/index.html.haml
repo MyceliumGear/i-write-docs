@@ -1,6 +1,6 @@
 .page.orders.index
 
-  - if @orders.present?
+  - if @orders_filtered || @orders.present?
   
     - if @gateway
       - @page_title = "All orders for gateway #{@gateway.name}"
