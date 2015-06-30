@@ -59,12 +59,12 @@ class AddressProvidersController < ApplicationController
     end
   end
 
-  def destroy
-    if @address_provider.destroy
-      flash[:notice] = "#{@address_provider.display_name} exchange was deleted"
-    end
-    redirect_to address_providers_path
-  end
+  # def destroy
+  #   if @address_provider.destroy
+  #     flash[:notice] = "#{@address_provider.display_name} exchange was deleted"
+  #   end
+  #   redirect_to address_providers_path
+  # end
 
 
   private def address_provider_class

@@ -7,7 +7,7 @@ tmp/*
 !tmp
 log/*.log
 !log
-.sass-cache/
+/coverage
 
 # Ignore all .yml and .txt files in config, because they should obviously are env specific.
 config/*.yml

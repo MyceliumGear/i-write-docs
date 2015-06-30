@@ -57,6 +57,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov', require: false
   gem 'webmock', require: false
   gem 'vcr', require: false
   gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass'

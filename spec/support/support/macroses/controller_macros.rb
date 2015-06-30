@@ -1,5 +1,5 @@
 module ControllerMacros
-  
+
   def self.included(base)
     base.extend(ClassMethods)
   end
@@ -53,7 +53,7 @@ module ControllerMacros
           login_user(FactoryGirl.create(:admin))
           begin
             process(action, verb.to_s.upcase, {:id => create(resource_name), resource_name => attributes_for(resource_name)} , nil, nil)
-          rescue ActiveRecord::RecordNotFound 
+          rescue ActiveRecord::RecordNotFound
           end
           expect(response).to_not render_403
         end
@@ -68,7 +68,7 @@ module ControllerMacros
           yield(@current_user) if block_given?
           begin
             process(action, verb.to_s.upcase, {:id => 0} , nil, nil)
-          rescue ActiveRecord::RecordNotFound 
+          rescue ActiveRecord::RecordNotFound
             record_not_found = true
           end
           expect(response).to render_404 unless record_not_found
@@ -76,7 +76,7 @@ module ControllerMacros
       end
     end
 
-    def it_only_allows_resource_author_or_admin(actions, model_name, user_factory=:user)
+    def it_only_allows_resource_author_or_admin(actions, model_name, user_factory=:user, code: 403)
 
       get_actions_hash(actions).each do |action, verb|
 
@@ -85,9 +85,9 @@ module ControllerMacros
           process(action, verb.to_s.upcase, {:id => FactoryGirl.create(model_name)} , nil, nil)
           begin
             json_response = JSON.parse(response.body)
-            expect(json_response["error_code"]).to eq(403)
+            expect(json_response["error_code"]).to eq(code)
           rescue JSON::ParserError
-            expect(response).to render_403
+            expect(response).to send("render_#{code}")
           end
         end
 
@@ -95,7 +95,7 @@ module ControllerMacros
           login_user(FactoryGirl.create(:admin))
           begin
             process(action, verb.to_s.upcase, {:id => 0} , nil, nil)
-          rescue ActiveRecord::RecordNotFound 
+          rescue ActiveRecord::RecordNotFound
           end
           expect(response).to_not render_403
         end
@@ -109,7 +109,7 @@ module ControllerMacros
           end
           begin
             process(action, verb.to_s.upcase, {:id => 0} , nil, nil)
-          rescue ActiveRecord::RecordNotFound 
+          rescue ActiveRecord::RecordNotFound
           end
           expect(response).to_not render_403
         end

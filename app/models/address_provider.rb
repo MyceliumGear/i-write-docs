@@ -5,6 +5,8 @@ class AddressProvider < ActiveRecord::Base
   validates :user, presence: true
   validates :type, uniqueness: {scope: :user_id, message: "exchange of this type is already present"}
 
+  validate :validate_class
+
   def display_name
     name.presence || self.class.type
   end
@@ -30,5 +32,12 @@ class AddressProvider < ActiveRecord::Base
 
   def self.provider_types
     @provider_types ||= providers.map(&:type).to_set.freeze
+  end
+
+
+  private def validate_class
+    if instance_of?(AddressProvider)
+      errors.add :type, :invalid
+    end
   end
 end
