@@ -1,0 +1,175 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cashila-staging.com/api/v1/request-signup
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 09:33:39 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d02e9eaec9fa258c58c526ed1bf4c8d911435656819; expires=Wed, 29-Jun-16
+        09:33:39 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=8a0c4eb1-33f4-45d9-b8b3-91e9ac92561e; expires=Sat, 28-May-2016 09:33:39
+        GMT; path=/
+      - laravel_session=eyJpdiI6ImJWRFE3Vndhb2h4KzZoMTMrRXhIdFE9PSIsInZhbHVlIjoiSmNcLysyMklYNjl6ajArRVNyYmFcL2p3YkplNERqK1B3UnpVVmJmS25zNWhpTVhYdE1XQWZ6UFgxMUhpaTBOeTZaR1FSRlwvekpFYTNDdTZ4NE9wS0dTR0E9PSIsIm1hYyI6ImIwZWNiZmVlYjY0Yjc2MDg4OTllZTBjNzIyYzIyYjRkNjkwZDI4M2Q1NThjZTYwMzhkYWRlYTQ1NWEzYjIzZTAifQ%3D%3D;
+        expires=Tue, 30-Jun-2015 11:33:39 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe8def3ea270ce3-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":{"token":"ed97f9e9-08e5-41f1-9ecc-1160af2c5c99","secret":"9KVzB8NAMOWlIncXrUPTWUCQaOrMlwFhLq7Pt28wFQqaUne+4FzhKRA3pU3RsmOatsu4FUXu7qgigvr4sXYALw=="}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 09:33:38 GMT
+- request:
+    method: put
+    uri: https://cashila-staging.com/api/v1/account
+    body:
+      encoding: UTF-8
+      string: '{"account":{"email":"alerticus+spam3@gmail.com"},"verification":{"first_name":"Example","last_name":"Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","recipient_name":"Example
+        Xample","recipient_address":"somewhere","recipient_postal_code":"000000","recipient_city":"Vilnius","recipient_country_code":"LT","recipient_bic":"BPHKPLPK","recipient_iban":"LT121000011101001000"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Api-User:
+      - ed97f9e9-08e5-41f1-9ecc-1160af2c5c99
+      Api-Nonce:
+      - '1435656818712056'
+      Api-Sign:
+      - aSXHY63idXqF6sYhRqKXNwyQ0YugmJrHMY5E8omVG+S4pcRU2D8XjocibHnWcYyeJ8Y0BBiZb6rJ5NKNGzloBQ==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 09:33:41 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d05e3c4523929e52646043d4f0e1b46331435656820; expires=Wed, 29-Jun-16
+        09:33:40 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=38a9ba91-828d-415e-a9e7-e0da297d9869; expires=Sat, 28-May-2016 09:33:40
+        GMT; path=/
+      - laravel_session=eyJpdiI6ImJHZDRHQ2lDdHdyaGJLdExHbE9CbkE9PSIsInZhbHVlIjoiVjZ3TFFnU3R6MnpxXC8rbXZcL2NzYVpXVGFscmIwVlF3RlJTaHhicWxGY0JMd1M3ekhNVmk1SkVzWWFhU3hwTTNSMktQbWRkcjBaaFQyalwvWnUwYXFBZXc9PSIsIm1hYyI6IjQwYTk2NjBhMDcwOWZkMjhiMTRiYTQ1NGViOGZhNTQ0MGNiYjI3OGE1NmM2ODBlZDMzZDMzMTdjN2RkYWU3ZDAifQ%3D%3D;
+        expires=Tue, 30-Jun-2015 11:33:41 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe8def789221347-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":{}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 09:33:40 GMT
+- request:
+    method: put
+    uri: https://cashila-staging.com/api/v1/recipients
+    body:
+      encoding: UTF-8
+      string: '{"name":"Example Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","bic":"BPHKPLPK","iban":"LT121000011101001000"}'
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Api-User:
+      - ed97f9e9-08e5-41f1-9ecc-1160af2c5c99
+      Api-Nonce:
+      - '1435656820060292'
+      Api-Sign:
+      - vmxUUEPc366Y5822A717STlBzXHcSsfZl1iShvl48FSKALUC0dzWy+XyxcK2sXmqqcVObHJWYYP8a+Dd1euc9A==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 09:33:41 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d184b0bdd2538f1477287035c89e0bead1435656821; expires=Wed, 29-Jun-16
+        09:33:41 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=4a21b766-63f4-4c86-9e7d-4f474252dc4c; expires=Sat, 28-May-2016 09:33:41
+        GMT; path=/
+      - laravel_session=eyJpdiI6ImtUUjdlV1lcL2V6NTNOU1BjcE1rTGh3PT0iLCJ2YWx1ZSI6IkN0MFV5NmRxellDMkkzVEZ2ek5EVnFaZnpHNG1qVGZrOUt5NFMwVzZUTjgzZENYZnhQclNXUEFtZHNaMzlvSm9NdFc3RHBhM0tiS0hER2NhZEc0ZXFRPT0iLCJtYWMiOiI1MjBkZTJiNDZmNTc1NGVkNjgzZjkwYmRkYTlkMTk5MDI3MzdkNzdlYzdlN2UxOWNlN2Q4OTQyZjVjYTU1NDdjIn0%3D;
+        expires=Tue, 30-Jun-2015 11:33:41 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe8deffe551063a-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":{"id":"7f96aea2-3007-4b9b-b337-3b521506492a","name":"Example
+        Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","country_name":"Lithuania","last_used":"2015-06-30T09:33:41+0000"}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 09:33:40 GMT
+recorded_with: VCR 2.9.3

@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://cashila-staging.com/api/v1/request-signup
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Content-Length:
+      - '0'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 09:33:42 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d9a674b1d5c73dfc6b4c983d7131563af1435656822; expires=Wed, 29-Jun-16
+        09:33:42 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=87fd93c9-287e-4a2e-81ce-7fda59982f25; expires=Sat, 28-May-2016 09:33:42
+        GMT; path=/
+      - laravel_session=eyJpdiI6IktSa3BcL0JKNUNtYjhqMmRsRmRlcmNnPT0iLCJ2YWx1ZSI6IjB2Um1OTnIwelwvZWp2WEJ1aVowZDBVUThkd0NvQlNMS1V1U2ExWWV3dklVaEhwenc4NmJmTEdNR1NOWUdsNVFHWXVUZGgya1wvVEt0OGxpdlV3RFBZUFE9PSIsIm1hYyI6ImNlZDcwNGRmZDQxMWZhOGVmNDMxMjEwZmFhYjM1OTFkMGNlZjIwOTE1Zjc4MGI5MGU3YjEyNmRjNjg0NDM5NTEifQ%3D%3D;
+        expires=Tue, 30-Jun-2015 11:33:42 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe8df045da2135f-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":{"token":"3bd0846f-5b3c-4443-bbe4-c6a648f7442d","secret":"63pjbjj1B8\/EwPdEfhBXY45WRWyT+lAuR\/xx5ENcz78Nid2NpmuoYlYKbOftHQSlLd8QMyTkQ005kMti2BONUQ=="}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 09:33:41 GMT
+- request:
+    method: put
+    uri: https://cashila-staging.com/api/v1/account
+    body:
+      encoding: UTF-8
+      string: '{"account":{"email":"example@example.com"},"verification":{"first_name":"Example","last_name":"Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Api-User:
+      - 3bd0846f-5b3c-4443-bbe4-c6a648f7442d
+      Api-Nonce:
+      - '1435656821226776'
+      Api-Sign:
+      - a939PSR30keh/B0sbXYkm7hPu33e/bRrJmXe5HBhkx1ErJUc5MhvCeBDig4DG5mmSLqRMTj7/ORHi7HuyFOX6g==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 09:33:43 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d374723bdbb50295052d9c4be292d8c1f1435656822; expires=Wed, 29-Jun-16
+        09:33:42 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=2971c602-5180-406d-bb79-15865551914e; expires=Sat, 28-May-2016 09:33:43
+        GMT; path=/
+      - laravel_session=eyJpdiI6IloxeTZ1RksrdnVjTzhnN1ZJS3dGVlE9PSIsInZhbHVlIjoiZVZCVlVpOTM3RlA3VTFjZWtwdTVsbEtmVndtWEJOczM5bW00NEpKaXNVYXNvWTMwNlB0SHZGU2UyaDMrT3ErV1hscm1vY08yRnp4QmVLb3E3MXBzUHc9PSIsIm1hYyI6IjNlNDk1ZDEwNjQ4NzJlZjBmYzczZGQyZDU1YzRlNjI0NGE0MGI4YjAzNTY1MGVhZmFlODc1MWI4NTAwNmU5NjUifQ%3D%3D;
+        expires=Tue, 30-Jun-2015 11:33:43 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe8df0737ca0ce3-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"error":{"code":1012,"message":"Account Register params invalid","userMessage":"The
+        email format is invalid.","userMessageTitle":"Error","user_message":"The email
+        format is invalid.","user_message_title":"Error"}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 09:33:41 GMT
+recorded_with: VCR 2.9.3

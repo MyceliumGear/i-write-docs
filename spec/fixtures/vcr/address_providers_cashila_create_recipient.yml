@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: put
+    uri: https://cashila-staging.com/api/v1/account
+    body:
+      encoding: UTF-8
+      string: '{"account":{"email":"alerticus+spam4@gmail.com"},"verification":{"first_name":"Example","last_name":"Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","recipient_name":"Example
+        Xample","recipient_address":"somewhere","recipient_postal_code":"000000","recipient_city":"Vilnius","recipient_country_code":"LT","recipient_bic":"BPHKPLPK","recipient_iban":"LT121000011101001000"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Api-User:
+      - 8adcf09d-7390-4680-a7a1-0571fc3d436d
+      Api-Nonce:
+      - '1435658576698464'
+      Api-Sign:
+      - 44bfMU8itAJdj4QEZnKyA1ZGhEL0Qjds4t5Vx1+vLgmAzuW5maHssd2UisRlDd/9BCjxRzfSxoSO0HAiSvhpvg==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 10:02:58 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=d86365d75ed0db613e1af2b573be7bc0a1435658578; expires=Wed, 29-Jun-16
+        10:02:58 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=1bb87bff-0596-44af-8fef-21e199a61c66; expires=Sat, 28-May-2016 10:02:58
+        GMT; path=/
+      - laravel_session=eyJpdiI6IkFDSU9UaThhRkNUSjBWRkJrOXNXTWc9PSIsInZhbHVlIjoiS1hrK1htanh4NlRzV2RFZ1I2UTNYdldkcjhwUTdweU5OcTVJeWhcL0JNeXg4akpDNFphaENjMFFGYWhGaEhzRjltaWhYV2cycnExbVhjWlArdXdrZTd3PT0iLCJtYWMiOiIyZjFiOWMxODlhMmNjZGQzYWQ2ZGJiNDQzZmVlZTc0ZWFkNGRhMzc2OWQ4NTA2N2VhYzg4NDdhNDIzZDgwYjQ1In0%3D;
+        expires=Tue, 30-Jun-2015 12:02:58 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe909e32c10061c-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":{}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 10:02:57 GMT
+- request:
+    method: put
+    uri: https://cashila-staging.com/api/v1/recipients
+    body:
+      encoding: UTF-8
+      string: '{"name":"Example Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","bic":"BPHKPLPK","iban":"LT121000011101001000"}'
+    headers:
+      Content-Type:
+      - application/json
+      Api-Client:
+      - 92c91f99-c157-41cd-864b-1b675bfcf919
+      User-Agent:
+      - Faraday v0.9.1
+      Api-User:
+      - 8adcf09d-7390-4680-a7a1-0571fc3d436d
+      Api-Nonce:
+      - '1435658577283577'
+      Api-Sign:
+      - 0R3dfI55tuUit1xWSPoq0YRnU6s3yWIhW+Sjwn8s+RCxteSzDZJJ0VTv7ETBMAlVFSne5iSxbOfmP48pWW9c8Q==
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cloudflare-nginx
+      Date:
+      - Tue, 30 Jun 2015 10:02:59 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - __cfduid=de65e9ed22760b0a8b662a65fb4a154d21435658578; expires=Wed, 29-Jun-16
+        10:02:58 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=89795548-95a6-4551-b3fb-b73ac41ac656; expires=Sat, 28-May-2016 10:02:59
+        GMT; path=/
+      - laravel_session=eyJpdiI6InBxUlBFVWQ3WE5EblJ1a3VJZWthMkE9PSIsInZhbHVlIjoiXC9vdlNqbExJYkI1Q3RMSE5iZVFuM0Z6XC93SVwvdTZWSzd2UUY5VVF0QzVCdlk0bFVoMEhxb2hBelZmKzRObWZSMjR1Rndua2hxSUQ0REx5R1BaSUJuZVE9PSIsIm1hYyI6ImVhZjM0MmYyZjcxYjc1ZTBkOTA0NGU3NWU1MjMyYThlMjY2NDA5OGE5NzlhMWViNjcxMmY4N2ZmOTRmNDQxMDcifQ%3D%3D;
+        expires=Tue, 30-Jun-2015 12:02:59 GMT; path=/; httponly
+      X-Powered-By:
+      - PHP/5.4.39-0+deb7u2
+      Cache-Control:
+      - no-cache
+      X-Robots-Tag:
+      - noindex
+      Cf-Ray:
+      - 1fe909e6aec30cc5-LHR
+    body:
+      encoding: ASCII-8BIT
+      string: '{"result":{"id":"ecaac550-33e6-4a04-9923-23d6f4b53797","name":"Example
+        Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","country_name":"Lithuania","last_used":"2015-06-30T10:02:59+0000"}}'
+    http_version: 
+  recorded_at: Tue, 30 Jun 2015 10:02:57 GMT
+recorded_with: VCR 2.9.3
