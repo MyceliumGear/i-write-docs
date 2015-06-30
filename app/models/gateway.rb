@@ -26,9 +26,10 @@ class Gateway < ActiveRecord::Base
   validate          :validate_pubkey_is_bip32
   validate :validate_address_derivation_scheme
   validate :validate_default_currency
-  validate :validate_test_pubkey_in_test_mode
+  validate :validate_test_mode
 
   before_validation :decide_on_the_signature
+  before_validation :choose_test_mode, on: :create
   before_validation :assign_widget, on: :create
   before_save  :generate_secret
   before_create :create_straight_gateway
@@ -81,7 +82,7 @@ class Gateway < ActiveRecord::Base
   end
 
   def generate_addresses(range)
-    return if straight_gateway[:address_provider] != 'Bip32'
+    return if straight_gateway.address_provider_type != :Bip32
     provider = straight_gateway.address_provider
     range.map { |i| [i, provider.new_address(keychain_id: i)] }
   end
@@ -127,9 +128,20 @@ class Gateway < ActiveRecord::Base
       end
     end
 
-    def validate_test_pubkey_in_test_mode
-      if test_mode && test_pubkey.blank?
-        errors.add :test_pubkey, "can't be epmty if test mdoe activates"
+    def choose_test_mode
+      if address_provider.kind_of? AddressProviders::Cashila
+        self.test_mode = !Rails.env.production?
+      end
+      nil
+    end
+
+    def validate_test_mode
+      if address_provider.kind_of? AddressProviders::Cashila
+        if test_mode && Rails.env.production? || !test_mode && !Rails.env.production?
+          errors.add :test_mode, :invalid
+        end
+      elsif address_provider.blank? && test_mode && test_pubkey.blank?
+        errors.add :test_pubkey, "can't be blank if test mode is activated"
       end
     end
 
@@ -151,7 +163,7 @@ class Gateway < ActiveRecord::Base
     def straight_server_gateway_fields
       fields = {
         pubkey:                      pubkey.presence,
-        test_pubkey:                 test_pubkey,
+        test_pubkey:                 test_pubkey.presence,
         name:                        name,
         check_signature:             check_signature,
         default_currency:            default_currency,
