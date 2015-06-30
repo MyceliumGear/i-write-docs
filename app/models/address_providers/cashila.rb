@@ -60,6 +60,13 @@ module AddressProviders
         self.credentials = api_client.request_signup
       end
       api_client.sync_account(email: user.email, details: user_details)
+    rescue CashilaAPI::Client::ApiError => ex
+      if ex.message == 'User already exist'
+        errors.add :type, "Cashila account with the #{user.email} email already exist. Unfortunately, we cannot use it. You can change your email in the account details and submit this form again."
+        raise ActiveRecord::RecordInvalid.new(self)
+      else
+        raise
+      end
     end
 
     def upload_docs
