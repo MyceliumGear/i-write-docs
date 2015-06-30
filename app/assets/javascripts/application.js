@@ -25,8 +25,11 @@ jQuery(function($){
   $("select").chosen();
   $(".leftSidebar, .pageContent").matchHeight();
 
-  $("menu li").click(function() {
-    window.location = $("a", this).attr('href');
+  $('menu li').click(function(e) {
+    // http://www.jacklmoore.com/notes/click-events/
+    if (!(e.which > 1 || e.shiftKey || e.altKey || e.metaKey || e.ctrlKey)) {
+      window.location = $('a', this).attr('href');
+    }
   });
 
 });
