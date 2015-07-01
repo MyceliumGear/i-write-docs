@@ -86,8 +86,8 @@ class AddressProvidersController < ApplicationController
       required = params.require(:address_providers_cashila)
       required.permit(
         :name,
-        user_details: AddressProviders::Cashila::USER_DETAILS,
-        files:        AddressProviders::Cashila::FILES,
+        *AddressProviders::Cashila::USER_DETAILS,
+        files: AddressProviders::Cashila::FILES,
       )
     end
   end

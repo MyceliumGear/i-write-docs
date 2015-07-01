@@ -5,8 +5,8 @@ http_interactions:
     uri: https://cashila-staging.com/api/v1/account
     body:
       encoding: UTF-8
-      string: '{"account":{"email":"alerticus+spam4@gmail.com"},"verification":{"first_name":"Example","last_name":"Xample","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","recipient_name":"changed
-        name","recipient_address":"somewhere","recipient_postal_code":"000000","recipient_city":"Vilnius","recipient_country_code":"LT","recipient_bic":"BPHKPLPK","recipient_iban":"LT121000011101001000"}}'
+      string: '{"account":{"email":"alerticus+spam6@gmail.com"},"verification":{"city":"Vilnius","address":"somewhere","last_name":"Xample","first_name":"Example","postal_code":"000000","country_code":"LT","recipient_bic":"BPHKPLPK","recipient_city":"Vilnius","recipient_iban":"LT121000011101001000","recipient_name":"changed
+        name","recipient_address":"somewhere","recipient_postal_code":"000000","recipient_country_code":"LT"}}'
     headers:
       Content-Type:
       - application/json
@@ -15,11 +15,11 @@ http_interactions:
       User-Agent:
       - Faraday v0.9.1
       Api-User:
-      - 8adcf09d-7390-4680-a7a1-0571fc3d436d
+      - d9dd0855-38aa-42a2-acc4-436196862184
       Api-Nonce:
-      - '1435658577852438'
+      - '1435735989705550'
       Api-Sign:
-      - VrU1q7qwKQuj67HJocuN60JBS1/fUK75j1eILTLuvaWplqcn0aj4PmgI9dsybetvrYVf4ZaBQHWKU21CpjTH3A==
+      - skzbNu/eCTugxWPqMZvZqKRL7NNNLLaYYhSoglz/FCFEdV5SKZ6qmXSiXeCg3y8RKKggKsn6K24FssJtDPQPFw==
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -32,7 +32,7 @@ http_interactions:
       Server:
       - cloudflare-nginx
       Date:
-      - Tue, 30 Jun 2015 10:02:59 GMT
+      - Wed, 01 Jul 2015 07:33:09 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -40,12 +40,12 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=dfac6b3bfa5db5673a5cb6396aa0659651435658579; expires=Wed, 29-Jun-16
-        10:02:59 GMT; path=/; domain=.cashila-staging.com; HttpOnly
-      - cashila=5a62746d-8fd7-4db0-9852-d3d8717a18d6; expires=Sat, 28-May-2016 10:02:59
+      - __cfduid=da1c45887b6e051a84f89e8c6124662891435735989; expires=Thu, 30-Jun-16
+        07:33:09 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=50aafbe9-1374-472c-9600-f451ed17203b; expires=Sun, 29-May-2016 07:33:08
         GMT; path=/
-      - laravel_session=eyJpdiI6IkxzS3A5N2Yzd0RGejhVODN2bWpnc3c9PSIsInZhbHVlIjoiRUZnMlp4SVFZOWZvZStUNVpYY2Z3MGNPQTNhUzhia2Y5am40Rm5tMEZcL2Q1NW9HWHFMKzZSQTZNTnh1blRcLzlQN25TS2pHbmVDN0NZcERXeDVoaUV4dz09IiwibWFjIjoiY2RjMjgxZGE3M2NiNWQ4MTIxMzJlYWI4MjM5M2ViOThlNDk1Y2E2MmE4NmFjOTc1MTM5OWFjYjVjMmQzOWVkNyJ9;
-        expires=Tue, 30-Jun-2015 12:02:59 GMT; path=/; httponly
+      - laravel_session=eyJpdiI6InlMMVwvR3FCTUdoZTZOQ0NBNVhiVlVnPT0iLCJ2YWx1ZSI6IlZreWRQMzZMQzNYSktVd3NLZmQwc2dzNGRxSzNXejU2bGNqTmZjS3RRT2N3S2J0SXZ0NTNrTFI4MExiWnZBU05vK0wyYTFMdmFidlUxWDRhcDkzNmNBPT0iLCJtYWMiOiI5MDk5MDkyYjJkMThhYTBjZTE1Y2FhZWNkZGZlMzlmMWFmZDQ0OTIyMWZhMDYyNjA0OWYzZTgxYjNhZTU5MDM3In0%3D;
+        expires=Wed, 01-Jul-2015 09:33:08 GMT; path=/; httponly
       X-Powered-By:
       - PHP/5.4.39-0+deb7u2
       Cache-Control:
@@ -53,18 +53,19 @@ http_interactions:
       X-Robots-Tag:
       - noindex
       Cf-Ray:
-      - 1fe909ea39da0cdd-LHR
+      - 1ff06bcf571e0b87-LHR
     body:
       encoding: ASCII-8BIT
       string: '{"result":{}}'
     http_version: 
-  recorded_at: Tue, 30 Jun 2015 10:02:58 GMT
+  recorded_at: Wed, 01 Jul 2015 07:33:10 GMT
 - request:
     method: put
-    uri: https://cashila-staging.com/api/v1/recipients/ecaac550-33e6-4a04-9923-23d6f4b53797
+    uri: https://cashila-staging.com/api/v1/recipients/530b6137-a48c-4dee-a782-9985148508f1
     body:
       encoding: UTF-8
-      string: '{"name":"changed name","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","bic":"BPHKPLPK","iban":"LT121000011101001000"}'
+      string: '{"bic":"BPHKPLPK","city":"Vilnius","iban":"LT121000011101001000","name":"changed
+        name","address":"somewhere","postal_code":"000000","country_code":"LT"}'
     headers:
       Content-Type:
       - application/json
@@ -73,11 +74,11 @@ http_interactions:
       User-Agent:
       - Faraday v0.9.1
       Api-User:
-      - 8adcf09d-7390-4680-a7a1-0571fc3d436d
+      - d9dd0855-38aa-42a2-acc4-436196862184
       Api-Nonce:
-      - '1435658578406354'
+      - '1435735990181257'
       Api-Sign:
-      - t8eBCCpnkvemjZc7kJLkqfazuxoepX6yZrZ+qCEkmmF919wSa5vZUTv5eamFMrAGVIs5mJepgYbj2RnNX4j6uw==
+      - "+8y/Uh7NPAzwUiwdWBCNuJZinXcO5C8Fiw1RT5fpyszzgnf4Hf72L4Fmc5SruybYIl6wXrMLjQC65ZfMroDq0A=="
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -90,7 +91,7 @@ http_interactions:
       Server:
       - cloudflare-nginx
       Date:
-      - Tue, 30 Jun 2015 10:03:00 GMT
+      - Wed, 01 Jul 2015 07:33:10 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -98,12 +99,12 @@ http_interactions:
       Connection:
       - keep-alive
       Set-Cookie:
-      - __cfduid=dec763db938d425559323c095b787cfce1435658580; expires=Wed, 29-Jun-16
-        10:03:00 GMT; path=/; domain=.cashila-staging.com; HttpOnly
-      - cashila=29385e20-08e5-427c-8569-7f7e6fb771ce; expires=Sat, 28-May-2016 10:03:00
+      - __cfduid=d1e08988e7ca665aee3f18fcafe961b5a1435735990; expires=Thu, 30-Jun-16
+        07:33:10 GMT; path=/; domain=.cashila-staging.com; HttpOnly
+      - cashila=9dc66b73-72e9-45fe-8150-31bc8e892ab8; expires=Sun, 29-May-2016 07:33:09
         GMT; path=/
-      - laravel_session=eyJpdiI6IjJJbFJoaDBWTUpWbFhGeXVnVWx2SUE9PSIsInZhbHVlIjoidmlXWHVZYXNlVTRiTFpaZDkxa0RVOU94M1d4XC9kamNxelNzOVhMaTJoOUFTTk1jNzRhc21cL2NQemltMWpXclBLc3ZVRlQ5eHZ6QmRza3FlM0FIVWNkUT09IiwibWFjIjoiNWZjYjYxOGY3ZTVmMDQ4NTg5ODA2NTM1NTQxOGQxMTM1NzQ3OWU5MzhmM2U2NzFhY2Q5ODFkNzkwZjdjYzZjNiJ9;
-        expires=Tue, 30-Jun-2015 12:03:00 GMT; path=/; httponly
+      - laravel_session=eyJpdiI6Ik9WSm5DZVJTWEdVOFczMm02MG5SdUE9PSIsInZhbHVlIjoiMlg5TVl6bFwvM05kNGlHbVk2TDZGVW85N21JQUtmVm85NndCUkI1V2F4SmM0dHMreGN4SWtYNmxoaG45YzFRZ2Q5TlF5Z2lzaFl4VmZSUHphSUt1MExBPT0iLCJtYWMiOiI5NDQzMTRhZWZmMDZlOThkZTNmMmQ2YmU0NTFkODE1NDg0N2MwNzQyZjMwMmFlNGZjMmIwMTllOWQ1NTJkZDMyIn0%3D;
+        expires=Wed, 01-Jul-2015 09:33:09 GMT; path=/; httponly
       X-Powered-By:
       - PHP/5.4.39-0+deb7u2
       Cache-Control:
@@ -111,11 +112,11 @@ http_interactions:
       X-Robots-Tag:
       - noindex
       Cf-Ray:
-      - 1fe909ef63fe0622-LHR
+      - 1ff06bd2592c0b81-LHR
     body:
       encoding: ASCII-8BIT
-      string: '{"result":{"id":"ecaac550-33e6-4a04-9923-23d6f4b53797","name":"changed
-        name","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","country_name":"Lithuania","last_used":"2015-06-30T10:02:59+0000"}}'
+      string: '{"result":{"id":"530b6137-a48c-4dee-a782-9985148508f1","name":"changed
+        name","address":"somewhere","postal_code":"000000","city":"Vilnius","country_code":"LT","country_name":"Lithuania","last_used":"2015-07-01T07:33:08+0000"}}'
     http_version: 
-  recorded_at: Tue, 30 Jun 2015 10:02:59 GMT
+  recorded_at: Wed, 01 Jul 2015 07:33:10 GMT
 recorded_with: VCR 2.9.3
