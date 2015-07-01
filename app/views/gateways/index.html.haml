@@ -24,7 +24,7 @@
         - if current_user.admin?
           %th OWNER
         - @gateways.each do |g|
-          - key = g.test_mode ? g.test_pubkey : g.pubkey
+          - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
             %td <b>#{link_to g.name, g}</b>
             %td= g.active ? "Yes" : "No"
