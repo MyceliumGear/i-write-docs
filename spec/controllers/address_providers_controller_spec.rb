@@ -71,87 +71,76 @@ RSpec.describe AddressProvidersController, type: :controller do
 
     context "Cashila" do
 
-      it "creates address provider with docs, only one of this type" do
+      it "creates address provider with docs and recipient, only one of this type" do
         login_user
-        @current_user.update_column :email, 'alerticus+spam2@gmail.com'
-        VCR.use_cassette 'address_providers_cashila_create_with_docs' do
-          expect {
-            post :create, type: 'Cashila', address_providers_cashila: {user_details: build(:cashila_user_details), files: build(:cashila_files)}
-          }.to change { AddressProvider.count }.by 1
-        end
+        @current_user.update_column :email, 'alerticus+spam5@gmail.com'
+        details = build(:cashila_user_details).merge!(files: build(:cashila_files))
+        expect {
+          VCR.use_cassette 'address_providers_cashila_create' do
+            post :create, type: 'Cashila', address_providers_cashila: details
+          end
+        }.to change { AddressProvider.count }.by 1
         expect(@current_user.address_providers.count).to eq 1
         @cashila = @current_user.address_providers[0]
         expect(@cashila).to be_kind_of AddressProviders::Cashila
-        expect(@cashila.recipient_id).to be_nil
+        expect(@cashila.recipient_id).to be_present
+        VCR.use_cassette 'address_providers_cashila_status' do
+          @state = @cashila.actual_state
+          AddressProviders::Cashila::FILES.each do |key|
+            expect(@state[key.to_s]['present']).to eq true
+          end
+        end
         expect(response.headers['Location']).to end_with "/exchanges/#{@current_user.address_providers.ids[0]}"
 
         expect {
-          post :create, type: 'Cashila', address_providers_cashila: {user_details: {}}
+          post :create, type: 'Cashila', address_providers_cashila: build(:cashila_user_details)
         }.to change { AddressProvider.count }.by 0
         expect(assigns(:address_provider).errors.messages).to eq(type: ["exchange of this type is already present"])
         expect(response).to render_template(:new)
       end
 
-      it "creates address provider with recipient" do
-        login_user
-        @current_user.update_column :email, 'alerticus+spam3@gmail.com'
-        details = build(:cashila_user_details)
-        details.merge! build(:cashila_recipient_details)
-        VCR.use_cassette 'address_providers_cashila_create_with_recipient' do
-          expect {
-            post :create, type: 'Cashila', address_providers_cashila: {user_details: details}
-          }.to change { AddressProvider.count }.by 1
-        end
-        expect(@current_user.address_providers.count).to eq 1
-        @cashila = @current_user.address_providers[0]
-        expect(@cashila).to be_kind_of AddressProviders::Cashila
-        expect(@cashila.recipient_id).to be_present
-        expect(response.headers['Location']).to end_with "/exchanges/#{@current_user.address_providers.ids[0]}"
-      end
-
       it "does not create invalid address provider" do
         login_user
         @current_user.update_column :email, 'example@example.com' # invalid
-        VCR.use_cassette 'address_providers_cashila_create_invalid' do
-          expect {
-            post :create, type: 'Cashila', address_providers_cashila: {user_details: build(:cashila_user_details)}
-          }.to change { AddressProvider.count }.by 0
-        end
+        expect {
+          VCR.use_cassette 'address_providers_cashila_create_invalid' do
+            post :create, type: 'Cashila', address_providers_cashila: build(:cashila_user_details)
+          end
+        }.to change { AddressProvider.count }.by 0
         expect(response).to render_template(:new)
       end
 
       it "creates address provider without invalid recipient and allows to edit it" do
         login_user
-        @current_user.update_column :email, 'alerticus+spam4@gmail.com'
-        details = build(:cashila_user_details)
-        details.merge! build(:cashila_recipient_details)
-        details.delete :recipient_iban # invalid
-        VCR.use_cassette 'address_providers_cashila_create_with_invalid_recipient' do
-          expect {
-            post :create, type: 'Cashila', address_providers_cashila: {user_details: details}
-          }.to change { AddressProvider.count }.by 1
-        end
+        @current_user.update_column :email, 'alerticus+spam6@gmail.com'
+        details                  = build(:cashila_user_details)
+        details[:recipient_iban] = 123 # invalid
+        expect {
+          VCR.use_cassette 'address_providers_cashila_create_with_invalid_recipient' do
+            post :create, type: 'Cashila', address_providers_cashila: details
+          end
+        }.to change { AddressProvider.count }.by 1
         expect(@current_user.address_providers.count).to eq 1
         @cashila = @current_user.address_providers[0]
         expect(@cashila).to be_kind_of AddressProviders::Cashila
         expect(@cashila.recipient_id).to be_nil
         expect(response).to render_template(:edit)
 
-        details.merge! build(:cashila_recipient_details)
-        VCR.use_cassette 'address_providers_cashila_create_recipient' do
-          expect {
-            post :update, id: @cashila.id, address_providers_cashila: {user_details: details}
-          }.to change { AddressProvider.count }.by 0
-        end
+        details = build(:cashila_user_details)
+        expect {
+          VCR.use_cassette 'address_providers_cashila_create_recipient' do
+            post :update, id: @cashila.id, address_providers_cashila: details
+          end
+        }.to change { AddressProvider.count }.by 0
         @recipient_id = @cashila.reload.recipient_id
         expect(@recipient_id).to be_present
 
         details[:recipient_name] = 'changed name'
-        VCR.use_cassette 'address_providers_cashila_update_recipient' do
-          expect {
-            post :update, id: @cashila.id, address_providers_cashila: {user_details: details}
-          }.to change { AddressProvider.count }.by 0
-        end
+        expect {
+          VCR.use_cassette 'address_providers_cashila_update_recipient' do
+            post :update, id: @cashila.id, address_providers_cashila: details
+          end
+        }.to change { AddressProvider.count }.by 0
         @cashila.reload
         expect(@cashila.recipient_id).to eq @recipient_id
         expect(@cashila.recipient_name).to eq 'changed name'

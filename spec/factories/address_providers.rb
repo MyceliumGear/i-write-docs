@@ -5,25 +5,19 @@ FactoryGirl.define do
     factory :cashila_address_provider, class: 'AddressProviders::Cashila' do
       secret 'MA=='
       token 'uuid'
+      user_details { build(:cashila_user_details) }
     end
   end
 
   factory :cashila_user_details, class: HashWithIndifferentAccess do
     initialize_with {
       {
-        first_name:   'Example',
-        last_name:    'Xample',
-        address:      'somewhere',
-        postal_code:  '000000',
-        city:         'Vilnius',
-        country_code: 'LT',
-      }
-    }
-  end
-
-  factory :cashila_recipient_details, class: HashWithIndifferentAccess do
-    initialize_with {
-      {
+        first_name:             'Example',
+        last_name:              'Xample',
+        address:                'somewhere',
+        postal_code:            '000000',
+        city:                   'Vilnius',
+        country_code:           'LT',
         recipient_name:         'Example Xample',
         recipient_address:      'somewhere',
         recipient_postal_code:  '000000',
