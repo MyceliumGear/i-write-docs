@@ -133,8 +133,11 @@ jQuery(function($){
     if ($(this).val() == 'BTC') {
       $('.btc-only-fields').slideDown();
       $('.btc-only-fields .chosen-container').attr('style', 'width: 50%'); // it has 0 width if rendered hidden
+      $('select[name="gateway[default_currency]"]').val('USD').trigger('chosen:updated')
     } else {
       $('.btc-only-fields').slideUp();
+      var currency = $.trim($('select[name="gateway[convert_currency_to]"] option:selected').text().split('|')[0]);
+      $('select[name="gateway[default_currency]"]').val(currency).trigger('chosen:updated')
     }
   });
 
