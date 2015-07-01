@@ -28,16 +28,24 @@ class AddressProvidersController < ApplicationController
     klass                  = address_provider_class
     @address_provider      = klass.new(permitted_params(klass))
     @address_provider.user = @current_user
+    on_error = -> do
+      if @address_provider.persisted?
+        session["address_provider_partially_created_#{@address_provider.id}"] = true
+        render(:edit)
+      else
+        render(:new)
+      end
+    end
     begin
       @address_provider.sync_and_save
       flash[:success] = "Exchange successfully created"
       redirect_to address_provider_path(@address_provider)
     rescue ActiveRecord::RecordInvalid
       # form will render errors
-      @address_provider.persisted? ? render(:edit) : render(:new)
+      on_error.call
     rescue => ex
       flash.now[:error] = ex.message
-      @address_provider.persisted? ? render(:edit) : render(:new)
+      on_error.call
     end
   end
 
@@ -48,7 +56,11 @@ class AddressProvidersController < ApplicationController
     @address_provider.assign_attributes(permitted_params(@address_provider.class))
     begin
       @address_provider.sync_and_save
-      flash[:success] = "Exchange successfully updated"
+      if session.delete("address_provider_partially_created_#{@address_provider.id}")
+        flash[:success] = "Exchange successfully created"
+      else
+        flash[:success] = "Exchange successfully updated"
+      end
       redirect_to address_provider_path(@address_provider)
     rescue ActiveRecord::RecordInvalid
       # form will render errors
