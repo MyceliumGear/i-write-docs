@@ -6,17 +6,16 @@
   -#= f.input :name
 
   %h3 Fill in verification info
-  = f.simple_fields_for :user_details do |ud|
-    %table
-      %tr
-        %td= ud.input :first_name, input_html: {value: model.first_name}
-        %td= ud.input :last_name, input_html: {value: model.last_name}
-      %tr
-        %td= ud.input :address, input_html: {value: model.address}
-        %td= ud.input :postal_code, input_html: {value: model.postal_code, style: 'width: 100px;'}
-      %tr
-        %td= ud.input :city, input_html: {value: model.city}
-        %td= ud.input :country_code, selected: model.country_code, label: "Country"
+  %table
+    %tr
+      %td= f.input :first_name
+      %td= f.input :last_name
+    %tr
+      %td= f.input :address
+      %td= f.input :postal_code, input_html: {style: 'width: 100px;'}
+    %tr
+      %td= f.input :city
+      %td= f.input :country_code, label: "Country"
 
   = f.simple_fields_for :files do |d|
     %table
@@ -26,16 +25,15 @@
         %td= d.input :residence, as: :file, label: I18n.t('address_providers.cashila.residence')
 
   %h3 Fill in bank account info
-  = f.simple_fields_for :user_details do |rd|
-    = rd.input :recipient_name, input_html: {value: model.recipient_name}
-    %table
-      %tr
-        %td= rd.input :recipient_address, input_html: {value: model.recipient_address}
-        %td= rd.input :recipient_postal_code, input_html: {value: model.recipient_postal_code, style: 'width: 100px;'}
-      %tr
-        %td= rd.input :recipient_city, input_html: {value: model.recipient_city}
-        %td= rd.input :recipient_country_code, selected: model.recipient_country_code, label: "Recipient country"
-      %tr
-        %td= rd.input :recipient_bic, input_html: {value: model.recipient_bic}, label: 'BIC'
-        %td= rd.input :recipient_iban, input_html: {value: model.recipient_iban}, label: 'IBAN'
+  = f.input :recipient_name
+  %table
+    %tr
+      %td= f.input :recipient_address
+      %td= f.input :recipient_postal_code, input_html: {style: 'width: 100px;'}
+    %tr
+      %td= f.input :recipient_city
+      %td= f.input :recipient_country_code, label: "Recipient country"
+    %tr
+      %td= f.input :recipient_bic, label: 'BIC'
+      %td= f.input :recipient_iban, label: 'IBAN'
   = f.submit 'Submit'

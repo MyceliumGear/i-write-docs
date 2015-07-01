@@ -15,7 +15,7 @@
         —
         = provider.type
 
-  - if @address_provider && @address_provider.errors[:type]
+  - if @address_provider && @address_provider.errors[:type].present?
     %p.error= @address_provider.errors[:type].join(', ')
 
   - AddressProvider.providers.each do |provider|

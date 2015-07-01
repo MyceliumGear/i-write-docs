@@ -33,6 +33,8 @@ module AddressProviders
       recipient_id
     }
 
+    validates *USER_DETAILS, presence: true
+
     # @return [Hash] main keys: 'status', 'rejected_reason'
     def actual_state
       result = api_client.verification_status
