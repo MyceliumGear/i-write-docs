@@ -1,12 +1,12 @@
 .page.exchanges.index
 
   - if current_user.admin?
-    %h2.pageTitle= @page_title = "All exchanges"
+    %h2.pageTitle= @page_title = I18n.t("address_providers.index.all_exchanges")
   - else
-    %h2.pageTitle= @page_title = "Your exchanges"
+    %h2.pageTitle= @page_title = I18n.t("address_providers.index.your_exchanges")
 
   .actions
-    = link_to "add exchange", new_address_provider_path, class: 'button small'
+    = link_to I18n.t("address_providers.index.add_exchange"), new_address_provider_path, class: 'button small'
 
   .clearfix
 
@@ -14,9 +14,9 @@
     - if @address_providers.present?
 
       %table
-        %th NAME
+        %th= I18n.t("address_providers.index.name")
         - if current_user.admin?
-          %th OWNER
+          %th= I18n.t("address_providers.index.owner")
         - @address_providers.each do |provider|
           %tr
             %td= link_to provider.display_name, address_provider_path(provider)
@@ -27,5 +27,5 @@
 
     - else
       .noRecords
-        %h3 You have not created any exchanges yet
-        %p An exchange is an external service that will receive incoming Bitcoins and convert them into your currency of choice.
+        %h3= I18n.t("address_providers.index.no_records.title")
+        %p= I18n.t("address_providers.index.no_records.statement")

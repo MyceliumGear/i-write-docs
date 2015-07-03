@@ -1,10 +1,10 @@
-- @page_title = "Resend unlock instructions"
+- @page_title = I18n.t('page_title', scope: 'devise.unlocks.new')
 
 .page
 
   .formBlock
 
-    %h2 RESEND UNLOCK INSTRUCTIONS
+    %h2= I18n.t('header', scope: 'devise.unlocks.new')
 
     = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
       = f.error_notification
@@ -12,6 +12,6 @@
       .form-inputs
         = f.input :email, required: true, autofocus: true
       .form-actions
-        = f.button :submit, "Resend unlock instructions", class: 'onDark'
+        = f.button :submit, I18n.t('submit', scope: 'devise.unlocks.new'), class: 'onDark'
 
   = render "devise/shared/links"

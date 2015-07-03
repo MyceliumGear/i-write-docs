@@ -1,4 +1,4 @@
-- @page_title = "Edit #{@address_provider.display_name} | Exchanges"
+- @page_title = I18n.t("orders.address_providers.page_title", name: @address_provider.display_name )
 
 .page.address_providers.edit
   = render partial: "address_providers/forms/#{@address_provider.class.type.underscore}", locals: {provider: @address_provider, provider_class: @address_provider.class, hidden: false}

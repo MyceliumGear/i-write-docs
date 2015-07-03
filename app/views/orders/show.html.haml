@@ -7,41 +7,41 @@
   %table
 
     %tr
-      %th Amount (BTC)
+      %th= I18n.t("orders.show.amount_btc")
       %td= @order.amount_in_btc(as: :string)
 
     %tr
-      %th Paid Amount (BTC)
+      %th= I18n.t("orders.show.paid_amount_btc")
       %td= @order.amount_in_btc(field: @order.amount_paid, as: :string)
 
     %tr
-      %th Bitcoin payment address
+      %th= I18n.t("orders.show.bitcoin_payment_address")
       %td
         = @order.address
         - if @order.reused > 0
-          %b ( times reused: #{@order.reused} )
+          %b= I18n.t("orders.show.times_reused", count: @order.reused )
 
     %tr
-      %th Transaction id
+      %th= I18n.t("orders.show.transaction_id")
       %td= @order.tid
 
     %tr
-      %th Status
+      %th= I18n.t("orders.show.status")
       %td= StraightServer::Order::STATUSES.invert[@order.status]
 
     - if @order.data && @order.data.kind_of?(Hash) && @order.data[:exchange_rate]
       - exchange_rate = @order.data.delete(:exchange_rate)
       %tr
-        %th Exhange rate
+        %th= I18n.t("orders.show.exhange_rate")
         %td
-          Value at the time of purchase:
+          = Value I18n.t("orders.show.at_the_time_of_purchase")
           %b= "#{exchange_rate[:price]*@order.amount_in_btc} #{exchange_rate[:currency]}"
           ,
-          Current value:
+          = Current I18n.t("orders.show.value")
           %b= "#{@gateway.straight_gateway.current_exchange_rate(exchange_rate[:currency])*@order.amount_in_btc} #{exchange_rate[:currency]}"
 
     %tr
-      %th Data
+      %th= I18n.t("orders.show.data")
       %td
         - if @order.data && @order.data.kind_of?(Hash)
           - @order.data.each do |k,v|
@@ -51,9 +51,9 @@
           
 
     %tr
-      %th Callback response
+      %th= I18n.t("orders.show.callback_response")
       %td= @order.callback_response
 
     %tr
-      %th Created at
+      %th= I18n.t("orders.show.created_at")
       %td= @order.created_at

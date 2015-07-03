@@ -1,26 +1,28 @@
 .page.exchanges.show.cashila
 
   %h3
-    Exchange:
+    = I18n.t("address_providers.show.cashila.exchange")
     = @address_provider.display_name
 
-  .actions= link_to "Edit", edit_address_provider_path(@address_provider), class: 'button small'
+  .actions= link_to I18n.t("address_providers.show.cashila.edit"), edit_address_provider_path(@address_provider), class: 'button small'
   .clearfix
 
   - if flash[:success].to_s.end_with? 'created'
-    .successfulSubmissionNote Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been created. Now you're able to use this exchange to #{link_to "create Gateways", new_gateway_path} and #{link_to "Widgets", "/wizard" } that will convert to EUR and send money directly to your bank account. Your payout limits will be adjusted as soon as the documents and information are verified. Remember, that if you already have a gateway or a widget, you will need to create a new one in order to use EUR payouts with it.
+    .successfulSubmissionNote= I18n.t("address_providers.show.cashila.thank_your",
+                                      new_gateway: link_to("create Gateways", new_gateway_path)
+                                      widget: link_to("Widgets", "/wizard"))
   -#- elsif flash[:success].end_with? 'updated'
 
   %table
     %tr
-      %th Verification status
+      %th= I18n.t("address_providers.show.cashila.verification_status")
       %td= @actual_state['status']
     - if @actual_state['rejected_reason']
       %tr
-        %th Rejection reason
+        %th= I18n.t("address_providers.show.cashila.rejection_reason")
         %td= @actual_state['rejected_reason']
 
-  %h4 Details
+  %h4= I18n.t("address_providers.show.cashila.details")
   %table
     - hidden_keys = %i{recipient_bic recipient_iban}.to_set
     - AddressProviders::Cashila::USER_DETAILS.each do |key|
@@ -29,7 +31,7 @@
         %th= key.to_s.humanize
         %td= @actual_state[key.to_s]
 
-  %h4 Documents
+  %h4= I18n.t("address_providers.show.cashila.documents")
   - AddressProviders::Cashila::FILES.each do |key|
     %p
       = I18n.t("address_providers.cashila.#{key}")

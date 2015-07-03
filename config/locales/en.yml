@@ -1,4 +1,7 @@
 en:
+  common:
+    yes: "Yes"
+    no: "No"
   mailer:
     layout:
       settings: change notification settings
