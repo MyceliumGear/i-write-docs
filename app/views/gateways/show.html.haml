@@ -53,10 +53,10 @@
         %td= @gateway.address_provider.display_name
 
     - else
-
+      - key = @gateway.test_mode && @gateway.test_pubkey.present? ? @gateway.test_pubkey : @gateway.pubkey
       %tr
         %th BIP32 pubkey
-        %td= @gateway.pubkey.slice(0,16) + "..."
+        %td= key.slice(0,16) + "..."
 
       %tr
         %th Address derivation scheme
