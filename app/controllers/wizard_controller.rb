@@ -20,7 +20,7 @@ class WizardController < ApplicationController
       flash[:gateway_secret] = @gateway.secret
       redirect_to action: :step, step: 3, gateway_id: @gateway.id
     else
-      flash.now[:error] = "We've found errors in your form, please correct them and try again."
+      flash.now[:error] = I18n.t("create_gateway", scope: "wizard_controller.errors")
       render 'step2'
     end
   end

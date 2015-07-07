@@ -1,0 +1,6 @@
+---
+en:
+  application_controller:
+    errors:
+      403: "Error 403, you don't have permissions for this operation."
+      404: "Error 404, resource was not found."

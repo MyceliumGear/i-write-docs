@@ -10,7 +10,7 @@ class UpdatesController < ApplicationController
 
   def delivery
     if @update_item.sent_at 
-      notice = "UpdateItem was already send at #{@update_item.sent_at.strftime("%b %e, %Y")}"
+      notice = I18n.t("already_send", scope: "updates_controller", time: @update_item.sent_at.strftime("%b %e, %Y"))
       return redirect_to updates_path, notice: notice
     end
 
@@ -21,16 +21,16 @@ class UpdatesController < ApplicationController
     end
 
     @update_item.sent! if users.present?
-    redirect_to updates_path, notice: "#{users.count} users will get this update"
+    redirect_to updates_path, notice: I18n.t("users_count", scope: "updates_controller", count: users.count)
   end
 
   def deliver_unsent
     counters = UpdatesMailer.deliver_unsent_updates_later
     result = ''
     counters.each do |k, v|
-      result.concat "each of #{v} users will get #{k} updates; "
+      result.concat I18n.t("each_will_get", scope: "updates_controller", k: k, v: v)
     end
-    redirect_to updates_path, notice: result.presence || "No one will get no updates"
+    redirect_to updates_path, notice: result.presence || I18n.t("no_one_will_get", scope: "updates_controller")
   end
 
   def new
@@ -44,7 +44,7 @@ class UpdatesController < ApplicationController
     @update_item = UpdateItem.new(update_item_params)
 
     if @update_item.save
-      redirect_to updates_path, notice: 'UpdateItem was successfully created.'
+      redirect_to updates_path, notice: I18n.t("created", scope: "updates_controller.successfully")
     else
       render :new
     end
@@ -52,7 +52,7 @@ class UpdatesController < ApplicationController
 
   def update
     if @update_item.update(update_item_params)
-      redirect_to updates_path, notice: 'UpdateItem was successfully updated.'
+      redirect_to updates_path, notice: I18n.t("updated", scope: "updates_controller.successfully")
     else
       render :edit
     end
@@ -60,7 +60,7 @@ class UpdatesController < ApplicationController
 
   def destroy
     @update_item.destroy
-    redirect_to updates_url, notice: 'UpdateItem was successfully destroyed.'
+    redirect_to updates_url, notice: I18n.t("destroyed", scope: "updates_controller.successfully")
   end
 
   private

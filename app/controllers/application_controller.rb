@@ -46,14 +46,14 @@ class ApplicationController < ActionController::Base
     def render_403
       respond_to do |format|
         format.html { render file: "#{Rails.root}/public/403", status: 403, layout: false }
-        format.json { render json: { type: "error", message: "Error 403, you don't have permissions for this operation." } }
+        format.json { render json: { type: "error", message: I18n.t("403", scope: "application_controller.errors") } }
       end
     end
 
     def render_404
       respond_to do |format|
         format.html { render file: "#{Rails.root}/public/404", status: 404, layout: false }
-        format.json { render json: { type: "error", message: "Error 404, resource was not found." } }
+        format.json { render json: { type: "error", message: I18n.t("404", scope: "application_controller.errors") } }
       end
     end
 
