@@ -55,11 +55,11 @@ class Widget < ActiveRecord::Base
         fields.each do |f|
           if f =~ /["'<>]/
             fields_errors[f] ||= []
-            fields_errors[f] << "cannot contain the following characters: \", ', <, >"
+            fields_errors[f] << I18n.t("invalid_characters", scope: "widget.errors.fields")
           end
           if f.length < 2 || f.length > 30
             fields_errors[f] ||= []
-            fields_errors[f] << "must be between 2 and 30 characters long"
+            fields_errors[f] << I18n.t("length", scope: "widget.errors.fields")
           end
         end
 
