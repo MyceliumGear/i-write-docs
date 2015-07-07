@@ -27,8 +27,8 @@
           - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
             %td <b>#{link_to g.name, g}</b>
-            %td= g.active ? I18n.t("yes", scope: "common") : I18n.t("no", scope: "common")
-            %td= g.test_mode ? I18n.t("yes", scope: "common") : I18n.t("no", scope: "common")
+            %td= g.active ? I18n.t("positive") : I18n.t("negative")
+            %td= g.test_mode ? I18n.t("positive") : I18n.t("negative")
             %td= key.slice(0,16) + "..."
             %td= g.default_currency
             - if current_user.admin?

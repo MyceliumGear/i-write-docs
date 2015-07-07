@@ -20,3 +20,5 @@
   - if devise_mapping.omniauthable?
     - resource_class.omniauth_providers.each do |provider|
       %li= link_to I18n.t('sign_id_with', provider: provider.to_s.titleize, scope: 'devise.shared'), omniauth_authorize_path(resource_name, provider)
+  %br
+    %li= locale_selector

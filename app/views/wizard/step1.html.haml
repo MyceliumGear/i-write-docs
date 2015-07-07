@@ -6,7 +6,7 @@
 
     %p
       %b= I18n.t("header", scope: "wizard.step1.title")
-    %p= I18n.t("tip", scope: "wizard.step1.title", link_1: link_to(I18n.t("link_1", scope: "wizard.step1.title"), "/docs"), link_2: link_to(I18n.t("link_2", scope: "wizard.step1.title"), new_gateway_path))
+    %p= I18n.t("tip", scope: "wizard.step1.title", link_1: link_to(I18n.t("link_1", scope: "wizard.step1.title"), "/docs"), link_2: link_to(I18n.t("link_2", scope: "wizard.step1.title"), new_gateway_path)).html_safe
 
   .downloadWallets
 
@@ -21,7 +21,7 @@
         = link_to I18n.t("electrum_wallet", scope: "wizard.step1"), "https://electrum.org/#download"
   .clearfix
 
-  %h2= I18n.t("title", scope: "wizard.step1")
+  %h2= I18n.t("header", scope: "wizard.step1")
 
   %table.siteBackendTypesSelector
     %tr.icons

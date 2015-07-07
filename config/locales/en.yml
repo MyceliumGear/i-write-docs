@@ -1,7 +1,20 @@
 en:
-  common:
-    yes: "Yes"
-    no: "No"
+  not_found: "Error 404, resource was not found."
+  access_denied: "Error 403, you don't have permissions for this operation."
+  positive: "Yes"
+  negative: "No"
+  true: "Yes"
+  false: "No"
+  menu:
+    gateways: "GATEWAYS"
+    widgets: "WIDGETS"
+    orders: "ORDERS"
+    exchanges: "EXCHANGES"
+    account: "ACCOUNT"
+    documentation: "DOCUMENTATION"
+    two_factor_auth: "TWO FACTOR AUTH"
+    updates: "UPDATES"
+    sing_out: "SIGN OUT"
   mailer:
     layout:
       settings: change notification settings

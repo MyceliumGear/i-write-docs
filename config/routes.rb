@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
+  get 'locales/:locale', to: "locales#switch", as: :change_locale
 
 end

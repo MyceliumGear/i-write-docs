@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_unauthenticated_layout
   before_filter :prepare_menu
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_locale
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_404
 
@@ -19,6 +20,29 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+    def set_locale
+      I18n.locale = session[:locale] || preferred_language(I18n.available_locales, I18n.default_locale )
+    end
+
+    def preferred_language(supported_languages = [], default_language = :en)
+      preferred_languages = accepted_locales.select {|l|
+       (supported_languages || []).include?(l[0]) }
+      if preferred_languages.empty?
+        default_language
+      else
+        preferred_languages.last[0]
+      end
+    end
+
+    def accepted_locales(http_accept_language = request.env["HTTP_ACCEPT_LANGUAGE"])
+      return [] if http_accept_language.blank?
+      langs = http_accept_language.scan(/([a-zA-Z]{2,4})(?:-[a-zA-Z]{2})?(?:;q=(1|0?\.[0-9]{1,3}))?/).map do |pair|
+        lang, q = pair
+        [lang.to_sym, (q || '1').to_f]
+      end
+      langs.sort_by { |lang, q| q }.map { |lang, q| lang }.reverse
+    end
 
     # Chooses the right layout based on the config/layouts.yml file
     # which is NOT EXCLUDED from the version control.
@@ -46,14 +70,14 @@ class ApplicationController < ActionController::Base
     def render_403
       respond_to do |format|
         format.html { render file: "#{Rails.root}/public/403", status: 403, layout: false }
-        format.json { render json: { type: "error", message: I18n.t("403", scope: "application_controller.errors") } }
+        format.json { render json: { type: "error", message: I18n.t("access_denied") } }
       end
     end
 
     def render_404
       respond_to do |format|
         format.html { render file: "#{Rails.root}/public/404", status: 404, layout: false }
-        format.json { render json: { type: "error", message: I18n.t("404", scope: "application_controller.errors") } }
+        format.json { render json: { type: "error", message: I18n.t("not_found") } }
       end
     end
 
@@ -62,16 +86,16 @@ class ApplicationController < ActionController::Base
       updates_icon = current_user.has_unreaded_updates? && "new_updates" || "updates"
 
       mmmenu do |l1|
-        l1.add "GATEWAYS", gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ]
-        l1.add "WIDGETS",  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]]
-        l1.add "ORDERS",   orders_path
-        l1.add "EXCHANGES", address_providers_path, paths: [["/exchanges*"]]
-        l1.add "ACCOUNT",  edit_user_registration_path
-        l1.add "DOCUMENTATION", "/docs"
-        l1.add "TWO FACTOR AUTH", user_displayqr_path unless gauth_enabled_user?
-        l1.add "UPDATES", updates_path, icon: updates_icon
-        l1.add "SIGN OUT", destroy_user_session_path
-      end 
+        l1.add I18n.t("gateways", scope: "menu"), gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ], icon: 'gateways'
+        l1.add I18n.t("widgets", scope: "menu"),  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]], icon: 'widgets'
+        l1.add I18n.t("orders", scope: "menu"),   orders_path, icon: 'orders'
+        l1.add I18n.t("exchanges", scope: "menu"), address_providers_path, paths: [["/exchanges*"]], icon: 'exchanges'
+        l1.add I18n.t("account", scope: "menu"),  edit_user_registration_path, icon: 'account'
+        l1.add I18n.t("documentation", scope: "menu"), "/docs", icon: 'documentation'
+        l1.add I18n.t("two_factor_auth", scope: "menu"), user_displayqr_path, icon: 'two_factor_auth' unless gauth_enabled_user?
+        l1.add I18n.t("updates", scope: "menu"), updates_path, icon: updates_icon, icon: 'updates'
+        l1.add I18n.t("sing_out", scope: "menu"), destroy_user_session_path, icon: 'sign_out'
+      end
     end
 
     def after_sign_in_path_for(resource)

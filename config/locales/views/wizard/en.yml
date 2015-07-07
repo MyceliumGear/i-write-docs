@@ -17,7 +17,7 @@ en:
          These wallets support BIP32 pubkeys which Mycelium Gear can use to send your customer payments straight into your wallet.
       mycelium_wallet: "Install Mycelium wallet from Google Play"
       electrum_wallet: "Download Electrum wallet"
-      title: "Step 1: Choose what platform your website is running on?"
+      header: "Step 1: Choose what platform your website is running on?"
       table:
         wordpress: "It's a Wordpress Blog!"
         joomla: "It's on Joomla CMS!"
@@ -44,4 +44,44 @@ en:
           header: "Your site seems to be running something else besides Joomla or Wordpress."
           option: "Choose option 5."
         error: "We were unable to connect to the URL you specified, sorry."
+    step2:
+      page_title: "Add widget to your website"
+      title:
+        header: "Start accepting Bitcoin payments in three simple steps!"
+        tip: >
+          This wizard will guide through the process of adding the option to receive Bitcoin payments on your website.
+          It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to edit your website.
+      header: "Step 2: Fill in your wallet public key and a little info about your site."
+      need_address_provider: "If you wish to convert all payments into fiat money, you need to <a href='%{path}'>configure exchange</a> first."
+      pubkey:
+        label: 'BIP32 pubkey <a href="https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki" class="labelHint">What is BIP32?</a>'
+      video_tip: >
+        Watch a short video and learn how to export BIP32 pubkey from %{link_1} or %{link_2}.
+      wallets:
+        first: "Mycelium wallet Android, Electrum, myTREZOR"
+        second: "Mycelium wallet iOS"
+      receive_notifications: "Send notifications about new payments to my email"
+      links:
+        back: "Back"
+        next: "Next"
+    step3:
+      page_title: "Add widget to your website"
+      title:
+        header: "Start accepting Bitcoin payments in three simple steps!"
+        tip: >
+          This wizard will guide through the process of adding the option to receive Bitcoin payments on your website.
+          It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to edit your website.
+      header: "Step 3: Add the Mycelium Gear payment widget to your website."
+      instructions:
+        header: >
+          Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself.
+          Here's what you should do:
+        list:
+          first: "Upload that file onto your server"
+          second: "Repeat for every page you would like the widget to appear on"
+        hint: >
+          Watch our video explaining how to that:
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/c193UA3pErY" frameborder="0" allowfullscreen></iframe>
+        ending: "...and that's it!"
+
 

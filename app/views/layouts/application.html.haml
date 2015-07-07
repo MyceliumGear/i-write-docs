@@ -24,5 +24,6 @@
       .container
         .logo= link_to image_tag("mycelium_gear_admin_logo.png"), root_path
         %menu= build_mmmenu(@menu)
+        .container.lang= locale_selector
 
     = render partial: 'shared/google_analytics'

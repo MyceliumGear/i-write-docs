@@ -1,14 +1,14 @@
-- @page_title = "Add widget to your website"
+- @page_title = = I18n.t("page_title", scope: "wizard.step3")
 
 .page.wizard.step3
 
   .title
 
     %p
-      %b Start accepting Bitcoin payments in three simple steps!
-    %p This wizard will guide through the process of adding the option to receive Bitcoin payments on your website. It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to edit your website.
+      %b= I18n.t("header", scope: "wizard.step3.title")
+    %p= I18n.t("tip", scope: "wizard.step3.title")
 
-  %h1 Step 3: Add the Mycelium Gear payment widget to your website.
+  %h1= I18n.t("header", scope: "wizard.step3")
 
   = render partial: 'widgets/form'
   = render partial: 'widgets/preview'
@@ -17,13 +17,12 @@
 
     .installationInstructions
 
-      %p Since your website isn't built with either Wordpress or Shopify, you will need to insert the widget html code yourself. Here's what you should do:
+      %p= I18n.t("header", scope: "wizard.step3.instructions")
 
       %ol
-        %li Upload that file onto your server
-        %li Repeat for every page you would like the widget to appear on
+        %li= I18n.t("first", scope: "wizard.step3.instructions.list")
+        %li= I18n.t("second", scope: "wizard.step3.instructions.list")
 
-      %p Watch our video explaining how to that:
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/c193UA3pErY" frameborder="0" allowfullscreen></iframe>
+      %p= I18n.t("hint", scope: "wizard.step3.instructions")
 
-      %p ...and that's it!
+      %p= I18n.t("ending", scope: "wizard.step3.instructions")
