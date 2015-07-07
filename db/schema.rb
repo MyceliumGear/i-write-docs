@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707113148) do
+ActiveRecord::Schema.define(version: 20150707141105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150707113148) do
 
   create_table "gateways", force: :cascade do |t|
     t.integer  "confirmations_required",         default: 0,     null: false
-    t.string   "pubkey",                                         null: false
+    t.string   "pubkey"
     t.string   "name",                                           null: false
     t.string   "default_currency",               default: "BTC", null: false
     t.string   "callback_url"
