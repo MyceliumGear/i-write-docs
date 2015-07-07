@@ -95,12 +95,16 @@
       %td= @gateway.exchange_rate_adapter_names.join(", ") if @gateway.exchange_rate_adapter_names.present?
 
     %tr
+      %th= I18n.t("locale", scope: "gateways.show")
+      %td= @gateway.locale.humanize if @gateway.locale.present?
+
+    %tr
       %th= I18n.t("is_active", scope: "gateways.show")
-      %td= @gateway.active ? I18n.t("yes", scope: "common") : I18n.t("no", scope: "common")
-      
+      %td= @gateway.active ? I18n.t("positive") : I18n.t("negative")
+
     %tr
       %th= I18n.t("in_test_mode", scope: "gateways.show")
-      %td= @gateway.test_mode ? I18n.t("yes", scope: "common") : I18n.t("no", scope: "common")
+      %td= @gateway.test_mode ? I18n.t("positive") : I18n.t("negative")
 
     %tr
       %th= I18n.t("orders_stat", scope: "gateways.show")

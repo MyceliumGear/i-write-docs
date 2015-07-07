@@ -9,6 +9,9 @@
   = f.input :callback_url
   = f.input :orders_expiration_period
   = f.input :active
+  - if I18n.available_locales.many?
+    = f.input :locale do
+      = f.select :locale, I18n.available_locales.map { |l| [l.to_s, l.to_s]}, include_blank: true
 
   .formBlock
     %h3= I18n.t("currency_conversion_options", scope: "gateways.form")

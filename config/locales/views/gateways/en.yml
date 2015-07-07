@@ -81,4 +81,5 @@ en:
       in_test_mode: In test mode?
       orders_stat: Orders stat
       see_all_link: "See all orders for this gateway"
+      locale: "Gateway Locale"
       
