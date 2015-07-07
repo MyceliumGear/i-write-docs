@@ -24,7 +24,7 @@ class WidgetsController < ApplicationController
     end
 
     def widget_params
-      params.require(:widget).permit(:fields, :variable_price, :products_to_remove_ids, widget_products_attributes: [:title, :price, :singular], product_updates: [:id, :title, :price, :singular])
+      params.require(:widget).permit(:fields, :variable_price, :products_to_remove_ids, :theme, widget_products_attributes: [:title, :price, :singular], product_updates: [:id, :title, :price, :singular])
     end
 
     def check_if_gateway_owner

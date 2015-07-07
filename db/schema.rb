@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707141105) do
+ActiveRecord::Schema.define(version: 20150707170512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,7 @@ ActiveRecord::Schema.define(version: 20150707141105) do
     t.text     "fields"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "theme"
   end
 
   add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree

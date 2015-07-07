@@ -72,11 +72,14 @@ jQuery(function($){
       fields.push($(this).find("input.fieldName").val());
     });
 
+    var theme = $(".widget #theme").val();
+
     sendUpdateRequest({
       widget_products_attributes: new_products,
       product_updates: product_updates,
       fields: fields.join(','),
-      products_to_remove_ids: products_to_remove_ids.join(',')
+      products_to_remove_ids: products_to_remove_ids.join(','),
+      theme: theme
     });
 
   });
