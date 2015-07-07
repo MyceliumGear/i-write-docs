@@ -5,13 +5,9 @@
 
       .pure-u-12-24
         .container.products
-          %h3 Add widget products
+          %h3= I18n.t("header", scope: "widgets.form.products")
           %p.hint
-            You can add multiple items that you wish to sell &mdash; they will be displayed in a dropdown box inside the widget.
-            If you enter only one item, the widget will simply show that item's title and price (no dropdown).
-            You can also configure the widget to work as a donation tool by leaving this field blank,
-            which will cause it to only display a field to enter the desired donation amount.
-            Checkbox "Singular" means that product quantity field will not be shown.
+            = I18n.t("hint", scope: "widgets.form.products", singular: I18n.t("singular", scope: "widgets.form.products"))
 
           - @widget.products.each do |product|
 
@@ -20,32 +16,32 @@
               %input.price{type: 'text', value: product.price, class: ('error' unless product.errors[:price].blank?)}
               %label
                 %input.singular{type: 'checkbox', checked: product.singular?}
-                Singular
-              = image_tag "remove_icon.png", title: 'Remove this product', class: 'remove'
+                = I18n.t("singular", scope: "widgets.form.products")
+              = image_tag "remove_icon.png", title: I18n.t("remove_product", scope: "widgets.form.products"), class: 'remove'
               - unless product.errors.empty?
                 .errorMessage
                   - if product.errors[:title].present?
                     .message
-                      Title
+                      = I18n.t("title", scope: "widgets.form.products.errors")
                       = product.errors[:title].join(' and ')
                   - if product.errors[:price].present?
                     .message
-                      Price
+                      = I18n.t("price", scope: "widgets.form.products.errors")
                       = product.errors[:price].join(' and ')
 
           .product.item.new
-            %input.title{placeholder: "Product title", type: 'text'}
+            %input.title{placeholder: I18n.t("product_title", scope: "widgets.form.products"), type: 'text'}
             %input.price{placeholder: "#{@gateway.default_currency}", type: 'text'}
             %label
               %input.singular{type: 'checkbox', checked: true}
               Singular
-            = image_tag "add_icon.png", title: 'Add one more product', class: 'add'
+            = image_tag "add_icon.png", title: I18n.t("one_more_product", scope: "widgets.form.products"), class: 'add'
 
       .pure-u-12-24
         .container.fields
-          %h3 Add custom fields to the widget
+          %h3= I18n.t("header", scope: "widgets.form.fields")
           %p.hint
-            If you would like your customers to leave some additional info, such as their email or delivery address, you need to add these respective fields into your widget. If you do not set up at least an email field, customers will still be able to pay, but you will not be able to associate orders with customers.
+            = I18n.t("hint", scope: "widgets.form.fields")
 
           - if @widget.fields && !@widget.fields.empty?
             - @widget.fields.each do |field|
@@ -53,19 +49,19 @@
                 %input.fieldName{type: 'text', value: field, class: ('error' if @widget.error_for_custom_field(field))}
                 %label.required
                   = check_box_tag "field_required", 1, field =~ /\A\*/
-                  Field required
-                = image_tag "remove_icon.png", title: 'Remove this field', class: 'remove'
+                  = I18n.t("required", scope: "widgets.form.fields")
+                = image_tag "remove_icon.png", title: I18n.t("remove_field", scope: "widgets.form.fields"), class: 'remove'
                 - if @widget.error_for_custom_field(field)
                   .errorMessage= @widget.errors[:fields][0][field].join(' and ')
 
           .field.item.new
-            %input.fieldName{placeholder: "Field name, e.g. Email or Address", type: 'text'}
+            %input.fieldName{placeholder: I18n.t("field_name", scope: "widgets.form.fields"), type: 'text'}
             %label.required
               %input.checkbox(type="checkbox" name="field_required")
-              Field required
-            = image_tag "add_icon.png", title: 'Add one more field', class: 'add'
+              = I18n.t("required", scope: "widgets.form.fields")
+            = image_tag "add_icon.png", title: I18n.t("one_more_field", scope: "widgets.form.fields"), class: 'add'
 
     .formActions
-      %button.small.save Save
-      %button.small.cancel.disabled Cancel changes
-      .saveWarning You've made changes to the widget! Don't forget to save!
+      %button.small.save= I18n.t("save", scope: "widgets.form.actions")
+      %button.small.cancel.disabled= I18n.t("cancel", scope: "widgets.form.actions")
+      .saveWarning= I18n.t("warning", scope: "widgets.form.actions")

@@ -1,35 +1,25 @@
-- @page_title = "Checking order status manually | API Documentation"
+- @page_title = I18n.t("page_title", scope: "pages.docs.checking_order_status")
 
 .page.docs
 
-  %h1 #{ link_to "Documentation", "/docs"} / API / Checking order status manually
-
+  %h1
+  = I18n.t("header", scope: "pages.docs.checking_order_status", link: link_to(I18n.t("documentation", scope: "pages.docs.checking_order_status"), "/docs")).html_safe
   %p
-    Although being notified through a callback is the standard way of letting your
-    website know that an order status has changed, sometimes it may not be enough.
-    For example, your website may be down and may not be able to process the callback
-    at the time it was issued. Even though Mycelium Gear will keep attempting to issue new callback
-    requests to try and reach your website, it will only keep doing it for an hour, after which
-    it will quit.
-
+    = I18n.t("statement_1", scope: "pages.docs.checking_order_status")
   %p
-    Thus, it is important to have another reliable method of checking the status of orders.
-    To check the current status of an order, issue the following
-    %a{href: '/docs/signed_request'} signed
-    GET request:
+    = I18n.t("statement_2", scope: "pages.docs.checking_order_status").html_safe
 
   .code
     GET https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders/:payment_id
 
   %p
-    where <span class="code">:api_gateway_id</span> is the API id of your gateway, which you can look up
-    on its info page and <span class="code">:payment_id</span> is the way you identify your order (it was returned to you initially when you created the order). The response will return a json similar to what a callback might have passed to you via params:
+    = I18n.t("statement_3", scope: "pages.docs.checking_order_status").html_safe
+
 
   .code
     {"status": 2,<br/>"amount":7894000,<br/>"address":"1NZov2nm6gRCGW6r4q1qHtxXurrWNpPr1q",<br/>"tid":"f0f9205e41bf1b79cb7634912e86bb840cedf8b1d108bd2faae1651ca79a5838",<br/>"id":1,<br/>"payment_id":"y78033435ea02f024f9abdfd04adabe314a322a0d353c33beb3acb7d97f1bdeb",<br/>"amount_in_btc":"0.07894",<br/>"amount_paid_in_btc":"0.07894",<br/>"keychain_id":3,<br/>"last_keychain_id":3 }
 
   %p
-    You should use this manual check only if you suspect that you may have missed a callback.
-    It should not be standard practice to keep querying the Mycelium Gear server every few seconds just to check the status of a particular order.
+    = I18n.t("statement_4", scope: "pages.docs.checking_order_status")
 
     = render partial: 'pages/docs/navigation', locals: {page: 'checking_order_status'}

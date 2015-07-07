@@ -1,0 +1,47 @@
+en:
+  wizard:
+    step1:
+      page_title: "Add widget to your website"
+      title:
+        header: "Start accepting Bitcoin payments in three simple steps!"
+        link_1: "API documentation"
+        link_2: "proceed to create a gateway"
+        tip: >
+         This wizard will guide through the process of adding the option to receive Bitcoin payments on your website.
+          It's very simple and only requires you to have a Bitcoin wallet that supports BIP32 (Mycelium or Electrum) and access to edit your website.
+          If instead of adding a widget, you'd like to integrate payments using our API, please consult our %{link_1} and %{link_2}.
+      download:
+        header: "Download the wallet"
+        tip: >
+         Before you start, you first need to download and install either Mycelium or Electrum wallet.
+         These wallets support BIP32 pubkeys which Mycelium Gear can use to send your customer payments straight into your wallet.
+      mycelium_wallet: "Install Mycelium wallet from Google Play"
+      electrum_wallet: "Download Electrum wallet"
+      title: "Step 1: Choose what platform your website is running on?"
+      table:
+        wordpress: "It's a Wordpress Blog!"
+        joomla: "It's on Joomla CMS!"
+        drupal: "It's on Drupal CMS!"
+        modx: "It's on MODX CMS!"
+        html: "Custom website I have control over"
+        unknown: "I have no idea..."
+      form:
+        label: "Let's check what your website is running on. Insert your website URL:"
+        check_button: "Check it!"
+        wordpress:
+          header: "Your site is running on <b>Wordpress</b> blog engine."
+          option: "Choose option 1."
+        joomla:
+          header: "Your site is running on <b>Joomla</b> CMS."
+          option: "Choose option 2."
+        drupal:
+          header: "Your site is running on <b>Drupal</b> CMS."
+          option: "Choose option 3."
+        modx:
+          header: "Your site is running on <b>MODX</b> CMS."
+          option: "Choose option 4."
+        unknown:
+          header: "Your site seems to be running something else besides Joomla or Wordpress."
+          option: "Choose option 5."
+        error: "We were unable to connect to the URL you specified, sorry."
+

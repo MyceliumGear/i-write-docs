@@ -4,18 +4,18 @@ en:
     new:
       page_title: "New | Exchanges"
       adding_a_new_exchange: Adding a new exchange
-      statment_part_1: >
-              "An exchange is a third-party service that allows merchants to automatically exchange received bitcoins into fiat currency (EUR, USD etc). It then sends
+      statement_part_1: >
+              An exchange is a third-party service that allows merchants to automatically exchange received bitcoins into fiat currency (EUR, USD etc). It then sends
               it to the merchants bank account. In order for this to work, you need to provide
               verification information to the third party you will be using as an exchange.
               It usually consists of some ID scans, name, address and bank account information.
               Note that each exchange may need a slightly different set of verification
-              info."
-      statment_part_2: >
-              "When you submit that information, we securely send it to the exchange, which
+              info.
+      statement_part_2: >
+              When you submit that information, we securely send it to the exchange, which
               in turn verifies it. As soon as this process is completed, you'll be able
               to use this exchange to create gateways and widgets which can automatically
-              convert received bitcoins into the selected currency."
+              convert received bitcoins into the selected currency.
       currency: 'Select CURRENCY & EXCHANGE:'
     forms:
       cashila:
@@ -31,11 +31,11 @@ en:
         exchange: 'Exchange:'
         edit: Edit
         thank_your: >
-                    "Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been
+                    Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been
                     created. Now you're able to use this exchange to %{new_gateway} and #{widget} that will convert to EUR and send money directly to your bank account. Your payout limits
                     will be adjusted as soon as the documents and information are verified.
                     Remember, that if you already have a gateway or a widget, you will need
-                    to create a new one in order to use EUR payouts with it."
+                    to create a new one in order to use EUR payouts with it.
         verification_status: Verification status
         rejection_reason: Rejection reason
         details: Details

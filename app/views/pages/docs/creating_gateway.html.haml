@@ -1,38 +1,38 @@
-- @page_title = "Creating a new gateway | Documentation"
+- @page_title = I18n.t("page_title", scope: "pages.docs.creating_gateway")
 
 .page.docs
 
-  %h1 #{ link_to "Documentation", "/docs"} / Creating a new gateway
+  %h1= I18n.t("header", scope: "pages.docs.creating_gateway", link: link_to(I18n.t("link", scope: "pages.docs.creating_gateway"), "/docs")).html_safe
 
-  %p The first thing you will want to do after you sign up (and read the docs, of course) is to create a new <i>gateway</i>. Gateways are entities that create orders and process payments for a particular store. So, if you only have one online store, you will need to create one gateway.
+  %p= I18n.t("statement_1", scope: "pages.docs.creating_gateway")
 
-  %h2 Filling the form
+  %h2= I18n.t("header_2", scope: "pages.docs.creating_gateway")
 
-  %p To create a gateway, simply go to #{ link_to "this page", new_gateway_path } and fill out the form. Almost all of the fields are optional, and are explained below (required fields are marked with an asterisk *).
+  %p= I18n.t("statement_2", scope: "pages.docs.creating_gateway", link: link_to(I18n.t("link_2", scope: "pages.docs.creating_gateway"), new_gateway_path)).html_safe
 
   %ul.longText
 
-    %li <b>*Name</b> is what your customers will see at the top of the payment page when they try to make a purchase. It is also the name of the gateway that you see as a merchant in the admin panel. While it does not affect anything in particular, it's a good idea to put something meaningful in there.
+    %li= I18n.t("name", scope: "pages.docs.creating_gateway.long_text").html_safe
 
-    %li <b>Confirmations required</b> should typically be set to 0, unless you expect large payment amounts. In Bitcoin, each transaction is considered completely settled only when you have 6 confirmations (which may take about an hour). However, you can still assume with a degree of certainty that the payment will get processed and settled in one hour as soon as the transaction has been broadcasted to the Bitcoin network. You generally don't want your customers to wait, thus the current industry standard is to accept transactions with 0 confirmations. That way, as soon as your customer sends money from his wallet, we can detect that transaction and redirect him back to your website.
+    %li= I18n.t("confirmations", scope: "pages.docs.creating_gateway.long_text").html_safe
 
     %li
-      <b>*BIP32 pubkey</b> is the most important of the fields, and looks similar to this (beginning with xpub):
+      = I18n.t("pub_key", scope: "pages.docs.creating_gateway.long_text").html_safe
       .code xpub6AHA9hZDN11k2ijHMeS5QqHx2KP9aMBRhTDqANMnwVtdyw2TDYRmF8PjpvwUFcL1Et8Hj59S3gTSMcUQ5gAqTz3Wd8EsMTmF3DChhqPQBnU 
-      It is based on Bitcoin BIP32 standard, and is derived from your wallet's private key. Mycelium Gear uses it to generate new address for each new order. Not all wallets support BIP32, but two of the most popular ones &mdash; #{ link_to "Mycelium", "https://mycelium.com/bitcoinwallet" } and #{ link_to "Electrum", "https://electrum.org" } &mdash; do. You must use a wallet that supports BIP32 to use Mycelium Gear. If you're not sure how to obtain a BIP32 public key from either of these wallets, these short videos explain how to do that #{ link_to "for Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4" } and #{ link_to "for Mycelium", "https://www.youtube.com/watch?v=-CN_I8vfEL4" }.
+      = I18n.t("pub_key_2", scope: "pages.docs.creating_gateway.long_text", link_1: link_to("Mycelium", "https://mycelium.com/bitcoinwallet"), link_2: link_to("Electrum", "https://electrum.org"), link_3: link_to("for Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4"), link_4: link_to("for Mycelium", "https://www.youtube.com/watch?v=-CN_I8vfEL4")).html_safe
 
-    %li <b>Order expiration period</b> is the period of time during which a customer has to pay for the order. If he does not pay in time, the order is considered expired. The default is 900 seconds (15 minutes) which is an industry standard.
+    %li= I18n.t("order", scope: "pages.docs.creating_gateway.long_text").html_safe
 
-    %li <b>Active</b> flag simply means that this gateway is currently ready to process payments. If you need to temporarily stop accepting payments, you can always come back to that form (edit the existing gateway) and uncheck that checkbox.
+    %li= I18n.t("active", scope: "pages.docs.creating_gateway.long_text").html_safe
 
-    %li <b>Currency conversion options</b> section allows you to choose what currency your order prices are displayed in, and which bitcoin price source to use to convert that value into the appropriate amount of bitcoins. The default setting is USD and you probably want to leave it that way, since the Bitcoin exchange rate can fluctuate substantially, making it inconvenient to set prices in BTC. The exchange rate provider fields allow you to choose which sources to use for the current exchange rate. exchange rates are checked in the order set here, with subsequent providers only checked if the previous provider is unavailable for some reason.
+    %li= I18n.t("currency", scope: "pages.docs.creating_gateway.long_text").html_safe
 
-    %li <b>Additional info about the merchant</b> block is completely optional, but we would prefer if merchants fill it, since this will help us provide our customers with better service. This information is not used for compliance &mdash; Mycelium Gear does not handle any money (just watches the transactions on the blockchain) and is not subject to AML/KYC &mdash; and we do not share this information with anyone.
+    %li= I18n.t("info", scope: "pages.docs.creating_gateway.long_text").html_safe
 
-  %h2 Getting the gateway secret
+  %h2= I18n.t("secret", scope: "pages.docs.creating_gateway.gateway").html_safe
 
-  %p After you click the "Create gateway" button below the form, if all fields are valid, you will be redirected to the gateway info page and will be presented with a <i>gateway secret</i>. <b>You must write it down</b> as it will not appear again anywhere. If you ever lose that secret, you will need to come back to that form (edit the gateway) and check the "Regenerate secret" checkbox; however this will invalidate your previous secret and any of your online stores that were using it will have to update it to the new one.
+  %p= I18n.t("statement_1", scope: "pages.docs.creating_gateway.gateway").html_safe
 
-  %p The secret key is essentially a signature that all your requests to the gateway are signed with, which the gateway uses to verify that it's you who is talking to it, and not some impostor. We will explain how to use this secret key in detail in the next section.
+  %p= I18n.t("statement_2", scope: "pages.docs.creating_gateway.gateway").html_safe
 
   = render partial: 'pages/docs/navigation', locals: {page: 'creating_gateway'}

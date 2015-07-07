@@ -1,8 +1,8 @@
-- @page_title = "Signed request | API Documentation"
+- @page_title = I18n.t("page_title", scope: "pages.docs.signed_request")
 
 .page.docs
 
-  %h1 #{ link_to "Documentation", "/docs"} / API / Signed request
+  %h1= I18n.t("header", scope: "pages.docs.signed_request", link: link_to(I18n.t("link", scope: "pages.docs.signed_request"), "/docs")).html_safe
 
   :markdown
     #{render partial: 'pages/docs/md/signed_request.md'}

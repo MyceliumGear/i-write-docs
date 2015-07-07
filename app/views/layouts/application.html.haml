@@ -15,7 +15,8 @@
       .pageContent
         .topBar
           .container
-            Support: #{render partial: 'shared/support_email' }
+            = I18n.t('support', scope: 'layout')
+            = render partial: 'shared/support_email'
         .container
           = yield
 

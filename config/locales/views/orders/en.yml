@@ -15,8 +15,9 @@ en:
       no_records:
         title_html: 'Nobody created orders with your gateway <span class="regularText">%{name}</span> yet.'
         title: No one has created orders with your gateways yet.
-        statment: "An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set)."
+        statement: "An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set)."
     show:
+      header: "Order %{title} #%{keychain}, for "
       amount_btc: Amount (BTC)
       paid_amount_btc: Paid Amount (BTC)
       bitcoin_payment_address: Bitcoin payment address
@@ -24,8 +25,8 @@ en:
       transaction_id: Transaction id
       status: Status
       exhange_rate: Exhange rate
-      at_the_time_of_purchase: 'at the time of purchase:'
-      value: 'value:'
+      at_the_time_of_purchase: 'Value at the time of purchase:'
+      value: 'Current value:'
       data: Data
       callback_response: Callback response
       created_at: Created at

@@ -40,6 +40,6 @@
       .noRecords
         %h3= I18n.t("title", scope: "gateways.index.no_records", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
         - if params[:widget]
-          = I18n.t("widget", scope: "gateways.index.no_records.statment")
+          = I18n.t("widget", scope: "gateways.index.no_records.statement")
         - else
-          %p= I18n.t("gateway", scope: "gateways.index.no_records.statment")
+          %p= I18n.t("gateway", scope: "gateways.index.no_records.statement")

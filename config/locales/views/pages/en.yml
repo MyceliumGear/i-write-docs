@@ -1,0 +1,223 @@
+---
+en:
+  pages:
+    docs:
+      callback:
+        page_titile: "Receiving order status change callback | API Documentation"
+        header: "%{link} / API / Receiving order status change callback"
+        documentation: "Documentation"
+      checking_order_status:
+        page_title: "Checking order status manually | API Documentation"
+        header: "%{link} / API / Checking order status manually"
+        documentation: "Documentation"
+        statement_1: >
+          Although being notified through a callback is the standard way of letting your
+          website know that an order status has changed, sometimes it may not be enough.
+          For example, your website may be down and may not be able to process the callback
+          at the time it was issued. Even though Mycelium Gear will keep attempting to issue new callback
+          requests to try and reach your website, it will only keep doing it for an hour, after which
+          it will quit.
+        statement_2: >
+          Thus, it is important to have another reliable method of checking the status of orders.
+          To check the current status of an order, issue the following
+          <a href = '/docs/signed_request'> signed </a>
+          GET request:
+        statement_3: >
+          where <span class="code">:api_gateway_id</span> is the API id of your gateway, which you can look up
+          on its info page and <span class="code">:payment_id</span> is the way you identify your order (it was
+           returned to you initially when you created the order). The response will return a json similar to what
+           a callback might have passed to you via params:
+        statement_4: >
+          You should use this manual check only if you suspect that you may have missed a callback.
+          It should not be standard practice to keep querying the Mycelium Gear server every few seconds just to check the status of a particular order.
+      creating_gateway:
+        page_title: "Creating a new gateway | Documentation"
+        link: "Documentation"
+        header: "%{link} / Creating a new gateway"
+        statement_1: "The first thing you will want to do after you sign up (and read the docs, of course) is to create a new <i>gateway</i>. Gateways are entities that create orders and process payments for a particular store. So, if you only have one online store, you will need to create one gateway."
+        header_2: "Filling the form"
+        link_2: "this page"
+        statement_2: "To create a gateway, simply go to %{link} and fill out the form. Almost all of the fields are optional, and are explained below (required fields are marked with an asterisk *)."
+        long_text:
+          name: "<b>*Name</b> is what your customers will see at the top of the payment page when they try to make a purchase. It is also the name of the gateway that you see as a merchant in the admin panel. While it does not affect anything in particular, it's a good idea to put something meaningful in there."
+          confirmations: "<b>Confirmations required</b> should typically be set to 0, unless you expect large payment amounts. In Bitcoin, each transaction is considered completely settled only when you have 6 confirmations (which may take about an hour). However, you can still assume with a degree of certainty that the payment will get processed and settled in one hour as soon as the transaction has been broadcasted to the Bitcoin network. You generally don't want your customers to wait, thus the current industry standard is to accept transactions with 0 confirmations. That way, as soon as your customer sends money from his wallet, we can detect that transaction and redirect him back to your website."
+          pub_key: "<b>*BIP32 pubkey</b> is the most important of the fields, and looks similar to this (beginning with xpub):"
+          pub_key_2: >
+            It is based on Bitcoin BIP32 standard, and is derived from your wallet's private key.
+            Mycelium Gear uses it to generate new address for each new order.
+            Not all wallets support BIP32, but two of the most popular ones &mdash; %{link_1} and %{link_2} &mdash; do.
+            You must use a wallet that supports BIP32 to use Mycelium Gear.
+            If you're not sure how to obtain a BIP32 public key from either of these wallets, these short videos explain how to do that %{link_3}
+            and %{link_4}.
+          order: "<b>Order expiration period</b> is the period of time during which a customer has to pay for the order. If he does not pay in time, the order is considered expired. The default is 900 seconds (15 minutes) which is an industry standard."
+          active: "<b>Active</b> flag simply means that this gateway is currently ready to process payments. If you need to temporarily stop accepting payments, you can always come back to that form (edit the existing gateway) and uncheck that checkbox."
+          currency: >
+            <b>Currency conversion options</b> section allows you to choose what currency your order prices are displayed in, and which bitcoin price source to use to convert that value into the appropriate amount of bitcoins.
+             The default setting is USD and you probably want to leave it that way, since the Bitcoin exchange rate can fluctuate substantially, making it inconvenient to set prices in BTC.
+             The exchange rate provider fields allow you to choose which sources to use for the current exchange rate.
+             Exchange rates are checked in the order set here, with subsequent providers only checked if the previous provider is unavailable for some reason.
+          info: >
+            <b>Additional info about the merchant</b> block is completely optional, but we would prefer if merchants fill it, since this will help us provide our customers with better service.
+            This information is not used for compliance &mdash; Mycelium Gear does not handle any money (just watches the transactions on the blockchain) and is not subject to AML/KYC &mdash; and we do not share this information with anyone.
+        gateway:
+          secret: "Getting the gateway secret"
+          statement_1: >
+            After you click the "Create gateway" button below the form, if all fields are valid, you will be redirected to the gateway info page and will be presented with a <i>gateway secret</i>.
+            <b>You must write it down</b> as it will not appear again anywhere.
+            If you ever lose that secret, you will need to come back to that form (edit the gateway) and check the "Regenerate secret" checkbox; however this will invalidate your previous secret and any of your online stores that were using it will have to update it to the new one.
+          statement_2: >
+            The secret key is essentially a signature that all your requests to the gateway are signed with, which the gateway uses to verify that it's you who is talking to it, and not some impostor.
+            We will explain how to use this secret key in detail in the next section.
+      creating_orders:
+        page_title: "Creating orders | API Documentation"
+        link: "Documentation"
+        header: "%{link} / API / Creating orders"
+      index:
+        page_title: "Documentation"
+        header: Documentation for Mycelium Gear payment processor
+        link_1: simple payment widget
+        statement_1: >
+          This documentation is primarily aimed at developers who would like to integrate Bitcoin
+          payment processing into their online store or website. If you are not a developer, but would still like
+          to accept Bitcoin on your site, you can create a %{link} instead,
+          using our step-by-step guide.
+        statement_2: >
+          Mycelium Gear follows industry standards for processing payments,
+          so if you have ever dealt with integrating any payment gateway (not necessarily a Bitcoin one),
+          you should quickly understand how everything works and what to do.
+          For those who have never worked with payment processing,
+          we are going to explain every detail and demonstrate code examples.
+        statement_3: >
+          Mycelium Gear is built using %{link_1}
+          and %{link_2} open source software.
+          You may want to check the documentation for straight-server to better understand the underlying mechanisms,
+          but it is not necessary. Many of the things mentioned in straight-server documentation are also mentioned in
+          the current documentation.
+        header_2: Table of contents
+        api: API
+        links:
+          payment_proccessing: Overview of payment processing
+          new_gateway: Creating a new gateway
+          signed_request: Signed request
+          creating_orders: Creating orders
+          callback: Receiving order status change callback
+          order_status: Checking order status manually
+          websocket: Order websocket
+          order_cancellation: Order cancellation
+          last_keychain: Receiving last keychain id for gateway
+      last_keychain_id:
+        page_title: "Receiving last keychain id from specific gateway | API Documentation"
+        link: "Documentation"
+        header: "%{link} / API / Receiving last keychain id from specific gateway"
+        statement_1: "You can get last keychain id for a specific gateway with the following request:"
+        statement_2: "In response you can get something like:"
+      order_cancellation:
+        page_title: "Order cancellation | API Documentation"
+        link: "Documentation"
+        header: "%{link} / API / Order cancellation"
+      order_websocket:
+        page_title: "Order websocket | API Documentation"
+        link: "Documentation"
+        header: "%{link} / API / Order websocket"
+        statement_1: >
+          Another way to track an order status is to be continually connected to
+          its respective websocket. In fact, this is what the payment page that your customer
+          is redirected to does. However, you may decide you don't want to use the Mycelium Gear
+          payment page. Perhaps you would want to present your customer with your own customized
+          payment page that will be on your own site. Or even if you are using a standard payment page, your
+          backend software may still want to connect to the order's websocket instead of
+          waiting for a callback request.
+        statement_2: "To connect to the websocket, you should use the following URL:"
+        link_2: "checking order status manually"
+        statement_3: >
+          where 1 is your order id. When order status changes, the websocket returns you order data in json,
+          exactly the same data that would be returned as a response to a regular http request
+          %{link}.
+      signed_request:
+        page_title: "Signed request | API Documentation"
+        link: "Documentation"
+        header: "%{link} / API / Signed request"
+      overview:
+        page_title: "Overview of payment processing | Documentation"
+        link: "Documentation"
+        header: "%{link} / Overview of payment processing"
+        statement: >
+          This section describes some basic things about payment processing, as well as introduces terms that will be used in the following sections.
+          Some things described here are common to all payment processors, whereas others may not be.
+          After reading this section, you should have a good general understanding of how Mycelium Gear works, and will be able to proceed to the next sections.
+        faq:
+          first:
+            question: "Why do you need a payment processor?"
+            answer: >
+              A payment processor is used to handle payments for you &mdash; charge credit cards, for example &mdash; and then report back to your site or online store when a payment is completed.
+              When a user clicks "Pay" on your site, you redirect them to a special payment page on the payment processor website where they can input their credit card information and pay.
+              Then, when they complete (or cancel) the payment, the payment processor lets your site know via a <i>callback</i> (sometimes called a <i>webhook</i>) and transfers the information about the payment by issuing an http request to your site.
+              It is then your site's duty to receive that information and process it.
+          second:
+            question: "How do payment processors usually work?"
+            answer_1: >
+              For example, suppose you have a website called worldsbestshoes.com that accepts payments through VeryPay.com, a credit card payment processor.
+              A user picks his shoes, adds them to the "cart" on the site, and clicks "Complete purchase."
+              At this point, you redirect him to the
+            answer_2: >
+              There, the user sees a form into which he can type his credit card info.
+              Once he finishes entering it, he clicks "Pay."
+              As soon as he does that, VeryPay connects to his credit card company's API and attempts to charge the card.
+              If the operation was successful, it redirects the user back to your website (or shows him the button which will redirect him there manually) and also issues a callback (webhook) to
+            answer_3: >
+              where it sends (via POST parameters) all the info about the payment.
+              If the payment fails, it lets the customer know, and also issues a callback to the same URL at your site, but this time the payment info contains information about the fact that the payment failed.
+            answer_4: >
+              Your site then receives the payment information and, depending on whether it is okay or not, decides what to do.
+              If the payment went through, it marks the order in its own database as paid, and then your shipping department can start packing the shoes.
+              Or it may mark it as "payment failed," in which case you would probably want to offer your customer an option of trying again with a different credit card.
+          third:
+            question: "How is Bitcoin payment processing different?"
+            answer: >
+              The described process is almost identical to Bitcoin payments.
+              The only difference is that a customer doesn't need to provide any sensitive information, like a credit card number.
+              Instead, on the payment page, he sees a Bitcoin address (both written and as a QR code) and then can use his wallet to send money to that address.
+              It is then the payment processor's job to detect that the payment was made, notify the merchant, and redirect the customer back to the merchant site.
+              This is exactly what Mycelium Gear does.
+          fourth:
+            question: "Handling the money"
+            answer_1: >
+              The important question is: where does the money go when a payment is made?
+              Traditionally, with credit card payment processors, the money first goes from the customer's bank account to the payment processor's bank account, and only then goes to the merchant.
+              The problem with this system is that the payment processor has to accept and temporarily store the money on behalf of many different merchants, and be very confident in its ability to protect that money.
+              The merchant on the other hand must be willing to trust the payment processor.
+              Luckily, with Bitcoin, you can decouple storage of money and payment processing.
+              Using %{link_1}, 
+              Mycelium Gear can generate a new address from a public key you get from your Bitcoin wallet (either %{link_2}, 
+              or %{link_3}) for each payment invoice. 
+              That way, the money paid by a customer always goes directly from the customer's wallet into the merchant's wallet, while the payment processor simply watches the blockchain and checks whether that particular address received the bitcoins.
+              Merchants don't have to trust their payment processor and don't risk losing the money that is held on their behalf, and the merchant processor doesn't have to worry about the costs associated with securely storing money and customer data.
+            answer_2: >
+              Because of this, it is best to think of Mycelium Gear as a payment notification system rather than a payment processor.
+              We only watch the blockchain, we don't actually hold anyone's money.
+        terminology:
+          header: "Terminology"
+          statement: >
+            The next sections will explain exactly how you can integrate payment processing into your website or app. However, it is a good idea to get familiar with the terms that will be used first.
+          list:
+            first: >
+              <b>Payment processor</b> is a specialized software or service that integrates into your website and notifies it when a payment is made.
+              For Bitcoin payment processing, Mycelium Gear takes care of exchange rate conversion, various Bitcoin denominations, generating new bitcoin addresses, and monitoring the blockchain for payments.
+              Note that sometimes payment processors are also called <i>payment gateways</i>.
+              These terms are synonymous, however <i>a gateway</i> in our terminology will have a slightly more specific meaning.
+            second: >
+              A <b>Gateway</b> is an instance that is created in Mycelium Gear that processes all the payments for a particular store.
+              For example, you as a merchant may have two online stores.
+              You would then create two gateways in Mycelium Gear admin panel, and use each one for its respective website.
+            third: >
+              An <b>Order</b> is created each time your customer decides to pay.
+              An order is a data set that contains information such as an amount to be paid, a bitcoin address to which the payment will be sent, and many other things.
+              Each order is stored in our database, and is associated with a particular <i>Gateway</i> and merchant.
+              An order also has a status that can change. For example, a "paid" status is set when the associated Bitcoin address receives the correct amount.
+            fourth: >
+              A <b>Callback</b> is an http request that is issued by the <i>payment processor</i> whenever an <i>order</i> changes its status.
+              Each gateway allows you to set a URL to which this request is issued.
+              You have to program your site so that it can process this request, extract the necessary information, and make proper use of it.
+
+
+

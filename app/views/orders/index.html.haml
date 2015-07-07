@@ -3,47 +3,47 @@
   - if @orders_filtered || @orders.present?
   
     - if @gateway
-      - @page_title = I18n.t("orders.index.all_orders_for_gateway") + @gateway.name
+      - @page_title = I18n.t("all_orders_for_gateway", scope: "orders.index") + @gateway.name
       %h2.pageTitle
-        = I18n.t("orders.index.all_orders_for_gateway")
+        = I18n.t("all_orders_for_gateway", scope: "orders.index")
         %b= @gateway.name
     - else
-      %h2.pageTitle= @page_title = I18n.t("orders.index.all_orders_for_all_gateways")
+      %h2.pageTitle= @page_title = I18n.t("all_orders_for_all_gateways", scope: "orders.index")
 
     .actions
 
       .activeFilters
         - if @gateway
           .filter{ data: { filter_name: 'gateway_id'}}
-            = I18n.t("orders.index.gateway")
+            = I18n.t("gateway", scope: "orders.index")
             %b
               = @gateway.name
               %span.close &times;
         - if params[:status]
           .filter{ data: { filter_name: 'status'}}
-            = I18n.t("orders.index.status")
+            = I18n.t("status", scope: "orders.index")
             %b
               = StraightServer::Order::STATUSES.invert[params[:status].to_i]
               %span.close &times;
       .filters
         - if @gateways && @gateways.size > 1
-          %label= I18n.t("orders.index.gateway")
+          %label= I18n.t("gateway", scope: "orders.index")
           = select_tag "filter_by_gateway", options_from_collection_for_select(@gateways, "id", "name", ), include_blank: true
         - unless params[:status]
-          %label= I18n.t("orders.index.status")
+          %label= I18n.t("status", scope: "orders.index")
           = select_tag "filter_by_status", options_from_collection_for_select(StraightServer::Order::STATUSES.invert.to_a, 'first', 'last'), include_blank: true 
 
     .list
       %table
         %tr
-          %th(style="width: 90px;")= I18n.t("orders.index.amount_btc")
-          %th(style="width: 90px;")= I18n.t("orders.index.paid_amount_btc")
-          %th= I18n.t("orders.index.address")
+          %th(style="width: 90px;")= I18n.t("amount_btc", scope: "orders.index")
+          %th(style="width: 90px;")= I18n.t("paid_amount_btc", scope: "orders.index")
+          %th= I18n.t("address", scope: "orders.index")
           - unless @gateway
-            %th(style="width: 300px;")= I18n.t("orders.index.gateway")
-          %th(style="width: 70px;")= I18n.t("orders.index.value_at_the_time_of_purchase_html").html_safe
-          %th(style="width: 250px;")= I18n.t("orders.index.created_at")
-          %th(style="width: 50px;")= I18n.t("orders.index.status")
+            %th(style="width: 300px;")= I18n.t("gateway", scope: "orders.index")
+          %th(style="width: 70px;")= I18n.t("value_at_the_time_of_purchase_html", scope: "orders.index").html_safe
+          %th(style="width: 250px;")= I18n.t("created_at", scope: "orders.index")
+          %th(style="width: 50px;")= I18n.t("status", scope: "orders.index")
 
         - @orders.each do |o|
           %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { payment_id: o.payment_id, gateway_id: gateway_id_for_order(o) } }
@@ -53,7 +53,7 @@
               = o.address
               - if o.reused > 0
                 %sup
-                  = I18n.t("orders.index.reused")
+                  = I18n.t("reused", scope: "orders.index")
                   = o.reused
             - unless @gateway
               %td= o.gateway.name
@@ -70,8 +70,8 @@
 
     .noRecords
       - if @gateway
-        %h2= I18n.t("orders.index.no_records.title", name: @gateway.name)
+        %h2= I18n.t("title_html", name: @gateway.name, scope: "orders.index.no_records").html_safe
       - else
-        %h2= I18n.t("orders.index.no_one_has_created_orders_with_your_gateways_yet")
+        %h2= I18n.t("title", scope: "orders.index.no_records")
 
-      %p= I18n.t("orders.index.an_order_is_associated_with_something_that_you_sell_when_a_customer_wants_to_pay_for_an_item_an_order_is_created_in_the_database_this_order_includes_an_exact_amount_of_bitcoins_to_be_paid_a_bitcoin_payment_address_and_other_information_mycelium_gear_tracks_the_statuses_of_all_orders_and_when_your_customer_makes_a_payment_it_detects_the_transaction_and_changes_order_status_accordingly_also_issuing_a_callback_if_set")
+      %p= I18n.t("statement", scope: "orders.index.no_records")

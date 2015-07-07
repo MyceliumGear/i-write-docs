@@ -1,0 +1,5 @@
+en:
+  widget_payments_notification:
+    amount: "Amount:"
+    address: "address:"
+    transaction: "transaction:"
