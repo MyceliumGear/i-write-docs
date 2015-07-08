@@ -40,7 +40,6 @@
               %input.singular{type: 'checkbox', checked: true}
               Singular
             = image_tag "add_icon.png", title: 'Add one more product', class: 'add'
-
       .pure-u-12-24
         .container.fields
           %h3 Add custom fields to the widget
@@ -64,6 +63,14 @@
               %input.checkbox(type="checkbox" name="field_required")
               Field required
             = image_tag "add_icon.png", title: 'Add one more field', class: 'add'
+      .pure-u-12-24
+        .container.settings
+          %h3 Customize widget
+          %label.required
+            Theme
+          %br/
+          =select_tag :theme, options_for_select(["Red", "Black", "Gray"], selected: @widget.theme)
+
 
     .formActions
       %button.small.save Save
