@@ -1,0 +1,19 @@
+- @page_title = "Updates"
+.header
+  .logo
+    = image_tag 'https://gear.mycelium.com/images/mycelium_gear_logo.png'
+    beta
+  %h1 Updates
+  %p
+    - if @updates.blank?
+        Currently the are no updates
+    - else
+      %ul
+        - @updates.each do |update|
+          %li
+            = update.created_at.strftime(I18n.t('strftime.date'))
+            %b.subject(class="#{update.priority}")
+              = update.subject
+            %p= update.body.html_safe
+      = will_paginate @updates
+

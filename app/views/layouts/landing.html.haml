@@ -1,0 +1,8 @@
+!!!
+%html{lang: "en"}
+
+  %head
+    = display_meta_tags(site: 'Mycelium Gear - next generation Bitcoin payment processor', title: @page_title, reverse: true, description: @page_description, keywords: @page_keywords)
+    = stylesheet_link_tag 'https://gear.mycelium.com/stylesheets/site.css'
+
+  = yield

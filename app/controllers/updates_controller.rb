@@ -1,15 +1,23 @@
 class UpdatesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :index_for_langing_page
   before_action :authenticate_admin!, only: [:delivery, :new, :create, :edit, :update, :destroy]
   before_action :set_update_item, only: [:delivery, :edit, :update, :destroy]
   before_action :reset_last_read_update, only: :index
 
+
   def index
-    @updates = UpdateItem.newest_first.paginate(page: params[:page], per_page: 10)
+    @updates = find_records_for_index
+  end
+
+  def index_for_langing_page
+    @updates = find_records_for_index
+    respond_to do |format|
+      format.html {render :layout => 'landing'}
+    end
   end
 
   def delivery
-    if @update_item.sent_at 
+    if @update_item.sent_at
       notice = "UpdateItem was already send at #{@update_item.sent_at.strftime("%b %e, %Y")}"
       return redirect_to updates_path, notice: notice
     end
@@ -64,6 +72,10 @@ class UpdatesController < ApplicationController
   end
 
   private
+
+    def find_records_for_index
+      UpdateItem.newest_first.paginate(page: params[:page], per_page: 10)
+    end
 
     def set_update_item
       @update_item = UpdateItem.find(params[:id])

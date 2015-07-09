@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       post :deliver_unsent
     end
   end
+  get 'landing/updates', to: 'updates#index_for_langing_page'
 
   get  'wizard', to: 'wizard#step'
   post 'wizard', to: 'wizard#create_gateway'
