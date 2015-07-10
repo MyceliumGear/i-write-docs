@@ -10,10 +10,12 @@ class User < ActiveRecord::Base
   validates :updates_email_subscription_level, inclusion: {
     in: UpdateItem.priorities.values }, allow_nil: true
 
+  after_commit :deliver_devise_notifications # https://github.com/plataformatec/devise/issues/3550
+
   has_many :gateways
   has_many :address_providers
 
-  scope :subscribed_to, ->(level) { 
+  scope :subscribed_to, ->(level) {
     where("updates_email_subscription_level <= ?", UpdateItem.priorities[level])
   }
   scope :subscribed_to_updates, -> {
@@ -27,10 +29,13 @@ class User < ActiveRecord::Base
       last_read_update_id.to_i, updates_email_subscription_level])
   end
 
-  protected
 
-    def send_devise_notification(notification, *args)
-      devise_mailer.send(notification, self, *args).deliver_later
-    end
+  protected def send_devise_notification(notification, *args)
+    (@devise_notifications ||= []) << devise_mailer.send(notification, self, *args)
+  end
 
+  protected def deliver_devise_notifications
+    (@devise_notifications || []).each { |mail| mail.deliver_later }
+  end
 end
+
