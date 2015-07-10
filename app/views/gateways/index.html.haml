@@ -29,7 +29,7 @@
             %td <b>#{link_to g.name, g}</b>
             %td= g.active ? "Yes" : "No"
             %td= g.test_mode ? "Yes" : "No"
-            %td= key.slice(0,16) + "..."
+            %td= key.present? ? "#{key.to_s[0,16]}..." : 'N/A'
             %td= g.default_currency
             - if current_user.admin?
               %td= g.user.email
