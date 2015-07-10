@@ -19,7 +19,7 @@
           %th OWNER
         - @address_providers.each do |provider|
           %tr
-            %td= link_to "EUR through #{provider.display_name}", address_provider_path(provider)
+            %td= link_to "#{provider.currencies} through #{provider.display_name}", address_provider_path(provider)
             - if current_user.admin?
               %td= provider.user.email
 
