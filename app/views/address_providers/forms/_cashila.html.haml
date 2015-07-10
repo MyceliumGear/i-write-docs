@@ -1,11 +1,14 @@
 - html = {id: provider_class.type}
 - html[:style] = "display:none;" if hidden
 - model = provider || provider_class.new
+
 = simple_form_for(model, url: model.persisted? ? address_provider_path(model)  : address_providers_path, html: html) do |f|
   %input{type: 'hidden', name: 'type', value: provider_class.type}
   -#= f.input :name
 
   %h3 Fill in verification info
+
+  %p Gear exchanges BTC into EUR with the help of our European partner Cashila. In order to be able to receive fiat, you need to provide us with some verification info required by our partner.
   %table
     %tr
       %td= f.input :first_name

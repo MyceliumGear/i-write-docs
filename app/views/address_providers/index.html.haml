@@ -1,12 +1,12 @@
 .page.exchanges.index
 
   - if current_user.admin?
-    %h2.pageTitle= @page_title = "All exchanges"
+    %h2.pageTitle= @page_title = "All fiat payout channels"
   - else
-    %h2.pageTitle= @page_title = "Your exchanges"
+    %h2.pageTitle= @page_title = "Your fiat payout chaneels"
 
   .actions
-    = link_to "add exchange", new_address_provider_path, class: 'button small'
+    = link_to "Add fiat payout", new_address_provider_path, class: 'button small'
 
   .clearfix
 
@@ -19,7 +19,7 @@
           %th OWNER
         - @address_providers.each do |provider|
           %tr
-            %td= link_to provider.display_name, address_provider_path(provider)
+            %td= link_to "EUR through #{provider.display_name}", address_provider_path(provider)
             - if current_user.admin?
               %td= provider.user.email
 
@@ -27,5 +27,4 @@
 
     - else
       .noRecords
-        %h3 You have not created any exchanges yet
-        %p An exchange is an external service that will receive incoming Bitcoins and convert them into your currency of choice.
+        %h3 You have not created fiat payout channels

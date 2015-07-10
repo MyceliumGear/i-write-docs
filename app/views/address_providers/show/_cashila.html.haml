@@ -1,8 +1,8 @@
 .page.exchanges.show.cashila
 
   %h3
-    Exchange:
-    = @address_provider.display_name
+    Fiat payout channel:
+    = "EUR through #{@address_provider.display_name}"
 
   .actions= link_to "Edit", edit_address_provider_path(@address_provider), class: 'button small'
   .clearfix

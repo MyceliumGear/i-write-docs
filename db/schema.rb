@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20150707170512) do
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
     t.string   "address_derivation_scheme"
+    t.integer  "address_provider_id"
     t.boolean  "test_mode",                      default: false
     t.string   "test_pubkey"
-    t.integer  "address_provider_id"
   end
 
   add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree
