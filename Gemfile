@@ -30,6 +30,8 @@ gem 'sidetiq'
 gem 'cashila-api', github: 'MyceliumGear/cashila-api'
 gem 'kramdown'
 gem 'coderay'
+gem 'iban-tools', github: 'Absolight/iban-tools'
+gem 'bic_validation'
 
 gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
