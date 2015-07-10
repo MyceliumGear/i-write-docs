@@ -110,7 +110,20 @@ RSpec.describe AddressProvidersController, type: :controller do
         expect(response).to render_template(:new)
       end
 
-      it "creates address provider without invalid recipient and allows to edit it" do
+      it "does not create address provider with invalid recipient" do
+        login_user
+        @current_user.update_column :email, 'alerticus+spam6@gmail.com'
+        details                  = build(:cashila_user_details)
+        details[:recipient_iban] = 123 # invalid
+        expect {
+          VCR.use_cassette 'address_providers_cashila_create_with_invalid_recipient' do
+            post :create, type: 'Cashila', address_providers_cashila: details
+          end
+        }.to change { AddressProvider.count }.by 0
+        expect(response).to render_template(:new)
+      end
+
+      xit "creates address provider without invalid recipient and allows to edit it" do
         login_user
         @current_user.update_column :email, 'alerticus+spam6@gmail.com'
         details                  = build(:cashila_user_details)
