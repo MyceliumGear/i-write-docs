@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/Absolight/iban-tools.git
+  revision: f6591635f671dad99246b594ae4c47e068e69c00
+  specs:
+    iban-tools (1.0.0)
+
+GIT
   remote: git://github.com/MyceliumGear/cashila-api.git
   revision: 7e19e905c8037889515296802ca1b4f0a1787e2a
   specs:
@@ -100,7 +106,15 @@ GEM
     arel (6.0.0)
     async-rack (0.5.1)
       rack (~> 1.1)
+    banking_data (0.5.0)
+      activemodel
+      activesupport
+      smarter_csv
     bcrypt (3.1.10)
+    bic_validation (0.3.0)
+      activemodel
+      activesupport
+      banking_data
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     btcruby (1.0.3)
@@ -344,6 +358,7 @@ GEM
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
     slack-notifier (1.2.1)
+    smarter_csv (1.0.19)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
     spring (1.3.5)
@@ -400,6 +415,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bic_validation
   byebug
   cashila-api!
   coderay
@@ -413,6 +429,7 @@ DEPENDENCIES
   frontend_notifier
   haml-rails
   httparty
+  iban-tools!
   ice_nine
   jquery-rails
   kramdown

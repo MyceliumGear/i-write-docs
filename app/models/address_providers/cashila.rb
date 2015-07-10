@@ -34,6 +34,8 @@ module AddressProviders
     }
 
     validates *USER_DETAILS, presence: true
+    validates :recipient_bic, bic: true
+    validate :validate_iban
 
     # @return [Hash] main keys: 'status', 'rejected_reason'
     def actual_state
@@ -114,6 +116,14 @@ module AddressProviders
 
       serialize_attributes :marshal, :credentials
 
+    end
+
+    private def validate_iban
+      return if recipient_iban.blank?
+      iban_errors = IBANTools::IBAN.new(recipient_iban).validation_errors
+      unless iban_errors.empty?
+        errors.add :recipient_iban, "doesn't look like a IBAN (#{iban_errors.map { |err| err.to_s.humanize.downcase }.join(', ')})"
+      end
     end
   end
 end
