@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/Absolight/iban-tools.git
+  revision: f6591635f671dad99246b594ae4c47e068e69c00
+  specs:
+    iban-tools (1.0.0)
+
+GIT
   remote: git://github.com/MyceliumGear/cashila-api.git
   revision: 7e19e905c8037889515296802ca1b4f0a1787e2a
   specs:
@@ -47,11 +53,15 @@ PATH
   remote: vendor/gems/straight-server
   specs:
     straight-server (1.0.0)
+<<<<<<< HEAD
+=======
+      btcruby
+>>>>>>> 328bb41fc093000d884ee5c746005950b3851bb6
       faye-websocket
       goliath
       httparty
       logmaster (= 0.1.5)
-      money-tree (= 0.9.0)
+      redis
       ruby-hmac
       satoshi-unit
       sequel
@@ -100,10 +110,22 @@ GEM
     arel (6.0.0)
     async-rack (0.5.1)
       rack (~> 1.1)
+    banking_data (0.5.0)
+      activemodel
+      activesupport
+      smarter_csv
     bcrypt (3.1.10)
+    bic_validation (0.3.0)
+      activemodel
+      activesupport
+      banking_data
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+<<<<<<< HEAD
     btcruby (1.0.6)
+=======
+    btcruby (1.0.5)
+>>>>>>> 328bb41fc093000d884ee5c746005950b3851bb6
       ffi (~> 1.9, >= 1.9.3)
     builder (3.2.2)
     byebug (4.0.5)
@@ -227,9 +249,13 @@ GEM
       mina
     mini_portile (0.6.2)
     minitest (5.6.1)
+<<<<<<< HEAD
     money-tree (0.9.0)
       ffi
     multi_json (1.11.2)
+=======
+    multi_json (1.11.1)
+>>>>>>> 328bb41fc093000d884ee5c746005950b3851bb6
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nilify_blanks (1.2.1)
@@ -346,6 +372,7 @@ GEM
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
     slack-notifier (1.2.1)
+    smarter_csv (1.0.19)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
     spring (1.3.5)
@@ -402,6 +429,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bic_validation
   byebug
   cashila-api!
   coderay
@@ -415,6 +443,7 @@ DEPENDENCIES
   frontend_notifier
   haml-rails
   httparty
+  iban-tools!
   ice_nine
   jquery-rails
   kramdown
