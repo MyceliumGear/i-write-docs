@@ -53,15 +53,11 @@ PATH
   remote: vendor/gems/straight-server
   specs:
     straight-server (1.0.0)
-<<<<<<< HEAD
-=======
-      btcruby
->>>>>>> 328bb41fc093000d884ee5c746005950b3851bb6
       faye-websocket
       goliath
       httparty
       logmaster (= 0.1.5)
-      redis
+      money-tree (= 0.9.0)
       ruby-hmac
       satoshi-unit
       sequel
@@ -121,11 +117,7 @@ GEM
       banking_data
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-<<<<<<< HEAD
     btcruby (1.0.6)
-=======
-    btcruby (1.0.5)
->>>>>>> 328bb41fc093000d884ee5c746005950b3851bb6
       ffi (~> 1.9, >= 1.9.3)
     builder (3.2.2)
     byebug (4.0.5)
@@ -249,13 +241,9 @@ GEM
       mina
     mini_portile (0.6.2)
     minitest (5.6.1)
-<<<<<<< HEAD
     money-tree (0.9.0)
       ffi
     multi_json (1.11.2)
-=======
-    multi_json (1.11.1)
->>>>>>> 328bb41fc093000d884ee5c746005950b3851bb6
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     nilify_blanks (1.2.1)
