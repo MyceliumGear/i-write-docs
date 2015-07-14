@@ -17,7 +17,7 @@
 
             .product.item{ data: { product_id: product.id } }
               %input.title{type: 'text', value: product.title, class: ('error' unless product.errors[:title].blank?)}
-              %input.price{type: 'text', value: product.price, class: ('error' unless product.errors[:price].blank?)}
+              %input.price{type: 'number', value: product.price, max: 99999999, class: ('error' unless product.errors[:price].blank?)}
               %label
                 %input.singular{type: 'checkbox', checked: product.singular?}
                 Singular
@@ -35,7 +35,7 @@
 
           .product.item.new
             %input.title{placeholder: "Product title", type: 'text'}
-            %input.price{placeholder: "#{@gateway.default_currency}", type: 'text'}
+            %input.price{placeholder: "#{@gateway.default_currency}", type: 'number', max: 99999999}
             %label
               %input.singular{type: 'checkbox', checked: true}
               Singular
@@ -74,5 +74,5 @@
 
     .formActions
       %button.small.save Save
-      %button.small.cancel.disabled Cancel changes
+      %button.small.cancel.disabled(disabled) Cancel changes
       .saveWarning You've made changes to the widget! Don't forget to save!
