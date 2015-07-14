@@ -53,11 +53,12 @@ PATH
   remote: vendor/gems/straight-server
   specs:
     straight-server (1.0.0)
+      btcruby
       faye-websocket
       goliath
       httparty
       logmaster (= 0.1.5)
-      money-tree (= 0.9.0)
+      redis
       ruby-hmac
       satoshi-unit
       sequel
@@ -241,8 +242,6 @@ GEM
       mina
     mini_portile (0.6.2)
     minitest (5.6.1)
-    money-tree (0.9.0)
-      ffi
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
