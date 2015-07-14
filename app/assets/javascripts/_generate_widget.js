@@ -146,7 +146,7 @@ jQuery(function($){
 
   var show_save_widget_warning = function() {
     $(".widget .saveWarning").animate({ opacity: 1 });
-    $(".widget .cancel").removeClass('disabled');
+    $(".widget .cancel").removeClass('disabled').removeAttr('disabled');
   };
 
   $('input.gatewayId').focus(function(event) {
