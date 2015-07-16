@@ -149,6 +149,7 @@ class Gateway < ActiveRecord::Base
     end
 
     def validate_keys_in_place
+      return unless errors[:pubkey].blank?
       if pubkey.present? && BTC::Keychain.new(xpub: pubkey).network.testnet?
         errors.add :pubkey, "can't be key for testnet"
       end
