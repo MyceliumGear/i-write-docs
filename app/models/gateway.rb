@@ -22,11 +22,11 @@ class Gateway < ActiveRecord::Base
   validates :description, length: { maximum: 500 }
   validates :pubkey, presence: true, uniqueness: {allow_blank: true}, unless: :address_provider
   validates :test_pubkey, uniqueness: {allow_blank: true}
-  
 
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
+  validate :validate_keys_in_place
   validate :validate_address_derivation_scheme
   validate :validate_default_currency
   validate :validate_test_mode
@@ -145,6 +145,16 @@ class Gateway < ActiveRecord::Base
         end
       elsif address_provider.blank? && test_mode && test_pubkey.blank?
         errors.add :test_pubkey, "can't be blank if test mode is activated"
+      end
+    end
+
+    def validate_keys_in_place
+      return unless errors[:pubkey].blank?
+      if pubkey.present? && BTC::Keychain.new(xpub: pubkey).network.testnet?
+        errors.add :pubkey, "can't be key for testnet"
+      end
+      if test_pubkey.present? && BTC::Keychain.new(xpub: test_pubkey).network.mainnet? 
+        errors.add :test_pubkey, "can't be key for mainnet" 
       end
     end
 
