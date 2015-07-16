@@ -22,6 +22,10 @@ class Gateway < ActiveRecord::Base
   validates :description, length: { maximum: 500 }
   validates :pubkey, presence: true, uniqueness: {allow_blank: true}, unless: :address_provider
   validates :test_pubkey, uniqueness: {allow_blank: true}
+  validates :callback_url, length: { maximum: 2000 }
+  validates :merchant_url, length: { maximum: 2000 }
+  validates :city, length: { maximum: 100 }
+  validates :region, length: { maximum: 100 }
 
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'

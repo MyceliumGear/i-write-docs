@@ -40,3 +40,7 @@ h1 { font-size: 300%; line-height: 100%; }
 h2 { font-size: 250%; line-height: 100%; }
 
 p.explanation { color: $colors_gray; }
+
+.break-word {
+		word-wrap: break-word;
+}
