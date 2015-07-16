@@ -18,9 +18,11 @@ class Gateway < ActiveRecord::Base
   validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1800 }
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, length: { maximum: 100 }
+  validates :description, length: { maximum: 500 }
   validates :pubkey, presence: true, uniqueness: {allow_blank: true}, unless: :address_provider
   validates :test_pubkey, uniqueness: {allow_blank: true}
+  
 
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'

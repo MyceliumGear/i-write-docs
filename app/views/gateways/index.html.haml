@@ -26,7 +26,7 @@
         - @gateways.each do |g|
           - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
-            %td <b>#{link_to g.name, g}</b>
+            %td <b>#{link_to g.name.truncate(30), g}</b>
             %td= g.active ? "Yes" : "No"
             %td= g.test_mode ? "Yes" : "No"
             %td= key.present? ? "#{key.to_s[0,16]}..." : 'N/A'
