@@ -1,15 +1,14 @@
 #!/usr/bin/env ruby
 #
-# The application 'sidekiq' is installed as part of a gem, and
+# The application 'puma' is installed as part of a gem, and
 # this file is here to facilitate running it.
 #
 
 require_relative '../config/boot'
-require 'sidekiq/cli'
+require 'puma/cli'
 
 begin
-  cli = Sidekiq::CLI.instance
-  cli.parse(ENV['SIDEKIQ_OPTIONS'].to_s.empty? ? ARGV : ENV['SIDEKIQ_OPTIONS'].split(' '))
+  cli = Puma::CLI.new ARGV
   cli.run
 rescue => e
   raise e if $DEBUG

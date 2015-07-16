@@ -22,7 +22,8 @@ gem 'httparty'
 gem 'faraday'
 gem 'devise_google_authenticator'
 gem 'dotenv'
-gem 'sentry-raven', git: 'https://github.com/getsentry/raven-ruby.git'
+gem 'envied'
+# gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'roadie-rails'
 gem 'sinatra', require: nil
 gem 'sidekiq'
@@ -34,12 +35,19 @@ gem 'iban-tools', github: 'Absolight/iban-tools'
 gem 'bic_validation'
 gem 'jwt'
 
-gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
-gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'
+gem 'puma'
+gem 'rake'
+
+if ENV['BUILD_ROOT'].to_s.empty?
+  gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
+  gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'
+else
+  gem 'straight', git: "#{ENV['BUILD_ROOT']}/straight/.git", ref: ENV['STRAIGHT_REF']
+  gem 'straight-server', git: "#{ENV['BUILD_ROOT']}/straight-server/.git", ref: ENV['STRAIGHT_SERVER_REF']
+end
 
 
 group :development do
-  gem 'thin'
   gem 'mina'
   gem 'mina-sidekiq'
   gem 'slack-notifier'
@@ -65,7 +73,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'webmock', require: false
   gem 'vcr', require: false
-  gem 'database_cleaner', git: 'https://github.com/tommeier/database_cleaner', branch: 'fix-superclass'
-  gem 'timecop'
+  gem 'database_cleaner', github: 'tommeier/database_cleaner', branch: 'fix-superclass', require: false
+  gem 'timecop', require: false
   gem 'turn', require: false # Pretty printed test output
 end
