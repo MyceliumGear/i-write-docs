@@ -1,4 +1,8 @@
 .page.updates
+  
+  -  if current_user.admin?
+    = link_to 'New Update', new_update_path
+    = link_to 'Send unsent', deliver_unsent_updates_path, method: :post, data: {confirm: "Are you sure?"}
 
   - if @updates.blank?
 
@@ -29,6 +33,3 @@
 
     = will_paginate @updates
 
-  -  if current_user.admin?
-    = link_to 'New Update', new_update_path
-    = link_to 'Send unsent', deliver_unsent_updates_path, method: :post, data: {confirm: "Are you sure?"}
