@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707170512) do
+ActiveRecord::Schema.define(version: 20150717043659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,9 +53,9 @@ ActiveRecord::Schema.define(version: 20150707170512) do
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
     t.string   "address_derivation_scheme"
-    t.integer  "address_provider_id"
     t.boolean  "test_mode",                      default: false
     t.string   "test_pubkey"
+    t.integer  "address_provider_id"
   end
 
   add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree
@@ -124,9 +124,9 @@ ActiveRecord::Schema.define(version: 20150707170512) do
   create_table "widgets", force: :cascade do |t|
     t.integer  "gateway_id"
     t.text     "fields"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "theme"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "theme",      default: "gray"
   end
 
   add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree
