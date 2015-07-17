@@ -10,6 +10,7 @@ unauthenticated: # layout name
   'devise/passwords':
     - new
     - update
+    - create
   'devise/confirmations':
     - new
     - create
