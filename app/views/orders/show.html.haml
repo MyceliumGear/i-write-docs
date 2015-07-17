@@ -56,4 +56,4 @@
 
     %tr
       %th Created at
-      %td= @order.created_at.to_s(:short)
+      %td= @order.created_at.strftime('%A, %b %d, %H:%M %Z')
