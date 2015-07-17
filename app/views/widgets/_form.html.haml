@@ -69,7 +69,7 @@
           %label.required
             Theme
           %br/
-          =select_tag :theme, options_for_select(["Red", "Black", "Gray"], selected: @widget.theme)
+          =select_tag :theme, options_for_select(["Red", "Black", "Gray"], selected: @widget.theme.humanize)
 
 
     .formActions
