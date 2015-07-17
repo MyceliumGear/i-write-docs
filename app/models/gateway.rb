@@ -107,12 +107,16 @@ class Gateway < ActiveRecord::Base
     end
 
     def validate_pubkey_is_bip32
-      return if pubkey.blank?
-      begin
-        BTC::Keychain.new(xpub: pubkey)
-      rescue
-        errors.add :pubkey, "doesn't look like a BIP32 pubkey"
+      validator = lambda do |key, value|
+        return if value.blank?
+        begin
+          BTC::Keychain.new(xpub: value)
+        rescue
+          errors.add key, "doesn't look like a BIP32 pubkey"
+        end
       end
+      validator.call(:pubkey, pubkey)
+      validator.call(:test_pubkey, test_pubkey)
     end
 
     def validate_address_derivation_scheme
@@ -153,7 +157,7 @@ class Gateway < ActiveRecord::Base
     end
 
     def validate_keys_in_place
-      return unless errors[:pubkey].blank?
+      return unless errors[:pubkey].blank? && errors[:test_pubkey].blank?
       if pubkey.present? && BTC::Keychain.new(xpub: pubkey).network.testnet?
         errors.add :pubkey, "can't be key for testnet"
       end
