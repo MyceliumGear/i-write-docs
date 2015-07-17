@@ -49,7 +49,7 @@
             %td(style="width: 250px;")
               - if o.data && o.kind_of?(Hash) && o.data[:exchange_rate]
                 = "#{(o.data[:exchange_rate][:price]*o.amount_in_btc).round(2)} #{o.data[:exchange_rate][:currency]}"
-            %td= o.created_at
+            %td= o.created_at.to_s(:short)
             %td
               %b= StraightServer::Order::STATUSES.invert[o.status]
 
