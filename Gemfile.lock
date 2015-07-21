@@ -333,7 +333,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
-    satoshi-unit (0.1.7)
+    satoshi-unit (0.1.8)
     sequel (4.24.0)
     sexp_processor (4.5.1)
     sidekiq (3.3.4)
@@ -469,6 +469,3 @@ DEPENDENCIES
   webmock
   whiny_validation
   will_paginate
-
-BUNDLED WITH
-   1.10.5
