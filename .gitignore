@@ -26,6 +26,7 @@ public/robots.txt
 
 vendor/gems/straight*
 vendor/bundle
+/bundle
 .env.*.local
 
 # ansible vars

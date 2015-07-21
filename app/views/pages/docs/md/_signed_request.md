@@ -24,3 +24,17 @@ Where:
 For Ruby users signing is already implemented in `straight-server-kit` gem.
 
 There is a tiny chance, that request will fail with "X-Nonce is invalid" error because of simultaneous signed request with a greater nonce. This may be recovered by repeating request with the updated nonce and signature.
+
+Some languages like JavaScript have poor support for binary string, so hexdigest signature is also valid.
+
+~~~ plain
+HMAC-SHA512(
+  REQUEST_METHOD + REQUEST_URI + SHA512(X-Nonce + REQUEST_BODY),
+  GATEWAY_SECRET
+)
+~~~
+
+Where:
+
+* SHA512: [hex-encoded](https://en.wikipedia.org/wiki/Hexadecimal) SHA-2, 512 bits
+* HMAC-SHA512: [hex-encoded](https://en.wikipedia.org/wiki/Hexadecimal) HMAC with SHA512
