@@ -1,4 +1,8 @@
 .page.updates
+  
+  -  if current_user.admin?
+    = link_to I18n.t("new_update", scope: "updates.index.links"), new_update_path
+    = link_to I18n.t("send_unsent", scope: "updates.index.links"), deliver_unsent_updates_path, method: :post, data: {confirm: I18n.t("confirm", scope: "updates.index.links")}
 
   - if @updates.blank?
 
@@ -28,7 +32,3 @@
           %p= update.body.html_safe
 
     = will_paginate @updates
-
-  -  if current_user.admin?
-    = link_to I18n.t("new_update", scope: "updates.index.links"), new_update_path
-    = link_to I18n.t("send_unsent", scope: "updates.index.links"), deliver_unsent_updates_path, method: :post, data: {confirm: I18n.t("confirm", scope: "updates.index.links")}

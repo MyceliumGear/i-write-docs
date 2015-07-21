@@ -18,12 +18,19 @@ class Gateway < ActiveRecord::Base
   validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1800 }
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, length: { maximum: 100 }
+  validates :description, length: { maximum: 500 }
   validates :pubkey, presence: true, uniqueness: {allow_blank: true}, unless: :address_provider
+  validates :test_pubkey, uniqueness: {allow_blank: true}
+  validates :callback_url, length: { maximum: 2000 }
+  validates :merchant_url, length: { maximum: 2000 }
+  validates :city, length: { maximum: 100 }
+  validates :region, length: { maximum: 100 }
 
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
+  validate :validate_keys_in_place
   validate :validate_address_derivation_scheme
   validate :validate_default_currency
   validate :validate_test_mode
@@ -100,12 +107,16 @@ class Gateway < ActiveRecord::Base
     end
 
     def validate_pubkey_is_bip32
-      return if pubkey.blank?
-      begin
-        BTC::Keychain.new(xpub: pubkey)
-      rescue
-        errors.add :pubkey, I18n.t("invalid", scope: "gateway.errors.pubkey")
+      validator = lambda do |key, value|
+        return if value.blank?
+        begin
+          BTC::Keychain.new(xpub: value)
+        rescue
+          errors.add key, I18n.t("invalid", scope: "gateway.errors.pubkey")
+        end
       end
+      validator.call(:pubkey, pubkey)
+      validator.call(:test_pubkey, test_pubkey)
     end
 
     def validate_address_derivation_scheme
@@ -142,6 +153,16 @@ class Gateway < ActiveRecord::Base
         end
       elsif address_provider.blank? && test_mode && test_pubkey.blank?
         errors.add :test_pubkey, I18n.t("blank_pubkey", scope: "gateway.errors.test_mode")
+      end
+    end
+
+    def validate_keys_in_place
+      return unless errors[:pubkey].blank? && errors[:test_pubkey].blank?
+      if pubkey.present? && BTC::Keychain.new(xpub: pubkey).network.testnet?
+        errors.add :pubkey, "can't be key for testnet"
+      end
+      if test_pubkey.present? && BTC::Keychain.new(xpub: test_pubkey).network.mainnet? 
+        errors.add :test_pubkey, "can't be key for mainnet" 
       end
     end
 

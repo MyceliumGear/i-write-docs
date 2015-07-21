@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150707162458) do
+ActiveRecord::Schema.define(version: 20150717075054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150707162458) do
 
   create_table "gateways", force: :cascade do |t|
     t.integer  "confirmations_required",         default: 0,     null: false
-    t.string   "pubkey",                                         null: false
+    t.string   "pubkey"
     t.string   "name",                                           null: false
     t.string   "default_currency",               default: "BTC", null: false
     t.string   "callback_url"
@@ -59,7 +59,10 @@ ActiveRecord::Schema.define(version: 20150707162458) do
     t.string   "locale"
   end
 
+  add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree
+  add_index "gateways", ["pubkey"], name: "index_gateways_on_pubkey", unique: true, using: :btree
   add_index "gateways", ["receive_payments_notifications"], name: "index_gateways_on_receive_payments_notifications", using: :btree
+  add_index "gateways", ["test_pubkey"], name: "index_gateways_on_test_pubkey", unique: true, using: :btree
   add_index "gateways", ["user_id"], name: "index_gateways_on_user_id", using: :btree
 
   create_table "update_items", force: :cascade do |t|
@@ -122,8 +125,9 @@ ActiveRecord::Schema.define(version: 20150707162458) do
   create_table "widgets", force: :cascade do |t|
     t.integer  "gateway_id"
     t.text     "fields"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "theme",      default: "gray", null: false
   end
 
   add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree

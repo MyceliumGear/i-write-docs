@@ -26,10 +26,10 @@
         - @gateways.each do |g|
           - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
-            %td <b>#{link_to g.name, g}</b>
+            %td <b>#{link_to g.name.truncate(30), g}</b>
             %td= g.active ? I18n.t("positive") : I18n.t("negative")
             %td= g.test_mode ? I18n.t("positive") : I18n.t("negative")
-            %td= key.slice(0,16) + "..."
+            %td= key.present? ? "#{key.to_s[0,16]}..." : 'N/A'
             %td= g.default_currency
             - if current_user.admin?
               %td= g.user.email

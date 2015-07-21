@@ -1,11 +1,14 @@
 - html = {id: provider_class.type}
 - html[:style] = "display:none;" if hidden
 - model = provider || provider_class.new
+
 = simple_form_for(model, url: model.persisted? ? address_provider_path(model)  : address_providers_path, html: html) do |f|
   %input{type: 'hidden', name: 'type', value: provider_class.type}
   -#= f.input :name
 
-  %h3= I18n.t("address_providers.forms.cashila.fill_in_verification_info")
+  %h3= I18n.t("fill_in_verification_info", scope: "address_providers.forms.cashila")
+
+  %p= I18n.t("hint", scope: "address_providers.forms.cashila")
   %table
     %tr
       %td= f.input :first_name
@@ -15,16 +18,16 @@
       %td= f.input :postal_code, input_html: {style: 'width: 100px;'}
     %tr
       %td= f.input :city
-      %td= f.input :country_code, label: I18n.t("address_providers.forms.cashila.country")
+      %td= f.input :country_code, label: I18n.t("country", scope: "address_providers.forms.cashila")
 
   = f.simple_fields_for :files do |d|
     %table
       %tr
-        %td= d.input :'gov-id-front', as: :file, label: I18n.t('address_providers.cashila.gov-id-front')
-        %td= d.input :'gov-id-back', as: :file, label: I18n.t('address_providers.cashila.gov-id-back')
-        %td= d.input :residence, as: :file, label: I18n.t('address_providers.cashila.residence')
+        %td= d.input :'gov-id-front', as: :file, label: I18n.t('gov-id-front', scope: "address_providers.forms.cashila")
+        %td= d.input :'gov-id-back', as: :file, label: I18n.t('gov-id-back', scope: "address_providers.forms.cashila")
+        %td= d.input :residence, as: :file, label: I18n.t('residence', scope: "address_providers.forms.cashila")
 
-  %h3= I18n.t("address_providers.forms.cashila.fill_in_bank_account_info")
+  %h3= I18n.t("account_info", scope: "address_providers.forms.cashila")
   = f.input :recipient_name
   %table
     %tr
@@ -32,8 +35,8 @@
       %td= f.input :recipient_postal_code, input_html: {style: 'width: 100px;'}
     %tr
       %td= f.input :recipient_city
-      %td= f.input :recipient_country_code, label: I18n.t("address_providers.forms.cashila.recipient_country")
+      %td= f.input :recipient_country_code, label: I18n.t("recipient_country", scope: "address_providers.forms.cashila")
     %tr
-      %td= f.input :recipient_bic, label: I18n.t("address_providers.forms.cashila.bic")
-      %td= f.input :recipient_iban, label: I18n.t("address_providers.forms.cashila.iban")
-  = f.submit I18n.t("address_providers.forms.cashila.submit")
+      %td= f.input :recipient_bic, label: I18n.t("bic", scope: "address_providers.forms.cashila")
+      %td= f.input :recipient_iban, label: I18n.t("iban", scope: "address_providers.forms.cashila")
+  = f.submit I18n.t("submit", scope: "address_providers.forms.cashila")

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :orders, only: [:show, :index]
   end
   resources :widgets
-  resources :address_providers, path: 'exchanges'
+  resources :address_providers, path: 'fiat-payouts'
 
   resources :updates do
     post :delivery, on: :member

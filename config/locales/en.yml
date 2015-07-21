@@ -9,7 +9,7 @@ en:
     gateways: "GATEWAYS"
     widgets: "WIDGETS"
     orders: "ORDERS"
-    exchanges: "EXCHANGES"
+    fiat_payouts: "FIAT PAYOUTS"
     account: "ACCOUNT"
     documentation: "DOCUMENTATION"
     two_factor_auth: "TWO FACTOR AUTH"
@@ -26,8 +26,4 @@ en:
     date: "%b %e, %Y"
     timestamp: "%F %T %z"
     time_with_zone: "%T %Z"
-  address_providers:
-    cashila:
-      gov-id-front: Government issued ID (front side)
-      gov-id-back: Government issued ID (back side, optional)
-      residence: Document which proves residence status
+    created_at: '%A, %b %d, %H:%M %Z'

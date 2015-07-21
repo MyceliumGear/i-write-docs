@@ -89,11 +89,11 @@ class ApplicationController < ActionController::Base
         l1.add I18n.t("gateways", scope: "menu"), gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ], icon: 'gateways'
         l1.add I18n.t("widgets", scope: "menu"),  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]], icon: 'widgets'
         l1.add I18n.t("orders", scope: "menu"),   orders_path, icon: 'orders'
-        l1.add I18n.t("exchanges", scope: "menu"), address_providers_path, paths: [["/exchanges*"]], icon: 'exchanges'
+        l1.add I18n.t("fiat_payouts", scope: "menu"), address_providers_path, paths: [["/fiat-payouts*"]], icon: 'fiat_payouts'
         l1.add I18n.t("account", scope: "menu"),  edit_user_registration_path, icon: 'account'
         l1.add I18n.t("documentation", scope: "menu"), "/docs", icon: 'documentation'
         l1.add I18n.t("two_factor_auth", scope: "menu"), user_displayqr_path, icon: 'two_factor_auth' unless gauth_enabled_user?
-        l1.add I18n.t("updates", scope: "menu"), updates_path, icon: updates_icon, icon: 'updates'
+        l1.add I18n.t("updates", scope: "menu"), updates_path, icon: updates_icon
         l1.add I18n.t("sing_out", scope: "menu"), destroy_user_session_path, icon: 'sign_out'
       end
     end

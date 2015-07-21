@@ -72,11 +72,14 @@ jQuery(function($){
       fields.push($(this).find("input.fieldName").val());
     });
 
+    var theme = $(".widget #theme").val();
+
     sendUpdateRequest({
       widget_products_attributes: new_products,
       product_updates: product_updates,
       fields: fields.join(','),
-      products_to_remove_ids: products_to_remove_ids.join(',')
+      products_to_remove_ids: products_to_remove_ids.join(','),
+      theme: theme
     });
 
   });
@@ -143,7 +146,7 @@ jQuery(function($){
 
   var show_save_widget_warning = function() {
     $(".widget .saveWarning").animate({ opacity: 1 });
-    $(".widget .cancel").removeClass('disabled');
+    $(".widget .cancel").removeClass('disabled').removeAttr('disabled');
   };
 
   $('input.gatewayId').focus(function(event) {

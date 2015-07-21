@@ -2,8 +2,7 @@
 
 .page.docs
 
-  %h1
-  = I18n.t("header", scope: "pages.docs.checking_order_status", link: link_to(I18n.t("documentation", scope: "pages.docs.checking_order_status"), "/docs")).html_safe
+  %h1= I18n.t("header", scope: "pages.docs.checking_order_status", link: link_to(I18n.t("documentation", scope: "pages.docs.checking_order_status"), "/docs")).html_safe
   %p
     = I18n.t("statement_1", scope: "pages.docs.checking_order_status")
   %p

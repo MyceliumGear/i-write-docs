@@ -3,7 +3,7 @@
 .page.gateways.show
 
   .pure-g
-    .pure-u-12-24
+    .pure-u-12-24.break-word
       %h2= @gateway.name
     .pure-u-12-24
       = link_to I18n.t("edit_settings", scope: "gateways.show"), edit_gateway_path(@gateway), class: "button small editGateway"

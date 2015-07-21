@@ -30,6 +30,11 @@ class AddressProvider < ActiveRecord::Base
     end.deep_freeze
   end
 
+  def currencies(as: :string)
+    currencies = self.class::CURRENCIES
+    as == :string ? currencies.join(' ') : currencies
+  end
+
   def self.provider_types
     @provider_types ||= providers.map(&:type).to_set.freeze
   end

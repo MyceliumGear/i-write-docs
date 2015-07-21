@@ -3,7 +3,7 @@
   %h2
     = I18n.t("header", scope: "orders.show", title: (@order.title || ''), keychain: @order.keychain_id )
     = link_to(@gateway.name, @gateway).html_safe
-  
+
   %table
 
     %tr
@@ -55,4 +55,4 @@
 
     %tr
       %th= I18n.t("created_at", scope: "orders.show")
-      %td= @order.created_at
+      %td= @order.created_at.strftime(I18n.t("created_at", scope: "strftime"))

@@ -24,6 +24,12 @@ en:
         remove_field: "Remove this field"
         field_name: "Field name, e.g. Email or Address"
         one_more_field: "Add one more field"
+      customize:
+        header: Customize widget
+        theme: Theme
+        gray: Gray
+        black: Black
+        red: Red
       actions:
         save: "Save"
         cancel: "Cancel changes"
