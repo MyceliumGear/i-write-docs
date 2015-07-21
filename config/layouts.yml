@@ -21,3 +21,5 @@ unauthenticated: # layout name
     - show
   'devise/checkga':
     - show
+  tos:
+    - index

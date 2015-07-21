@@ -12,6 +12,7 @@
         = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
         = f.input :password_confirmation, required: true
         = f.input :name
+        = f.input :tos_agreement, required: true, inline_label: "I agree to the #{link_to('Terms Of Service', tos_path, target: '_blank')}".html_safe, as: :boolean
       .form-actions
         = f.button :submit, "Sign up", class: 'onDark'
 

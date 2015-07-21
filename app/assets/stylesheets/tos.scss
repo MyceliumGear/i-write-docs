@@ -1,0 +1,12 @@
+ul.numeric-decimals { counter-reset:section; list-style-type:none; }
+ul.numeric-decimals li { list-style-type:none; }
+ul.numeric-decimals li ul { counter-reset:subsection; }
+ul.numeric-decimals li:before{
+    counter-increment:section;
+    content:counter(section) ". ";/*content:"Section " counter(section) ". ";*/
+}
+ul.numeric-decimals li ul li:before {
+    counter-increment:subsection;
+    content:counter(section) "." counter(subsection) " ";
+}
+h3, .publication_date { text-align: center; }
