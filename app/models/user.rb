@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validates :updates_email_subscription_level, inclusion: {
     in: UpdateItem.priorities.values }, allow_nil: true
+  validates :tos_agreement, acceptance: true, presence: true, on: :create
+
 
   has_many :gateways
   has_many :address_providers

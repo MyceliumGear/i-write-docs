@@ -83,4 +83,13 @@ describe User, type: :model do
 
   end
 
+  describe "validates" do
+
+    it "should fail unless tos aceepted" do
+      user = build(:user, tos_agreement: "0")
+      expect(user).to_not be_valid
+    end
+
+  end
+
 end

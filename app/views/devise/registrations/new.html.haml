@@ -12,6 +12,7 @@
         = f.input :password, required: true, hint: (I18n.t('hint', min_length: @minimum_password_length, scope: 'devise.devise_registrations.new.password') if @validatable)
         = f.input :password_confirmation, required: true
         = f.input :name
+        = f.input :tos_agreement, required: true, inline_label: "I agree to the #{link_to('Terms Of Service', tos_path, target: '_blank')}".html_safe, as: :boolean
       .form-actions
         = f.button :submit, I18n.t('submit', scope: 'devise.devise_registrations.new'), class: 'onDark'
 
