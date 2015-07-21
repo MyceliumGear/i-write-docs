@@ -1,13 +1,13 @@
-%h2= @page_title = "Change your password"
+%h2= @page_title = I18n.t('page_title', scope: 'devise.passwords.edit')
 
 = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
   = f.input :reset_password_token, as: :hidden
   = f.full_error :reset_password_token
   .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true
-    = f.input :password_confirmation, label: "Confirm your new password", required: true
+    = f.input :password, label: = I18n.t('new_password', scope: 'devise.passwords.edit'), required: true, autofocus: true
+    = f.input :password_confirmation, label: = I18n.t('confirmation', scope: 'devise.passwords.edit'), required: true
   .form-actions
-    = f.button :submit, "Change password"
+    = f.button :submit, = I18n.t('submit', scope: 'devise.passwords.edit')
 
 = render "devise/shared/links"

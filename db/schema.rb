@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150717075054) do
     t.integer  "address_provider_id"
     t.boolean  "test_mode",                      default: false
     t.string   "test_pubkey"
+    t.string   "locale"
   end
 
   add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree

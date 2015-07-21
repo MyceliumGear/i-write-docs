@@ -1,59 +1,58 @@
 .page.orders.show
 
   %h2
-    = "Order #{@order.title || ''} ##{@order.keychain_id}, for "
+    = I18n.t("header", scope: "orders.show", title: (@order.title || ''), keychain: @order.keychain_id )
     = link_to(@gateway.name, @gateway).html_safe
-  
+
   %table
 
     %tr
-      %th Amount (BTC)
+      %th= I18n.t("amount_btc", scope: "orders.show")
       %td= @order.amount_in_btc(as: :string)
 
     %tr
-      %th Paid Amount (BTC)
+      %th= I18n.t("paid_amount_btc", scope: "orders.show")
       %td= @order.amount_in_btc(field: @order.amount_paid, as: :string)
 
     %tr
-      %th Bitcoin payment address
+      %th= I18n.t("bitcoin_payment_address", scope: "orders.show")
       %td
         = @order.address
         - if @order.reused > 0
-          %b ( times reused: #{@order.reused} )
+          %b= I18n.t("times_reused", count: @order.reused, scope: "orders.show" )
 
     %tr
-      %th Transaction id
+      %th= I18n.t("transaction_id", scope: "orders.show")
       %td= @order.tid
 
     %tr
-      %th Status
+      %th= I18n.t("status", scope: "orders.show")
       %td= StraightServer::Order::STATUSES.invert[@order.status]
 
     - if @order.data && @order.data.kind_of?(Hash) && @order.data[:exchange_rate]
       - exchange_rate = @order.data.delete(:exchange_rate)
       %tr
-        %th Exhange rate
+        %th= I18n.t("exhange_rate", scope: "orders.show")
         %td
-          Value at the time of purchase:
+          = I18n.t("at_the_time_of_purchase", scope: "orders.show")
           %b= "#{exchange_rate[:price]*@order.amount_in_btc} #{exchange_rate[:currency]}"
           ,
-          Current value:
+          = I18n.t("value", scope: "orders.show")
           %b= "#{@gateway.straight_gateway.current_exchange_rate(exchange_rate[:currency])*@order.amount_in_btc} #{exchange_rate[:currency]}"
 
     %tr
-      %th Data
+      %th= I18n.t("data", scope: "orders.show")
       %td
         - if @order.data && @order.data.kind_of?(Hash)
           - @order.data.each do |k,v|
             <b>#{k.to_s.split("_").map(&:capitalize).join(' ')}</b>: #{v}
         - else
           = @order.data
-          
 
     %tr
-      %th Callback response
+      %th= I18n.t("callback_response", scope: "orders.show")
       %td= @order.callback_response
 
     %tr
-      %th Created at
-      %td= @order.created_at.strftime('%A, %b %d, %H:%M %Z')
+      %th= I18n.t("created_at", scope: "orders.show")
+      %td= @order.created_at.strftime(I18n.t("created_at", scope: "strftime"))

@@ -101,7 +101,7 @@ class Gateway < ActiveRecord::Base
         begin
           Kernel.const_get("Straight::ExchangeRate::#{a}Adapter")
         rescue
-          errors.add(:exchange_rate_adapter_names, "includes adapter #{a}Adapter which is not available")
+          errors.add(:exchange_rate_adapter_names, I18n.t("unavailable", scope: "gateway.errors.adapter", a: a))
         end
       end
     end
@@ -112,7 +112,7 @@ class Gateway < ActiveRecord::Base
         begin
           BTC::Keychain.new(xpub: value)
         rescue
-          errors.add key, "doesn't look like a BIP32 pubkey"
+          errors.add key, I18n.t("invalid", scope: "gateway.errors.pubkey")
         end
       end
       validator.call(:pubkey, pubkey)
@@ -126,7 +126,7 @@ class Gateway < ActiveRecord::Base
         valid &&= address_derivation_scheme.include?('n')
         valid &&= (address_derivation_scheme.split('/').uniq - %w{m n 0 1}).empty?
         unless valid
-          errors.add :address_derivation_scheme, "doesn't look like address derivation scheme"
+          errors.add :address_derivation_scheme, I18n.t("invalid", scope: "gateway.errors.address_derivation_scheme")
         end
       end
     end
@@ -134,7 +134,7 @@ class Gateway < ActiveRecord::Base
     def validate_default_currency
       if address_provider && default_currency.present?
         unless address_provider.class::CURRENCIES.include?(default_currency.to_s.upcase)
-          errors.add :default_currency, "#{address_provider.display_name} doesn't support this currency"
+          errors.add :default_currency, I18n.t("unsupportable", scope: "gateway.errors.currency", name: address_provider.display_name)
         end
       end
     end
@@ -152,7 +152,7 @@ class Gateway < ActiveRecord::Base
           errors.add :test_mode, :invalid
         end
       elsif address_provider.blank? && test_mode && test_pubkey.blank?
-        errors.add :test_pubkey, "can't be blank if test mode is activated"
+        errors.add :test_pubkey, I18n.t("blank_pubkey", scope: "gateway.errors.test_mode")
       end
     end
 

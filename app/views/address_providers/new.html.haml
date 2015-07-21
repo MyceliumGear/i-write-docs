@@ -1,11 +1,11 @@
-- @page_title = "Add a new fiat payout channel"
+- @page_title = I18n.t("page_title", scope: "address_providers.new")
 - default_provider = AddressProviders::Cashila
 
 .page.exchanges.new
 
-  %h1 Adding a new fiat payout channel
+  %h1= I18n.t("adding_a_new_exchange", scope: "address_providers.new")
 
-  Select CURRENCY:
+  = I18n.t("currency", scope: "address_providers.new")
   %select#address_provider
     - AddressProvider.providers.each do |provider|
       %option{value: provider.type, selected: provider == default_provider}

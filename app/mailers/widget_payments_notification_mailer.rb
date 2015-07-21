@@ -5,7 +5,7 @@ class WidgetPaymentsNotificationMailer < ApplicationMailer
   def widget_payments_notification(user, data)
     @user = user
     @data = data
-    mail(to: @user.email, subject: "You've got new payments via Mycelium Gear")
+    mail(to: @user.email, subject: I18n.t("subject", scope: "widget_payments_notification_mailer"))
   end
 
   # @param [Integer] timeframe in seconds

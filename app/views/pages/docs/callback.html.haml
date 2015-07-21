@@ -1,8 +1,8 @@
-- @page_title = "Receiving order status change callback | API Documentation"
+- @page_title = I18n.t("page_title", scope: "pages.docs.callback")
 
 .page.docs
 
-  %h1 #{ link_to "Documentation", "/docs"} / API / Receiving order status change callback
+  %h1= I18n.t("header", scope: "pages.docs.callback", link: link_to(I18n.t("documentation", scope: "pages.docs.callback"), "/docs")).html_safe
 
   :markdown
     #{render partial: 'pages/docs/md/callback.md'}

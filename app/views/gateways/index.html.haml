@@ -1,34 +1,34 @@
 .page.gateways.index
 
   - if current_user.admin?
-    %h2.pageTitle= @page_title = "Your #{ params[:widget] ? "widgets" : "gateways" }"
+    %h2.pageTitle= @page_title = I18n.t("gateways.index.page_title_if_admin", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
   - else
-    %h2.pageTitle= @page_title = "All #{ params[:widget] ? "widgets" : "gateways" }"
+    %h2.pageTitle= @page_title =  I18n.t("gateways.index.page_title_unless_admin", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
 
   .actions
     - if params[:widget]
-      = link_to "create widget", "/wizard", class: "button small"
+      = link_to I18n.t("create_widget", scope: "gateways.index"), "/wizard", class: "button small"
     - else
-      = link_to "create gateway", new_gateway_path, class: "button small"
+      = link_to I18n.t("create_gateway", scope: "gateways.index"), new_gateway_path, class: "button small"
 
 
   .list
     - if @gateways.present?
 
       %table
-        %th NAME
-        %th(style="width: 30px;") ACTIVE?
-        %th(style="wiTH: 80px;") TEST MODE?
-        %th BIP32 (TEST)PUBKEY
-        %th(style="width: 70px;") DEFAULT CURRENCY
+        %th= I18n.t("name", scope: "gateways.index")
+        %th(style="width: 30px;")= I18n.t("active", scope: "gateways.index")
+        %th(style="wiTH: 80px;")= I18n.t("test_mode", scope: "gateways.index")
+        %th= I18n.t("bip32_testpubkey", scope: "gateways.index")
+        %th(style="width: 70px;")= I18n.t("default_currency", scope: "gateways.index")
         - if current_user.admin?
-          %th OWNER
+          %th= I18n.t("owner", scope: "gateways.index")
         - @gateways.each do |g|
           - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
             %td <b>#{link_to g.name.truncate(30), g}</b>
-            %td= g.active ? "Yes" : "No"
-            %td= g.test_mode ? "Yes" : "No"
+            %td= g.active ? I18n.t("positive") : I18n.t("negative")
+            %td= g.test_mode ? I18n.t("positive") : I18n.t("negative")
             %td= key.present? ? "#{key.to_s[0,16]}..." : 'N/A'
             %td= g.default_currency
             - if current_user.admin?
@@ -38,8 +38,8 @@
 
     - else
       .noRecords
-        %h3 You have not created any #{ params[:widget] ? "widgets" : "gateways" } yet
+        %h3= I18n.t("title", scope: "gateways.index.no_records", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
         - if params[:widget]
-          A widget is a small block that you can install onto your website that will allow your users to instantly pay you with Bitcoin. It is the easiest way to accept payments with Gear.
+          = I18n.t("widget", scope: "gateways.index.no_records.statement")
         - else
-          %p A gateway is a logical unit that serves one online store or website. For each store that you own, you need to create one gateway. You can then track all the orders associated with that gateway, along with their statuses and how much money was received.
+          %p= I18n.t("gateway", scope: "gateways.index.no_records.statement")

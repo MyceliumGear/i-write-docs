@@ -1,28 +1,28 @@
-- @page_title = "Documentation"
+- @page_title = I18n.t("page_title", scope: "pages.docs.index")
 
 .page.docs
 
-  %h1 Documentation for Mycelium Gear payment processor
+  %h1= I18n.t("header", scope: "pages.docs.index")
 
-  %p This documentation is primarily aimed at developers who would like to integrate Bitcoin payment processing into their online store or website. If you are not a developer, but would still like to accept Bitcoin on your site, you can create a #{ link_to "simple payment widget", "/wizard"} instead, using our step-by-step guide.
+  %p= I18n.t("statement_1", scope: "pages.docs.index", link: link_to(I18n.t("link_1", scope: "pages.docs.index"), "/wizard")).html_safe
 
-  %p Mycelium Gear follows industry standards for processing payments, so if you have ever dealt with integrating any payment gateway (not necessarily a Bitcoin one), you should quickly understand how everything works and what to do. For those who have never worked with payment processing, we are going to explain every detail and demonstrate code examples.
+  %p= I18n.t("statement_2", scope: "pages.docs.index")
 
-  %p Mycelium Gear is built using #{ link_to "straight", "https://github.com/snitko/straight" } and #{ link_to "straight-server", "https://github.com/snitko/straight-server" } open source software. You may want to check the documentation for straight-server to better understand the underlying mechanisms, but it is not necessary. Many of the things mentioned in straight-server documentation are also mentioned in the current documentation.
+  %p= I18n.t("statement_3", scope: "pages.docs.index", link_1: link_to("straight", "https://github.com/snitko/straight" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server") ).html_safe
 
-  %h2 Table of contents
+  %h2= I18n.t("header_2", scope: "pages.docs.index")
 
   %ul
 
-    %li= link_to "Overview of payment processing", "/docs/overview"
-    %li= link_to "Creating a new gateway", "/docs/creating_gateway"
+    %li= link_to I18n.t("payment_proccessing", scope: "pages.docs.index.links"), "/docs/overview"
+    %li= link_to I18n.t("new_gateway", scope: "pages.docs.index.links"), "/docs/creating_gateway"
     %li
-      API
+      = I18n.t("api", scope: "pages.docs.index")
       %ul
-        %li= link_to "Signed request", "/docs/signed_request"
-        %li= link_to "Creating orders", "/docs/creating_orders"
-        %li= link_to "Receiving order status change callback", "/docs/callback"
-        %li= link_to "Checking order status manually", "/docs/checking_order_status"
-        %li= link_to "Order websocket", "/docs/order_websocket"
-        %li= link_to "Order cancellation", "/docs/order_cancellation"
-        %li= link_to "Receiving last keychain id for gateway", "/docs/last_keychain_id"
+        %li= link_to I18n.t("signed_request", scope: "pages.docs.index.links"), "/docs/signed_request"
+        %li= link_to I18n.t("creating_orders", scope: "pages.docs.index.links"), "/docs/creating_orders"
+        %li= link_to I18n.t("callback", scope: "pages.docs.index.links"), "/docs/callback"
+        %li= link_to I18n.t("order_status", scope: "pages.docs.index.links"), "/docs/checking_order_status"
+        %li= link_to I18n.t("websocket", scope: "pages.docs.index.links"), "/docs/order_websocket"
+        %li= link_to I18n.t("order_cancellation", scope: "pages.docs.index.links"), "/docs/order_cancellation"
+        %li= link_to I18n.t("last_keychain", scope: "pages.docs.index.links"), "/docs/last_keychain_id"

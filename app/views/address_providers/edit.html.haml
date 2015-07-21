@@ -1,4 +1,4 @@
-- @page_title = "Edit fiat payout channel"
+- @page_title = I18n.t("page_title", scope: "address_providers.edit")
 
 .page.address_providers.edit
   = render partial: "address_providers/forms/#{@address_provider.class.type.underscore}", locals: {provider: @address_provider, provider_class: @address_provider.class, hidden: false}
