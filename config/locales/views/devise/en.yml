@@ -130,8 +130,8 @@ en:
       log_in: "Log in"
       sign_up: "Sign up"
       forgot_password: "Forgot your password?"
-      unlock_instructions: "Didn't receive confirmation instructions?"
-      confirmation_instructions: "Didn't receive unlock instructions?"
+      unlock_instructions: "Didn't receive unlock instructions?"
+      confirmation_instructions: "Didn't receive confirmation instructions?"
       sign_id_with: "Sign in with %{provider}"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
