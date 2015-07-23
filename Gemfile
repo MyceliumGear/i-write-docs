@@ -31,8 +31,8 @@ gem 'cashila-api', github: 'MyceliumGear/cashila-api'
 gem 'kramdown'
 gem 'coderay'
 
-gem 'straight',        "0.2.3", path: 'vendor/gems/straight-engine'
-gem 'straight-server', "0.2.3", path: 'vendor/gems/straight-server'
+gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
+gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'
 
 group :development do
   gem 'thin'
