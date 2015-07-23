@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   validates :updates_email_subscription_level, inclusion: {
     in: UpdateItem.priorities.values }, allow_nil: true
+  validates :tos_agreement, acceptance: true, presence: true, on: :create
+
 
   has_many :gateways
   has_many :address_providers
@@ -26,11 +28,4 @@ class User < ActiveRecord::Base
     UpdateItem.exists?(["id > ? AND priority >= ?",
       last_read_update_id.to_i, updates_email_subscription_level])
   end
-
-  protected
-
-    def send_devise_notification(notification, *args)
-      devise_mailer.send(notification, self, *args).deliver_later
-    end
-
 end

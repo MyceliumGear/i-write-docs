@@ -1,0 +1,8 @@
+---
+en:
+  gateway_controller:
+    successfully:
+      updated: "Gateway settings updated!"
+    unsuccessfully:
+      created: "We've found errors in your form, please correct them and try again."
+      updated: "We've found errors in your form, please correct them and try again."

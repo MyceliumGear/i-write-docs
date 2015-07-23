@@ -18,13 +18,19 @@ class Gateway < ActiveRecord::Base
   validates :orders_expiration_period, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 1800 }
 
   validates :confirmations_required, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 6 }
-  validates :name, uniqueness: true
+  validates :name, uniqueness: true, length: { maximum: 100 }
+  validates :description, length: { maximum: 500 }
   validates :pubkey, presence: true, uniqueness: {allow_blank: true}, unless: :address_provider
   validates :test_pubkey, uniqueness: {allow_blank: true}
+  validates :callback_url, length: { maximum: 2000 }
+  validates :merchant_url, length: { maximum: 2000 }
+  validates :city, length: { maximum: 100 }
+  validates :region, length: { maximum: 100 }
 
   before_validation :split_exchange_rate_adapter_names!, :set_default_exchange_rate_adapter_names, :add_fallback_exchange_rate_adapter
   validate          :validate_exchange_rate_adapter_names, if: 'self.exchange_rate_adapter_names.present?'
   validate          :validate_pubkey_is_bip32
+  validate :validate_keys_in_place
   validate :validate_address_derivation_scheme
   validate :validate_default_currency
   validate :validate_test_mode
@@ -95,18 +101,22 @@ class Gateway < ActiveRecord::Base
         begin
           Kernel.const_get("Straight::ExchangeRate::#{a}Adapter")
         rescue
-          errors.add(:exchange_rate_adapter_names, "includes adapter #{a}Adapter which is not available")
+          errors.add(:exchange_rate_adapter_names, I18n.t("unavailable", scope: "gateway.errors.adapter", a: a))
         end
       end
     end
 
     def validate_pubkey_is_bip32
-      return if pubkey.blank?
-      begin
-        BTC::Keychain.new(xpub: pubkey)
-      rescue
-        errors.add :pubkey, "doesn't look like a BIP32 pubkey"
+      validator = lambda do |key, value|
+        return if value.blank?
+        begin
+          BTC::Keychain.new(xpub: value)
+        rescue
+          errors.add key, I18n.t("invalid", scope: "gateway.errors.pubkey")
+        end
       end
+      validator.call(:pubkey, pubkey)
+      validator.call(:test_pubkey, test_pubkey)
     end
 
     def validate_address_derivation_scheme
@@ -116,7 +126,7 @@ class Gateway < ActiveRecord::Base
         valid &&= address_derivation_scheme.include?('n')
         valid &&= (address_derivation_scheme.split('/').uniq - %w{m n 0 1}).empty?
         unless valid
-          errors.add :address_derivation_scheme, "doesn't look like address derivation scheme"
+          errors.add :address_derivation_scheme, I18n.t("invalid", scope: "gateway.errors.address_derivation_scheme")
         end
       end
     end
@@ -124,7 +134,7 @@ class Gateway < ActiveRecord::Base
     def validate_default_currency
       if address_provider && default_currency.present?
         unless address_provider.class::CURRENCIES.include?(default_currency.to_s.upcase)
-          errors.add :default_currency, "#{address_provider.display_name} doesn't support this currency"
+          errors.add :default_currency, I18n.t("unsupportable", scope: "gateway.errors.currency", name: address_provider.display_name)
         end
       end
     end
@@ -142,7 +152,17 @@ class Gateway < ActiveRecord::Base
           errors.add :test_mode, :invalid
         end
       elsif address_provider.blank? && test_mode && test_pubkey.blank?
-        errors.add :test_pubkey, "can't be blank if test mode is activated"
+        errors.add :test_pubkey, I18n.t("blank_pubkey", scope: "gateway.errors.test_mode")
+      end
+    end
+
+    def validate_keys_in_place
+      return unless errors[:pubkey].blank? && errors[:test_pubkey].blank?
+      if pubkey.present? && BTC::Keychain.new(xpub: pubkey).network.testnet?
+        errors.add :pubkey, "can't be key for testnet"
+      end
+      if test_pubkey.present? && BTC::Keychain.new(xpub: test_pubkey).network.mainnet? 
+        errors.add :test_pubkey, "can't be key for mainnet" 
       end
     end
 

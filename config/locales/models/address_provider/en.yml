@@ -1,0 +1,11 @@
+---
+en:
+  address_provider:
+    cashila:
+      errors:
+        account:
+          already_exists: >
+            Cashila account with the %{email} email already exist. Unfortunately, we cannot use it. You can change your email in the account details and submit this form again.
+    errors:
+      type:
+        already_exists: "exchange of this type is already present"

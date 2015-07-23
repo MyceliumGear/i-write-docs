@@ -21,6 +21,10 @@ RSpec.describe Gateway, type: :model do
       expect( -> { create(:gateway, pubkey: 'invalid pubkey') }).to raise_exception(ActiveRecord::RecordInvalid)
     end
 
+    it "validates test pubkey is BIP32 valid" do
+      expect( -> { create(:gateway, test_pubkey: 'invalid pubkey') }).to raise_exception(ActiveRecord::RecordInvalid)
+    end
+
     it "validates test pubkey exist if test mode checkd" do
       expect { create(:gateway, test_mode: true) }.to raise_exception(ActiveRecord::RecordInvalid)
     end

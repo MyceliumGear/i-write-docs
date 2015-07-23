@@ -19,7 +19,7 @@ class DeviseRegistrationsController < Devise::RegistrationsController
         #respond_with resource, location: after_inactive_sign_up_path_for(resource)
       end
     else
-      flash.now[:alert] = "Couldn't sign you up, please correct the mistakes in the form below."
+      flash.now[:alert] = I18n.t("sign_up", scope: "devise_registrations_controller.alerts")
       clean_up_passwords resource
       #set_minimum_password_length
       respond_with resource
@@ -40,6 +40,6 @@ class DeviseRegistrationsController < Devise::RegistrationsController
         ]
       )
     end
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name) }
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :name, :tos_agreement) }
   end
 end

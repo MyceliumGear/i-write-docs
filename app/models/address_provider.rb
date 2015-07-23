@@ -3,7 +3,7 @@ class AddressProvider < ActiveRecord::Base
   belongs_to :user
 
   validates :user, presence: true
-  validates :type, uniqueness: {scope: :user_id, message: "exchange of this type is already present"}
+  validates :type, uniqueness: {scope: :user_id, message: I18n.t("already_exists", scope: "address_provider.errors.type")}
 
   validate :validate_class
 
@@ -28,6 +28,11 @@ class AddressProvider < ActiveRecord::Base
         (h[currency] ||= []) << provider
       end
     end.deep_freeze
+  end
+
+  def currencies(as: :string)
+    currencies = self.class::CURRENCIES
+    as == :string ? currencies.join(' ') : currencies
   end
 
   def self.provider_types

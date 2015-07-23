@@ -1,0 +1,6 @@
+---
+en:
+  widget_product:
+    errors:
+      title:
+        format: "cannot contain special chatacters such as \", ' and <>"

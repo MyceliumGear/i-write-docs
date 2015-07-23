@@ -1,8 +1,8 @@
-- @page_title = "Order cancellation | API Documentation"
+- @page_title = I18n.t("page_title", scope: "pages.docs.order_cancellation")
 
 .page.docs
 
-  %h1 #{ link_to "Documentation", "/docs"} / API / Order cancellation
+  %h1= I18n.t("header", scope: "pages.docs.order_cancellation", link: link_to(I18n.t("link", scope: "pages.docs.order_cancellation"), "/docs")).html_safe
 
   :markdown
     #{render partial: 'pages/docs/md/order_cancellation.md'}

@@ -1,18 +1,19 @@
-- @page_title = "Sign up"
+- @page_title = I18n.t('page_title', scope: 'devise.devise_registrations.new')
 
 .page.registration.new
 
   .formBlock
 
-    %h2.onDark SIGN UP and start accepting Bitcoin
+    %h2.onDark= I18n.t('header', scope: 'devise.devise_registrations.new')
 
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       .form-inputs
         = f.input :email, required: true, autofocus: true
-        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+        = f.input :password, required: true, hint: (I18n.t('hint', min_length: @minimum_password_length, scope: 'devise.devise_registrations.new.password') if @validatable)
         = f.input :password_confirmation, required: true
         = f.input :name
+        = f.input :tos_agreement, required: true, inline_label: "I agree to the #{link_to('Terms Of Service', tos_path, target: '_blank')}".html_safe, as: :boolean
       .form-actions
-        = f.button :submit, "Sign up", class: 'onDark'
+        = f.button :submit, I18n.t('submit', scope: 'devise.devise_registrations.new'), class: 'onDark'
 
   = render "devise/shared/links"

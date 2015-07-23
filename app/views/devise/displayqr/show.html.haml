@@ -9,11 +9,10 @@
       %tr
         %td.qrcode= google_authenticator_qrcode(resource)
         %td.instructions
-          You need to download #{link_to "Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" } app on your phone now and then scan this QR code with it.
+          = I18n.t('instructions', scope: 'devise.registration', link: link_to("Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")).html_safe
 
           .backup
-            You might want to back this string up somehwere in case you lose your phone.
-            Without it, you won't be able to recover your access to Mycelium Gear.
+            = I18n.t('backup', scope: 'devise.registration')
             %input{ type: 'text', value: "otpauth://totp/#{otpauth_user(username_from_email(resource.email), current_user.class.ga_appname ||Rails.application.class.parent_name )}?secret=#{resource.gauth_secret}"}
 
           = simple_form_for(resource, as: resource_name, url: [:refresh, resource_name, :displayqr], html: {method: :post}) do |f|
@@ -30,7 +29,7 @@
       = f.hidden_field :tmpid, value: @tmpid
 
     %p
-      = f.input :gauth_token, autocomplete: :off, label: "TOKEN"
+      = f.input :gauth_token, autocomplete: :off, label: I18n.t('token', scope: 'devise.registration')
       .submit= f.submit I18n.t('submit', scope: 'devise.registration'), class: 'small'
 
 

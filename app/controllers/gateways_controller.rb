@@ -24,7 +24,7 @@ class GatewaysController < ApplicationController
       flash[:gateway_secret] = @gateway.secret
       redirect_to @gateway
     else
-      flash.now[:error] = "We've found errors in your form, please correct them and try again."
+      flash.now[:error] = I18n.t("created", scope: "gateways_controller.unsuccessfully")
       render 'new'
     end
   end
@@ -46,11 +46,11 @@ class GatewaysController < ApplicationController
       if @gateway.regenerate_secret
         flash[:gateway_secret] = @gateway.secret
       else
-        flash[:success] = "Gateway settings updated!"
+        flash[:success] = I18n.t("updated", scope: "gateways_controller.successfully")
       end
       redirect_to @gateway
     else
-      flash.now[:error] = "We've found errors in your form, please correct them and try again."
+      flash.now[:error] = I18n.t("updated", scope: "gateways_controller.unsuccessfully")
       render 'edit'
     end
   end
@@ -93,6 +93,7 @@ class GatewaysController < ApplicationController
         :regenerate_secret,
         :region,
         :widget,
+        :locale
       )
     end
 

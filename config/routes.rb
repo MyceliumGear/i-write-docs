@@ -1,15 +1,18 @@
 Rails.application.routes.draw do
 
+
   root to: 'pages#frontpage'
   devise_for :users, controllers: { registrations: 'devise_registrations'}
 
   resources :orders, only: [:index]
 
+  resources :tos, only: [:index]
+
   resources :gateways do
     resources :orders, only: [:show, :index]
   end
   resources :widgets
-  resources :address_providers, path: 'exchanges'
+  resources :address_providers, path: 'fiat-payouts'
 
   resources :updates do
     post :delivery, on: :member
@@ -30,5 +33,6 @@ Rails.application.routes.draw do
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
+  get 'locales/:locale', to: "locales#switch", as: :change_locale
 
 end

@@ -1,0 +1,12 @@
+---
+en:
+  updates_controller:
+    successfully:
+      created: "UpdateItem was successfully created."
+      updated: "UpdateItem was successfully updated."
+      destroyed: "UpdateItem was successfully destroyed."
+    delivery:
+      already_send: "UpdateItem was already send at %{time}"
+      users_count: "#{count} users will get this update"
+      each_will_get: "each of %{v} users will get %{k} updates; "
+      no_one_will_get: "No one will get no updates"

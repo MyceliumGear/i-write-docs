@@ -5,6 +5,7 @@ FactoryGirl.define do
     sequence(:email) { |i| "user#{i}#{Time.now.to_i}@gearpayments.com" }
     password "password"
     confirmed_at Time.now
+    tos_agreement "1"
   end
 
 
@@ -14,6 +15,7 @@ FactoryGirl.define do
     password "password"
     confirmed_at Time.now
     role 'admin'
+    tos_agreement "1"
   end
 
 end

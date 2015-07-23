@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.3'
 gem 'sqlite3'
 gem 'haml-rails'
 gem 'devise'
@@ -30,6 +30,8 @@ gem 'sidetiq'
 gem 'cashila-api', github: 'MyceliumGear/cashila-api'
 gem 'kramdown'
 gem 'coderay'
+gem 'iban-tools', github: 'Absolight/iban-tools'
+gem 'bic_validation'
 
 gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'

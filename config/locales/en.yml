@@ -1,4 +1,20 @@
 en:
+  not_found: "Error 404, resource was not found."
+  access_denied: "Error 403, you don't have permissions for this operation."
+  positive: "Yes"
+  negative: "No"
+  true: "Yes"
+  false: "No"
+  menu:
+    gateways: "GATEWAYS"
+    widgets: "WIDGETS"
+    orders: "ORDERS"
+    fiat_payouts: "FIAT PAYOUTS"
+    account: "ACCOUNT"
+    documentation: "DOCUMENTATION"
+    two_factor_auth: "TWO FACTOR AUTH"
+    updates: "UPDATES"
+    sing_out: "SIGN OUT"
   mailer:
     layout:
       settings: change notification settings
@@ -10,8 +26,4 @@ en:
     date: "%b %e, %Y"
     timestamp: "%F %T %z"
     time_with_zone: "%T %Z"
-  address_providers:
-    cashila:
-      gov-id-front: Government issued ID (front side)
-      gov-id-back: Government issued ID (back side, optional)
-      residence: Document which proves residence status
+    created_at: '%A, %b %d, %H:%M %Z'

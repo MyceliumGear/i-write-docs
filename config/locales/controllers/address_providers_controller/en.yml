@@ -1,0 +1,8 @@
+---
+en:
+  address_providers_controller:
+    exchange:
+      successfully:
+        created: "Exchange successfully created"
+        updated: "Exchange successfully updated"
+        deleted: "%{name} exchange was deleted"

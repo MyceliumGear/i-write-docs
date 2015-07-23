@@ -1,0 +1,50 @@
+---
+en:
+  address_providers:
+    new:
+      page_title: Add a new fiat payout channel
+      adding_a_new_exchange: Adding a new fiat payout channel
+      currency: 'Select CURRENCY:'
+    forms:
+      cashila:
+        fill_in_verification_info: Fill in verification info
+        hint: >
+          Gear exchanges BTC into EUR with the help of our European partner Cashila.
+          In order to be able to receive fiat, you need to provide us with some verification info required by our partner.
+        country: Country
+        account_info: Fill in bank account info
+        recipient_country: Recipient country
+        bic: BIC
+        iban: IBAN
+        submit: Submit
+        gov-id-front: Government issued ID (front side)
+        gov-id-back: Government issued ID (back side, optional)
+        residence: Document which proves residence status
+    show:
+      cashila:
+        exchange: "Fiat payout channel:"
+        hint: "EUR through %{name}"
+        edit: Edit
+        thank_your: >
+                    Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been
+                    created. Now you're able to use this exchange to %{new_gateway} and #{widget} that will convert to EUR and send money directly to your bank account. Your payout limits
+                    will be adjusted as soon as the documents and information are verified.
+                    Remember, that if you already have a gateway or a widget, you will need
+                    to create a new one in order to use EUR payouts with it.
+        verification_status: Verification status
+        rejection_reason: Rejection reason
+        details: Details
+        documents: Documents
+    index:
+      all_exchanges: All fiat payout channels
+      your_exchanges: Your fiat payout chaneels
+      add_exchange: Add fiat payout
+      name: NAME
+      owner: OWNER
+      no_records:
+        title: You have not created fiat payout channels
+    show:
+      page_title: "%{name} | Exchanges"
+    edit:
+      page_title: "Edit fiat payout channel"
+

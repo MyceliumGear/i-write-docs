@@ -1,0 +1,5 @@
+---
+en:
+  devise_registrations_controller:
+    alerts:
+      sign_up: "Couldn't sign you up, please correct the mistakes in the form below."

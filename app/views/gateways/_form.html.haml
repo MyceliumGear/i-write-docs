@@ -3,48 +3,49 @@
 
   - if @current_user.address_providers.count == 0
     %p
-      If you wish to convert all payments into fiat money, you need to
-      %a{href: new_address_provider_path} configure an exchange
-      first.
-
+      = I18n.t('tip', scope: 'gateways.form', path: new_address_provider_path).html_safe
   = f.input :name
   = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
   = f.input :callback_url
   = f.input :orders_expiration_period
   = f.input :active
+  - if I18n.available_locales.many?
+    = f.input :locale do
+      = f.select :locale, I18n.available_locales.map { |l| [l.to_s, l.to_s]}, include_blank: true
 
   .formBlock
-    %h3 Currency conversion options
+    %h3= I18n.t("currency_conversion_options", scope: "gateways.form")
     = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "USD" ]
     = f.input :convert_currency_to, disabled: !@gateway.new_record?, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
     %label
-      Exchange rate provider #1:
+      = I18n.t("rate_provider_1", scope: "gateways.form")
       = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-1])
     %label
-      Exchange rate provider #2:
+      = I18n.t("rate_provider_2", scope: "gateways.form")
       = select_tag "exchange_rate_adapter_name_2", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-2])
     %label
-      Exchange rate provider #3:
+      = I18n.t("rate_provider_3", scope: "gateways.form")
       = select_tag "exchange_rate_adapter_name_3", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-3])
 
-    %span.hint If one exchange rate provider fails due to being unreachable, the other one will be used automatically. Remember, this only applies if the gateway's default currency is different from BTC.
+    %span.hint= I18n.t("hint", scope: "gateways.form")
     = f.input :exchange_rate_adapter_names, as: :hidden
 
   .formBlock.btc-only-fields{style: btc_only_fields_style}
     = f.input :pubkey, disabled: !@gateway.new_record?
     %p.moreFieldInfo
       = image_tag "watch_icon.png", class: 'inlineIcon'
-      Watch a short video and learn how to export BIP32 pubkey from #{link_to "your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank' } or #{ link_to "Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank' }.<br/>
+      = I18n.t("more_info", scope: "gateways.form", electrum_url: link_to(link_to(I18n.t("electrum_wallet", scope: "gateways.form"), "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank')), mycelium_wallet_url: link_to(I18n.t("mycelium_wallet", scope: "gateways.form"), "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank')).html_safe
+      %br/
     = f.input :address_derivation_scheme, as: :select, collection: [["m/0/n - Mycelium wallet Android, Electrum, myTREZOR", "m/0/n"], ["n — Mycelium wallet iOS", "n"]], value_method: :last, label_method: :first
     
   .formBlock.btc-only-fields{style: btc_only_fields_style}
-    %h3 TESTNET settings
+    %h3= I18n.t("testnet_settings", scope: "gateways.form")
     = f.input :test_pubkey
     = f.input :test_mode
 
   .formBlock
-    %h3 Additional info about the merchant
-    %p.description (all fields are optional)
+    %h3= I18n.t("additional_info_about_the_merchant", scope: "gateways.form")
+    %p.description= I18n.t("all_fields_are_optional", scope: "gateways.form")
     = f.input :description
     = f.input :merchant_url
     = f.input :country
@@ -55,6 +56,6 @@
     = f.input :regenerate_secret, as: :boolean
 
   - if @gateway.has_widget?
-    = f.input :receive_payments_notifications, label: 'Send notifications about new payments to my email'
+    = f.input :receive_payments_notifications, label: I18n.t("send_notifications_about_new_payments_to_my_email", scope: "gateways.form")
 
   = f.submit

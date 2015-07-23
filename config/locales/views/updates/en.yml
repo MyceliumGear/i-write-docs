@@ -1,0 +1,18 @@
+---
+en:
+  updates:
+    edit:
+      page_title: "Editing update"
+    index:
+      no_records:
+        title: "Currently the are no updates"
+      send_at: "send_at"
+      links:
+        header: "Updates"
+        send: "Send"
+        confirm: "Are you sure?"
+        delete: "Delete"
+        new_update: "New Update"
+        send_unsent: "Send unsent"
+    new:
+      page_title: "Create update"

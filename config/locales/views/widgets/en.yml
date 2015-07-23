@@ -1,0 +1,75 @@
+---
+en:
+  widgets:
+    form:
+      products:
+        header: "Add widget products"
+        hint: >
+          You can add multiple items that you wish to sell &mdash; they will be displayed in a dropdown box inside the widget.
+          If you enter only one item, the widget will simply show that item's title and price (no dropdown).
+          You can also configure the widget to work as a donation tool by leaving this field blank,
+          which will cause it to only display a field to enter the desired donation amount.
+          Checkbox "%{singular}" means that product quantity field will not be shown.
+        singular: "Singular"
+        remove_product: "Remove this product"
+        errors:
+          title: "Title"
+          price: "Price"
+        product_title: "Product title"
+        one_more_product: "Add one more product"
+      fields:
+        header: "Add custom fields to the widget"
+        hint: "If you would like your customers to leave some additional info, such as their email or delivery address, you need to add these respective fields into your widget. If you do not set up at least an email field, customers will still be able to pay, but you will not be able to associate orders with customers."
+        required: "Field required"
+        remove_field: "Remove this field"
+        field_name: "Field name, e.g. Email or Address"
+        one_more_field: "Add one more field"
+      customize:
+        header: Customize widget
+        theme: Theme
+        gray: Gray
+        black: Black
+        red: Red
+      actions:
+        save: "Save"
+        cancel: "Cancel changes"
+        warning: "You've made changes to the widget! Don't forget to save!"
+    preview:
+      wordpress:
+        header: "Your website is created using Wordpress"
+        tip: "Please follow these steps to install our payment widget onto your website:"
+        link: "Mycelium Gear wordpress plugin"
+        step1: "Download %{link} and install it into your Wordpress"
+        step2: "Use this Gateway id when setting up the widget:"
+        step3: "...and that's it!"
+      joomla:
+        header: "Your website is created using Joomla"
+        tip: "Please follow these steps to install our payment widget onto your website:"
+        link: "Mycelium Gear joomla plugi"
+        step1: "Download %{link} and install it into your Joomla"
+        step2: "Use this Gateway id when setting up the widget:"
+        step3: "...and that's it!"
+      drupal:
+        header: "Your website is created using Drupal"
+        tip: "Please follow these steps to install our payment widget onto your website:"
+        link: "Mycelium Gear drupal plugin"
+        step1: "Download %{link} and install it into your Drupal"
+        step2: "Use this Gateway id when setting up the widget:"
+        step3: "...and that's it!"
+      modx:
+        header: "Your website is created using MODX"
+        tip: "Please follow these steps to install our payment widget onto your website:"
+        link: "Mycelium Gear modx plugin"
+        step1: "Download %{link} and install it into your MODX"
+        step2: "Use this Gateway id when setting up the widget:"
+        step3: "...and that's it!"
+      widget:
+        code:
+          header: "Widget HTML code"
+          tip: "This is your widget code. You will need to copy and paste it into your page:"
+          hint: "You <b>don't</b> need to copy and and paste this code every time you change Widget settings. The code is always the same."
+        preview:
+          header: "Widget perview"
+          tip: "This is what your widget looks like with the current settings:"
+    edit:
+      page_title: "Edit widget"

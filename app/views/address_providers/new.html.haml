@@ -1,19 +1,15 @@
-- @page_title = "New | Exchanges"
+- @page_title = I18n.t("page_title", scope: "address_providers.new")
 - default_provider = AddressProviders::Cashila
 
 .page.exchanges.new
 
-  %h1 Adding a new exchange
-  %p.explanation An exchange is a third-party service that allows merchants to automatically exchange received bitcoins into fiat currency (EUR, USD etc). It then sends it to the merchants bank account. In order for this to work, you need to provide verification information to the third party you will be using as an exchange. It usually consists of some ID scans, name, address and bank account information. Note that each exchange may need a slightly different set of verification info.
-  %p.explanation When you submit that information, we securely send it to the exchange, which in turn verifies it. As soon as this process is completed, you'll be able to use this exchange to create gateways and widgets which can automatically convert received bitcoins into the selected currency.
+  %h1= I18n.t("adding_a_new_exchange", scope: "address_providers.new")
 
-  Select CURRENCY & EXCHANGE:
+  = I18n.t("currency", scope: "address_providers.new")
   %select#address_provider
     - AddressProvider.providers.each do |provider|
       %option{value: provider.type, selected: provider == default_provider}
-        = provider::CURRENCIES.join(' ')
-        —
-        = provider.type
+        = provider::CURRENCIES.first
 
   - if @address_provider && @address_provider.errors[:type].present?
     %p.error= @address_provider.errors[:type].join(', ')

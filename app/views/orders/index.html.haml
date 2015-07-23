@@ -3,38 +3,47 @@
   - if @orders_filtered || @orders.present?
   
     - if @gateway
-      - @page_title = "All orders for gateway #{@gateway.name}"
-      %h2.pageTitle All orders for gateway <b>#{@gateway.name}</b>
+      - @page_title = I18n.t("all_orders_for_gateway", scope: "orders.index") + @gateway.name
+      %h2.pageTitle
+        = I18n.t("all_orders_for_gateway", scope: "orders.index")
+        %b= @gateway.name
     - else
-      %h2.pageTitle= @page_title = "All orders for all gateways"
+      %h2.pageTitle= @page_title = I18n.t("all_orders_for_all_gateways", scope: "orders.index")
 
     .actions
 
       .activeFilters
         - if @gateway
-          .filter{ data: { filter_name: 'gateway_id'}} Gateway: <b>#{@gateway.name} <span class="close">&times;</span></b>
+          .filter{ data: { filter_name: 'gateway_id'}}
+            = I18n.t("gateway", scope: "orders.index")
+            %b
+              = @gateway.name
+              %span.close &times;
         - if params[:status]
-          .filter{ data: { filter_name: 'status'}} Status: <b>#{StraightServer::Order::STATUSES.invert[params[:status].to_i]} <span class="close">&times;</span></b> 
-
+          .filter{ data: { filter_name: 'status'}}
+            = I18n.t("status", scope: "orders.index")
+            %b
+              = StraightServer::Order::STATUSES.invert[params[:status].to_i]
+              %span.close &times;
       .filters
         - if @gateways && @gateways.size > 1
-          %label Gateway:
+          %label= I18n.t("gateway", scope: "orders.index")
           = select_tag "filter_by_gateway", options_from_collection_for_select(@gateways, "id", "name", ), include_blank: true
         - unless params[:status]
-          %label Status:
+          %label= I18n.t("status", scope: "orders.index")
           = select_tag "filter_by_status", options_from_collection_for_select(StraightServer::Order::STATUSES.invert.to_a, 'first', 'last'), include_blank: true 
 
     .list
       %table
         %tr
-          %th(style="width: 90px;") Amount (BTC)
-          %th(style="width: 90px;") Paid Amount (BTC)
-          %th Address
+          %th(style="width: 90px;")= I18n.t("amount_btc", scope: "orders.index")
+          %th(style="width: 90px;")= I18n.t("paid_amount_btc", scope: "orders.index")
+          %th= I18n.t("address", scope: "orders.index")
           - unless @gateway
-            %th(style="width: 300px;") Gateway
-          %th(style="width: 70px;") Value <br/><small>(at the time of purchase)</small>
-          %th(style="width: 250px;") Created at
-          %th(style="width: 50px;") status
+            %th(style="width: 300px;")= I18n.t("gateway", scope: "orders.index")
+          %th(style="width: 70px;")= I18n.t("value_at_the_time_of_purchase_html", scope: "orders.index").html_safe
+          %th(style="width: 250px;")= I18n.t("created_at", scope: "orders.index")
+          %th(style="width: 50px;")= I18n.t("status", scope: "orders.index")
 
         - @orders.each do |o|
           %tr{ class: "order #{StraightServer::Order::STATUSES.invert[o.status]}", data: { payment_id: o.payment_id, gateway_id: gateway_id_for_order(o) } }
@@ -43,13 +52,15 @@
             %td.address
               = o.address
               - if o.reused > 0
-                %sup reused: #{o.reused}
+                %sup
+                  = I18n.t("reused", scope: "orders.index")
+                  = o.reused
             - unless @gateway
               %td= o.gateway.name
             %td(style="width: 250px;")
               - if o.data && o.kind_of?(Hash) && o.data[:exchange_rate]
                 = "#{(o.data[:exchange_rate][:price]*o.amount_in_btc).round(2)} #{o.data[:exchange_rate][:currency]}"
-            %td= o.created_at
+            %td= o.created_at.strftime('%A, %b %d, %H:%M %Z')
             %td
               %b= StraightServer::Order::STATUSES.invert[o.status]
 
@@ -59,8 +70,8 @@
 
     .noRecords
       - if @gateway
-        %h2 Nobody created orders with your gateway <span class="regularText">#{@gateway.name}</span> yet.
+        %h2= I18n.t("title_html", name: @gateway.name, scope: "orders.index.no_records").html_safe
       - else
-        %h2 No one has created orders with your gateways yet.
+        %h2= I18n.t("title", scope: "orders.index.no_records")
 
-      %p An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set).
+      %p= I18n.t("statement", scope: "orders.index.no_records")

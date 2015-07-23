@@ -10,6 +10,7 @@ unauthenticated: # layout name
   'devise/passwords':
     - new
     - update
+    - create
   'devise/confirmations':
     - new
     - create
@@ -20,3 +21,5 @@ unauthenticated: # layout name
     - show
   'devise/checkga':
     - show
+  tos:
+    - index

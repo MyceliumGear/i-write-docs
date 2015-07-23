@@ -1,0 +1,5 @@
+---
+en:
+  wizard_controller:
+    errors:
+      create_gateway: "We've found errors in your form, please correct them and try again."

@@ -1,4 +1,4 @@
-%h1 Editing update
+%h1= I18n.t("page_title", scope: "updates.edit")
 
 = render 'form', url: update_path(@update_item)
 

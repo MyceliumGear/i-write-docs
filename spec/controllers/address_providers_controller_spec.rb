@@ -10,7 +10,7 @@ RSpec.describe AddressProvidersController, type: :controller do
     it "redirects to #new if collection is empty" do
       login_user
       get :index
-      expect(response.headers['Location']).to end_with '/exchanges/new'
+      expect(response.headers['Location']).to end_with '/fiat-payouts/new'
     end
 
     it "paginates and scopes records by current user or shows all records to admin" do
@@ -66,7 +66,7 @@ RSpec.describe AddressProvidersController, type: :controller do
       expect {
         post :create, type: 'hacked'
       }.to change { AddressProvider.count }.by 0
-      expect(response.headers['Location']).to end_with '/exchanges'
+      expect(response.headers['Location']).to end_with '/fiat-payouts'
     end
 
     context "Cashila" do
@@ -90,7 +90,7 @@ RSpec.describe AddressProvidersController, type: :controller do
             expect(@state[key.to_s]['present']).to eq true
           end
         end
-        expect(response.headers['Location']).to end_with "/exchanges/#{@current_user.address_providers.ids[0]}"
+        expect(response.headers['Location']).to end_with "/fiat-payouts/#{@current_user.address_providers.ids[0]}"
 
         expect {
           post :create, type: 'Cashila', address_providers_cashila: build(:cashila_user_details)
@@ -110,7 +110,20 @@ RSpec.describe AddressProvidersController, type: :controller do
         expect(response).to render_template(:new)
       end
 
-      it "creates address provider without invalid recipient and allows to edit it" do
+      it "does not create address provider with invalid recipient" do
+        login_user
+        @current_user.update_column :email, 'alerticus+spam6@gmail.com'
+        details                  = build(:cashila_user_details)
+        details[:recipient_iban] = 123 # invalid
+        expect {
+          VCR.use_cassette 'address_providers_cashila_create_with_invalid_recipient' do
+            post :create, type: 'Cashila', address_providers_cashila: details
+          end
+        }.to change { AddressProvider.count }.by 0
+        expect(response).to render_template(:new)
+      end
+
+      xit "creates address provider without invalid recipient and allows to edit it" do
         login_user
         @current_user.update_column :email, 'alerticus+spam6@gmail.com'
         details                  = build(:cashila_user_details)

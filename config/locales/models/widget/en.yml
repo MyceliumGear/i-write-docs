@@ -1,0 +1,7 @@
+---
+en:
+  widget:
+    errors:
+      fields:
+        length: "must be between 2 and 30 characters long"
+        invalid_characters: "cannot contain the following characters: \", ', <, >"

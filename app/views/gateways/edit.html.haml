@@ -1,4 +1,4 @@
 .page.gateways.edit
 
-  %h2= @page_title = "Edit gateway settings"
+  %h2= @page_title = I18n.t("page_title", scope: "gateways.edit")
   = render partial: 'form'
