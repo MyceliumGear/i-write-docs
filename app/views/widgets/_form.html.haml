@@ -61,14 +61,15 @@
             = image_tag "add_icon.png", title: I18n.t("one_more_field", scope: "widgets.form.fields"), class: 'add'
       .pure-u-12-24
         .container.settings
-          %h3 Customize widget
+          %h3= I18n.t("header", scope: "widgets.form.customize")
           %label.required
-            Theme
+            = I18n.t("theme", scope: "widgets.form.customize")
           %br/
           =select_tag :theme, options_for_select([[I18n.t("red", scope: "widgets.form.customize"), 'red'], [I18n.t("black", scope: "widgets.form.customize"), 'black'], [I18n.t("gray", scope: "widgets.form.customize"), 'gray']], selected: @widget.theme.humanize)
 
 
     .formActions
-      %button.small.save Save
-      %button.small.cancel.disabled(disabled) Cancel changes
-      .saveWarning You've made changes to the widget! Don't forget to save!
+      %button.small.save= I18n.t("save", scope: "widgets.form.actions")
+      %button.small.cancel.disabled(disabled)
+        = I18n.t("cancel", scope: "widgets.form.actions")
+      .saveWarning= I18n.t("warning", scope: "widgets.form.actions")
