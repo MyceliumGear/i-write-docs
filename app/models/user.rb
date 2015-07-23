@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
 
   validates :updates_email_subscription_level, inclusion: {
     in: UpdateItem.priorities.values }, allow_nil: true
-  validates :tos_agreement, acceptance: true, presence: true, on: :create
+
+  # activemodel-4.2.3/lib/active_model/validations/acceptance.rb:18 tries to connect to the database,
+  # which effectively breaks assets precompile
+  validates :tos_agreement, acceptance: true, presence: true, on: :create rescue nil
 
 
   has_many :gateways
