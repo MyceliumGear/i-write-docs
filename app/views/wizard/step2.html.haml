@@ -23,7 +23,7 @@
             = f.input :name
             = f.input :convert_currency_to, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
           .formBlock.btc-only-fields{style: btc_only_fields_style}
-            = f.input :pubkey, label: I18n.t("lable", scope: "wizard.step2.pubkey").html_safe
+            = f.input :pubkey, label: I18n.t("label", scope: "wizard.step2.pubkey").html_safe
             %p.moreFieldInfo
               = image_tag "watch_icon.png", class: 'inlineIcon'
               = I18n.t("video_tip", scope: "wizard.step2", link_1: link_to("your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank'), link_2: link_to("Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank')).html_safe
