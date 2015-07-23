@@ -1,4 +1,4 @@
-- @page_title = = I18n.t("page_title", scope: "wizard.step3")
+- @page_title = I18n.t("page_title", scope: "wizard.step3")
 
 .page.wizard.step3
 
@@ -23,6 +23,6 @@
         %li= I18n.t("first", scope: "wizard.step3.instructions.list")
         %li= I18n.t("second", scope: "wizard.step3.instructions.list")
 
-      %p= I18n.t("hint", scope: "wizard.step3.instructions")
+      %p= I18n.t("hint", scope: "wizard.step3.instructions").html_safe
 
-      %p= I18n.t("ending", scope: "wizard.step3.instructions")
+      %p= I18n.t("ending", scope: "wizard.step3.instructions").html_safe
