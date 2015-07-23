@@ -19,13 +19,13 @@
     = f.input :convert_currency_to, disabled: !@gateway.new_record?, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
     %label
       = I18n.t("rate_provider_1", scope: "gateways.form")
-      = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-1])
+      = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.exchange_rate_adapter_names[0])
     %label
       = I18n.t("rate_provider_2", scope: "gateways.form")
-      = select_tag "exchange_rate_adapter_name_2", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-2])
+      = select_tag "exchange_rate_adapter_name_2", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.exchange_rate_adapter_names[1])
     %label
       = I18n.t("rate_provider_3", scope: "gateways.form")
-      = select_tag "exchange_rate_adapter_name_3", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.available_exchange_rate_adapter_names[-3])
+      = select_tag "exchange_rate_adapter_name_3", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.exchange_rate_adapter_names[2])
 
     %span.hint= I18n.t("hint", scope: "gateways.form")
     = f.input :exchange_rate_adapter_names, as: :hidden
