@@ -19,6 +19,15 @@ class ApplicationController < ActionController::Base
     current_user.gauth_enabled == '1' ? true : false
   end
 
+  def disable_recovery_unless_user_confirmed
+    user = User.find_by_email(params[:user][:email])
+    if user.present? && !user.confirmed?
+      set_flash_message :error, :unconfirmed
+      redirect_to new_user_session_path
+      return
+    end
+  end
+
   private
 
     def set_locale
