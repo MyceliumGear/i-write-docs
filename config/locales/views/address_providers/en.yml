@@ -21,10 +21,11 @@ en:
         gov-id-back: Government issued ID (back side, optional)
         residence: Document which proves residence status
     show:
+      page_title: "%{name} | Exchanges"
       cashila:
         exchange: "Fiat payout channel:"
         hint: "EUR through %{name}"
-        edit: Edit
+        edit: "Edit"
         thank_your: >
                     Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been
                     created. Now you're able to use this exchange to %{new_gateway} and #{widget} that will convert to EUR and send money directly to your bank account. Your payout limits
@@ -43,8 +44,6 @@ en:
       owner: OWNER
       no_records:
         title: You have not created fiat payout channels
-    show:
-      page_title: "%{name} | Exchanges"
     edit:
       page_title: "Edit fiat payout channel"
 

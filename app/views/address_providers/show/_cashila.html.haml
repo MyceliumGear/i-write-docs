@@ -8,9 +8,7 @@
   .clearfix
 
   - if flash[:success].to_s.end_with? 'created'
-    .successfulSubmissionNote= I18n.t("address_providers.show.cashila.thank_your",
-                                      new_gateway: link_to("create Gateways", new_gateway_path)
-                                      widget: link_to("Widgets", "/wizard"))
+    .successfulSubmissionNote= I18n.t("address_providers.show.cashila.thank_your", new_gateway: link_to("create Gateways", new_gateway_path), widget: link_to("Widgets", "/wizard"))
   -#- elsif flash[:success].end_with? 'updated'
 
   %table
@@ -34,7 +32,7 @@
   %h4= I18n.t("documents", scope: "address_providers.show.cashila")
   - AddressProviders::Cashila::FILES.each do |key|
     %p
-      = I18n.t("address_providers.cashila.#{key}")
+      = I18n.t("address_providers.forms.cashila.#{key}")
       %table
         - @actual_state[key.to_s].each do |k, v|
           %tr
