@@ -10,6 +10,9 @@ ENVied.require
 # standalone mode requires manual requires :)
 # any production gem should be listed here
 %w{
+  lograge
+  redis
+  logstash-logger
   sqlite3
   haml-rails
   devise
@@ -22,7 +25,6 @@ ENVied.require
   nilify_blanks
   ice_nine
   ice_nine/core_ext/object
-  redis
   mmmenu
   country_select
   pg
@@ -31,6 +33,7 @@ ENVied.require
   httparty
   faraday
   devise_google_authenticator
+  jwt
   dotenv
   roadie-rails
   sidekiq

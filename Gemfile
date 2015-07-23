@@ -34,6 +34,8 @@ gem 'coderay'
 gem 'iban-tools', github: 'Absolight/iban-tools'
 gem 'bic_validation'
 gem 'jwt'
+gem 'lograge'
+gem 'logstash-logger'
 
 gem 'puma'
 gem 'rake'
