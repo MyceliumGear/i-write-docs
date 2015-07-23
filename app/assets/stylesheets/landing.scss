@@ -1,0 +1,76 @@
+body {
+  padding: 2em;
+  font-family: "Roboto";
+}
+
+.page {
+  max-width: 800px;
+}
+
+h2 {
+  margin: 1em 0 0.3em 0;
+}
+
+p {
+  margin-top: 0;
+  &.important {
+    font-size: 170%;
+    padding-left: 2em;
+    margin-top: 1em;
+  }
+}
+
+a {
+  color: #0000EE;
+  &:visited {
+    color: #0000EE;
+  }
+}
+
+span.clickable {
+  color: #0000EE;
+  border-bottom: dotted 1px #0000EE;
+  cursor: pointer;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+.bip32 {
+  display: none;
+  margin: 1em;
+  padding: 1em;
+  border: dotted 1px #aaa;
+  background-color: #eee;
+}
+
+img.bigLogo {
+  display: none;
+}
+
+.logo {
+  font-size: 70%;
+  clear: both;
+  padding-bottom: 2em;
+  img {
+    float: left;
+  }
+}
+
+ul.updates {
+  p {
+    margin: 0.5em 0;
+  }
+  li {
+    marging-bottom: 0.5em;
+  }
+}
+
+.widgets {
+  max-width: 1200px;
+  .widget {
+    padding-bottom: 2em;
+    padding-right: 1em;
+  }
+}
