@@ -16,7 +16,7 @@
   .formBlock
     %h3= I18n.t("currency_conversion_options", scope: "gateways.form")
     = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "USD" ]
-    = f.input :convert_currency_to, disabled: !@gateway.new_record?, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
+    = f.input :convert_currency_to, disabled: !@gateway.new_record?, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC'], hint: I18n.t("convert_currency_to", scope: "simple_form.hints.gateway", url: new_address_provider_path).html_safe
     %label
       = I18n.t("rate_provider_1", scope: "gateways.form")
       = select_tag "exchange_rate_adapter_name_1", options_for_select(@gateway.available_exchange_rate_adapter_names, @gateway.exchange_rate_adapter_names[0])
