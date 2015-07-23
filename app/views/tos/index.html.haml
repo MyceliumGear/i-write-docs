@@ -3,9 +3,9 @@
   %li
     General Provisions
     %ul
-      %li Mycelium Holding LTD (hereinafter, “Mycelium”) offers a user (hereinafter, the User) to use its Mycelium Gear service available at <a href = "https://gear.mycelium.com/">gear.mycelium.com</a> (hereinafter, the Service).
+      %li Mycelium Holding LTD (hereinafter, “Mycelium”) offers a user (hereinafter, the User) to use its Mycelium Gear service available at #{ link_to "https://#{Rails.application.secrets.mailer_sender.split('@')[-1]}/", "https://#{Rails.application.secrets.mailer_sender.split('@')[-1]}/" } (hereinafter, the Service).
       %li By starting and/or proceeding to use the Service/its individual functions, the User shall be deemed to have accepted these Terms in full and without any reservations and exceptions. If the User does not accept any of the provisions of these Terms, the User may not use the Service.
-      %li These Terms may be amended by Mycelium without any special notice; a revised version of the Terms shall become effective upon being posted on the Internet at the address specified in this paragraph, unless otherwise provided in the revised version of the Terms. The current version of the Terms is always available at <a href='https://gear.mycelium.com/ToS/'>gear.mycelium.com/ToS/</a>.
+      %li These Terms may be amended by Mycelium without any special notice; a revised version of the Terms shall become effective upon being posted on the Internet at the address specified in this paragraph, unless otherwise provided in the revised version of the Terms. The current version of the Terms is always available at #{ link_to tos_url, tos_path }.
       %li If the User does not accept any amendments made by Mycelium to these Terms in a manner set forth in Section 1.3 of these Terms, the User shall stop using the Service.
       %li The Service offers the User to use free of charge a special solution allowing the User to receive bitcoins from any other party directly to the User’s wallet and to enjoy any other related functional features. All currently existing features of the Service, as well as their improvement and/or addition of new ones are the subject of these Terms.
   %li
