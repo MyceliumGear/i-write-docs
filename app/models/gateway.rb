@@ -49,6 +49,7 @@ class Gateway < ActiveRecord::Base
 
   after_initialize do
     self.address_derivation_scheme = "m/0/n" if new_record? && address_derivation_scheme.nil?
+    self.exchange_rate_adapter_names = ["Bitstamp", "Btce", "Kraken"] unless self.exchange_rate_adapter_names
   end
 
   def straight_gateway(reload: false)
