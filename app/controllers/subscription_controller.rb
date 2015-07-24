@@ -6,7 +6,7 @@ class SubscriptionController < ApplicationController
   end
 
   def update
-    @user.update(subscription_params)
+    @user.update!(subscription_params)
     flash[:success] = I18n.t("updated", scope: "devise.devise_registrations")
     redirect_to new_user_session_path
   end
