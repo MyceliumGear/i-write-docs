@@ -98,7 +98,6 @@ describe User, type: :model do
       user = build(:user)
       token = user.auth_token
       decoded_token = JWT.decode token, Rails.application.secrets.jwt_secret
-
       expect(decoded_token.first).to eq({ "email" => user.email })
     end
 
