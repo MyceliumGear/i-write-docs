@@ -11,6 +11,7 @@ unauthenticated: # layout name
     - new
     - update
     - create
+    - edit
   'devise/confirmations':
     - new
     - create

@@ -43,4 +43,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :sendmail
 
   config.action_mailer.preview_path = "#{Rails.root}/spec/mailers/previews"
+
+  config.to_prepare do
+    DeviseFilters.add_filters
+  end
 end
