@@ -33,7 +33,7 @@
                     %td.footer(align="center")
                       © Mycelium Gear
                       %br/
-                      = link_to t("mailer.layout.settings"), edit_user_registration_url
+                      = link_to t("mailer.layout.settings"), users_subscribition_url(token: @user.auth_token)
                       %br/
                       = link_to t("mailer.layout.twitter"), 'https://twitter.com/MyceliumGear'
                       %br/

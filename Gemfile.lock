@@ -224,6 +224,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    jwt (1.5.0)
     kramdown (1.7.0)
     log4r (1.1.10)
     logmaster (0.1.5)
@@ -433,6 +434,7 @@ DEPENDENCIES
   iban-tools!
   ice_nine
   jquery-rails
+  jwt
   kramdown
   meta-tags
   mina
@@ -469,3 +471,6 @@ DEPENDENCIES
   webmock
   whiny_validation
   will_paginate
+
+BUNDLED WITH
+   1.10.5
