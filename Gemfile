@@ -44,6 +44,7 @@ if ENV['BUILD_ROOT'].to_s.empty?
   gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
   gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'
 else
+  gem 'logmaster', github: 'AlexanderPavlenko/logmaster'
   gem 'straight', git: "#{ENV['BUILD_ROOT']}/straight/.git", ref: ENV['STRAIGHT_REF']
   gem 'straight-server', git: "#{ENV['BUILD_ROOT']}/straight-server/.git", ref: ENV['STRAIGHT_SERVER_REF']
 end

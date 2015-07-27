@@ -52,12 +52,9 @@ Rails.application.configure do
 
   config.lograge.enabled = true
   config.lograge.formatter = Lograge::Formatters::Logstash.new
-  config.lograge.custom_options = lambda do |_|
-    {:origin => 'admin-app_production'.freeze}
-  end
 
   config.logstash.type = :redis
-  config.logstash.list = 'logstash'
+  config.logstash.list = 'logstash_admin-app'
   config.logstash.uri  = ENV['REDIS_URL']
 
   # Prepend all log lines with the following tags.
