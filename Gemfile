@@ -35,7 +35,7 @@ gem 'iban-tools', github: 'Absolight/iban-tools'
 gem 'bic_validation'
 gem 'jwt'
 gem 'lograge'
-gem 'logstash-logger'
+gem 'logstash-logger', github: 'dwbutler/logstash-logger', ref: '621ba20862424f3993c620fc4b1fb0bf819da9e1' # https://github.com/dwbutler/logstash-logger/pull/54
 
 gem 'puma'
 gem 'rake'
