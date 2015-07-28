@@ -1,5 +1,5 @@
 .page.updates
-  
+
   -  if current_user.admin?
     = link_to I18n.t("new_update", scope: "updates.index.links"), new_update_path
     = link_to I18n.t("send_unsent", scope: "updates.index.links"), deliver_unsent_updates_path, method: :post, data: {confirm: I18n.t("confirm", scope: "updates.index.links")}
@@ -25,7 +25,7 @@
           - if current_user.admin?
             = " / "
             - if update.sent_at
-              = "#{I18n.t("send)at", scope: "updates.index")} #{update.sent_at.strftime(I18n.t('strftime.timestamp'))}"
+              = "#{I18n.t("send_at", scope: "updates.index")} #{update.sent_at.strftime(I18n.t('strftime.timestamp'))}"
             - else
               = link_to I18n.t("send", scope: "updates.index.links"), delivery_update_path(update), method: :post, data: {confirm: I18n.t("confirm", scope: "updates.index.links")}
               = link_to I18n.t("delete", scope: "updates.index.links"), update_path(update), method: :delete

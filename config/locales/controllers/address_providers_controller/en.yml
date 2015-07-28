@@ -5,4 +5,4 @@ en:
       successfully:
         created: "Exchange successfully created"
         updated: "Exchange successfully updated"
-        deleted: "%{name} exchange was deleted"
+        #deleted: "%{name} exchange was deleted"

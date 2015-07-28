@@ -3,3 +3,4 @@ en:
     amount: "Amount:"
     address: "address:"
     transaction: "transaction:"
+    widget: "Received payments for your widget"

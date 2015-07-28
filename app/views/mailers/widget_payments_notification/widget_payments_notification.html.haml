@@ -1,7 +1,7 @@
 %ul
   - @data.each do |gateway, new_orders|
     %li
-      Received payments for your widget
+      = I18n.t('widget', scope: 'widget_payments_notification')
       %a{href: gateway_url(id: gateway.id)}= gateway.name
       %br/
       &nbsp;
