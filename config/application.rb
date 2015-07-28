@@ -46,8 +46,8 @@ module GearAdmin
 
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{**}')]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.action_view.raise_on_missing_translations = true
-    config.i18n.available_locales = [:en]
+    config.action_view.raise_on_missing_translations = false
+    config.i18n.available_locales = [:en, :de]
     config.i18n.default_locale = :en
 
     ::ADMIN_EMAILS  = File.readlines("#{Rails.root}/config/admin_emails.txt").map { |e| e.strip }
