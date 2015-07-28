@@ -19,9 +19,9 @@ en:
     layout:
       settings: change notification settings
       twitter: follow us on Twitter
-  user_mailer:
-    update_item:
-      subject: New update from gear.mycelium.com
+  # user_mailer:
+  #   update_item:
+  #     subject: New update from gear.mycelium.com
   strftime:
     date: "%b %e, %Y"
     timestamp: "%F %T %z"

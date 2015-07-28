@@ -37,6 +37,7 @@ gem 'jwt'
 gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'
 
+
 group :development do
   gem 'thin'
   gem 'mina'
@@ -57,6 +58,7 @@ group :development, :test do
   gem 'rspec-collection_matchers'
   gem 'factory_girl_rails'
   gem 'whiny_validation'
+  gem 'i18n-tasks', '~> 0.8.3'
 end
 
 group :test do
