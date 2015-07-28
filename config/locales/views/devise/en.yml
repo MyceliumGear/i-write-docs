@@ -30,6 +30,7 @@ en:
           hint: leave it blank if you don't want to change it
           label: New passsword
         page_title: Edit your account
+        save_hint: To save changes, you must enter the current password
         submit: Save changes
         two_factor_auth:
           disable: disable it?

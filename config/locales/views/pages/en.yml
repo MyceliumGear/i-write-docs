@@ -143,3 +143,8 @@ en:
         header: "%{link} / API / Signed request"
         link: Documentation
         page_title: Signed request | API Documentation
+    frontpage:
+      log_in: sign in
+      page_title: API Documentation
+      password_hint: "%{length} characters minimum"
+      submit: Sign up

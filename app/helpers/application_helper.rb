@@ -38,8 +38,8 @@ module ApplicationHelper
     prev_item = DOCS[index - 1]
     next_item = DOCS[index + 1]
     [
-      link_to("&#8592; Previous (#{prev_item[0]})".html_safe, prev_item[1]),
-      link_to("Next (#{next_item[0]}) &#8594;".html_safe, next_item[1]),
+      link_to("&#8592; #{I18n.t('prev')} (#{prev_item[0]})".html_safe, prev_item[1]),
+      link_to("#{I18n.t('next')} (#{next_item[0]}) &#8594;".html_safe, next_item[1]),
     ]
   end
 end

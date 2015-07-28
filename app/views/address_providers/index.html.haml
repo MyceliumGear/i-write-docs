@@ -18,7 +18,7 @@
           %th= I18n.t("owner", scope: "address_providers.index")
         - @address_providers.each do |provider|
           %tr
-            %td= link_to "#{provider.currencies} through #{provider.display_name}", address_provider_path(provider)
+            %td= link_to "#{provider.currencies} #{I18n.t("through", scope: "address_providers.index")} #{provider.display_name}", address_provider_path(provider)
             - if current_user.admin?
               %td= provider.user.email
 

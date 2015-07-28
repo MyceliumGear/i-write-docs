@@ -34,7 +34,7 @@
           = I18n.t('red', scope: 'devise.devise_registrations.edit.two_factor_auth', link: link_to(I18n.t('recommend', scope: 'devise.devise_registrations.edit.two_factor_auth'), user_displayqr_path )).html_safe
     %p
       %h3
-      = f.input :current_password, label: "To save changes, you must enter the current password", required: true
+      = f.input :current_password, label: I18n.t('save_hint', scope: 'devise.devise_registrations.edit'), required: true
   .form-actions
     = f.button :submit, I18n.t('submit', scope: 'devise.devise_registrations.edit')
 

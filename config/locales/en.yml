@@ -17,12 +17,13 @@ en:
     updates: UPDATES
     widgets: WIDGETS
   negative: 'No'
+  next: Next
   not_found: Error 404, resource was not found.
   positive: 'Yes'
+  prev: Previous
   strftime:
     created_at: "%A, %b %d, %H:%M %Z"
     date: "%b %e, %Y"
     time_with_zone: "%T %Z"
     timestamp: "%F %T %z"
   'true': 'Yes'
-de: {}

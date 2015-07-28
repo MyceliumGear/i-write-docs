@@ -34,7 +34,7 @@
             %input.price{placeholder: "#{@gateway.default_currency}", type: 'number', max: 99999999, min: 0.00001}
             %label
               %input.singular{type: 'checkbox', checked: true}
-              Singular
+              I18n.t("singular", scope: "widgets.form.products")
             = image_tag "add_icon.png", title: I18n.t("one_more_product", scope: "widgets.form.products"), class: 'add'
       .pure-u-12-24
         .container.fields

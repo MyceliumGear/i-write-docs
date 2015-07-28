@@ -1,4 +1,4 @@
-- @page_title = "API Documentation"
+- @page_title = I18n.t('page_title', scope: 'pages.frontpage')
 
 .page.frontpage
 
@@ -6,12 +6,12 @@
 
     .form-inputs
       = f.input :email, required: true, autofocus: true
-      = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+      = f.input :password, required: true, hint: (I18n.t('password_hint', scope: 'pages.frontpage', length: @minimum_password_length) if @validatable)
       = f.input :password_confirmation, required: true
       = f.input :name
 
     .form-actions
-      = f.button :submit, "Sign up"
+      = f.button :submit, I18n.t('submit', scope: 'pages.frontpage')
       %span.orSignIn
         or
-        = link_to "sign in", new_user_session_path
+        = link_to I18n.t('log_in', scope: 'pages.frontpage'), new_user_session_path

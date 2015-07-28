@@ -69,7 +69,7 @@
             %form{action: gateway_path(@gateway), method: 'GET'}
               %textarea= addresses.map { |e| e.join(': ') }.join("\n")
               %input{type: 'text', id: 'show_addresses', name: 'show_addresses', value: @show_addresses.to_s}
-              %input{type: 'submit', value: "Show"}
+              %input{type: 'submit', value: I18n.t("button_value", scope: "gateways.show.form")}
               .hint= I18n.t("hint", scope: "gateways.show.form")
 
     %tr
@@ -109,9 +109,9 @@
     %tr
       %th= I18n.t("orders_stat", scope: "gateways.show")
       %td
-        new: #{@gateway.order_counters[:new]},
-        paid: #{@gateway.order_counters[:paid]},
-        overpaid: #{@gateway.order_counters[:overpaid]},
-        underpaid: #{@gateway.order_counters[:underpaid]},
-        expired: #{@gateway.order_counters[:expired]}
+        #{I18n.t("new", scope: "gateways.show")}: #{@gateway.order_counters[:new]},
+        #{I18n.t("paid", scope: "gateways.show")}: #{@gateway.order_counters[:paid]},
+        #{I18n.t("overpaid", scope: "gateways.show")}: #{@gateway.order_counters[:overpaid]},
+        #{I18n.t("underpaid", scope: "gateways.show")}: #{@gateway.order_counters[:underpaid]},
+        #{I18n.t("expired", scope: "gateways.show")}: #{@gateway.order_counters[:expired]}
         %span.seeAllOrders ( #{link_to(I18n.t("see_all_link", scope: "gateways.show"), orders_path(gateway_id: @gateway.id))} )
