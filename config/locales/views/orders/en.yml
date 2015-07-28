@@ -2,31 +2,31 @@
 en:
   orders:
     index:
-      all_orders_for_gateway: "All orders for gateway "
-      all_orders_for_all_gateways: "All orders for all gateways"
-      gateway: Gateway
-      status: status
-      amount_btc: Amount (BTC)
-      paid_amount_btc: Paid Amount (BTC)
       address: Address
-      value_at_the_time_of_purchase_html: "Value <br/><small>(at the time of purchase)</small>"
-      created_at: Created at
-      reused: 'reused: '
-      no_records:
-        title_html: 'Nobody created orders with your gateway <span class="regularText">%{name}</span> yet.'
-        title: No one has created orders with your gateways yet.
-        statement: "An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set)."
-    show:
-      header: "Order %{title} #%{keychain}, for "
+      all_orders_for_all_gateways: All orders for all gateways
+      all_orders_for_gateway: 'All orders for gateway '
       amount_btc: Amount (BTC)
+      created_at: Created at
+      gateway: Gateway
+      no_records:
+        statement: An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set).
+        title: No one has created orders with your gateways yet.
+        title_html: Nobody created orders with your gateway <span class="regularText">%{name}</span> yet.
       paid_amount_btc: Paid Amount (BTC)
-      bitcoin_payment_address: Bitcoin payment address
-      times_reused: '( times reused: %{count} )'
-      transaction_id: Transaction id
-      status: Status
-      exhange_rate: Exhange rate
+      reused: 'reused: '
+      status: status
+      value_at_the_time_of_purchase_html: Value <br/><small>(at the time of purchase)</small>
+    show:
+      amount_btc: Amount (BTC)
       at_the_time_of_purchase: 'Value at the time of purchase:'
-      value: 'Current value:'
-      data: Data
+      bitcoin_payment_address: Bitcoin payment address
       callback_response: Callback response
       created_at: Created at
+      data: Data
+      exhange_rate: Exhange rate
+      header: 'Order %{title} #%{keychain}, for '
+      paid_amount_btc: Paid Amount (BTC)
+      status: Status
+      times_reused: "( times reused: %{count} )"
+      transaction_id: Transaction id
+      value: 'Current value:'

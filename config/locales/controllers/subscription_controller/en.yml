@@ -1,5 +1,6 @@
+---
 en:
   subscription:
     token:
-      invalid: Looks like this link is broken. Please log in manually.
       expired: Looks like this link is broken. Please log in manually.
+      invalid: Looks like this link is broken. Please log in manually.

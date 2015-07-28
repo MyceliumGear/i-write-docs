@@ -3,12 +3,12 @@ en:
   gateway:
     errors:
       adapter:
-        unavailable: "includes adapter %{a}Adapter which is not available"
-      pubkey:
-        invalid: "doesn't look like a BIP32 pubkey"
+        unavailable: includes adapter %{a}Adapter which is not available
       address_derivation_scheme:
-        invalid: "doesn't look like address derivation scheme"
+        invalid: doesn't look like address derivation scheme
       currency:
         unsupportable: "%{name} doesn't support this currency"
+      pubkey:
+        invalid: doesn't look like a BIP32 pubkey
       test_mode:
-        blank_pubkey: "can't be blank if test mode is activated"
+        blank_pubkey: can't be blank if test mode is activated
