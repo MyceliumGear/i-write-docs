@@ -1,66 +1,43 @@
+---
 en:
   simple_form:
-    "yes": 'Yes'
-    "no": 'No'
-    required:
-      text: 'required'
-      mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: "Please review the problems below:"
-    # Examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
-
-
+      default_message: 'Please review the problems below:'
+    hints:
+      gateway:
+        active: Unchecking this checkbox means new Orders will be turned down and customers will be unable to pay. This can be used when maintenance is being done.
+        address_derivation_scheme: If you choose the wrong one, your wallet may not be able to detect the transactions. Make sure you know which wallet you are using.
+        callback_url: When the status of the order changes (for example from NEW to PAID), Gear will send an http request to the following URL. The request will include additional order data (consult the documentation). This field may be left blank in which case no callback request will be sent.
+        confirmations_required: Bitcoin confirmations for a transaction to be considered accepted by the gateway. Unless you have reasons to believe some of your customers are going to be frauds, we recommend setting it to 0.
+        convert_currency_to: You can add more convertation options by configuring <a href="%{url}" target="_blank">new exchange</a> and refreshing this page.
+        default_currency: If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Remember, that unless you choose BTC, at least one of the selected Bitcoin exchange rate providers must support that currency.
+        merchant_name: In most cases, we assume it's the same as the Gateway's name
+        name: This will to appear on the payment page for each customer to see
+        orders_expiration_period: Number of seconds before the order expires due to customer not paying. Usually, default 15 minutes (900 seconds) - a current industry standard.
+        pubkey: We're going to generate addresses for each order using this key. The key starts with "xpub". For security reasons, YOU WILL NOT BE ABLE TO CHANGE IT.
+        regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them. The new secret will displayed to you after you click the "Update Gateway" button.
+        test_mode: When test mode activated all transactions going throught TESTNET, for testing purpose only
+        test_pubkey: Same as pubkey, but for TESTNET. You can't enable test mode without it.
+        widget: Check this if you don't plan to use the API and integrate Gear into your online store, but simply would like to install a payment widget.
     labels:
       gateway:
-        widget: Gateway for a Widget
+        address_derivation_scheme: Pick the wallet that you're using
+        convert_currency_to: Convert each payment to
+        default_currency: Default currency for prices
+        exchange_rate_adapter_names: Exchange rate providers
+        locale: Gateway locale
+        merchant_url: URL of the website / online store
         pubkey: BIP32 pubkey
         test_pubkey: BIP32 test pubkey
-        merchant_url: URL of the website / online store
-        exchange_rate_adapter_names: Exchange rate providers
-        default_currency: Default currency for prices
-        convert_currency_to: Convert each payment to
-        address_derivation_scheme: "Pick the wallet that you're using"
-        locale: "Gateway locale"
+        widget: Gateway for a Widget
       user:
         updates_email_subscription_level: Send me updates
+    'no': 'No'
     placeholders:
       gateway:
         pubkey: xpubxxx
         test_pubkey: tpubxxx
-    hints:
-      gateway:
-        name: This will to appear on the payment page for each customer to see
-        confirmations_required: Bitcoin confirmations for a transaction to be considered accepted by the gateway. Unless you have reasons to believe some of your customers are going to be frauds, we recommend setting it to 0.
-        pubkey: We're going to generate addresses for each order using this key. The key starts with "xpub". For security reasons, YOU WILL NOT BE ABLE TO CHANGE IT.
-        default_currency: If you select anything else but BTC, we're going to use one of the Bitcoin exchange rate providers to calculate the exchange rate at the time of purchase. Unless otherwise specified, you are still going to receive your money in BTC. Remember, that unless you choose BTC, at least one of the selected Bitcoin exchange rate providers must support that currency.
-        test_pubkey: Same as pubkey, but for TESTNET. You can't enable test mode without it.
-        convert_currency_to: You can add more convertation options by configuring <a href="%{url}" target="_blank">new exchange</a> and refreshing this page.
-        callback_url: When the status of the order changes (for example from NEW to PAID), Gear will send an http request to the following URL. The request will include additional order data (consult the documentation). This field may be left blank in which case no callback request will be sent.
-        active: Unchecking this checkbox means new Orders will be turned down and customers will be unable to pay. This can be used when maintenance is being done.
-        test_mode: When test mode activated all transactions going throught TESTNET, for testing purpose only
-        widget: Check this if you don't plan to use the API and integrate Gear into your online store, but simply would like to install a payment widget.
-        merchant_name: In most cases, we assume it's the same as the Gateway's name
-        regenerate_secret: Check this if you lost your gateway secret and would like to regenerate it. Note that all apps using your old secret will stop being able to access the API and all signatures will appear incorrect to them. The new secret will displayed to you after you click the "Update Gateway" button.
-        orders_expiration_period: Number of seconds before the order expires due to customer not paying. Usually, default 15 minutes (900 seconds) - a current industry standard.
-        address_derivation_scheme: "If you choose the wrong one, your wallet may not be able to detect the transactions. Make sure you know which wallet you are using."
+    required:
+      mark: "*"
+      text: required
+    'yes': 'Yes'

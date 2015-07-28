@@ -1,49 +1,43 @@
 ---
 en:
   address_providers:
-    new:
-      page_title: Add a new fiat payout channel
-      adding_a_new_exchange: Adding a new fiat payout channel
-      currency: 'Select CURRENCY:'
+    edit:
+      page_title: Edit fiat payout channel
     forms:
       cashila:
-        fill_in_verification_info: Fill in verification info
-        hint: >
-          Gear exchanges BTC into EUR with the help of our European partner Cashila.
-          In order to be able to receive fiat, you need to provide us with some verification info required by our partner.
-        country: Country
         account_info: Fill in bank account info
-        recipient_country: Recipient country
         bic: BIC
-        iban: IBAN
-        submit: Submit
-        gov-id-front: Government issued ID (front side)
+        country: Country
+        fill_in_verification_info: Fill in verification info
         gov-id-back: Government issued ID (back side, optional)
+        gov-id-front: Government issued ID (front side)
+        hint: |
+          Gear exchanges BTC into EUR with the help of our European partner Cashila. In order to be able to receive fiat, you need to provide us with some verification info required by our partner.
+        iban: IBAN
+        recipient_country: Recipient country
         residence: Document which proves residence status
-    show:
-      page_title: "%{name} | Exchanges"
-      cashila:
-        exchange: "Fiat payout channel:"
-        hint: "EUR through %{name}"
-        edit: "Edit"
-        thank_your: >
-                    Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been
-                    created. Now you're able to use this exchange to %{new_gateway} and #{widget} that will convert to EUR and send money directly to your bank account. Your payout limits
-                    will be adjusted as soon as the documents and information are verified.
-                    Remember, that if you already have a gateway or a widget, you will need
-                    to create a new one in order to use EUR payouts with it.
-        verification_status: Verification status
-        rejection_reason: Rejection reason
-        details: Details
-        documents: Documents
+        submit: Submit
     index:
-      all_exchanges: All fiat payout channels
-      your_exchanges: Your fiat payout chaneels
       add_exchange: Add fiat payout
+      all_exchanges: All fiat payout channels
       name: NAME
-      owner: OWNER
       no_records:
         title: You have not created fiat payout channels
-    edit:
-      page_title: "Edit fiat payout channel"
-
+      owner: OWNER
+      your_exchanges: Your fiat payout chaneels
+    new:
+      adding_a_new_exchange: Adding a new fiat payout channel
+      currency: 'Select CURRENCY:'
+      page_title: Add a new fiat payout channel
+    show:
+      cashila:
+        details: Details
+        documents: Documents
+        edit: Edit
+        exchange: 'Fiat payout channel:'
+        hint: EUR through %{name}
+        rejection_reason: Rejection reason
+        thank_your: |
+          Thank your for submitting the information. By now, you should've received an additional email from Cashila notifying you that an account has been created. Now you're able to use this exchange to %{new_gateway} and #{widget} that will convert to EUR and send money directly to your bank account. Your payout limits will be adjusted as soon as the documents and information are verified. Remember, that if you already have a gateway or a widget, you will need to create a new one in order to use EUR payouts with it.
+        verification_status: Verification status
+      page_title: "%{name} | Exchanges"

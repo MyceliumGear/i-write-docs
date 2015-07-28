@@ -1,29 +1,27 @@
+---
 en:
-  not_found: "Error 404, resource was not found."
-  access_denied: "Error 403, you don't have permissions for this operation."
-  positive: "Yes"
-  negative: "No"
-  true: "Yes"
-  false: "No"
-  menu:
-    gateways: "GATEWAYS"
-    widgets: "WIDGETS"
-    orders: "ORDERS"
-    fiat_payouts: "FIAT PAYOUTS"
-    account: "ACCOUNT"
-    documentation: "DOCUMENTATION"
-    two_factor_auth: "TWO FACTOR AUTH"
-    updates: "UPDATES"
-    sing_out: "SIGN OUT"
+  access_denied: Error 403, you don't have permissions for this operation.
+  'false': 'No'
   mailer:
     layout:
       settings: change notification settings
       twitter: follow us on Twitter
-  # user_mailer:
-  #   update_item:
-  #     subject: New update from gear.mycelium.com
+  menu:
+    account: ACCOUNT
+    documentation: DOCUMENTATION
+    fiat_payouts: FIAT PAYOUTS
+    gateways: GATEWAYS
+    orders: ORDERS
+    sing_out: SIGN OUT
+    two_factor_auth: TWO FACTOR AUTH
+    updates: UPDATES
+    widgets: WIDGETS
+  negative: 'No'
+  not_found: Error 404, resource was not found.
+  positive: 'Yes'
   strftime:
+    created_at: "%A, %b %d, %H:%M %Z"
     date: "%b %e, %Y"
-    timestamp: "%F %T %z"
     time_with_zone: "%T %Z"
-    created_at: '%A, %b %d, %H:%M %Z'
+    timestamp: "%F %T %z"
+  'true': 'Yes'

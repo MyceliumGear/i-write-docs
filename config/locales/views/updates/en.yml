@@ -2,17 +2,17 @@
 en:
   updates:
     edit:
-      page_title: "Editing update"
+      page_title: Editing update
     index:
-      no_records:
-        title: "Currently the are no updates"
-      send_at: "send_at"
-      header: "Updates"
+      header: Updates
       links:
-        send: "Send"
-        confirm: "Are you sure?"
-        delete: "Delete"
-        new_update: "New Update"
-        send_unsent: "Send unsent"
+        confirm: Are you sure?
+        delete: Delete
+        new_update: New Update
+        send: Send
+        send_unsent: Send unsent
+      no_records:
+        title: Currently the are no updates
+      send_at: send_at
     new:
-      page_title: "Create update"
+      page_title: Create update

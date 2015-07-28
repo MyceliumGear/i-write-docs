@@ -1,6 +1,7 @@
+---
 en:
   widget_payments_notification:
-    amount: "Amount:"
-    address: "address:"
-    transaction: "transaction:"
-    widget: "Received payments for your widget"
+    address: 'address:'
+    amount: 'Amount:'
+    transaction: 'transaction:'
+    widget: Received payments for your widget
