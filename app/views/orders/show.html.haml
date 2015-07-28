@@ -19,7 +19,7 @@
       %td
         = @order.address
         - if @order.reused > 0
-          %b= I18n.t("times_reused", count: @order.reused, scope: "orders.show" )
+          %b= I18n.t("times_reused", scope: "orders.show", count: @order.reused )
 
     %tr
       %th= I18n.t("transaction_id", scope: "orders.show")

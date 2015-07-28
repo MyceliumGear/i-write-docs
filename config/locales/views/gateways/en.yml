@@ -49,7 +49,6 @@ en:
       page_title: "Create a new gateway"
     show:
       page_title: "%{name} | Gateways"
-      show:
       edit_settings: "Edit settings"
       warning: >
         Gateway settings saved. Please write this down. It is only displayed here once. This
@@ -82,4 +81,4 @@ en:
       orders_stat: Orders stat
       see_all_link: "See all orders for this gateway"
       locale: "Gateway Locale"
-      
+

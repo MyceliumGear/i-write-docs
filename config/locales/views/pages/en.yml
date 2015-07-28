@@ -3,7 +3,7 @@ en:
   pages:
     docs:
       callback:
-        page_titile: "Receiving order status change callback | API Documentation"
+        page_title: "Receiving order status change callback | API Documentation"
         header: "%{link} / API / Receiving order status change callback"
         documentation: "Documentation"
       checking_order_status:
@@ -187,9 +187,9 @@ en:
               The problem with this system is that the payment processor has to accept and temporarily store the money on behalf of many different merchants, and be very confident in its ability to protect that money.
               The merchant on the other hand must be willing to trust the payment processor.
               Luckily, with Bitcoin, you can decouple storage of money and payment processing.
-              Using %{link_1}, 
-              Mycelium Gear can generate a new address from a public key you get from your Bitcoin wallet (either %{link_2}, 
-              or %{link_3}) for each payment invoice. 
+              Using %{link_1},
+              Mycelium Gear can generate a new address from a public key you get from your Bitcoin wallet (either %{link_2},
+              or %{link_3}) for each payment invoice.
               That way, the money paid by a customer always goes directly from the customer's wallet into the merchant's wallet, while the payment processor simply watches the blockchain and checks whether that particular address received the bitcoins.
               Merchants don't have to trust their payment processor and don't risk losing the money that is held on their behalf, and the merchant processor doesn't have to worry about the costs associated with securely storing money and customer data.
             answer_2: >

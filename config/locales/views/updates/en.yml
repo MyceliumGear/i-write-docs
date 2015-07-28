@@ -7,8 +7,8 @@ en:
       no_records:
         title: "Currently the are no updates"
       send_at: "send_at"
+      header: "Updates"
       links:
-        header: "Updates"
         send: "Send"
         confirm: "Are you sure?"
         delete: "Delete"

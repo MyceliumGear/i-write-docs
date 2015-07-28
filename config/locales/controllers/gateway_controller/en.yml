@@ -1,6 +1,6 @@
 ---
 en:
-  gateway_controller:
+  gateways_controller:
     successfully:
       updated: "Gateway settings updated!"
     unsuccessfully:

@@ -1,7 +1,7 @@
 .page.orders.index
 
   - if @orders_filtered || @orders.present?
-  
+
     - if @gateway
       - @page_title = I18n.t("all_orders_for_gateway", scope: "orders.index") + @gateway.name
       %h2.pageTitle
@@ -31,7 +31,7 @@
           = select_tag "filter_by_gateway", options_from_collection_for_select(@gateways, "id", "name", ), include_blank: true
         - unless params[:status]
           %label= I18n.t("status", scope: "orders.index")
-          = select_tag "filter_by_status", options_from_collection_for_select(StraightServer::Order::STATUSES.invert.to_a, 'first', 'last'), include_blank: true 
+          = select_tag "filter_by_status", options_from_collection_for_select(StraightServer::Order::STATUSES.invert.to_a, 'first', 'last'), include_blank: true
 
     .list
       %table
@@ -70,7 +70,7 @@
 
     .noRecords
       - if @gateway
-        %h2= I18n.t("title_html", name: @gateway.name, scope: "orders.index.no_records").html_safe
+        %h2= I18n.t("title_html", scope: "orders.index.no_records", name: @gateway.name).html_safe
       - else
         %h2= I18n.t("title", scope: "orders.index.no_records")
 

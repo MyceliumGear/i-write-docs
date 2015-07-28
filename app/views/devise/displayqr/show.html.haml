@@ -16,7 +16,7 @@
             %input{ type: 'text', value: "otpauth://totp/#{otpauth_user(username_from_email(resource.email), current_user.class.ga_appname ||Rails.application.class.parent_name )}?secret=#{resource.gauth_secret}"}
 
           = simple_form_for(resource, as: resource_name, url: [:refresh, resource_name, :displayqr], html: {method: :post}) do |f|
-            = f.submit(I18n.t('newtoken', {scope: 'devise.registration'}))
+            = f.submit(I18n.t('newtoken', scope: 'devise.registration'))
 
   = simple_form_for(resource, as: resource_name, url: [resource_name, :displayqr], html: { method: :put, class: 'setupTwoFactor' }) do |f|
 

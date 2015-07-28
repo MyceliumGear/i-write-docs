@@ -50,30 +50,30 @@
   .websiteTypeChecker
 
     .form
-      %label= I18n.t("label", scope: "wizard.step1.from")
+      %label= I18n.t("label", scope: "wizard.step1.form")
       %input(type="text" placeholder="http://")
       %br
-      %button.small= I18n.t("check_button", scope: "wizard.step1.from")
+      %button.small= I18n.t("check_button", scope: "wizard.step1.form")
 
     .wordpress
-      = I18n.t("header", scope: "wizard.step1.from.wordpress").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.from.wordpress").html_safe
+      = I18n.t("header", scope: "wizard.step1.form.wordpress").html_safe
+      %b= I18n.t("option", scope: "wizard.step1.form.wordpress").html_safe
 
     .joomla
-      = I18n.t("header", scope: "wizard.step1.from.joomla").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.from.joomla").html_safe
+      = I18n.t("header", scope: "wizard.step1.form.joomla").html_safe
+      %b= I18n.t("option", scope: "wizard.step1.form.joomla").html_safe
 
     .drupal
-      = I18n.t("header", scope: "wizard.step1.from.drupal").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.from.drupal").html_safe
+      = I18n.t("header", scope: "wizard.step1.form.drupal").html_safe
+      %b= I18n.t("option", scope: "wizard.step1.form.drupal").html_safe
 
     .modx
-      = I18n.t("header", scope: "wizard.step1.from.modx").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.from.modx").html_safe
+      = I18n.t("header", scope: "wizard.step1.form.modx").html_safe
+      %b= I18n.t("option", scope: "wizard.step1.form.modx").html_safe
 
     .unknown
-      = I18n.t("header", scope: "wizard.step1.from.unknown").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.from.unknown").html_safe
+      = I18n.t("header", scope: "wizard.step1.form.unknown").html_safe
+      %b= I18n.t("option", scope: "wizard.step1.form.unknown").html_safe
 
     .connectionError
-      = I18n.t("header", scope: "wizard.step1.from.error").html_safe
+      = I18n.t("error", scope: "wizard.step1.form").html_safe

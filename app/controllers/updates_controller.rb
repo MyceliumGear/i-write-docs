@@ -9,8 +9,8 @@ class UpdatesController < ApplicationController
   end
 
   def delivery
-    if @update_item.sent_at 
-      notice = I18n.t("already_send", scope: "updates_controller", time: @update_item.sent_at.strftime("%b %e, %Y"))
+    if @update_item.sent_at
+      notice = I18n.t("already_send", scope: "updates_controller.delivery", time: @update_item.sent_at.strftime("%b %e, %Y"))
       return redirect_to updates_path, notice: notice
     end
 
@@ -21,16 +21,16 @@ class UpdatesController < ApplicationController
     end
 
     @update_item.sent! if users.present?
-    redirect_to updates_path, notice: I18n.t("users_count", scope: "updates_controller", count: users.count)
+    redirect_to updates_path, notice: I18n.t("users_count", scope: "updates_controller.delivery", count: users.count)
   end
 
   def deliver_unsent
     counters = UpdatesMailer.deliver_unsent_updates_later
     result = ''
     counters.each do |k, v|
-      result.concat I18n.t("each_will_get", scope: "updates_controller", k: k, v: v)
+      result.concat I18n.t("each_will_get", scope: "updates_controller.delivery", k: k, v: v)
     end
-    redirect_to updates_path, notice: result.presence || I18n.t("no_one_will_get", scope: "updates_controller")
+    redirect_to updates_path, notice: result.presence || I18n.t("no_one_will_get", scope: "updates_controller.delivery")
   end
 
   def new
