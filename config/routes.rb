@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   root to: 'pages#frontpage'
   devise_for :users, controllers: { registrations: 'devise_registrations'}
 
@@ -20,7 +19,11 @@ Rails.application.routes.draw do
       post :deliver_unsent
     end
   end
+
   get 'landing/updates', to: 'updates#index_for_langing_page'
+
+  get 'users/subscribition', to: "subscription#edit"
+  post 'users/subscribition', to: "subscription#update"
 
   get  'wizard', to: 'wizard#step'
   post 'wizard', to: 'wizard#create_gateway'

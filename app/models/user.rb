@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :gateways
   has_many :address_providers
 
-  scope :subscribed_to, ->(level) { 
+  scope :subscribed_to, ->(level) {
     where("updates_email_subscription_level <= ?", UpdateItem.priorities[level])
   }
   scope :subscribed_to_updates, -> {
@@ -27,5 +27,9 @@ class User < ActiveRecord::Base
 
     UpdateItem.exists?(["id > ? AND priority >= ?",
       last_read_update_id.to_i, updates_email_subscription_level])
+  end
+
+  def auth_token
+    JWT.encode({ email: email }, Rails.application.secrets.jwt_secret, 'HS256')
   end
 end

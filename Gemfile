@@ -32,6 +32,7 @@ gem 'kramdown'
 gem 'coderay'
 gem 'iban-tools', github: 'Absolight/iban-tools'
 gem 'bic_validation'
+gem 'jwt'
 
 gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'
