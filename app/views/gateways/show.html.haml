@@ -7,7 +7,7 @@
       %h2= @gateway.name
     .pure-u-12-24
       = link_to I18n.t("edit_settings", scope: "gateways.show"), edit_gateway_path(@gateway), class: "button small editGateway"
-  
+
   - if @gateway.description.present?
     %p= @gateway.description
 
@@ -15,7 +15,7 @@
     .secret
       .warning
         =  I18n.t("warning", scope: "gateways.show")
-      .value= I18n.t("secret", scope: "gateways.show", message: flash[:gateway_secret] )
+      .value= I18n.t("secret", scope: "gateways.show", message: flash[:gateway_secret] ).html_safe
 
 
   - if @gateway.has_widget?
