@@ -25,3 +25,4 @@ en:
     time_with_zone: "%T %Z"
     timestamp: "%F %T %z"
   'true': 'Yes'
+de: {}
