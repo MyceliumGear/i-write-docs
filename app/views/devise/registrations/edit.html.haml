@@ -5,7 +5,7 @@
   .form-inputs
     = f.input :name
     = f.input :email, required: true, autofocus: true
-    = f.input :updates_email_subscription_level, collection: UpdateItem.priorities, include_blank: "none"
+    = f.input :updates_email_subscription_level, collection: subscriptions_collection, include_blank: I18n.t('none', scope: 'devise.devise_registrations')
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p
         = I18n.t('confirmation_wating', scope: 'devise.devise_registrations.edit')

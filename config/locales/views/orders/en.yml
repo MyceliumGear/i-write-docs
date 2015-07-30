@@ -6,15 +6,23 @@ en:
       all_orders_for_all_gateways: All orders for all gateways
       all_orders_for_gateway: 'All orders for gateway '
       amount_btc: Amount (BTC)
+      canceled: canceled
       created_at: Created at
+      created_at_time: "%A, %b %d, %H:%M %Z"
+      expired: expired
       gateway: Gateway
+      new: new
       no_records:
         statement: An order is associated with something that you sell. When a customer wants to pay for an item, an order is created in the database. This order includes an exact amount of bitcoins to be paid, a Bitcoin payment address, and other information. Mycelium Gear tracks the statuses of all orders, and when your customer makes a payment it detects the transaction and changes order status accordingly, also issuing a callback (if set).
         title: No one has created orders with your gateways yet.
         title_html: Nobody created orders with your gateway <span class="regularText">%{name}</span> yet.
+      overpaid: overpaid
+      paid: paid
       paid_amount_btc: Paid Amount (BTC)
       reused: 'reused: '
       status: status
+      unconfirmed: unconfirmed
+      underpaid: underpaid
       value_at_the_time_of_purchase_html: Value <br/><small>(at the time of purchase)</small>
     show:
       amount_btc: Amount (BTC)

@@ -42,4 +42,12 @@ module ApplicationHelper
       link_to("#{I18n.t('next')} (#{next_item[0]}) &#8594;".html_safe, next_item[1]),
     ]
   end
+
+  def subscriptions_collection
+    values = {}
+    UpdateItem.priorities.each do |value|
+      values[I18n.t("#{value.first}", scope: 'devise.devise_registrations')] = value.second
+    end
+    values
+  end
 end

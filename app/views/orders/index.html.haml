@@ -31,7 +31,7 @@
           = select_tag "filter_by_gateway", options_from_collection_for_select(@gateways, "id", "name", ), include_blank: true
         - unless params[:status]
           %label= I18n.t("status", scope: "orders.index")
-          = select_tag "filter_by_status", options_from_collection_for_select(StraightServer::Order::STATUSES.invert.to_a, 'first', 'last'), include_blank: true
+          = select_tag "filter_by_status", options_from_collection_for_select(status_filter_collection, 'first', 'last'), include_blank: true
 
     .list
       %table
@@ -60,9 +60,9 @@
             %td(style="width: 250px;")
               - if o.data && o.kind_of?(Hash) && o.data[:exchange_rate]
                 = "#{(o.data[:exchange_rate][:price]*o.amount_in_btc).round(2)} #{o.data[:exchange_rate][:currency]}"
-            %td= o.created_at.strftime('%A, %b %d, %H:%M %Z')
+            %td= o.created_at.strftime(I18n.t('created_at_time', scope: 'orders.index'))
             %td
-              %b= StraightServer::Order::STATUSES.invert[o.status]
+              %b= I18n.t("#{StraightServer::Order::STATUSES.invert[o.status]}", scope: 'orders.index')
 
       = will_paginate(@orders)
 
