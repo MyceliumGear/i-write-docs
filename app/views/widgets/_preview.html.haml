@@ -11,7 +11,7 @@
           %p= I18n.t("tip", scope: "widgets.preview.wordpress")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.wordpress", link: link_to(I18n.t("link", scope: "widgets.preview.wordpress"), "/mycelium-gear_wordpress_plugin.zip"))
+            %li= I18n.t("step1", scope: "widgets.preview.wordpress", link: link_to(I18n.t("link", scope: "widgets.preview.wordpress"), "/mycelium-gear_wordpress_plugin.zip")).html_safe
             %li
               =I18n.t("step2", scope: "widgets.preview.wordpress")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
@@ -25,7 +25,7 @@
           %p= I18n.t("tip", scope: "widgets.preview.joomla")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.joomla", link: link_to(I18n.t("link", scope: "widgets.preview.joomla"), "http://extensions.joomla.org/browse/new/extension/e-commerce/payment-gateway/mycelium-gear-payment-widget"))
+            %li= I18n.t("step1", scope: "widgets.preview.joomla", link: link_to(I18n.t("link", scope: "widgets.preview.joomla"), "http://extensions.joomla.org/browse/new/extension/e-commerce/payment-gateway/mycelium-gear-payment-widget")).html_safe
             %li
               = I18n.t("step2", scope: "widgets.preview.joomla")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
@@ -39,7 +39,7 @@
           %p= I18n.t("tip", scope: "widgets.preview.drupal")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.drupal", link: link_to(I18n.t("link", scope: "widgets.preview.drupal"), "/mycelium-gear_drupal_plugin.zip"))
+            %li= I18n.t("step1", scope: "widgets.preview.drupal", link: link_to(I18n.t("link", scope: "widgets.preview.drupal"), "/mycelium-gear_drupal_plugin.zip")).html_safe
             %li
               = I18n.t("step2", scope: "widgets.preview.drupal")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
@@ -53,7 +53,7 @@
           %p= I18n.t("tip", scope: "widgets.preview.modx")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.modx", link: link_to(I18n.t("link", scope: "widgets.preview.modx"), "/mycelium-gear_modx_plugin.zip"))
+            %li= I18n.t("step1", scope: "widgets.preview.modx", link: link_to(I18n.t("link", scope: "widgets.preview.modx"), "/mycelium-gear_modx_plugin.zip")).html_safe
             %li
               = I18n.t("step2", scope: "widgets.preview.modx")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
