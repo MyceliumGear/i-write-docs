@@ -13,6 +13,15 @@ GIT
       multi_json (~> 1.11)
 
 GIT
+  remote: git://github.com/dwbutler/logstash-logger.git
+  revision: 621ba20862424f3993c620fc4b1fb0bf819da9e1
+  ref: 621ba20862424f3993c620fc4b1fb0bf819da9e1
+  specs:
+    logstash-logger (0.10.2)
+      logstash-event (~> 1.2)
+      stud
+
+GIT
   remote: git://github.com/snitko/mmmenu.git
   revision: 4d7fbb42767e79f6e243cd84e718ea53443c3564
   specs:
@@ -256,6 +265,11 @@ GEM
     json (1.8.3)
     jwt (1.5.0)
     kramdown (1.7.0)
+    lograge (0.3.4)
+      actionpack (>= 3)
+      activesupport (>= 3)
+      railties (>= 3)
+    logstash-event (1.2.02)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -407,6 +421,7 @@ GEM
     sqlite3 (1.3.10)
     string_master (0.3.7)
       actionpack
+    stud (0.0.21)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
     terminal-table (1.5.2)
@@ -474,6 +489,8 @@ DEPENDENCIES
   jquery-rails
   jwt
   kramdown
+  lograge
+  logstash-logger!
   meta-tags
   mina
   mina-sidekiq
