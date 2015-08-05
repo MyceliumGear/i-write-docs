@@ -8,7 +8,7 @@
 
   %p= I18n.t("statement_2", scope: "pages.docs.index")
 
-  %p= I18n.t("statement_3", scope: "pages.docs.index", link_1: link_to("straight", "https://github.com/snitko/straight" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server") ).html_safe
+  %p= I18n.t("statement_3", scope: "pages.docs.index", link_1: link_to("straight", "https://github.com/snitko/straight", target: "_blank" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server", target: "_blank") ).html_safe
 
   %h2= I18n.t("header_2", scope: "pages.docs.index")
 
