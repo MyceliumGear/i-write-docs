@@ -28,7 +28,7 @@
 
   %h2= I18n.t("question", scope: "pages.docs.overview.faq.fourth")
 
-  %p= I18n.t("answer_1", scope: "pages.docs.overview.faq.fourth", link_1: link_to("BIP32", "https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki"), link_2:  link_to("Mycelium", "https://mycelium.com/bitcoinwallet"),link_3: link_to("Electrum", "https://electrum.org/")).html_safe
+  %p= I18n.t("answer_1", scope: "pages.docs.overview.faq.fourth", link_1: link_to("BIP32", "https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki", target: "_blank"), link_2:  link_to("Mycelium", "https://mycelium.com/bitcoinwallet", target: "_blank"),link_3: link_to("Electrum", "https://electrum.org/", target: "_blank")).html_safe
 
   %p= I18n.t("answer_2", scope: "pages.docs.overview.faq.fourth")
 
