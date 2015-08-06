@@ -65,7 +65,7 @@
           %label.required
             = I18n.t("theme", scope: "widgets.form.customize")
           %br/
-          =select_tag :theme, options_for_select([[I18n.t("red", scope: "widgets.form.customize"), 'red'], [I18n.t("black", scope: "widgets.form.customize"), 'black'], [I18n.t("gray", scope: "widgets.form.customize"), 'gray']], selected: @widget.theme.humanize)
+          =select_tag :theme, options_for_select([[I18n.t("red", scope: "widgets.form.customize"), 'red'], [I18n.t("black", scope: "widgets.form.customize"), 'black'], [I18n.t("gray", scope: "widgets.form.customize"), 'gray']], selected: @widget.theme)
 
 
     .formActions
