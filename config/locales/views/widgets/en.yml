@@ -42,7 +42,7 @@ en:
         tip: 'Please follow these steps to install our payment widget onto your website:'
       joomla:
         header: Your website is created using Joomla
-        link: Mycelium Gear joomla plugi
+        link: Mycelium Gear joomla plugin
         step1: Download %{link} and install it into your Joomla
         step2: 'Use this Gateway id when setting up the widget:'
         step3: "...and that's it!"

@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe WizardController, type: :controller do
+  it_should_require_signed_in_user [:step, :create_gateway], :gateway
 
   describe "detect_site_type action" do
 

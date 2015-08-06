@@ -43,7 +43,7 @@ class GatewaysController < ApplicationController
   def update
     @gateway.update(gateway_params)
     if @gateway.errors.empty?
-      if @gateway.regenerate_secret
+      if @gateway.regenerate_secret.to_i == 1
         flash[:gateway_secret] = @gateway.secret
       else
         flash[:success] = I18n.t("updated", scope: "gateways_controller.successfully")

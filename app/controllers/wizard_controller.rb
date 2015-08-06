@@ -1,5 +1,7 @@
 class WizardController < ApplicationController
 
+  before_filter :authenticate_user!, except: [:detect_site_type]
+
   def step
     if params[:step].to_i == 2
       @gateway = Gateway.new(site_type: params[:site_type], default_currency: 'USD')
