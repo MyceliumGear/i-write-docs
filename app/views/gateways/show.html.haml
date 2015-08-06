@@ -99,6 +99,14 @@
       %td= @gateway.locale.humanize if @gateway.locale.present?
 
     %tr
+      %th= I18n.t("after_payment_redirect_to", scope: "gateways.show")
+      %td= @gateway.after_payment_redirect_to
+
+    %tr
+      %th= I18n.t("auto_redirect", scope: "gateways.show")
+      %td= I18n.t(@gateway.auto_redirect.to_s)
+
+    %tr
       %th= I18n.t("is_active", scope: "gateways.show")
       %td= @gateway.active ? I18n.t("positive") : I18n.t("negative")
 

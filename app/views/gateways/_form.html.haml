@@ -8,6 +8,8 @@
   = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
   = f.input :callback_url
   = f.input :orders_expiration_period
+  = f.input :after_payment_redirect_to, as: :string
+  = f.input :auto_redirect
   = f.input :active
   - if I18n.available_locales.many?
     = f.input :locale do

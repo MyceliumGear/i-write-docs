@@ -12,6 +12,9 @@ FactoryGirl.define do
     exchange_rate_adapter_names 'Bitpay, Coinbase, Bitstamp'
     secret                      'secret'
 
+    after_payment_redirect_to 'http://0.0.0.0/after_payment'
+    auto_redirect             false
+
     description   "Yet another gateway"
     merchant_url  "mystore.com"
     country       "Somalia"

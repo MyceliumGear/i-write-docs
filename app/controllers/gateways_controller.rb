@@ -76,6 +76,8 @@ class GatewaysController < ApplicationController
         :active,
         :address_derivation_scheme,
         :callback_url,
+        :after_payment_redirect_to,
+        :auto_redirect,
         :city,
         :confirmations_required,
         :test_pubkey,
