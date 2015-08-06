@@ -5,6 +5,6 @@
   %h1= I18n.t("header", scope: "pages.docs.signed_request", link: link_to(I18n.t("link", scope: "pages.docs.signed_request"), "/docs")).html_safe
 
   :markdown
-    #{render partial: 'pages/docs/md/signed_request.md'}
+    #{render partial: localized_doc_page_for('signed_request')}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'signed_request'}

@@ -5,6 +5,6 @@
   %h1= I18n.t("header", scope: "pages.docs.creating_orders", link: link_to(I18n.t("link", scope: "pages.docs.creating_orders"), "/docs")).html_safe
 
   :markdown
-    #{render partial: 'pages/docs/md/creating_orders.md'}
+    #{render partial: localized_doc_page_for('creating_orders')}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'creating_orders'}

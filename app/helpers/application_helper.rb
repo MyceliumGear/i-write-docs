@@ -50,4 +50,12 @@ module ApplicationHelper
     end
     values
   end
+
+  def localized_doc_page_for(name, locale = I18n.locale)
+    if File.exists?("#{Rails.root}/app/views/pages/docs/md/#{locale}/#{name}.md")
+      return "pages/docs/md/#{locale}/#{name}.md"
+    else
+      return "pages/docs/md/#{I18n.default_locale}/#{name}.md"
+    end
+  end
 end

@@ -5,6 +5,6 @@
   %h1= I18n.t("header", scope: "pages.docs.callback", link: link_to(I18n.t("documentation", scope: "pages.docs.callback"), "/docs")).html_safe
 
   :markdown
-    #{render partial: 'pages/docs/md/callback.md'}
+    #{render partial: localized_doc_page_for('callback')}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'callback'}
