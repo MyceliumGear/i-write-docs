@@ -46,6 +46,7 @@ PATH
   specs:
     straight (1.0.0)
       btcruby (~> 1.0)
+      faraday
       httparty (~> 0.13.5)
       satoshi-unit (~> 0.1)
 
@@ -60,7 +61,7 @@ PATH
       logmaster (= 0.1.5)
       redis
       ruby-hmac
-      satoshi-unit
+      satoshi-unit (>= 0.1.8)
       sequel
       straight (= 1.0.0)
 
@@ -490,6 +491,3 @@ DEPENDENCIES
   webmock
   whiny_validation
   will_paginate
-
-BUNDLED WITH
-   1.10.5
