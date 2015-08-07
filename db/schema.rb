@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717075054) do
+ActiveRecord::Schema.define(version: 20150804124348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150717075054) do
     t.boolean  "active",                         default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
+    t.integer  "straight_gateway_id"
     t.boolean  "deleted",                        default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
@@ -49,7 +50,6 @@ ActiveRecord::Schema.define(version: 20150717075054) do
     t.datetime "updated_at",                                     null: false
     t.integer  "orders_expiration_period",       default: 900,   null: false
     t.string   "site_type"
-    t.integer  "straight_gateway_id"
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
     t.string   "address_derivation_scheme"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20150717075054) do
     t.boolean  "test_mode",                      default: false
     t.string   "test_pubkey"
     t.string   "locale"
+    t.text     "after_payment_redirect_to"
+    t.boolean  "auto_redirect",                  default: false, null: false
   end
 
   add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree
