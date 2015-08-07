@@ -46,6 +46,7 @@ PATH
   specs:
     straight (1.0.0)
       btcruby (~> 1.0)
+      faraday
       httparty (~> 0.13.5)
       satoshi-unit (~> 0.1)
 
@@ -490,6 +491,3 @@ DEPENDENCIES
   webmock
   whiny_validation
   will_paginate
-
-BUNDLED WITH
-   1.10.6
