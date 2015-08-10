@@ -4,3 +4,5 @@ en:
     errors:
       title:
         format: "cannot contain special chatacters such as \", ' and <>"
+      price:
+        fiat_format: "cannot contain more than two decimal places"
