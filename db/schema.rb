@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804124348) do
+ActiveRecord::Schema.define(version: 20150810073805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 20150804124348) do
     t.boolean  "active",                         default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
-    t.integer  "straight_gateway_id"
     t.boolean  "deleted",                        default: false, null: false
     t.text     "description"
     t.string   "merchant_url"
@@ -50,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150804124348) do
     t.datetime "updated_at",                                     null: false
     t.integer  "orders_expiration_period",       default: 900,   null: false
     t.string   "site_type"
+    t.integer  "straight_gateway_id"
     t.string   "straight_gateway_hashed_id"
     t.boolean  "receive_payments_notifications", default: false, null: false
     t.string   "address_derivation_scheme"
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20150804124348) do
     t.text     "fields"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "theme",      default: "Gray", null: false
+    t.string   "theme",      default: "gray", null: false
   end
 
   add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree
