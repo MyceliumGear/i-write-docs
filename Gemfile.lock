@@ -55,18 +55,12 @@ PATH
   specs:
     straight-server (1.0.0)
       btcruby
-      cashila-api
-      celluloid
       faye-websocket
       goliath
-      haml
       httparty
-      i18n
       logmaster (= 0.1.5)
       redis
-      rqrcode
       ruby-hmac
-      sass
       satoshi-unit (>= 0.1.8)
       sequel
       socket.io-client-simple
@@ -173,7 +167,6 @@ GEM
       rspec-logsplit (>= 0.1.2)
       timers (~> 4.0.0)
     certifi (14.5.14)
-    chunky_png (1.3.4)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -368,8 +361,6 @@ GEM
       railties (>= 3.0, < 4.3)
       roadie (~> 3.0)
     rotp (1.6.1)
-    rqrcode (0.7.0)
-      chunky_png
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.2.3)
