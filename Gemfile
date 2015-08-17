@@ -33,6 +33,7 @@ gem 'coderay'
 gem 'iban-tools', github: 'Absolight/iban-tools'
 gem 'bic_validation'
 gem 'jwt'
+gem 'string_master', '>= 0.3.10'
 
 gem 'straight',        "1.0.0", path: 'vendor/gems/straight-engine'
 gem 'straight-server', "1.0.0", path: 'vendor/gems/straight-server'

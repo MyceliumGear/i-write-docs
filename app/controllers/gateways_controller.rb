@@ -95,7 +95,8 @@ class GatewaysController < ApplicationController
         :regenerate_secret,
         :region,
         :widget,
-        :locale
+        :locale,
+        :allow_links
       )
     end
 
