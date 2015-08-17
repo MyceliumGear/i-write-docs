@@ -24,6 +24,7 @@ class Gateway < ActiveRecord::Base
   validates :test_pubkey, uniqueness: {allow_blank: true}
   validates :callback_url, length: { maximum: 2000 }
   validates :merchant_url, length: { maximum: 2000 }
+  validates :after_payment_redirect_to, length: { maximum: 2000 }
   validates :city, length: { maximum: 100 }
   validates :region, length: { maximum: 100 }
 
@@ -196,6 +197,8 @@ class Gateway < ActiveRecord::Base
         exchange_rate_adapter_names: exchange_rate_adapter_names,
         update_secret:               @regenerate_secret == "1",
         callback_url:                callback_url,
+        after_payment_redirect_to:   after_payment_redirect_to,
+        auto_redirect:               auto_redirect,
         address_derivation_scheme:   address_derivation_scheme,
         address_provider:            address_provider ? address_provider.class.type : 'Bip32',
       }

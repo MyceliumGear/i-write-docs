@@ -75,3 +75,5 @@ en:
       underpaid: underpaid
       warning: |
         Gateway settings saved. Please write this down. It is only displayed here once. This key is needed to access the API when creating orders and to sign callbacks. If you later lose this key, you will need to regenerate it.
+      after_payment_redirect_to: After payment redirect to
+      auto_redirect: Auto redirect

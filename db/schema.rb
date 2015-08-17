@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150717075054) do
+ActiveRecord::Schema.define(version: 20150810073805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20150717075054) do
     t.boolean  "test_mode",                      default: false
     t.string   "test_pubkey"
     t.string   "locale"
+    t.text     "after_payment_redirect_to"
+    t.boolean  "auto_redirect",                  default: false, null: false
   end
 
   add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree
@@ -127,7 +129,7 @@ ActiveRecord::Schema.define(version: 20150717075054) do
     t.text     "fields"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.string   "theme",      default: "Gray", null: false
+    t.string   "theme",      default: "gray", null: false
   end
 
   add_index "widgets", ["gateway_id"], name: "index_widgets_on_gateway_id", unique: true, using: :btree

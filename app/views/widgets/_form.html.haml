@@ -13,7 +13,7 @@
 
             .product.item{ data: { product_id: product.id } }
               %input.title{type: 'text', value: product.title, class: ('error' unless product.errors[:title].blank?)}
-              %input.price{type: 'number', value: product.price, min: 0.00001, max: 99999999, class: ('error' unless product.errors[:price].blank?)}
+              %input.price{type: 'number', value: product.price, min: 0.00001, max: 99999999, pattern: '\A\d+(\.\d{1,2})\z', class: ('error' unless product.errors[:price].blank?)}
               %label
                 %input.singular{type: 'checkbox', checked: product.singular?}
                 = I18n.t("singular", scope: "widgets.form.products")
@@ -31,7 +31,7 @@
 
           .product.item.new
             %input.title{placeholder: I18n.t("product_title", scope: "widgets.form.products"), type: 'text'}
-            %input.price{placeholder: "#{@gateway.default_currency}", type: 'number', max: 99999999, min: 0.00001}
+            %input.price{placeholder: "#{@gateway.default_currency}", type: 'number', pattern: '\A\d+(\.\d{1,2})\z', max: 99999999, min: 0.00001}
             %label
               %input.singular{type: 'checkbox', checked: true}
               I18n.t("singular", scope: "widgets.form.products")
@@ -65,7 +65,7 @@
           %label.required
             = I18n.t("theme", scope: "widgets.form.customize")
           %br/
-          =select_tag :theme, options_for_select([[I18n.t("red", scope: "widgets.form.customize"), 'red'], [I18n.t("black", scope: "widgets.form.customize"), 'black'], [I18n.t("gray", scope: "widgets.form.customize"), 'gray']], selected: @widget.theme.humanize)
+          = select_tag :theme, options_for_select([[I18n.t("red", scope: "widgets.form.customize"), 'red'], [I18n.t("black", scope: "widgets.form.customize"), 'black'], [I18n.t("gray", scope: "widgets.form.customize"), 'gray']], selected: @widget.theme)
 
 
     .formActions
