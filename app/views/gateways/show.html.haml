@@ -4,10 +4,9 @@
 
   .pure-g
     .pure-u-12-24.break-word
-      - if @gateway.allow_links
-        %h2= @gateway.name.prep.html_escape(except: ['a']).urls_to_links.to_s
-      - else
-        %h2= @gateway.name
+      - present @gateway do |gateway_presenter|
+        %h2= gateway_presenter.title
+      
     .pure-u-12-24
       = link_to I18n.t("edit_settings", scope: "gateways.show"), edit_gateway_path(@gateway), class: "button small editGateway"
 
