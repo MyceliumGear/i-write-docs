@@ -101,10 +101,10 @@ jQuery(function($){
         $(".widget").append(form);
         form.find('.item.new').slideDown(300);
         if(form.find('input.error').length > 0) {
-          FrontendNotifier.show("We've detected mistakes in the form, please fix them", "error");
+          FrontendNotifier.show("We've detected mistakes in the form, please fix them.", "error");
         } else {
           if(!widget_data.cancel) {
-            FrontendNotifier.show("Changes saved, check out the widget look below", "success");
+            FrontendNotifier.show("Changes saved, check out the widget look below.", "success");
             var widget = document.getElementById('gear-widget');
             var target = widget.getAttribute('src');
             widget.contentWindow.postMessage({eventName: "reload"}, target);
