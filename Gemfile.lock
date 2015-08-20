@@ -543,3 +543,6 @@ DEPENDENCIES
   webmock
   whiny_validation
   will_paginate
+
+BUNDLED WITH
+   1.10.6
