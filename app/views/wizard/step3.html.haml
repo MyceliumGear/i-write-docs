@@ -1,6 +1,9 @@
 - @page_title = I18n.t("page_title", scope: "wizard.step3")
 
 .page.wizard.step3
+  .pure-g
+    .pure-u-1
+      = link_to I18n.t('gateways.show.edit_settings'), edit_gateway_path(@gateway), class: 'button small editGateway'
 
   .title
 
