@@ -297,7 +297,7 @@ GEM
     mina-sidekiq (0.3.1)
       mina
     mini_portile (0.6.2)
-    minitest (5.7.0)
+    minitest (5.8.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -545,4 +545,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.10.5
+   1.10.6

@@ -48,7 +48,7 @@ class GatewaysController < ApplicationController
       else
         flash[:success] = I18n.t("updated", scope: "gateways_controller.successfully")
       end
-      redirect_to @gateway
+      redirect_to params[:referer] || @gateway
     else
       flash.now[:error] = I18n.t("updated", scope: "gateways_controller.unsuccessfully")
       render 'edit'

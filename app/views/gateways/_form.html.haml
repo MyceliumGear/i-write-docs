@@ -1,5 +1,6 @@
 - btc_only_fields_style = @gateway.convert_currency_to == 'BTC' ? '' : 'display: none;'
 = simple_form_for(@gateway) do |f|
+  = hidden_field_tag(:referer, request.referer)
 
   - if @current_user.address_providers.count == 0
     %p
