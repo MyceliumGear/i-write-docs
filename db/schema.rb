@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150810073805) do
+ActiveRecord::Schema.define(version: 20150817085235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20150810073805) do
     t.string   "locale"
     t.text     "after_payment_redirect_to"
     t.boolean  "auto_redirect",                  default: false, null: false
+    t.boolean  "allow_links",                    default: false, null: false
   end
 
   add_index "gateways", ["name"], name: "index_gateways_on_name", unique: true, using: :btree
