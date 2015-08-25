@@ -4,8 +4,7 @@
 
   .pure-g
     .pure-u-12-24.break-word
-      - present @gateway do |gateway_presenter|
-        %h2= gateway_presenter.title
+      %h2= @gateway.title
       
     .pure-u-12-24
       = link_to I18n.t("edit_settings", scope: "gateways.show"), edit_gateway_path(@gateway), class: "button small editGateway"

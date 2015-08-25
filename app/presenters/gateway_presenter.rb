@@ -1,12 +1,17 @@
-class GatewayPresenter < BasePresenter
-  presents :gateway
-  
+class GatewayPresenter < SimpleDelegator
+
   def title
-    if gateway.allow_links
-      gateway.name.prep.html_escape(except: ['a']).urls_to_links.to_s
+    if object.allow_links
+      object.name.prep.html_escape(except: ['a']).urls_to_links.to_s
     else
-      gateway.name
+      object.name
     end
   end
+  
 
+  private
+
+    def object
+      __getobj__
+    end
 end

@@ -65,6 +65,7 @@ class GatewaysController < ApplicationController
 
     def find_gateway
       @gateway = Gateway.find(params[:id])
+      @gateway = GatewayPresenter.new(@gateway) if @gateway
     end
 
     def only_allow_gateway_owner_or_admin
