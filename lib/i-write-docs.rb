@@ -1,18 +1,18 @@
 require 'yaml'
 require 'tree'
 
-require_relative 'i-write-docs/config'
+require_relative 'i-write-docs/docs_tree'
 
 module IWriteDocs
 
   class IWriteDocsError < StandardError; end
   
-  def self.config
-    IWriteDocs::Config.new
+  def self.docs_tree
+    IWriteDocs::DocsTree.new.tree
   end
 
-  def self.setup
-    yield self.config
-  end
+  # def self.setup
+  #   yield self.config
+  # end
 
 end
