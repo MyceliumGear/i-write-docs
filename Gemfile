@@ -1,6 +1,8 @@
 source "http://rubygems.org"
 
 gem 'rubytree' #, github: 'evolve75/RubyTree'
+gem 'redcarpet'
+gem 'pygments.rb'
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do

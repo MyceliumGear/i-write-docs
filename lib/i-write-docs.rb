@@ -1,7 +1,10 @@
 require 'yaml'
 require 'tree'
+require 'redcarpet'
+require 'pygments'
 
 require_relative 'i-write-docs/docs_tree'
+require_relative 'i-write-docs/markdown_render'
 
 module IWriteDocs
 
