@@ -23,6 +23,7 @@ ENVied.require
   will_paginate
   frontend_notifier
   nilify_blanks
+  string_master
   ice_nine
   ice_nine/core_ext/object
   mmmenu

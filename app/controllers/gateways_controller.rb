@@ -48,7 +48,7 @@ class GatewaysController < ApplicationController
       else
         flash[:success] = I18n.t("updated", scope: "gateways_controller.successfully")
       end
-      redirect_to @gateway
+      redirect_to params[:referer] || @gateway
     else
       flash.now[:error] = I18n.t("updated", scope: "gateways_controller.unsuccessfully")
       render 'edit'
@@ -65,6 +65,7 @@ class GatewaysController < ApplicationController
 
     def find_gateway
       @gateway = Gateway.find(params[:id])
+      @gateway = GatewayPresenter.new(@gateway) if @gateway
     end
 
     def only_allow_gateway_owner_or_admin
@@ -95,7 +96,8 @@ class GatewaysController < ApplicationController
         :regenerate_secret,
         :region,
         :widget,
-        :locale
+        :locale,
+        :allow_links
       )
     end
 
