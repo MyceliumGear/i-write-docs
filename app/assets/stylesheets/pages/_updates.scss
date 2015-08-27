@@ -1,9 +1,32 @@
 @import 'colors';
 
 .page.updates {
-  ul li .subject {
-    &.critical { color: $colors_red; }
-    &.important { color: $colors_orange; }
-    &.regular { color: #000000; }
+
+  .record {
+    min-height: 50px;
+    border-bottom: 1px solid #DDDAD5;
+    padding-bottom: 15px;
+    margin: 15px;
   }
+
+  .circle {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px; 
+    margin-left: -20px;
+  }
+
+  .time { 
+    color: #DDDAD5;
+    float: right;
+    margin-top: -15px;
+  }
+
+  .subject {
+    margin-top: -15px;
+    font-size: 1.17em;
+  }
+
+  .red { background-color: $colors_red; }
+  .orange { background-color: $colors_orange; } 
 }

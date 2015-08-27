@@ -11,24 +11,23 @@
   - else
 
     %h1= I18n.t("header", scope: "updates.index")
-
-    %ul
-      - @updates.each do |update|
-        %li
-          = update.created_at.strftime(I18n.t('strftime.date'))
-          %b.subject(class="#{update.priority}")
-            - if current_user.admin?
-              = link_to update.subject, edit_update_path(update)
-            - else
-              = update.subject
+    - @updates.each do |update|
+      .record
+        %div{class: "circle #{priority_indicator(update)}"}
+        .time= update.created_at.strftime(I18n.t('strftime.date'))
+        .subject
+          - if current_user.admin?
+            = link_to update.subject, edit_update_path(update)
+          - else
+            = update.subject
 
           - if current_user.admin?
             = " / "
-            - if update.sent_at
-              = "#{I18n.t("send_at", scope: "updates.index")} #{update.sent_at.strftime(I18n.t('strftime.timestamp'))}"
-            - else
-              = link_to I18n.t("send", scope: "updates.index.links"), delivery_update_path(update), method: :post, data: {confirm: I18n.t("confirm", scope: "updates.index.links")}
-              = link_to I18n.t("delete", scope: "updates.index.links"), update_path(update), method: :delete
-          %p= update.body.html_safe
-
+          - if update.sent_at
+            = "#{I18n.t("send_at", scope: "updates.index")} #{update.sent_at.strftime(I18n.t('strftime.timestamp'))}"
+          - else
+            = link_to I18n.t("send", scope: "updates.index.links"), delivery_update_path(update), method: :post, data: {confirm: I18n.t("confirm", scope: "updates.index.links")}
+            = link_to I18n.t("delete", scope: "updates.index.links"), update_path(update), method: :delete
+        .body= update.body.html_safe
+        
     = will_paginate @updates
