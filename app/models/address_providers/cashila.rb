@@ -66,7 +66,7 @@ module AddressProviders
       api_client.sync_account(email: user.email, details: user_details)
     rescue CashilaAPI::Client::ApiError => ex
       if ex.message == 'User already exist'
-        errors.add :type, I18n.t("already_exists", scope: "address_provider.cashila.errors.account", email: user.email)
+        errors.add :type, I18n.t("address_provider.cashila.errors.account.already_exists", email: user.email)
         raise ActiveRecord::RecordInvalid.new(self)
       else
         raise

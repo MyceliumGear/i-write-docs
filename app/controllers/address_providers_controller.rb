@@ -38,7 +38,7 @@ class AddressProvidersController < ApplicationController
     end
     begin
       @address_provider.sync_and_save
-      flash[:success] = I18n.t("created", scope: "address_providers_controller.exchange.successfully")
+      flash[:success] = I18n.t("address_providers_controller.exchange.successfully.created")
       redirect_to address_provider_path(@address_provider)
     rescue ActiveRecord::RecordInvalid
       # form will render errors
@@ -57,9 +57,9 @@ class AddressProvidersController < ApplicationController
     begin
       @address_provider.sync_and_save
       if session.delete("address_provider_partially_created_#{@address_provider.id}")
-        flash[:success] = I18n.t("created", scope: "address_providers_controller.exchange.successfully")
+        flash[:success] = I18n.t("address_providers_controller.exchange.successfully.created")
       else
-        flash[:success] = I18n.t("updated", scope: "address_providers_controller.exchange.successfully")
+        flash[:success] = I18n.t("address_providers_controller.exchange.successfully.updated")
       end
       redirect_to address_provider_path(@address_provider)
     rescue ActiveRecord::RecordInvalid
@@ -73,7 +73,7 @@ class AddressProvidersController < ApplicationController
 
   # def destroy
   #   if @address_provider.destroy
-  #     flash[:notice] = I18n.t("deleted", scope: "address_providers_controller.exchange.successfully", name: @address_provider.display_name)
+  #     flash[:notice] = I18n.t(address_providers_controller.exchange.successfully.deleted", name: @address_provider.display_name)
   #   end
   #   redirect_to address_providers_path
   # end

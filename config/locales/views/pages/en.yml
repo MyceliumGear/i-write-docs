@@ -2,6 +2,7 @@
 en:
   pages:
     docs:
+      link: Table of contents
       callback:
         documentation: Documentation
         header: "%{link} / API / Receiving order status change callback"

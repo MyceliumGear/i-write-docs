@@ -1,15 +1,15 @@
-- @page_title = I18n.t("page_title", scope: "pages.docs.last_keychain_id")
+- @page_title = I18n.t("pages.docs.last_keychain_id.page_title")
 
 .page.docs
-  %h1= I18n.t("header", scope: "pages.docs.last_keychain_id", link: link_to(I18n.t("link", scope: "pages.docs.last_keychain_id"), "/docs")).html_safe
+  %h1= I18n.t("pages.docs.last_keychain_id.header", link: link_to(I18n.t("pages.docs.last_keychain_id.link"), "/docs")).html_safe
 
   %p
-    = I18n.t("statement_1", scope: "pages.docs.last_keychain_id")
+    = I18n.t("pages.docs.last_keychain_id.statement_1")
 
   .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/last_keychain_id
 
   %p
-    = I18n.t("statement_2", scope: "pages.docs.last_keychain_id")
+    = I18n.t("pages.docs.last_keychain_id.statement_2")
 
   .code {"gateway_id": 1, "last_keychain_id": 10}
 

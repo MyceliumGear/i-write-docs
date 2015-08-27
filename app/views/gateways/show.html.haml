@@ -1,4 +1,4 @@
-- @page_title = I18n.t("page_title", scope: "gateways.show", name: @gateway.name )
+- @page_title = I18n.t("gateways.show.page_title", name: @gateway.name )
 
 .page.gateways.show
 
@@ -7,7 +7,7 @@
       %h2= @gateway.title
       
     .pure-u-12-24
-      = link_to I18n.t("edit_settings", scope: "gateways.show"), edit_gateway_path(@gateway), class: "button small editGateway"
+      = link_to I18n.t("gateways.show.edit_settings"), edit_gateway_path(@gateway), class: "button small editGateway"
 
   - if @gateway.description.present?
     %p= @gateway.description
@@ -15,8 +15,8 @@
   - if flash[:gateway_secret]
     .secret
       .warning
-        =  I18n.t("warning", scope: "gateways.show")
-      .value= I18n.t("secret", scope: "gateways.show", message: flash[:gateway_secret] ).html_safe
+        =  I18n.t( "gateways.show.warning")
+      .value= I18n.t("gateways.show.secret", message: flash[:gateway_secret] ).html_safe
 
 
   - if @gateway.has_widget?
@@ -28,99 +28,99 @@
   %table
 
     %tr
-      %th= I18n.t("online_store_site_url", scope: "gateways.show")
+      %th= I18n.t("gateways.show.online_store_site_url")
       %td= @gateway.merchant_url
 
     %tr
-      %th= I18n.t("country", scope: "gateways.show")
+      %th= I18n.t("gateways.show.country")
       %td= @gateway.country
 
     %tr
-      %th= I18n.t("region", scope: "gateways.show")
+      %th= I18n.t("gateways.show.region")
       %td= @gateway.region
 
     %tr
-      %th= I18n.t("city", scope: "gateways.show")
+      %th= I18n.t("gateways.show.city")
       %td= @gateway.city
 
     %tr
-      %th= I18n.t("confirmations_required", scope: "gateways.show")
+      %th= I18n.t("gateways.show.confirmations_required")
       %td= @gateway.confirmations_required
 
     - if @gateway.address_provider
 
       %tr
-        %th= I18n.t("exchange", scope: "gateways.show")
+        %th= I18n.t("gateways.show.exchange")
         %td= @gateway.address_provider.display_name
 
     - else
       - key = @gateway.test_mode && @gateway.test_pubkey.present? ? @gateway.test_pubkey : @gateway.pubkey
       %tr
-        %th= I18n.t("bip32_pubkey", scope: "gateways.show")
+        %th= I18n.t("gateways.show.bip32_pubkey")
         %td= key.slice(0,16) + "..."
 
       %tr
-        %th= I18n.t("address_derivation_scheme", scope: "gateways.show")
+        %th= I18n.t("gateways.show.address_derivation_scheme")
         %td= @gateway.address_derivation_scheme
 
       - if (addresses = @gateway.generate_addresses(@show_addresses))
         %tr
-          %th= I18n.t("addresses", scope: "gateways.show")
+          %th= I18n.t("gateways.show.addresses")
           %td
             %form{action: gateway_path(@gateway), method: 'GET'}
               %textarea= addresses.map { |e| e.join(': ') }.join("\n")
               %input{type: 'text', id: 'show_addresses', name: 'show_addresses', value: @show_addresses.to_s}
-              %input{type: 'submit', value: I18n.t("button_value", scope: "gateways.show.form")}
-              .hint= I18n.t("hint", scope: "gateways.show.form")
+              %input{type: 'submit', value: I18n.t("gateways.show.form.button_value")}
+              .hint= I18n.t("gateways.show.form.hint")
 
     %tr
-      %th= I18n.t("default_currency", scope: "gateways.show")
+      %th= I18n.t("gateways.show.default_currency")
       %td= @gateway.default_currency
 
     %tr
-      %th= I18n.t("callback_url", scope: "gateways.show")
+      %th= I18n.t("gateways.show.callback_url")
       %td= @gateway.callback_url
 
     %tr
-      %th= I18n.t("orders_expiration_period", scope: "gateways.show")
+      %th= I18n.t("gateways.show.orders_expiration_period")
       %td
         = @gateway.orders_expiration_period
-        = I18n.t("seconds", scope: "gateways.show")
+        = I18n.t("gateways.show.seconds")
 
     %tr
-      %th= I18n.t("api_gateway_id", scope: "gateways.show")
+      %th= I18n.t("gateways.show.api_gateway_id")
       %td= @gateway.straight_gateway_hashed_id
 
     %tr
-      %th= I18n.t("exchange_rate_providers", scope: "gateways.show")
+      %th= I18n.t("gateways.show.exchange_rate_providers")
       %td= @gateway.exchange_rate_adapter_names.join(", ") if @gateway.exchange_rate_adapter_names.present?
 
     %tr
-      %th= I18n.t("locale", scope: "gateways.show")
+      %th= I18n.t("gateways.show.locale")
       %td= @gateway.locale.humanize if @gateway.locale.present?
 
     %tr
-      %th= I18n.t("after_payment_redirect_to", scope: "gateways.show")
+      %th= I18n.t("gateways.show.after_payment_redirect_to")
       %td= @gateway.after_payment_redirect_to
 
     %tr
-      %th= I18n.t("auto_redirect", scope: "gateways.show")
+      %th= I18n.t("gateways.show.auto_redirect")
       %td= I18n.t(@gateway.auto_redirect.to_s)
 
     %tr
-      %th= I18n.t("is_active", scope: "gateways.show")
+      %th= I18n.t("gateways.show.is_active")
       %td= @gateway.active ? I18n.t("positive") : I18n.t("negative")
 
     %tr
-      %th= I18n.t("in_test_mode", scope: "gateways.show")
+      %th= I18n.t("gateways.show.in_test_mode")
       %td= @gateway.test_mode ? I18n.t("positive") : I18n.t("negative")
 
     %tr
-      %th= I18n.t("orders_stat", scope: "gateways.show")
+      %th= I18n.t("gateways.show.orders_stat")
       %td
-        #{I18n.t("new", scope: "gateways.show")}: #{@gateway.order_counters[:new]},
-        #{I18n.t("paid", scope: "gateways.show")}: #{@gateway.order_counters[:paid]},
-        #{I18n.t("overpaid", scope: "gateways.show")}: #{@gateway.order_counters[:overpaid]},
-        #{I18n.t("underpaid", scope: "gateways.show")}: #{@gateway.order_counters[:underpaid]},
-        #{I18n.t("expired", scope: "gateways.show")}: #{@gateway.order_counters[:expired]}
-        %span.seeAllOrders ( #{link_to(I18n.t("see_all_link", scope: "gateways.show"), orders_path(gateway_id: @gateway.id))} )
+        #{I18n.t("gateways.show.new")}: #{@gateway.order_counters[:new]},
+        #{I18n.t("gateways.show.paid")}: #{@gateway.order_counters[:paid]},
+        #{I18n.t("gateways.show.overpaid")}: #{@gateway.order_counters[:overpaid]},
+        #{I18n.t("gateways.show.underpaid")}: #{@gateway.order_counters[:underpaid]},
+        #{I18n.t("gateways.show.expired")}: #{@gateway.order_counters[:expired]}
+        %span.seeAllOrders ( #{link_to(I18n.t("gateways.show.see_all_link"), orders_path(gateway_id: @gateway.id))} )

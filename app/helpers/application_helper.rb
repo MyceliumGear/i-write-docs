@@ -20,17 +20,17 @@ module ApplicationHelper
   end
 
   DOCS = [
-    ["Table of contents", '/docs'],
-    ["Overview of payment processing", '/docs/overview'],
-    ["Creating a new gateway", '/docs/creating_gateway'],
-    ["Signed request", '/docs/signed_request'],
-    ["Creating orders", '/docs/creating_orders'],
-    ["Receiving order status change callback", '/docs/callback'],
-    ["Checking order status manually", '/docs/checking_order_status'],
-    ["Order websocket", '/docs/order_websocket'],
-    ["Order cancellation", '/docs/order_cancellation'],
-    ["Receiving last keychain id for gateway", '/docs/last_keychain_id'],
-    ["Table of contents", '/docs'],
+    [I18n.t("pages.docs.link"), '/docs'],
+    [I18n.t("pages.docs.index.links.payment_proccessing"), '/docs/overview'],
+    [I18n.t("pages.docs.index.links.new_gateway"), '/docs/creating_gateway'],
+    [I18n.t("pages.docs.index.links.signed_request"), '/docs/signed_request'],
+    [I18n.t("pages.docs.index.links.creating_orders"), '/docs/creating_orders'],
+    [I18n.t("pages.docs.index.links.callback"), '/docs/callback'],
+    [I18n.t("pages.docs.index.links.order_status"), '/docs/checking_order_status'],
+    [I18n.t("pages.docs.index.links.websocket"), '/docs/order_websocket'],
+    [I18n.t("pages.docs.index.links.order_cancellation"), '/docs/order_cancellation'],
+    [I18n.t("pages.docs.index.links.last_keychain"), '/docs/last_keychain_id'],
+    [I18n.t("pages.docs.link"), '/docs'],
   ]
 
   def docs_links_for(page)
@@ -46,7 +46,7 @@ module ApplicationHelper
   def subscriptions_collection
     values = {}
     UpdateItem.priorities.each do |value|
-      values[I18n.t("#{value.first}", scope: 'devise.devise_registrations')] = value.second
+      values[I18n.t("devise.devise_registrations.#{value.first}")] = value.second
     end
     values
   end

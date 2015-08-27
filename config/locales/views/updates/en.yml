@@ -3,6 +3,7 @@ en:
   updates:
     edit:
       page_title: Editing update
+      back: Back
     index:
       header: Updates
       links:

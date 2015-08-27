@@ -7,22 +7,22 @@
 
   .actions
     - if params[:widget]
-      = link_to I18n.t("create_widget", scope: "gateways.index"), "/wizard", class: "button small"
+      = link_to I18n.t("gateways.index.create_widget"), "/wizard", class: "button small"
     - else
-      = link_to I18n.t("create_gateway", scope: "gateways.index"), new_gateway_path, class: "button small"
+      = link_to I18n.t("gateways.index.create_gateway"), new_gateway_path, class: "button small"
 
 
   .list
     - if @gateways.present?
 
       %table
-        %th= I18n.t("name", scope: "gateways.index")
-        %th(style="width: 30px;")= I18n.t("active", scope: "gateways.index")
-        %th(style="wiTH: 80px;")= I18n.t("test_mode", scope: "gateways.index")
-        %th= I18n.t("bip32_testpubkey", scope: "gateways.index")
-        %th(style="width: 70px;")= I18n.t("default_currency", scope: "gateways.index")
+        %th= I18n.t("gateways.index.name")
+        %th(style="width: 30px;")= I18n.t("gateways.index.active")
+        %th(style="wiTH: 80px;")= I18n.t("gateways.index.test_mode")
+        %th= I18n.t("gateways.index.bip32_testpubkey")
+        %th(style="width: 70px;")= I18n.t("gateways.index.default_currency")
         - if current_user.admin?
-          %th= I18n.t("owner", scope: "gateways.index")
+          %th= I18n.t("gateways.index.owner")
         - @gateways.each do |g|
           - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
@@ -38,8 +38,8 @@
 
     - else
       .noRecords
-        %h3= I18n.t("title", scope: "gateways.index.no_records", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
+        %h3= I18n.t("gateways.index.no_records.title", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
         - if params[:widget]
-          = I18n.t("widget", scope: "gateways.index.no_records.statement")
+          = I18n.t("gateways.index.no_records.statement.widget")
         - else
-          %p= I18n.t("gateway", scope: "gateways.index.no_records.statement")
+          %p= I18n.t("gateways.index.no_records.statement.gateway")

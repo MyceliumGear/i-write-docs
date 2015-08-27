@@ -1,8 +1,8 @@
 - orders.each do |order|
   %li
-    = "#{I18n.t('amount', scope: 'widget_payments_notification')} #{order.amount}, "
-    != "#{I18n.t('address', scope: 'widget_payments_notification')} #{link_to order.address, gateway_order_url(gateway_id: gateway.id, id: order.payment_id)}, "
-    != "#{I18n.t('transaction', scope: 'widget_payments_notification')} #{blockchain_url(tid: order.tid)}, "
+    = "#{I18n.t('widget_payments_notification.amount')} #{order.amount}, "
+    != "#{I18n.t('widget_payments_notification.address')} #{link_to order.address, gateway_order_url(gateway_id: gateway.id, id: order.payment_id)}, "
+    != "#{I18n.t('widget_payments_notification.transaction')} #{blockchain_url(tid: order.tid)}, "
     = "#{order.created_at.utc.strftime(I18n.t('strftime.time_with_zone'))} "
     - if (title = order.data.try(:[], 'product_title'))
       = "(#{title})"

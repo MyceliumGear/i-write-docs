@@ -1,19 +1,19 @@
-- @page_title = I18n.t('page_title', scope: 'devise.devise_registrations.new')
+- @page_title = I18n.t('devise.devise_registrations.new.page_title')
 
 .page.registration.new
 
   .formBlock
 
-    %h2.onDark= I18n.t('header', scope: 'devise.devise_registrations.new')
+    %h2.onDark= I18n.t('devise.devise_registrations.new.header')
 
     = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       .form-inputs
         = f.input :email, required: true, autofocus: true
-        = f.input :password, required: true, hint: (I18n.t('hint', scope: 'devise.devise_registrations.new.password', min_length: @minimum_password_length) if @validatable)
+        = f.input :password, required: true, hint: (I18n.t('devise.devise_registrations.new.password.hint', min_length: @minimum_password_length) if @validatable)
         = f.input :password_confirmation, required: true
         = f.input :name
-        = f.input :tos_agreement, required: true, inline_label: I18n.t('tos', scope: 'devise.devise_registrations.new', link: link_to('Terms Of Service', tos_path, target: '_blank')).html_safe, as: :boolean
+        = f.input :tos_agreement, required: true, inline_label: I18n.t('devise.devise_registrations.new.tos', link: link_to('Terms Of Service', tos_path, target: '_blank')).html_safe, as: :boolean
       .form-actions
-        = f.button :submit, I18n.t('submit', scope: 'devise.devise_registrations.new'), class: 'onDark'
+        = f.button :submit, I18n.t('devise.devise_registrations.new.submit'), class: 'onDark'
 
   = render "devise/shared/links"

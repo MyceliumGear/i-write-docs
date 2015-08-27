@@ -1,7 +1,7 @@
-- @page_title = I18n.t('page_title', scope: 'devise.mailer.confirmation_instructions')
+- @page_title = I18n.t('devise.mailer.confirmation_instructions.page_title')
 
-%p= I18n.t('greetings', scope: 'devise.mailer.confirmation_instructions')
+%p= I18n.t('devise.mailer.confirmation_instructions.greetings')
 %p
-  = I18n.t('message', scope: 'devise.mailer.confirmation_instructions')
+  = I18n.t('devise.mailer.confirmation_instructions.message')
   %br/
-  = link_to I18n.t('link_to_confirm', scope: 'devise.mailer.confirmation_instructions'), confirmation_url(@resource, confirmation_token: @token)
+  = link_to I18n.t('devise.mailer.confirmation_instructions.link_to_confirm'), confirmation_url(@resource, confirmation_token: @token)

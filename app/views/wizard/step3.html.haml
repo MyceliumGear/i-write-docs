@@ -1,4 +1,4 @@
-- @page_title = I18n.t("page_title", scope: "wizard.step3")
+- @page_title = I18n.t("wizard.step3.page_title")
 
 .page.wizard.step3
   .pure-g
@@ -8,10 +8,10 @@
   .title
 
     %p
-      %b= I18n.t("header", scope: "wizard.step3.title")
-    %p= I18n.t("tip", scope: "wizard.step3.title")
+      %b= I18n.t("wizard.step3.title.header")
+    %p= I18n.t("wizard.step3.title.tip")
 
-  %h1= I18n.t("header", scope: "wizard.step3")
+  %h1= I18n.t("wizard.step3.header")
 
   = render partial: 'widgets/form'
   = render partial: 'widgets/preview'
@@ -20,12 +20,12 @@
 
     .installationInstructions
 
-      %p= I18n.t("header", scope: "wizard.step3.instructions")
+      %p= I18n.t("wizard.step3.instructions.header")
 
       %ol
-        %li= I18n.t("first", scope: "wizard.step3.instructions.list")
-        %li= I18n.t("second", scope: "wizard.step3.instructions.list")
+        %li= I18n.t("wizard.step3.instructions.list.first")
+        %li= I18n.t("wizard.step3.instructions.list.second")
 
-      %p= I18n.t("hint", scope: "wizard.step3.instructions").html_safe
+      %p= I18n.t("wizard.step3.instructions.hint").html_safe
 
-      %p= I18n.t("ending", scope: "wizard.step3.instructions").html_safe
+      %p= I18n.t("wizard.step3.instructions.ending").html_safe

@@ -1,4 +1,4 @@
-- @page_title = I18n.t("page_title", scope: "wizard.step2")
+- @page_title = I18n.t("wizard.step2.page_title")
 - btc_only_fields_style = @gateway.convert_currency_to == 'BTC' ? '' : 'display: none;'
 
 .page.wizard.step2
@@ -6,28 +6,28 @@
   .title
 
     %p
-      %b= I18n.t("header", scope: "wizard.step2.title")
-    %p= I18n.t("tip", scope: "wizard.step2.title")
+      %b= I18n.t("wizard.step2.title.header")
+    %p= I18n.t("wizard.step2.title.tip")
 
-  %h1= I18n.t("header", scope: "wizard.step2")
+  %h1= I18n.t("wizard.step2.header")
 
   = simple_form_for(@gateway, url: { controller: 'wizard', action: 'create_gateway' }) do |f|
 
     .pure-g
       .pure-u-24-24
         .container
-          %p= I18n.t("need_address_provider", scope: "wizard.step2", path: new_address_provider_path).html_safe
+          %p= I18n.t("wizard.step2.need_address_provider", path: new_address_provider_path).html_safe
       .pure-u-12-24
         .container
           .leftBlock
             = f.input :name
             = f.input :convert_currency_to, as: :select, collection: [['BTC', 'BTC'], *user_address_providers], priority: ['BTC']
           .formBlock.btc-only-fields{style: btc_only_fields_style}
-            = f.input :pubkey, label: I18n.t("label", scope: "wizard.step2.pubkey").html_safe
+            = f.input :pubkey, label: I18n.t("wizard.step2.pubkey.label").html_safe
             %p.moreFieldInfo
               = image_tag "watch_icon.png", class: 'inlineIcon'
-              = I18n.t("video_tip", scope: "wizard.step2", link_1: link_to("your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank'), link_2: link_to("Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank')).html_safe
-            = f.input :address_derivation_scheme, as: :select, collection: [["m/0/n - #{I18n.t('first', scope: 'wizard.step2.wallets')}", "m/0/n"], ["n — #{I18n.t('second', scope: 'wizard.step2.wallets')}", "n"]], value_method: :last, label_method: :first
+              = I18n.t("wizard.step2.video_tip", link_1: link_to("your Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: '_blank'), link_2: link_to("Mycelium wallet", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: '_blank')).html_safe
+            = f.input :address_derivation_scheme, as: :select, collection: [["m/0/n - #{I18n.t('wizard.step2.wallets.first')}", "m/0/n"], ["n — #{I18n.t('wizard.step2.wallets.second')}", "n"]], value_method: :last, label_method: :first
       .pure-u-12-24
         .container
           .rightBlock
@@ -36,11 +36,11 @@
           .formBlock.btc-only-fields{style: btc_only_fields_style}
             = f.input :test_pubkey
             = f.input :test_mode
-          = f.input :receive_payments_notifications, label: I18n.t("receive_notifications", scope: "wizard.step2")
+          = f.input :receive_payments_notifications, label: I18n.t("wizard.step2.receive_notifications")
 
 
     = f.input :site_type, as: :hidden
 
     .actions
-      = link_to I18n.t("back", scope: "wizard.step2.links"), "/wizard", class: 'button'
-      = f.submit I18n.t("next", scope: "wizard.step2.links")
+      = link_to I18n.t("wizard.step2.links.back"), "/wizard", class: 'button'
+      = f.submit I18n.t("wizard.step2.links.next")

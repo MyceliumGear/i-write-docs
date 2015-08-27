@@ -95,15 +95,15 @@ class ApplicationController < ActionController::Base
       updates_icon = current_user.has_unreaded_updates? && "new_updates" || "updates"
 
       mmmenu do |l1|
-        l1.add I18n.t("gateways", scope: "menu"), gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ], icon: 'gateways'
-        l1.add I18n.t("widgets", scope: "menu"),  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]], icon: 'widgets'
-        l1.add I18n.t("orders", scope: "menu"),   orders_path, icon: 'orders'
-        l1.add I18n.t("fiat_payouts", scope: "menu"), address_providers_path, paths: [["/fiat-payouts*"]], icon: 'fiat_payouts'
-        l1.add I18n.t("account", scope: "menu"),  edit_user_registration_path, icon: 'account'
-        l1.add I18n.t("documentation", scope: "menu"), "/docs", icon: 'documentation'
-        l1.add I18n.t("two_factor_auth", scope: "menu"), user_displayqr_path, icon: 'two_factor_auth' unless gauth_enabled_user?
-        l1.add I18n.t("updates", scope: "menu"), updates_path, icon: updates_icon
-        l1.add I18n.t("sing_out", scope: "menu"), destroy_user_session_path, icon: 'sign_out'
+        l1.add I18n.t("menu.gateways"), gateways_path, paths: [[gateways_path, 'get', { widget: nil } ], [new_gateway_path, 'get'] ], icon: 'gateways'
+        l1.add I18n.t("menu.widgets"),  gateways_path(widget: 1), paths: [["/wizard", 'get'], [gateways_path, 'get', { widget: '1'}]], icon: 'widgets'
+        l1.add I18n.t("menu.orders"),   orders_path, icon: 'orders'
+        l1.add I18n.t("menu.fiat_payouts"), address_providers_path, paths: [["/fiat-payouts*"]], icon: 'fiat_payouts'
+        l1.add I18n.t("menu.account"),  edit_user_registration_path, icon: 'account'
+        l1.add I18n.t("menu.documentation"), "/docs", icon: 'documentation'
+        l1.add I18n.t("menu.two_factor_auth"), user_displayqr_path, icon: 'two_factor_auth' unless gauth_enabled_user?
+        l1.add I18n.t("menu.updates"), updates_path, icon: updates_icon
+        l1.add I18n.t("menu.sing_out"), destroy_user_session_path, icon: 'sign_out'
       end
     end
 
@@ -115,6 +115,5 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up)        << :name
       devise_parameter_sanitizer.for(:account_update) << :name
     end
-
 
 end

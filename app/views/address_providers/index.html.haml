@@ -1,24 +1,24 @@
 .page.exchanges.index
 
   - if current_user.admin?
-    %h2.pageTitle= @page_title = I18n.t("all_exchanges", scope: "address_providers.index")
+    %h2.pageTitle= @page_title = I18n.t("address_providers.index.all_exchanges")
   - else
-    %h2.pageTitle= @page_title = I18n.t("your_exchanges", scope: "address_providers.index")
+    %h2.pageTitle= @page_title = I18n.t("address_providers.index.your_exchanges")
 
   .actions
-    = link_to I18n.t("add_exchange", scope: "address_providers.index"), new_address_provider_path, class: 'button small'
+    = link_to I18n.t("address_providers.index.add_exchange"), new_address_provider_path, class: 'button small'
   .clearfix
 
   .list
     - if @address_providers.present?
 
       %table
-        %th= I18n.t("name", scope: "address_providers.index")
+        %th= I18n.t("address_providers.index.name")
         - if current_user.admin?
-          %th= I18n.t("owner", scope: "address_providers.index")
+          %th= I18n.t("address_providers.index.owner")
         - @address_providers.each do |provider|
           %tr
-            %td= link_to "#{provider.currencies} #{I18n.t("through", scope: "address_providers.index")} #{provider.display_name}", address_provider_path(provider)
+            %td= link_to "#{provider.currencies} #{I18n.t("address_providers.index.through")} #{provider.display_name}", address_provider_path(provider)
             - if current_user.admin?
               %td= provider.user.email
 
@@ -26,4 +26,4 @@
 
     - else
       .noRecords
-        %h3= I18n.t("title", scope: "address_providers.index.no_records")
+        %h3= I18n.t("address_providers.index.no_records.title")

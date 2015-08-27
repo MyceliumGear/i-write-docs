@@ -17,7 +17,7 @@ class UpdatesController < ApplicationController
 
   def delivery
     if @update_item.sent_at
-      notice = I18n.t("already_send", scope: "updates_controller.delivery", time: @update_item.sent_at.strftime("%b %e, %Y"))
+      notice = I18n.t("updates_controller.delivery.already_send", time: @update_item.sent_at.strftime("%b %e, %Y"))
       return redirect_to updates_path, notice: notice
     end
 
@@ -28,16 +28,16 @@ class UpdatesController < ApplicationController
     end
 
     @update_item.sent! if users.present?
-    redirect_to updates_path, notice: I18n.t("users_count", scope: "updates_controller.delivery", count: users.count)
+    redirect_to updates_path, notice: I18n.t("updates_controller.delivery.users_count", count: users.count)
   end
 
   def deliver_unsent
     counters = UpdatesMailer.deliver_unsent_updates_later
     result = ''
     counters.each do |k, v|
-      result.concat I18n.t("each_will_get", scope: "updates_controller.delivery", k: k, v: v)
+      result.concat I18n.t("updates_controller.delivery.each_will_get", k: k, v: v)
     end
-    redirect_to updates_path, notice: result.presence || I18n.t("no_one_will_get", scope: "updates_controller.delivery")
+    redirect_to updates_path, notice: result.presence || I18n.t("updates_controller.delivery.no_one_will_get")
   end
 
   def new
@@ -51,7 +51,7 @@ class UpdatesController < ApplicationController
     @update_item = UpdateItem.new(update_item_params)
 
     if @update_item.save
-      redirect_to updates_path, notice: I18n.t("created", scope: "updates_controller.successfully")
+      redirect_to updates_path, notice: I18n.t("updates_controller.successfully.created")
     else
       render :new
     end
@@ -59,7 +59,7 @@ class UpdatesController < ApplicationController
 
   def update
     if @update_item.update(update_item_params)
-      redirect_to updates_path, notice: I18n.t("updated", scope: "updates_controller.successfully")
+      redirect_to updates_path, notice: I18n.t("updates_controller.successfully.updated")
     else
       render :edit
     end
@@ -67,7 +67,7 @@ class UpdatesController < ApplicationController
 
   def destroy
     @update_item.destroy
-    redirect_to updates_url, notice: I18n.t("destroyed", scope: "updates_controller.successfully")
+    redirect_to updates_url, notice: I18n.t("updates_controller.successfully.destroyed")
   end
 
   private

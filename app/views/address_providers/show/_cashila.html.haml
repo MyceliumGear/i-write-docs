@@ -1,10 +1,10 @@
 .page.exchanges.show.cashila
 
   %h3
-    = I18n.t("exchange", scope: "address_providers.show.cashila")
-    = I18n.t("hint", scope: "address_providers.show.cashila", name: @address_provider.display_name)
+    = I18n.t("address_providers.show.cashila.exchange")
+    = I18n.t("address_providers.show.cashila.hint", name: @address_provider.display_name)
 
-  .actions= link_to I18n.t("edit", scope: "address_providers.show.cashila"), edit_address_provider_path(@address_provider), class: 'button small'
+  .actions= link_to I18n.t("address_providers.show.cashila.edit"), edit_address_provider_path(@address_provider), class: 'button small'
   .clearfix
 
   - if flash[:success].to_s.end_with? 'created'
@@ -13,14 +13,14 @@
 
   %table
     %tr
-      %th= I18n.t("verification_status", scope: "address_providers.show.cashila")
+      %th= I18n.t("address_providers.show.cashila.verification_status")
       %td= @actual_state['status']
     - if @actual_state['rejected_reason']
       %tr
-        %th= I18n.t("rejection_reason", scope: "address_providers.show.cashila")
+        %th= I18n.t("address_providers.show.cashila.rejection_reason")
         %td= @actual_state['rejected_reason']
 
-  %h4= I18n.t("details", scope: "address_providers.show.cashila")
+  %h4= I18n.t("address_providers.show.cashila.details")
   %table
     - hidden_keys = %i{recipient_bic recipient_iban}.to_set
     - AddressProviders::Cashila::USER_DETAILS.each do |key|
@@ -29,7 +29,7 @@
         %th= key.to_s.humanize
         %td= @actual_state[key.to_s]
 
-  %h4= I18n.t("documents", scope: "address_providers.show.cashila")
+  %h4= I18n.t("address_providers.show.cashila.documents")
   - AddressProviders::Cashila::FILES.each do |key|
     %p
       = I18n.t("address_providers.forms.cashila.#{key}")
