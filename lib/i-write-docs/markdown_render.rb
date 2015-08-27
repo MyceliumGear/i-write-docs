@@ -4,7 +4,7 @@ module IWriteDocs
     def self.parse_to_html(file_path)
       source = File.open(file_path).read
       md = self.new
-      rc = Redcarpet::Markdown.new(md, highlight: true, fenced_code_blocks: true)
+      rc = Redcarpet::Markdown.new(md, highlight: true, fenced_code_blocks: true, with_toc_data: true)
       rc.render(source)
     end
 
@@ -17,6 +17,10 @@ module IWriteDocs
       end
     rescue
       "<div class='highlight'><pre>#{code}</pre></div>"
+    end
+
+    def preprocess(full_doc)
+      IWriteDocs::DocFilter.filter(full_doc)
     end
 
   end
