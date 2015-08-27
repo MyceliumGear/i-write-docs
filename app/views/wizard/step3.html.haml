@@ -1,17 +1,17 @@
-- @page_title = I18n.t("wizard.step3.page_title")
+- @page_title = t("wizard.step3.page_title")
 
 .page.wizard.step3
   .pure-g
     .pure-u-1
-      = link_to I18n.t('gateways.show.edit_settings'), edit_gateway_path(@gateway), class: 'button small editGateway'
+      = link_to t('gateways.show.edit_settings'), edit_gateway_path(@gateway), class: 'button small editGateway'
 
   .title
 
     %p
-      %b= I18n.t("wizard.step3.title.header")
-    %p= I18n.t("wizard.step3.title.tip")
+      %b= t("wizard.step3.title.header")
+    %p= t("wizard.step3.title.tip")
 
-  %h1= I18n.t("wizard.step3.header")
+  %h1= t("wizard.step3.header")
 
   = render partial: 'widgets/form'
   = render partial: 'widgets/preview'
@@ -20,12 +20,12 @@
 
     .installationInstructions
 
-      %p= I18n.t("wizard.step3.instructions.header")
+      %p= t("wizard.step3.instructions.header")
 
       %ol
-        %li= I18n.t("wizard.step3.instructions.list.first")
-        %li= I18n.t("wizard.step3.instructions.list.second")
+        %li= t("wizard.step3.instructions.list.first")
+        %li= t("wizard.step3.instructions.list.second")
 
-      %p= I18n.t("wizard.step3.instructions.hint").html_safe
+      %p= t("wizard.step3.instructions.hint").html_safe
 
-      %p= I18n.t("wizard.step3.instructions.ending").html_safe
+      %p= t("wizard.step3.instructions.ending").html_safe

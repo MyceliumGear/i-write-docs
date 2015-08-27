@@ -5,9 +5,9 @@
 
       .pure-u-12-24
         .container.products
-          %h3= I18n.t("widgets.form.products.header")
+          %h3= t("widgets.form.products.header")
           %p.hint
-            = I18n.t("widgets.form.products.hint", singular: I18n.t("widgets.form.products.singular"))
+            = t("widgets.form.products.hint", singular: t("widgets.form.products.singular"))
 
           - @widget.products.each do |product|
 
@@ -16,31 +16,31 @@
               %input.price{type: 'number', value: product.price, min: 0.00001, max: 99999999, pattern: '\A\d+(\.\d{1,2})\z', class: ('error' unless product.errors[:price].blank?)}
               %label
                 %input.singular{type: 'checkbox', checked: product.singular?}
-                = I18n.t("widgets.form.products.singular")
-              = image_tag "remove_icon.png", title: I18n.t("widgets.form.products.remove_product"), class: 'remove'
+                = t("widgets.form.products.singular")
+              = image_tag "remove_icon.png", title: t("widgets.form.products.remove_product"), class: 'remove'
               - unless product.errors.empty?
                 .errorMessage
                   - if product.errors[:title].present?
                     .message
-                      = I18n.t("widgets.form.products.errors.title")
+                      = t("widgets.form.products.errors.title")
                       = product.errors[:title].join(' and ')
                   - if product.errors[:price].present?
                     .message
-                      = I18n.t("widgets.form.products.errors.price")
+                      = t("widgets.form.products.errors.price")
                       = product.errors[:price].join(' and ')
 
           .product.item.new
-            %input.title{placeholder: I18n.t("widgets.form.products.product_title"), type: 'text'}
+            %input.title{placeholder: t("widgets.form.products.product_title"), type: 'text'}
             %input.price{placeholder: "#{@gateway.default_currency}", type: 'number', pattern: '\A\d+(\.\d{1,2})\z', max: 99999999, min: 0.00001}
             %label
               %input.singular{type: 'checkbox', checked: true}
-              = I18n.t("widgets.form.products.singular")
-            = image_tag "add_icon.png", title: I18n.t("widgets.form.products.one_more_product"), class: 'add'
+              = t("widgets.form.products.singular")
+            = image_tag "add_icon.png", title: t("widgets.form.products.one_more_product"), class: 'add'
       .pure-u-12-24
         .container.fields
-          %h3= I18n.t("widgets.form.fields.header")
+          %h3= t("widgets.form.fields.header")
           %p.hint
-            = I18n.t("widgets.form.fields.hint")
+            = t("widgets.form.fields.hint")
 
           - if @widget.fields && !@widget.fields.empty?
             - @widget.fields.each do |field|
@@ -48,28 +48,28 @@
                 %input.fieldName{type: 'text', value: field, class: ('error' if @widget.error_for_custom_field(field))}
                 %label.required
                   = check_box_tag "field_required", 1, field =~ /\A\*/
-                  = I18n.t("widgets.form.fields.required")
-                = image_tag "remove_icon.png", title: I18n.t("widgets.form.fields.remove_field"), class: 'remove'
+                  = t("widgets.form.fields.required")
+                = image_tag "remove_icon.png", title: t("widgets.form.fields.remove_field"), class: 'remove'
                 - if @widget.error_for_custom_field(field)
                   .errorMessage= @widget.errors[:fields][0][field].join(' and ')
 
           .field.item.new
-            %input.fieldName{placeholder: I18n.t("widgets.form.fields.field_name"), type: 'text'}
+            %input.fieldName{placeholder: t("widgets.form.fields.field_name"), type: 'text'}
             %label.required
               %input.checkbox(type="checkbox" name="field_required")
-              = I18n.t("widgets.form.fields.required")
-            = image_tag "add_icon.png", title: I18n.t("widgets.form.fields.one_more_field"), class: 'add'
+              = t("widgets.form.fields.required")
+            = image_tag "add_icon.png", title: t("widgets.form.fields.one_more_field"), class: 'add'
       .pure-u-12-24
         .container.settings
-          %h3= I18n.t("widgets.form.customize.header")
+          %h3= t("widgets.form.customize.header")
           %label.required
-            = I18n.t("widgets.form.customize.theme")
+            = t("widgets.form.customize.theme")
           %br/
-          = select_tag :theme, options_for_select([[I18n.t("widgets.form.customize.red"), 'red'], [I18n.t("widgets.form.customize.black"), 'black'], [I18n.t("widgets.form.customize.gray"), 'gray']], selected: @widget.theme)
+          = select_tag :theme, options_for_select([[t("widgets.form.customize.red"), 'red'], [t("widgets.form.customize.black"), 'black'], [t("widgets.form.customize.gray"), 'gray']], selected: @widget.theme)
 
 
     .formActions
-      %button.small.save= I18n.t("widgets.form.actions.save")
+      %button.small.save= t("widgets.form.actions.save")
       %button.small.cancel.disabled(disabled)
-        = I18n.t("widgets.form.actions.cancel")
-      .saveWarning= I18n.t("widgets.form.actions.warning")
+        = t("widgets.form.actions.cancel")
+      .saveWarning= t("widgets.form.actions.warning")

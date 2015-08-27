@@ -1,11 +1,11 @@
-- @page_title = I18n.t("address_providers.new.page_title")
+- @page_title = t("address_providers.new.page_title")
 - default_provider = AddressProviders::Cashila
 
 .page.exchanges.new
 
-  %h1= I18n.t("address_providers.new.adding_a_new_exchange")
+  %h1= t("address_providers.new.adding_a_new_exchange")
 
-  = I18n.t("address_providers.new.currency")
+  = t("address_providers.new.currency")
   %select#address_provider
     - AddressProvider.providers.each do |provider|
       %option{value: provider.type, selected: provider == default_provider}

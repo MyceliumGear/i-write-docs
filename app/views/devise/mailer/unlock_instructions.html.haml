@@ -1,9 +1,9 @@
-- @page_title = I18n.t('devise.mailer.unlock_instructions.page_title')
+- @page_title = t('devise.mailer.unlock_instructions.page_title')
 
-%p= I18n.t('devise.mailer.unlock_instructions.greetings')
+%p= t('devise.mailer.unlock_instructions.greetings')
 %p
-  = I18n.t('devise.mailer.unlock_instructions.message')
+  = t('devise.mailer.unlock_instructions.message')
   %br/
-  = I18n.t('devise.mailer.unlock_instructions.message_2')
+  = t('devise.mailer.unlock_instructions.message_2')
   %br/
-  = link_to = I18n.t('devise.mailer.unlock_instructions.unlock_link'), unlock_url(@resource, unlock_token: @token)
+  = link_to = t('devise.mailer.unlock_instructions.unlock_link'), unlock_url(@resource, unlock_token: @token)

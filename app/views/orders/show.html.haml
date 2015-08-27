@@ -1,47 +1,47 @@
 .page.orders.show
 
   %h2
-    = I18n.t("orders.show.header", title: (@order.title || ''), keychain: @order.keychain_id )
+    = t("orders.show.header", title: (@order.title || ''), keychain: @order.keychain_id )
     = link_to(@gateway.name, @gateway).html_safe
 
   %table
 
     %tr
-      %th= I18n.t("orders.show.amount_btc")
+      %th= t("orders.show.amount_btc")
       %td= @order.amount_in_btc(as: :string)
 
     %tr
-      %th= I18n.t("orders.show.paid_amount_btc")
+      %th= t("orders.show.paid_amount_btc")
       %td= @order.amount_in_btc(field: @order.amount_paid, as: :string)
 
     %tr
-      %th= I18n.t("orders.show.bitcoin_payment_address")
+      %th= t("orders.show.bitcoin_payment_address")
       %td
         = @order.address
         - if @order.reused > 0
-          %b= I18n.t("orders.show.times_reused", count: @order.reused )
+          %b= t("orders.show.times_reused", count: @order.reused )
 
     %tr
-      %th= I18n.t("orders.show.transaction_id")
+      %th= t("orders.show.transaction_id")
       %td= @order.tid
 
     %tr
-      %th= I18n.t("orders.show.status")
+      %th= t("orders.show.status")
       %td= StraightServer::Order::STATUSES.invert[@order.status]
 
     - if @order.data && @order.data.kind_of?(Hash) && @order.data[:exchange_rate]
       - exchange_rate = @order.data.delete(:exchange_rate)
       %tr
-        %th= I18n.t("orders.show.exhange_rate")
+        %th= t("orders.show.exhange_rate")
         %td
-          = I18n.t("orders.show.at_the_time_of_purchase")
+          = t("orders.show.at_the_time_of_purchase")
           %b= "#{exchange_rate[:price]*@order.amount_in_btc} #{exchange_rate[:currency]}"
           ,
-          = I18n.t("orders.show.value")
+          = t("orders.show.value")
           %b= "#{@gateway.straight_gateway.current_exchange_rate(exchange_rate[:currency])*@order.amount_in_btc} #{exchange_rate[:currency]}"
 
     %tr
-      %th= I18n.t("orders.show.data")
+      %th= t("orders.show.data")
       %td
         - if @order.data && @order.data.kind_of?(Hash)
           - @order.data.each do |k,v|
@@ -50,9 +50,9 @@
           = @order.data
 
     %tr
-      %th= I18n.t("orders.show.callback_response")
+      %th= t("orders.show.callback_response")
       %td= @order.callback_response
 
     %tr
-      %th= I18n.t("orders.show.created_at")
-      %td= @order.created_at.strftime(I18n.t("strftime.created_at"))
+      %th= t("orders.show.created_at")
+      %td= @order.created_at.strftime(t("strftime.created_at"))

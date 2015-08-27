@@ -1,48 +1,48 @@
-- @page_title = I18n.t("pages.docs.overview.page_title")
+- @page_title = t("pages.docs.overview.page_title")
 
 .page.docs
 
-  %h1= I18n.t("pages.docs.overview.header", link: link_to(I18n.t("pages.docs.overview.link"), "/docs") ).html_safe
+  %h1= t("pages.docs.overview.header", link: link_to(t("pages.docs.overview.link"), "/docs") ).html_safe
 
-  %p= I18n.t("pages.docs.overview.statement")
+  %p= t("pages.docs.overview.statement")
 
-  %h2= I18n.t("pages.docs.overview.faq.first.question")
+  %h2= t("pages.docs.overview.faq.first.question")
 
-  %p= I18n.t("pages.docs.overview.faq.first.answer").html_safe
+  %p= t("pages.docs.overview.faq.first.answer").html_safe
 
-  %h2= I18n.t("pages.docs.overview.faq.second.question")
+  %h2= t("pages.docs.overview.faq.second.question")
 
-  %p= I18n.t("pages.docs.overview.faq.second.answer_1")
+  %p= t("pages.docs.overview.faq.second.answer_1")
 
   .code https://verypay.com/order/08ccaf5cd48628fb69900d7295cd46de5ac97dc3d798816f550a266f3eec01e1
 
-  %p= I18n.t("pages.docs.overview.faq.second.answer_2")
+  %p= t("pages.docs.overview.faq.second.answer_2")
   .code POST https://worldsbestshoes.com/payments/callback
-  %p= I18n.t("pages.docs.overview.faq.second.answer_3")
+  %p= t("pages.docs.overview.faq.second.answer_3")
 
-  %p= I18n.t("pages.docs.overview.faq.second.answer_4")
+  %p= t("pages.docs.overview.faq.second.answer_4")
 
-  %h2= I18n.t("pages.docs.overview.faq.third.question")
+  %h2= t("pages.docs.overview.faq.third.question")
 
-  %p= I18n.t("pages.docs.overview.faq.third.answer")
+  %p= t("pages.docs.overview.faq.third.answer")
 
-  %h2= I18n.t("pages.docs.overview.faq.fourth.question")
+  %h2= t("pages.docs.overview.faq.fourth.question")
 
-  %p= I18n.t("pages.docs.overview.faq.fourth.answer_1", link_1: link_to("BIP32", "https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki", target: "_blank"), link_2:  link_to("Mycelium", "https://mycelium.com/bitcoinwallet", target: "_blank"),link_3: link_to("Electrum", "https://electrum.org/", target: "_blank")).html_safe
+  %p= t("pages.docs.overview.faq.fourth.answer_1", link_1: link_to("BIP32", "https://github.com/bitcoin/bips/blob/master/bip-0032.mediawiki", target: "_blank"), link_2:  link_to("Mycelium", "https://mycelium.com/bitcoinwallet", target: "_blank"),link_3: link_to("Electrum", "https://electrum.org/", target: "_blank")).html_safe
 
-  %p= I18n.t("pages.docs.overview.faq.fourth.answer_2")
+  %p= t("pages.docs.overview.faq.fourth.answer_2")
 
-  %h2= I18n.t("pages.docs.overview.terminology.header")
-  %p= I18n.t("pages.docs.overview.terminology.statement")
+  %h2= t("pages.docs.overview.terminology.header")
+  %p= t("pages.docs.overview.terminology.statement")
 
   %ul
 
-    %li= I18n.t("pages.docs.overview.terminology.list.first").html_safe
+    %li= t("pages.docs.overview.terminology.list.first").html_safe
 
-    %li= I18n.t("pages.docs.overview.terminology.list.second").html_safe
+    %li= t("pages.docs.overview.terminology.list.second").html_safe
 
-    %li= I18n.t("pages.docs.overview.terminology.list.third").html_safe
+    %li= t("pages.docs.overview.terminology.list.third").html_safe
 
-    %li= I18n.t("pages.docs.overview.terminology.list.fourth").html_safe
+    %li= t("pages.docs.overview.terminology.list.fourth").html_safe
 
   = render partial: 'pages/docs/navigation', locals: {page: 'overview'}

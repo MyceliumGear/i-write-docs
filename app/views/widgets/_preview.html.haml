@@ -7,69 +7,69 @@
       - if @gateway.site_type == "wordpress"
 
         .installationInstructions
-          %h3= I18n.t("widgets.preview.wordpress.header")
-          %p= I18n.t("widgets.preview.wordpress.tip")
+          %h3= t("widgets.preview.wordpress.header")
+          %p= t("widgets.preview.wordpress.tip")
 
           %ol
-            %li= I18n.t("widgets.preview.wordpress.step1", link: link_to(I18n.t("widgets.preview.wordpress.link"), "/mycelium-gear_wordpress_plugin.zip")).html_safe
+            %li= t("widgets.preview.wordpress.step1", link: link_to(t("widgets.preview.wordpress.link"), "/mycelium-gear_wordpress_plugin.zip")).html_safe
             %li
-              =I18n.t("widgets.preview.wordpress.step2")
+              =t("widgets.preview.wordpress.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("widgets.preview.wordpress.step3")
+          %p= t("widgets.preview.wordpress.step3")
 
       - elsif @gateway.site_type == "joomla"
 
         .installationInstructions
-          %h3= I18n.t("widgets.preview.joomla.header")
-          %p= I18n.t("widgets.preview.joomla.tip")
+          %h3= t("widgets.preview.joomla.header")
+          %p= t("widgets.preview.joomla.tip")
 
           %ol
-            %li= I18n.t("widgets.preview.joomla.step1", link: link_to(I18n.t("widgets.preview.joomla.link"), "http://extensions.joomla.org/browse/new/extension/e-commerce/payment-gateway/mycelium-gear-payment-widget")).html_safe
+            %li= t("widgets.preview.joomla.step1", link: link_to(t("widgets.preview.joomla.link"), "http://extensions.joomla.org/browse/new/extension/e-commerce/payment-gateway/mycelium-gear-payment-widget")).html_safe
             %li
-              = I18n.t("widgets.preview.joomla.step2")
+              = t("widgets.preview.joomla.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("widgets.preview.joomla.step3")
+          %p= t("widgets.preview.joomla.step3")
 
       - elsif @gateway.site_type == "drupal"
 
         .installationInstructions
-          %h3= I18n.t("widgets.preview.drupal.header")
-          %p= I18n.t("widgets.preview.drupal.tip")
+          %h3= t("widgets.preview.drupal.header")
+          %p= t("widgets.preview.drupal.tip")
 
           %ol
-            %li= I18n.t("widgets.preview.drupal.step1", link: link_to(I18n.t("widgets.preview.drupal.link"), "/mycelium-gear_drupal_plugin.zip")).html_safe
+            %li= t("widgets.preview.drupal.step1", link: link_to(t("widgets.preview.drupal.link"), "/mycelium-gear_drupal_plugin.zip")).html_safe
             %li
-              = I18n.t("widgets.preview.drupal.step2")
+              = t("widgets.preview.drupal.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("widgets.preview.drupal.step3")
+          %p= t("widgets.preview.drupal.step3")
 
       - elsif @gateway.site_type == "modx"
 
         .installationInstructions
-          %h3= I18n.t("widgets.preview.modx.header")
-          %p= I18n.t("widgets.preview.modx.tip")
+          %h3= t("widgets.preview.modx.header")
+          %p= t("widgets.preview.modx.tip")
 
           %ol
-            %li= I18n.t("widgets.preview.modx.step1", link: link_to(I18n.t("widgets.preview.modx.link"), "/mycelium-gear_modx_plugin.zip")).html_safe
+            %li= t("widgets.preview.modx.step1", link: link_to(t("widgets.preview.modx.link"), "/mycelium-gear_modx_plugin.zip")).html_safe
             %li
-              = I18n.t("widgets.preview.modx.step2")
+              = t("widgets.preview.modx.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("widgets.preview.modx.step3")
+          %p= t("widgets.preview.modx.step3")
 
       - else
 
         .container.widgetCode
-          %h3= I18n.t("widgets.preview.widget.code.header")
-          = I18n.t("widgets.preview.widget.code.tip")
+          %h3= t("widgets.preview.widget.code.header")
+          = t("widgets.preview.widget.code.tip")
           %textarea= render_to_string(template: 'widgets/_site_host_code', layout: false)
-          .hint= I18n.t("widgets.preview.widget.code.hint").html_safe
+          .hint= t("widgets.preview.widget.code.hint").html_safe
 
     .pure-u-12-24
       .container
-        %h3= I18n.t("widgets.preview.widget.preview.header")
-        = I18n.t("widgets.preview.widget.preview.tip")
+        %h3= t("widgets.preview.widget.preview.header")
+        = t("widgets.preview.widget.preview.tip")
         = render partial: "widgets/admin_host_code"

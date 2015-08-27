@@ -1,15 +1,15 @@
-- @page_title = I18n.t("pages.docs.last_keychain_id.page_title")
+- @page_title = t("pages.docs.last_keychain_id.page_title")
 
 .page.docs
-  %h1= I18n.t("pages.docs.last_keychain_id.header", link: link_to(I18n.t("pages.docs.last_keychain_id.link"), "/docs")).html_safe
+  %h1= t("pages.docs.last_keychain_id.header", link: link_to(t("pages.docs.last_keychain_id.link"), "/docs")).html_safe
 
   %p
-    = I18n.t("pages.docs.last_keychain_id.statement_1")
+    = t("pages.docs.last_keychain_id.statement_1")
 
   .code GET https://gateway.gear.mycelium.com/gateways/:gateway_id/last_keychain_id
 
   %p
-    = I18n.t("pages.docs.last_keychain_id.statement_2")
+    = t("pages.docs.last_keychain_id.statement_2")
 
   .code {"gateway_id": 1, "last_keychain_id": 10}
 

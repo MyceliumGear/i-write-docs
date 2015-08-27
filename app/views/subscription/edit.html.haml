@@ -1,4 +1,4 @@
-%h2= @page_title = I18n.t('devise.devise_registrations.edit.page_title')
+%h2= @page_title = t('devise.devise_registrations.edit.page_title')
 
 
 = simple_form_for(@user, url: users_subscribition_path(@user), html: { method: :post }) do |f|
@@ -7,4 +7,4 @@
   .form-inputs
     = f.input :updates_email_subscription_level, collection: subscriptions_collection, include_blank: "none"
   .form-actions
-    = f.button :submit, I18n.t('devise.devise_registrations.edit.submit')
+    = f.button :submit, t('devise.devise_registrations.edit.submit')

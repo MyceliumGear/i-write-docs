@@ -1,8 +1,8 @@
-- @page_title = I18n.t("pages.docs.order_cancellation.page_title")
+- @page_title = t("pages.docs.order_cancellation.page_title")
 
 .page.docs
 
-  %h1= I18n.t("pages.docs.order_cancellation.header", link: link_to(I18n.t("pages.docs.order_cancellation.link"), "/docs")).html_safe
+  %h1= t("pages.docs.order_cancellation.header", link: link_to(t("pages.docs.order_cancellation.link"), "/docs")).html_safe
 
   :markdown
     #{render partial: localized_doc_page_for('order_cancellation')}

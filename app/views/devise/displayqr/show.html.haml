@@ -1,7 +1,7 @@
 .page.twoFactorAuth
 
   %h2
-    = I18n.t('devise.registration.title')
+    = t('devise.registration.title')
 
   - unless gauth_enabled_user?
 
@@ -9,27 +9,27 @@
       %tr
         %td.qrcode= google_authenticator_qrcode(resource)
         %td.instructions
-          = I18n.t('devise.registration.instructions', link: link_to("Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")).html_safe
+          = t('devise.registration.instructions', link: link_to("Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")).html_safe
 
           .backup
-            = I18n.t('devise.registration.backup')
+            = t('devise.registration.backup')
             %input{ type: 'text', value: "otpauth://totp/#{otpauth_user(username_from_email(resource.email), current_user.class.ga_appname ||Rails.application.class.parent_name )}?secret=#{resource.gauth_secret}"}
 
           = simple_form_for(resource, as: resource_name, url: [:refresh, resource_name, :displayqr], html: {method: :post}) do |f|
-            = f.submit(I18n.t('devise.registration.newtoken'))
+            = f.submit(t('devise.registration.newtoken'))
 
   = simple_form_for(resource, as: resource_name, url: [resource_name, :displayqr], html: { method: :put, class: 'setupTwoFactor' }) do |f|
 
     = devise_error_messages!
 
-    %p= I18n.t('devise.registration.enter_token')
+    %p= t('devise.registration.enter_token')
 
     %p
-      = f.input_field :gauth_enabled, as: :boolean, inline_label: I18n.t('devise.registration.qrstatus')
+      = f.input_field :gauth_enabled, as: :boolean, inline_label: t('devise.registration.qrstatus')
       = f.hidden_field :tmpid, value: @tmpid
 
     %p
-      = f.input :gauth_token, autocomplete: :off, label: I18n.t('devise.registration.token')
-      .submit= f.submit I18n.t('devise.registration.submit'), class: 'small'
+      = f.input :gauth_token, autocomplete: :off, label: t('devise.registration.token')
+      .submit= f.submit t('devise.registration.submit'), class: 'small'
 
 

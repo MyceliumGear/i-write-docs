@@ -1,28 +1,28 @@
-- @page_title = I18n.t("pages.docs.index.page_title")
+- @page_title = t("pages.docs.index.page_title")
 
 .page.docs
 
-  %h1= I18n.t("pages.docs.index.header")
+  %h1= t("pages.docs.index.header")
 
-  %p= I18n.t("pages.docs.index.statement_1", link: link_to(I18n.t("pages.docs.index.link_1"), "/wizard")).html_safe
+  %p= t("pages.docs.index.statement_1", link: link_to(t("pages.docs.index.link_1"), "/wizard")).html_safe
 
-  %p= I18n.t("pages.docs.index.statement_2")
+  %p= t("pages.docs.index.statement_2")
 
-  %p= I18n.t("pages.docs.index.statement_3", link_1: link_to("straight", "https://github.com/snitko/straight", target: "_blank" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server", target: "_blank") ).html_safe
+  %p= t("pages.docs.index.statement_3", link_1: link_to("straight", "https://github.com/snitko/straight", target: "_blank" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server", target: "_blank") ).html_safe
 
-  %h2= I18n.t("pages.docs.index.header_2")
+  %h2= t("pages.docs.index.header_2")
 
   %ul
 
-    %li= link_to I18n.t("pages.docs.index.links.payment_proccessing"), "/docs/overview"
-    %li= link_to I18n.t("pages.docs.index.links.new_gateway"), "/docs/creating_gateway"
+    %li= link_to t("pages.docs.index.links.payment_proccessing"), "/docs/overview"
+    %li= link_to t("pages.docs.index.links.new_gateway"), "/docs/creating_gateway"
     %li
-      = I18n.t("pages.docs.index.api")
+      = t("pages.docs.index.api")
       %ul
-        %li= link_to I18n.t("pages.docs.index.links.signed_request"), "/docs/signed_request"
-        %li= link_to I18n.t("pages.docs.index.links.creating_orders"), "/docs/creating_orders"
-        %li= link_to I18n.t("pages.docs.index.links.callback"), "/docs/callback"
-        %li= link_to I18n.t("pages.docs.index.links.order_status"), "/docs/checking_order_status"
-        %li= link_to I18n.t("pages.docs.index.links.websocket"), "/docs/order_websocket"
-        %li= link_to I18n.t("pages.docs.index.links.order_cancellation"), "/docs/order_cancellation"
-        %li= link_to I18n.t("pages.docs.index.links.last_keychain"), "/docs/last_keychain_id"
+        %li= link_to t("pages.docs.index.links.signed_request"), "/docs/signed_request"
+        %li= link_to t("pages.docs.index.links.creating_orders"), "/docs/creating_orders"
+        %li= link_to t("pages.docs.index.links.callback"), "/docs/callback"
+        %li= link_to t("pages.docs.index.links.order_status"), "/docs/checking_order_status"
+        %li= link_to t("pages.docs.index.links.websocket"), "/docs/order_websocket"
+        %li= link_to t("pages.docs.index.links.order_cancellation"), "/docs/order_cancellation"
+        %li= link_to t("pages.docs.index.links.last_keychain"), "/docs/last_keychain_id"

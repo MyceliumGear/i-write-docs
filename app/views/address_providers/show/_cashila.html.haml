@@ -1,26 +1,26 @@
 .page.exchanges.show.cashila
 
   %h3
-    = I18n.t("address_providers.show.cashila.exchange")
-    = I18n.t("address_providers.show.cashila.hint", name: @address_provider.display_name)
+    = t("address_providers.show.cashila.exchange")
+    = t("address_providers.show.cashila.hint", name: @address_provider.display_name)
 
-  .actions= link_to I18n.t("address_providers.show.cashila.edit"), edit_address_provider_path(@address_provider), class: 'button small'
+  .actions= link_to t("address_providers.show.cashila.edit"), edit_address_provider_path(@address_provider), class: 'button small'
   .clearfix
 
   - if flash[:success].to_s.end_with? 'created'
-    .successfulSubmissionNote= I18n.t("address_providers.show.cashila.thank_your", new_gateway: link_to("create Gateways", new_gateway_path), widget: link_to("Widgets", "/wizard"))
+    .successfulSubmissionNote= t("address_providers.show.cashila.thank_your", new_gateway: link_to("create Gateways", new_gateway_path), widget: link_to("Widgets", "/wizard"))
   -#- elsif flash[:success].end_with? 'updated'
 
   %table
     %tr
-      %th= I18n.t("address_providers.show.cashila.verification_status")
+      %th= t("address_providers.show.cashila.verification_status")
       %td= @actual_state['status']
     - if @actual_state['rejected_reason']
       %tr
-        %th= I18n.t("address_providers.show.cashila.rejection_reason")
+        %th= t("address_providers.show.cashila.rejection_reason")
         %td= @actual_state['rejected_reason']
 
-  %h4= I18n.t("address_providers.show.cashila.details")
+  %h4= t("address_providers.show.cashila.details")
   %table
     - hidden_keys = %i{recipient_bic recipient_iban}.to_set
     - AddressProviders::Cashila::USER_DETAILS.each do |key|
@@ -29,12 +29,12 @@
         %th= key.to_s.humanize
         %td= @actual_state[key.to_s]
 
-  %h4= I18n.t("address_providers.show.cashila.documents")
+  %h4= t("address_providers.show.cashila.documents")
   - AddressProviders::Cashila::FILES.each do |key|
     %p
-      = I18n.t("address_providers.forms.cashila.#{key}")
+      = t("address_providers.forms.cashila.#{key}")
       %table
         - @actual_state[key.to_s].each do |k, v|
           %tr
             %th= k.humanize
-            %td= v ? I18n.t("positive") : I18n.t("negative")
+            %td= v ? t("positive") : t("negative")

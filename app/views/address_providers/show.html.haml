@@ -1,4 +1,4 @@
-- @page_title = I18n.t("address_providers.show.page_title", name: @address_provider.display_name)
+- @page_title = t("address_providers.show.page_title", name: @address_provider.display_name)
 
 .page.exchanges.show
   = render partial: "address_providers/show/#{@address_provider.class.type.underscore}"

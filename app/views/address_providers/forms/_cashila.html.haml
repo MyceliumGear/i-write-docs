@@ -6,9 +6,9 @@
   %input{type: 'hidden', name: 'type', value: provider_class.type}
   -#= f.input :name
 
-  %h3= I18n.t("address_providers.forms.cashila.fill_in_verification_info")
+  %h3= t("address_providers.forms.cashila.fill_in_verification_info")
 
-  %p= I18n.t("address_providers.forms.cashila.hint")
+  %p= t("address_providers.forms.cashila.hint")
   %table
     %tr
       %td= f.input :first_name
@@ -18,16 +18,16 @@
       %td= f.input :postal_code, input_html: {style: 'width: 100px;'}
     %tr
       %td= f.input :city
-      %td= f.input :country_code, label: I18n.t("address_providers.forms.cashila.country")
+      %td= f.input :country_code, label: t("address_providers.forms.cashila.country")
 
   = f.simple_fields_for :files do |d|
     %table
       %tr
-        %td= d.input :'gov-id-front', as: :file, label: I18n.t("address_providers.forms.cashila.gov-id-front")
-        %td= d.input :'gov-id-back', as: :file, label: I18n.t("address_providers.forms.cashila.gov-id-back")
-        %td= d.input :residence, as: :file, label: I18n.t("address_providers.forms.cashila.residence")
+        %td= d.input :'gov-id-front', as: :file, label: t("address_providers.forms.cashila.gov-id-front")
+        %td= d.input :'gov-id-back', as: :file, label: t("address_providers.forms.cashila.gov-id-back")
+        %td= d.input :residence, as: :file, label: t("address_providers.forms.cashila.residence")
 
-  %h3= I18n.t("address_providers.forms.cashila.account_info")
+  %h3= t("address_providers.forms.cashila.account_info")
   = f.input :recipient_name
   %table
     %tr
@@ -35,8 +35,8 @@
       %td= f.input :recipient_postal_code, input_html: {style: 'width: 100px;'}
     %tr
       %td= f.input :recipient_city
-      %td= f.input :recipient_country_code, label: I18n.t("address_providers.forms.cashila.recipient_country")
+      %td= f.input :recipient_country_code, label: t("address_providers.forms.cashila.recipient_country")
     %tr
-      %td= f.input :recipient_bic, label: I18n.t("address_providers.forms.cashila.bic")
-      %td= f.input :recipient_iban, label: I18n.t("address_providers.forms.cashila.iban")
-  = f.submit I18n.t("address_providers.forms.cashila.submit")
+      %td= f.input :recipient_bic, label: t("address_providers.forms.cashila.bic")
+      %td= f.input :recipient_iban, label: t("address_providers.forms.cashila.iban")
+  = f.submit t("address_providers.forms.cashila.submit")

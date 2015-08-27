@@ -1,34 +1,34 @@
 .page.gateways.index
 
   - if current_user.admin?
-    %h2.pageTitle= @page_title = I18n.t("gateways.index.page_title_if_admin", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
+    %h2.pageTitle= @page_title = t("gateways.index.page_title_if_admin", objects: params[:widget] ? t("gateways.index.widgets") : t("gateways.index.gateways"))
   - else
-    %h2.pageTitle= @page_title =  I18n.t("gateways.index.page_title_unless_admin", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
+    %h2.pageTitle= @page_title =  t("gateways.index.page_title_unless_admin", objects: params[:widget] ? t("gateways.index.widgets") : t("gateways.index.gateways"))
 
   .actions
     - if params[:widget]
-      = link_to I18n.t("gateways.index.create_widget"), "/wizard", class: "button small"
+      = link_to t("gateways.index.create_widget"), "/wizard", class: "button small"
     - else
-      = link_to I18n.t("gateways.index.create_gateway"), new_gateway_path, class: "button small"
+      = link_to t("gateways.index.create_gateway"), new_gateway_path, class: "button small"
 
 
   .list
     - if @gateways.present?
 
       %table
-        %th= I18n.t("gateways.index.name")
-        %th(style="width: 30px;")= I18n.t("gateways.index.active")
-        %th(style="wiTH: 80px;")= I18n.t("gateways.index.test_mode")
-        %th= I18n.t("gateways.index.bip32_testpubkey")
-        %th(style="width: 70px;")= I18n.t("gateways.index.default_currency")
+        %th= t("gateways.index.name")
+        %th(style="width: 30px;")= t("gateways.index.active")
+        %th(style="wiTH: 80px;")= t("gateways.index.test_mode")
+        %th= t("gateways.index.bip32_testpubkey")
+        %th(style="width: 70px;")= t("gateways.index.default_currency")
         - if current_user.admin?
-          %th= I18n.t("gateways.index.owner")
+          %th= t("gateways.index.owner")
         - @gateways.each do |g|
           - key = g.test_mode && g.test_pubkey.present? ? g.test_pubkey : g.pubkey
           %tr
             %td <b>#{link_to g.name.truncate(30), g}</b>
-            %td= g.active ? I18n.t("positive") : I18n.t("negative")
-            %td= g.test_mode ? I18n.t("positive") : I18n.t("negative")
+            %td= g.active ? t("positive") : t("negative")
+            %td= g.test_mode ? t("positive") : t("negative")
             %td= key.present? ? "#{key.to_s[0,16]}..." : 'N/A'
             %td= g.default_currency
             - if current_user.admin?
@@ -38,8 +38,8 @@
 
     - else
       .noRecords
-        %h3= I18n.t("gateways.index.no_records.title", objects: params[:widget] ? I18n.t("gateways.index.widgets") : I18n.t("gateways.index.gateways"))
+        %h3= t("gateways.index.no_records.title", objects: params[:widget] ? t("gateways.index.widgets") : t("gateways.index.gateways"))
         - if params[:widget]
-          = I18n.t("gateways.index.no_records.statement.widget")
+          = t("gateways.index.no_records.statement.widget")
         - else
-          %p= I18n.t("gateways.index.no_records.statement.gateway")
+          %p= t("gateways.index.no_records.statement.gateway")

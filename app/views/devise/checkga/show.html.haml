@@ -1,14 +1,14 @@
-- @page_title = I18n.t('devise.show.page_title')
+- @page_title = t('devise.show.page_title')
 
 .page.twoFactorAuth
 
   .formBlock
     %h2
-      = I18n.t('devise.submit_token_title')
+      = t('devise.submit_token_title')
 
     = form_for(resource, as: resource_name, url: [resource_name, :checkga], html: { method: :put }) do |f|
       = f.hidden_field :tmpid, {value: @tmpid}
       = f.text_field :gauth_token, autocomplete: :off
       %p
-        = f.submit(I18n.t('devise.submit_token'), class: 'onDark')
-        = button_to I18n.t('devise.cancel'), root_path, method: :get, class: 'onDark'
+        = f.submit(t('devise.submit_token'), class: 'onDark')
+        = button_to t('devise.cancel'), root_path, method: :get, class: 'onDark'

@@ -1,7 +1,7 @@
 %ul
   - @data.each do |gateway, new_orders|
     %li
-      = I18n.t('widget_payments_notification.widget')
+      = t('widget_payments_notification.widget')
       %a{href: gateway_url(id: gateway.id)}= gateway.name
       %br/
       &nbsp;

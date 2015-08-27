@@ -1,4 +1,4 @@
-- @page_title = I18n.t('pages.frontpage.page_title')
+- @page_title = t('pages.frontpage.page_title')
 
 .page.frontpage
 
@@ -6,12 +6,12 @@
 
     .form-inputs
       = f.input :email, required: true, autofocus: true
-      = f.input :password, required: true, hint: (I18n.t('pages.frontpage.password_hint', length: @minimum_password_length) if @validatable)
+      = f.input :password, required: true, hint: (t('pages.frontpage.password_hint', length: @minimum_password_length) if @validatable)
       = f.input :password_confirmation, required: true
       = f.input :name
 
     .form-actions
-      = f.button :submit, I18n.t('pages.frontpage.submit')
+      = f.button :submit, t('pages.frontpage.submit')
       %span.orSignIn
         or
-        = link_to I18n.t('pages.frontpage.log_in'), new_user_session_path
+        = link_to t('pages.frontpage.log_in'), new_user_session_path

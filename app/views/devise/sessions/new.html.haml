@@ -1,10 +1,10 @@
-- @page_title = I18n.t('devise.sessions.new.page_title')
+- @page_title = t('devise.sessions.new.page_title')
 
 .page
 
   .formBlock
 
-    %h2= I18n.t('devise.sessions.new.header')
+    %h2= t('devise.sessions.new.header')
 
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .form-inputs
@@ -13,6 +13,6 @@
       .form-actions
         .checkBoxCenter
           = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
-        = f.button :submit, I18n.t('devise.sessions.new.submit'), class: 'onDark'
+        = f.button :submit, t('devise.sessions.new.submit'), class: 'onDark'
 
   = render "devise/shared/links"
