@@ -32,4 +32,9 @@ jQuery(function($){
     }
   });
 
+  $('form').submit(function(){
+    $(this).children('input[type=submit]').prop('disabled', true);
+  });
+
 });
+
