@@ -1,6 +1,7 @@
 ---
 en:
   devise:
+    cancel: Cancel
     checkga:
       user:
         error: Sign in failed
@@ -45,6 +46,7 @@ en:
         password:
           hint: "%{min_length} characters minimum"
         submit: Sign up
+        tos: I have read and agree to the %{link}
       none: none
       regular: regular
       signed_up: Welcome! You have signed up successfully.
