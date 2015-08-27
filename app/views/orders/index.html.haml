@@ -2,13 +2,13 @@
 
   - if @orders_filtered || @orders.present?
 
-    - if @gateway
-      - @page_title = t("orders.index.all_orders_for_gateway") + @gateway.name
-      %h2.pageTitle
+    %h2.pageTitle
+      - if @gateway
+        - @page_title = t("orders.index.all_orders_for_gateway") + @gateway.name
         = t("orders.index.all_orders_for_gateway")
         %b= @gateway.name
-    - else
-      %h2.pageTitle= @page_title = t("orders.index.all_orders_for_all_gateways")
+      - else
+        = @page_title = t("orders.index.all_orders_for_all_gateways")
 
     .actions
 

@@ -1,9 +1,10 @@
 .page.exchanges.index
 
+  %h2.pageTitle
   - if current_user.admin?
-    %h2.pageTitle= @page_title = t("address_providers.index.all_exchanges")
+    = @page_title = t("address_providers.index.all_exchanges")
   - else
-    %h2.pageTitle= @page_title = t("address_providers.index.your_exchanges")
+    = @page_title = t("address_providers.index.your_exchanges")
 
   .actions
     = link_to t("address_providers.index.add_exchange"), new_address_provider_path, class: 'button small'
