@@ -6,6 +6,7 @@
     %p
       = I18n.t('tip', scope: 'gateways.form', path: new_address_provider_path).html_safe
   = f.input :name
+  = f.input :allow_links
   = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
   = f.input :callback_url
   = f.input :orders_expiration_period

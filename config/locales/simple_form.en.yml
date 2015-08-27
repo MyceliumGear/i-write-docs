@@ -21,6 +21,7 @@ en:
         widget: Check this if you don't plan to use the API and integrate Gear into your online store, but simply would like to install a payment widget.
         after_payment_redirect_to: Enter the URL that will be used to redirect your customers upon successful payment completion.
         auto_redirect: When you select this checkbox, all users who have successful payment will be automatically redirected to the specified above URL.
+        allow_links: Check this if you would like to use links in titles. You can use pure link started with http or https or just "a" tag. All other tags will be sanitized.
     labels:
       gateway:
         address_derivation_scheme: Pick the wallet that you're using
@@ -32,6 +33,7 @@ en:
         pubkey: BIP32 pubkey
         test_pubkey: BIP32 test pubkey
         widget: Gateway for a Widget
+        allow_links: Allow links in titles
       user:
         updates_email_subscription_level: Send me updates
     'no': 'No'
