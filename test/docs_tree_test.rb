@@ -12,7 +12,7 @@ describe IWriteDocs::DocsTree do
   end
 
   it "have for each node specific content" do
-    content = {:path=>"./test/dummy/docs-dev/index", :title=>"Index"}
+    content = {:source_path=>"./test/dummy/docs-dev/source/index", :title=>"Index"}
     docs_tree.first_child.content.must_equal content
   end
 
