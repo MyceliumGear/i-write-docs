@@ -1,5 +1,5 @@
-%h1= I18n.t("page_title", scope: "updates.edit")
+%h1= t("updates.edit.page_title")
 
 = render 'form', url: update_path(@update_item)
 
-= link_to 'Back', updates_path
+= link_to t("updates.edit.back"), updates_path

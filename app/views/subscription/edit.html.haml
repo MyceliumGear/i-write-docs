@@ -1,10 +1,10 @@
-%h2= @page_title = I18n.t('page_title', scope: 'devise.devise_registrations.edit')
+%h2= @page_title = t('devise.devise_registrations.edit.page_title')
 
 
 = simple_form_for(@user, url: users_subscribition_path(@user), html: { method: :post }) do |f|
   = f.error_notification
   = hidden_field_tag :token, params[:token]
   .form-inputs
-    = f.input :updates_email_subscription_level, collection: UpdateItem.priorities, include_blank: "none"
+    = f.input :updates_email_subscription_level, collection: subscriptions_collection, include_blank: "none"
   .form-actions
-    = f.button :submit, I18n.t('submit', scope: 'devise.devise_registrations.edit')
+    = f.button :submit, t('devise.devise_registrations.edit.submit')

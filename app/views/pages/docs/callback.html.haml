@@ -1,10 +1,10 @@
-- @page_title = I18n.t("page_title", scope: "pages.docs.callback")
+- @page_title = t("pages.docs.callback.page_title")
 
 .page.docs
 
-  %h1= I18n.t("header", scope: "pages.docs.callback", link: link_to(I18n.t("documentation", scope: "pages.docs.callback"), "/docs")).html_safe
+  %h1= t("pages.docs.callback.header", link: link_to(t("pages.docs.callback.documentation"), "/docs")).html_safe
 
   :markdown
-    #{render partial: 'pages/docs/md/callback.md'}
+    #{render partial: localized_doc_page_for('callback')}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'callback'}

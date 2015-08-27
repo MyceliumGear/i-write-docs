@@ -24,7 +24,7 @@ class GatewaysController < ApplicationController
       flash[:gateway_secret] = @gateway.secret
       redirect_to @gateway
     else
-      flash.now[:error] = I18n.t("created", scope: "gateways_controller.unsuccessfully")
+      flash.now[:error] = I18n.t("gateways_controller.unsuccessfully.created")
       render 'new'
     end
   end
@@ -46,11 +46,11 @@ class GatewaysController < ApplicationController
       if @gateway.regenerate_secret.to_i == 1
         flash[:gateway_secret] = @gateway.secret
       else
-        flash[:success] = I18n.t("updated", scope: "gateways_controller.successfully")
+        flash[:success] = I18n.t("gateways_controller.successfully.updated")
       end
       redirect_to params[:referer] || @gateway
     else
-      flash.now[:error] = I18n.t("updated", scope: "gateways_controller.unsuccessfully")
+      flash.now[:error] = I18n.t("gateways_controller.unsuccessfully.updated")
       render 'edit'
     end
   end

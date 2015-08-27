@@ -7,69 +7,69 @@
       - if @gateway.site_type == "wordpress"
 
         .installationInstructions
-          %h3= I18n.t("header", scope: "widgets.preview.wordpress")
-          %p= I18n.t("tip", scope: "widgets.preview.wordpress")
+          %h3= t("widgets.preview.wordpress.header")
+          %p= t("widgets.preview.wordpress.tip")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.wordpress", link: link_to(I18n.t("link", scope: "widgets.preview.wordpress"), "/mycelium-gear_wordpress_plugin.zip")).html_safe
+            %li= t("widgets.preview.wordpress.step1", link: link_to(t("widgets.preview.wordpress.link"), "/mycelium-gear_wordpress_plugin.zip")).html_safe
             %li
-              =I18n.t("step2", scope: "widgets.preview.wordpress")
+              =t("widgets.preview.wordpress.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("step3", scope: "widgets.preview.wordpress")
+          %p= t("widgets.preview.wordpress.step3")
 
       - elsif @gateway.site_type == "joomla"
 
         .installationInstructions
-          %h3= I18n.t("header", scope: "widgets.preview.joomla")
-          %p= I18n.t("tip", scope: "widgets.preview.joomla")
+          %h3= t("widgets.preview.joomla.header")
+          %p= t("widgets.preview.joomla.tip")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.joomla", link: link_to(I18n.t("link", scope: "widgets.preview.joomla"), "http://extensions.joomla.org/browse/new/extension/e-commerce/payment-gateway/mycelium-gear-payment-widget")).html_safe
+            %li= t("widgets.preview.joomla.step1", link: link_to(t("widgets.preview.joomla.link"), "http://extensions.joomla.org/browse/new/extension/e-commerce/payment-gateway/mycelium-gear-payment-widget")).html_safe
             %li
-              = I18n.t("step2", scope: "widgets.preview.joomla")
+              = t("widgets.preview.joomla.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("step3", scope: "widgets.preview.joomla")
+          %p= t("widgets.preview.joomla.step3")
 
       - elsif @gateway.site_type == "drupal"
 
         .installationInstructions
-          %h3= I18n.t("header", scope: "widgets.preview.drupal")
-          %p= I18n.t("tip", scope: "widgets.preview.drupal")
+          %h3= t("widgets.preview.drupal.header")
+          %p= t("widgets.preview.drupal.tip")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.drupal", link: link_to(I18n.t("link", scope: "widgets.preview.drupal"), "/mycelium-gear_drupal_plugin.zip")).html_safe
+            %li= t("widgets.preview.drupal.step1", link: link_to(t("widgets.preview.drupal.link"), "/mycelium-gear_drupal_plugin.zip")).html_safe
             %li
-              = I18n.t("step2", scope: "widgets.preview.drupal")
+              = t("widgets.preview.drupal.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("step3", scope: "widgets.preview.drupal")
+          %p= t("widgets.preview.drupal.step3")
 
       - elsif @gateway.site_type == "modx"
 
         .installationInstructions
-          %h3= I18n.t("header", scope: "widgets.preview.modx")
-          %p= I18n.t("tip", scope: "widgets.preview.modx")
+          %h3= t("widgets.preview.modx.header")
+          %p= t("widgets.preview.modx.tip")
 
           %ol
-            %li= I18n.t("step1", scope: "widgets.preview.modx", link: link_to(I18n.t("link", scope: "widgets.preview.modx"), "/mycelium-gear_modx_plugin.zip")).html_safe
+            %li= t("widgets.preview.modx.step1", link: link_to(t("widgets.preview.modx.link"), "/mycelium-gear_modx_plugin.zip")).html_safe
             %li
-              = I18n.t("step2", scope: "widgets.preview.modx")
+              = t("widgets.preview.modx.step2")
               %input.gatewayId{ type: "text", value: @gateway.straight_gateway_hashed_id }
 
-          %p= I18n.t("step3", scope: "widgets.preview.modx")
+          %p= t("widgets.preview.modx.step3")
 
       - else
 
         .container.widgetCode
-          %h3= I18n.t("header", scope: "widgets.preview.widget.code")
-          = I18n.t("tip", scope: "widgets.preview.widget.code")
+          %h3= t("widgets.preview.widget.code.header")
+          = t("widgets.preview.widget.code.tip")
           %textarea= render_to_string(template: 'widgets/_site_host_code', layout: false)
-          .hint= I18n.t("hint", scope: "widgets.preview.widget.code").html_safe
+          .hint= t("widgets.preview.widget.code.hint").html_safe
 
     .pure-u-12-24
       .container
-        %h3= I18n.t("header", scope: "widgets.preview.widget.preview")
-        = I18n.t("tip", scope: "widgets.preview.widget.preview")
+        %h3= t("widgets.preview.widget.preview.header")
+        = t("widgets.preview.widget.preview.tip")
         = render partial: "widgets/admin_host_code"

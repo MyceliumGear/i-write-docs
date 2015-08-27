@@ -1,6 +1,7 @@
 ---
 en:
   devise:
+    cancel: Cancel
     checkga:
       user:
         error: Sign in failed
@@ -14,6 +15,7 @@ en:
       send_instructions: You will receive an email with instructions for how to confirm your email address in a few minutes.
       send_paranoid_instructions: If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes.
     devise_registrations:
+      critical: critical
       destroyed: Bye! Your account has been successfully cancelled. We hope to see you again soon.
       edit:
         account_cancelation:
@@ -30,18 +32,23 @@ en:
           hint: leave it blank if you don't want to change it
           label: New passsword
         page_title: Edit your account
+        save_hint: To save changes, you must enter the current password
         submit: Save changes
         two_factor_auth:
           disable: disable it?
           green: You have two factor authentication already <b>enabled</b>. Would you like to %{link}
           recommend: have two factor authentication
           red: It is highly recommended to %{link} enabled.
+      important: important
       new:
         header: SIGN UP and start accepting Bitcoin
         page_title: Sign up
         password:
           hint: "%{min_length} characters minimum"
         submit: Sign up
+        tos: I have read and agree to the %{link}
+      none: none
+      regular: regular
       signed_up: Welcome! You have signed up successfully.
       signed_up_but_inactive: You have signed up successfully. However, we could not sign you in because your account is not yet activated.
       signed_up_but_locked: You have signed up successfully. However, we could not sign you in because your account is locked.
