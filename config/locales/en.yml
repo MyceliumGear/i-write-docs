@@ -23,5 +23,11 @@ en:
     created_at: "%A, %b %d, %H:%M %Z"
     date: "%b %e, %Y"
     time_with_zone: "%T %Z"
-    timestamp: "%F %T %z"
+  date:
+    formats:
+      default: '%b %d, %Y'
+  time:
+    formats:
+      default: '%b %d, %Y'
   'true': 'Yes'
+
