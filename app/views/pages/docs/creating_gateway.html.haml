@@ -1,38 +1,38 @@
-- @page_title = I18n.t("page_title", scope: "pages.docs.creating_gateway")
+- @page_title = t("pages.docs.creating_gateway.page_title")
 
 .page.docs
 
-  %h1= I18n.t("header", scope: "pages.docs.creating_gateway", link: link_to(I18n.t("link", scope: "pages.docs.creating_gateway"), "/docs")).html_safe
+  %h1= t("pages.docs.creating_gateway.header", link: link_to(t("pages.docs.creating_gateway.link"), "/docs")).html_safe
 
-  %p= I18n.t("statement_1", scope: "pages.docs.creating_gateway")
+  %p= t("pages.docs.creating_gateway.statement_1")
 
-  %h2= I18n.t("header_2", scope: "pages.docs.creating_gateway")
+  %h2= t("pages.docs.creating_gateway.header_2")
 
-  %p= I18n.t("statement_2", scope: "pages.docs.creating_gateway", link: link_to(I18n.t("link_2", scope: "pages.docs.creating_gateway"), new_gateway_path)).html_safe
+  %p= t("pages.docs.creating_gateway.statement_2", link: link_to(t("pages.docs.creating_gateway.link_2"), new_gateway_path)).html_safe
 
   %ul.longText
 
-    %li= I18n.t("name", scope: "pages.docs.creating_gateway.long_text").html_safe
+    %li= t("pages.docs.creating_gateway.long_text.name").html_safe
 
-    %li= I18n.t("confirmations", scope: "pages.docs.creating_gateway.long_text").html_safe
+    %li= t("pages.docs.creating_gateway.long_text.confirmations").html_safe
 
     %li
-      = I18n.t("pub_key", scope: "pages.docs.creating_gateway.long_text").html_safe
+      = t("pages.docs.creating_gateway.long_text.pub_key").html_safe
       .code xpub6AHA9hZDN11k2ijHMeS5QqHx2KP9aMBRhTDqANMnwVtdyw2TDYRmF8PjpvwUFcL1Et8Hj59S3gTSMcUQ5gAqTz3Wd8EsMTmF3DChhqPQBnU 
-      = I18n.t("pub_key_2", scope: "pages.docs.creating_gateway.long_text", link_1: link_to("Mycelium", "https://mycelium.com/bitcoinwallet", target: "_blank"), link_2: link_to("Electrum", "https://electrum.org", target: "_blank"), link_3: link_to("for Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: "_blank"), link_4: link_to("for Mycelium", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: "_blank")).html_safe
+      = t("pages.docs.creating_gateway.long_text.pub_key_2", link_1: link_to("Mycelium", "https://mycelium.com/bitcoinwallet", target: "_blank"), link_2: link_to("Electrum", "https://electrum.org", target: "_blank"), link_3: link_to("for Electrum", "https://www.youtube.com/watch?v=2E0cwY_M2D4", target: "_blank"), link_4: link_to("for Mycelium", "https://www.youtube.com/watch?v=-CN_I8vfEL4", target: "_blank")).html_safe
 
-    %li= I18n.t("order", scope: "pages.docs.creating_gateway.long_text").html_safe
+    %li= t("pages.docs.creating_gateway.long_text.order").html_safe
 
-    %li= I18n.t("active", scope: "pages.docs.creating_gateway.long_text").html_safe
+    %li= t("pages.docs.creating_gateway.long_text.active").html_safe
 
-    %li= I18n.t("currency", scope: "pages.docs.creating_gateway.long_text").html_safe
+    %li= t("pages.docs.creating_gateway.long_text.currency").html_safe
 
-    %li= I18n.t("info", scope: "pages.docs.creating_gateway.long_text").html_safe
+    %li= t("pages.docs.creating_gateway.long_text.info").html_safe
 
-  %h2= I18n.t("secret", scope: "pages.docs.creating_gateway.gateway").html_safe
+  %h2= t("pages.docs.creating_gateway.gateway.secret").html_safe
 
-  %p= I18n.t("statement_1", scope: "pages.docs.creating_gateway.gateway").html_safe
+  %p= t("pages.docs.creating_gateway.gateway.statement_1").html_safe
 
-  %p= I18n.t("statement_2", scope: "pages.docs.creating_gateway.gateway").html_safe
+  %p= t("pages.docs.creating_gateway.gateway.statement_2").html_safe
 
   = render partial: 'pages/docs/navigation', locals: {page: 'creating_gateway'}

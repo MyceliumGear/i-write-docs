@@ -1,10 +1,10 @@
-- @page_title = I18n.t("page_title", scope: "pages.docs.order_cancellation")
+- @page_title = t("pages.docs.order_cancellation.page_title")
 
 .page.docs
 
-  %h1= I18n.t("header", scope: "pages.docs.order_cancellation", link: link_to(I18n.t("link", scope: "pages.docs.order_cancellation"), "/docs")).html_safe
+  %h1= t("pages.docs.order_cancellation.header", link: link_to(t("pages.docs.order_cancellation.link"), "/docs")).html_safe
 
   :markdown
-    #{render partial: 'pages/docs/md/order_cancellation.md'}
+    #{render partial: localized_doc_page_for('order_cancellation')}
 
   = render partial: 'pages/docs/navigation', locals: {page: 'order_cancellation'}

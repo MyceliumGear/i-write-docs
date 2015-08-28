@@ -11,7 +11,7 @@
       %ul
         - @updates.each do |update|
           %li
-            = update.created_at.strftime(I18n.t('strftime.date'))
+            = update.created_at.strftime(t('strftime.date'))
             %b.subject(class="#{update.priority}")
               = update.subject
             %p= update.body.html_safe

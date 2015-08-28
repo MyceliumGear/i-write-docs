@@ -1,27 +1,27 @@
-- @page_title = I18n.t("page_title", scope: "wizard.step1")
+- @page_title = t("wizard.step1.page_title")
 
 .page.wizard
 
   .title
 
     %p
-      %b= I18n.t("header", scope: "wizard.step1.title")
-    %p= I18n.t("tip", scope: "wizard.step1.title", link_1: link_to(I18n.t("link_1", scope: "wizard.step1.title"), "/docs"), link_2: link_to(I18n.t("link_2", scope: "wizard.step1.title"), new_gateway_path)).html_safe
+      %b= t("wizard.step1.title.header")
+    %p= t("wizard.step1.title.tip", link_1: link_to(t("wizard.step1.title.link_1"), "/docs"), link_2: link_to(t("wizard.step1.title.link_2"), new_gateway_path)).html_safe
 
   .downloadWallets
 
-    %h3= I18n.t("header", scope: "wizard.step1.download")
-    %p= I18n.t("tip", scope: "wizard.step1.download")
+    %h3= t("wizard.step1.download.header")
+    %p= t("wizard.step1.download.tip")
     .wallets
       .wallet1
         = image_tag "wallets/mycelium_logo.png"
-        = link_to I18n.t("mycelium_wallet", scope: "wizard.step1"), "https://play.google.com/store/apps/details?id=com.mycelium.wallet&hl=en", target: 'blank'
+        = link_to t("wizard.step1.mycelium_wallet"), "https://play.google.com/store/apps/details?id=com.mycelium.wallet&hl=en", target: 'blank'
       .wallet2
         = image_tag "wallets/electrum_logo.png"
-        = link_to I18n.t("electrum_wallet", scope: "wizard.step1"), "https://electrum.org/#download"
+        = link_to t("wizard.step1.electrum_wallet"), "https://electrum.org/#download"
   .clearfix
 
-  %h2= I18n.t("header", scope: "wizard.step1")
+  %h2= t("wizard.step1.header")
 
   %table.siteBackendTypesSelector
     %tr.icons
@@ -30,50 +30,50 @@
       %td{ data: { site_type: 'drupal' }}= image_tag "wizard/drupal.png"
     %tr.names
       %td{ data: { site_type: 'wordpress' }}
-        = I18n.t("wordpress", scope: "wizard.step1.table")
+        = t("wizard.step1.table.wordpress")
       %td{ data: { site_type: 'joomla' }}
-        = I18n.t("joomla", scope: "wizard.step1.table")
+        = t("wizard.step1.table.joomla")
       %td{ data: { site_type: 'drupal' }}
-        = I18n.t("drupal", scope: "wizard.step1.table")
+        = t("wizard.step1.table.drupal")
     %tr.icons
       %td{ data: { site_type: 'modx' }}= image_tag "wizard/modx.png"
       %td{ data: { site_type: 'html' }}= image_tag "wizard/html.png"
       %td{ data: { site_type: 'unknown' }}= image_tag "wizard/i_dont_know.png"
     %tr.names
       %td{ data: { site_type: 'modx' }}
-        = I18n.t("modx", scope: "wizard.step1.table")
+        = t("wizard.step1.table.modx")
       %td{ data: { site_type: 'html' }}
-        = I18n.t("html", scope: "wizard.step1.table")
+        = t("wizard.step1.table.html")
       %td{ data: { site_type: 'unknown' }}
-        = I18n.t("unknown", scope: "wizard.step1.table")
+        = t("wizard.step1.table.unknown")
 
   .websiteTypeChecker
 
     .form
-      %label= I18n.t("label", scope: "wizard.step1.form")
+      %label= t("wizard.step1.form.label")
       %input(type="text" placeholder="http://")
       %br
-      %button.small= I18n.t("check_button", scope: "wizard.step1.form")
+      %button.small= t("wizard.step1.form.check_button")
 
     .wordpress
-      = I18n.t("header", scope: "wizard.step1.form.wordpress").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.form.wordpress").html_safe
+      = t("wizard.step1.form.wordpress.header").html_safe
+      %b= t("wizard.step1.form.wordpress.option").html_safe
 
     .joomla
-      = I18n.t("header", scope: "wizard.step1.form.joomla").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.form.joomla").html_safe
+      = t("wizard.step1.form.joomla.header").html_safe
+      %b= t("wizard.step1.form.joomla.option").html_safe
 
     .drupal
-      = I18n.t("header", scope: "wizard.step1.form.drupal").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.form.drupal").html_safe
+      = t("wizard.step1.form.drupal.header").html_safe
+      %b= t("wizard.step1.form.drupal.option").html_safe
 
     .modx
-      = I18n.t("header", scope: "wizard.step1.form.modx").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.form.modx").html_safe
+      = t("wizard.step1.form.modx.header").html_safe
+      %b= t("wizard.step1.form.modx.option").html_safe
 
     .unknown
-      = I18n.t("header", scope: "wizard.step1.form.unknown").html_safe
-      %b= I18n.t("option", scope: "wizard.step1.form.unknown").html_safe
+      = t("wizard.step1.form.unknown.header").html_safe
+      %b= t("wizard.step1.form.unknown.option").html_safe
 
     .connectionError
-      = I18n.t("error", scope: "wizard.step1.form").html_safe
+      = t("wizard.step1.form.error").html_safe

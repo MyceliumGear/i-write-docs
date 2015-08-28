@@ -1,9 +1,9 @@
-- @page_title = I18n.t('page_title', scope: 'devise.confirmations.new')
+- @page_title = t('devise.confirmations.new.page_title')
 .page
 
   .formBlock
 
-    %h2= I18n.t('header', scope: 'devise.confirmations.new')
+    %h2= t('devise.confirmations.new.header')
 
     = simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
       = f.error_notification
@@ -11,6 +11,6 @@
       .form-inputs
         = f.input :email, required: true, autofocus: true
       .form-actions
-        = f.button :submit, I18n.t("devise.confirmations.new.submit"), class: 'onDark'
+        = f.button :submit, t("devise.confirmations.new.submit"), class: 'onDark'
 
   = render "devise/shared/links"
