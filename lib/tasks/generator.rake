@@ -14,6 +14,8 @@ namespace :generate do |args|
   desc "Consolidated Markdown Readme file."
   task :readme do
     IWriteDocs.config.subproject = TaskOptions.new(args).subproject
+    IWriteDocs::Generator.build_readme
+    puts "Readme generated in folder: #{IWriteDocs.config.documentation_path}/#{IWriteDocs.config.build_folder}"
     exit 0
   end
 end

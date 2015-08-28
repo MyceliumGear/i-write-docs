@@ -4,20 +4,32 @@ module IWriteDocs
   class Generator
 
     def self.build_docs
-      self.new(IWriteDocs.config.docs_tree)
+      self.new.create_html_structure
     end
 
-    def initialize(docs_tree)
-      @docs_tree = docs_tree
+    def self.build_readme
+      self.new.create_readme
+    end
+
+    def initialize
+      @docs_tree = IWriteDocs.config.docs_tree
       path = @docs_tree.root.content[:root_path]
-      @build_path = "#{path}/#{IWriteDocs.config.qbuild_folder}"
+      @build_path = "#{path}/#{IWriteDocs.config.build_folder}"
       create_build_folder
     end
 
-    def create_build_folder
-      FileUtils.remove_dir @build_path if Dir.exist? @build_path
-      FileUtils.mkdir_p @build_path
-      create_html_structure
+    def create_readme
+      content = generate_toc
+      File.open("#{@build_path}/README.md", "w") do |f|
+        f.write(content)
+        @docs_tree.each do |node|
+          next if node.is_root? || node.has_children?
+          source = node.content[:source_path] +".md"
+          file = File.open(source, "r").read
+          content = IWriteDocs::DocFilter.filter(file)
+          f.write(content +"\n\n")
+        end
+      end
     end
 
     def create_html_structure
@@ -34,6 +46,12 @@ module IWriteDocs
       html = IWriteDocs::MarkdownRender.parse_to_html(source_path)
       File.open(node_build_path +".html", 'w') { |f| f.write(html) }
     end
+    
+    def generate_toc
+      result = "# Table of contents #\n\n"
+      result << build_md_tree(@docs_tree.root)
+      result << "\n\n"
+    end
 
   private
 
@@ -43,5 +61,22 @@ module IWriteDocs
       result += "/"+ par_arr.join("/") unless par_arr.empty?
       result += "/"+ node.name 
     end
+
+    def create_build_folder
+      FileUtils.remove_dir @build_path if Dir.exist? @build_path
+      FileUtils.mkdir_p @build_path
+    end
+
+    def build_md_tree(node, level: 0, res: '')
+      unless node.is_root?
+        res << (' ' * level * 2)
+        res << "* "
+        res << node.content[:title]
+        res << "\n"
+      end
+      node.children { |child| build_md_tree(child, level: level+1, res: res) }
+      res
+    end
+
   end
 end
