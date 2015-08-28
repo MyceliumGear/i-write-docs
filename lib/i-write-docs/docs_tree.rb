@@ -1,23 +1,17 @@
 module IWriteDocs
   class DocsTree
 
-    DEFAULT_SOURCE_FOLDER = "source"
     attr_reader :docs_path, :tree
     
     def initialize
-      load_env_config
+      @docs_path = IWriteDocs.config.documentation_path
       build_docs_tree
-    end
-
-    def load_env_config
-      env_doc_path = ENV["DOCUMENTATION_PATH"]
-      raise IWriteDocsError.new("DOCUMENTATION_PATH not provided") if env_doc_path.nil?
-      @docs_path = env_doc_path
     end
 
     def build_docs_tree
       docs_config = YAML.load_file("#{@docs_path}/config.yml")
-      @tree = Tree::TreeNode.new("ROOT", {root_path: @docs_path, source_path: "#{@docs_path}/#{DEFAULT_SOURCE_FOLDER}"})
+      @tree = Tree::TreeNode.new("ROOT", {root_path: @docs_path,
+                                          source_path: "#{@docs_path}/#{IWriteDocs.config.source_folder}"})
       traverse(docs_config, @tree) do |node, parent|
         leaf = node.is_a?(Tree::TreeNode) ? node : Tree::TreeNode.new(node.to_s, prepare_node_content(node, parent))
         parent << leaf

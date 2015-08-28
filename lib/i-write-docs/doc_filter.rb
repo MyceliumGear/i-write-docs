@@ -3,7 +3,6 @@ module IWriteDocs
 
     START_SECTION = '<<-'
     END_SECTION   = '->>'
-    DEFAULT_SELECTED_PROJECT = "gear"
 
     attr_reader :result
 
@@ -23,10 +22,10 @@ module IWriteDocs
       end
       doc
     end
-    
+
     def selected_project
-      ENV["SELECTED_PROJECT"] || DEFAULT_SELECTED_PROJECT
+      IWriteDocs.config.subproject
     end
-    
+
   end
 end
