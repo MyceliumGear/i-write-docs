@@ -1,41 +1,41 @@
-%h2= @page_title = I18n.t('page_title', scope: 'devise.devise_registrations.edit')
+%h2= @page_title = t('devise.devise_registrations.edit.page_title')
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   = f.error_notification
   .form-inputs
     = f.input :name
     = f.input :email, required: true, autofocus: true
-    = f.input :updates_email_subscription_level, collection: UpdateItem.priorities, include_blank: "none"
+    = f.input :updates_email_subscription_level, collection: subscriptions_collection, include_blank: t('devise.devise_registrations.none')
     - if devise_mapping.confirmable? && resource.pending_reconfirmation?
       %p
-        = I18n.t('confirmation_wating', scope: 'devise.devise_registrations.edit')
+        = t('devise.devise_registrations.edit.confirmation_wating')
         = resource.unconfirmed_email
 
 
     .formBlock
-      %h3= I18n.t('form_header', scope: 'devise.devise_registrations.edit')
+      %h3= t('devise.devise_registrations.edit.form_header')
       = f.input :password,
-                label: I18n.t('label', scope: 'devise.devise_registrations.edit.new_password'),
+                label: t('devise.devise_registrations.edit.new_password.label'),
                 autocomplete: "off",
-                hint: I18n.t('hint', scope: 'devise.devise_registrations.edit.new_password'),
+                hint: t('devise.devise_registrations.edit.new_password.hint'),
                 required: false
       = f.input :password_confirmation,
-                label: I18n.t('label', scope: 'devise.devise_registrations.edit.confirmation'),
-                hint: I18n.t('hint', scope: 'devise.devise_registrations.edit.confirmation'),
+                label: t('devise.devise_registrations.edit.confirmation.label'),
+                hint: t('devise.devise_registrations.edit.confirmation.hint'),
                 required: false
 
       - if gauth_enabled_user?
         %p.twoFactorAuth.green
           = image_tag "sidebar_icons/two_factor_auth.png"
-          = I18n.t('green', scope: 'devise.devise_registrations.edit.two_factor_auth', link: link_to(I18n.t('disable', scope: 'devise.devise_registrations.edit.two_factor_auth'), user_displayqr_path )).html_safe
+          = t('devise.devise_registrations.edit.two_factor_auth.green', link: link_to(t('devise.devise_registrations.edit.two_factor_auth.disable'), user_displayqr_path )).html_safe
       - else
         %p.twoFactorAuth.red
           = image_tag "sidebar_icons/two_factor_auth.png"
-          = I18n.t('red', scope: 'devise.devise_registrations.edit.two_factor_auth', link: link_to(I18n.t('recommend', scope: 'devise.devise_registrations.edit.two_factor_auth'), user_displayqr_path )).html_safe
+          = t('devise.devise_registrations.edit.two_factor_auth.red', link: link_to(t('devise.devise_registrations.edit.two_factor_auth.recommend'), user_displayqr_path )).html_safe
     %p
       %h3
-      = f.input :current_password, label: "To save changes, you must enter the current password", required: true
+      = f.input :current_password, label: t('devise.devise_registrations.edit.save_hint'), required: true
   .form-actions
-    = f.button :submit, I18n.t('submit', scope: 'devise.devise_registrations.edit')
+    = f.button :submit, t('devise.devise_registrations.edit.submit')
 
-/= I18n.t('message', scope: 'devise.devise_registrations.edit.account_cancelation'), #{link_to I18n.t('link', scope: 'devise.devise_registrations.edit.account_cancelation'), registration_path(resource_name), data: { confirm: I18n.t('confirmation', scope: 'devise.devise_registrations.edit.account_cancelation') }, method: :delete}
+/= t('devise.devise_registrations.edit.account_cancelation.message'), #{link_to t('devise.devise_registrations.edit.account_cancelation.link'), registration_path(resource_name), data: { confirm: t('devise.devise_registrations.edit.account_cancelation.confirmation') }, method: :delete}

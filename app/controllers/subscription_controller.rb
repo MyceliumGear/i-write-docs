@@ -7,7 +7,7 @@ class SubscriptionController < ApplicationController
 
   def update
     @user.update!(subscription_params)
-    flash[:success] = I18n.t("updated", scope: "devise.devise_registrations")
+    flash[:success] = I18n.t("devise.devise_registrations.updated")
     redirect_to new_user_session_path
   end
 
@@ -17,11 +17,11 @@ class SubscriptionController < ApplicationController
       begin
         decoded_data = JWT.decode(params[:token], Rails.application.secrets.jwt_secret, true)
       rescue JWT::VerificationError, JWT::DecodeError
-        flash[:error] = I18n.t("invalid", scope: "subscription.token")
+        flash[:error] = I18n.t("subscription.token.invalid")
         redirect_to new_user_session_path
         return
       rescue JWT::ExpiredSignature
-        flash[:error] = I18n.t("expired", scope: "subscription.token")
+        flash[:error] = I18n.t("subscription.token.expired")
         redirect_to new_user_session_path
         return
       end

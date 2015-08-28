@@ -3,7 +3,7 @@ class AddressProvider < ActiveRecord::Base
   belongs_to :user
 
   validates :user, presence: true
-  validates :type, uniqueness: {scope: :user_id, message: I18n.t("already_exists", scope: "address_provider.errors.type")}
+  validates :type, uniqueness: {scope: :user_id, message: I18n.t("address_provider.errors.type.already_exists")}
 
   validate :validate_class
 

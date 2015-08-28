@@ -55,11 +55,11 @@ class Widget < ActiveRecord::Base
         fields.each do |f|
           if f =~ /["'<>]/
             fields_errors[f] ||= []
-            fields_errors[f] << I18n.t("invalid_characters", scope: "widget.errors.fields")
+            fields_errors[f] << I18n.t("widget.errors.fields.invalid_characters")
           end
           if f.length < 2 || f.length > 30
             fields_errors[f] ||= []
-            fields_errors[f] << I18n.t("length", scope: "widget.errors.fields")
+            fields_errors[f] << I18n.t("widget.errors.fields.length")
           end
         end
 

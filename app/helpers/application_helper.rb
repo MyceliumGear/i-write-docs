@@ -20,17 +20,17 @@ module ApplicationHelper
   end
 
   DOCS = [
-    ["Table of contents", '/docs'],
-    ["Overview of payment processing", '/docs/overview'],
-    ["Creating a new gateway", '/docs/creating_gateway'],
-    ["Signed request", '/docs/signed_request'],
-    ["Creating orders", '/docs/creating_orders'],
-    ["Receiving order status change callback", '/docs/callback'],
-    ["Checking order status manually", '/docs/checking_order_status'],
-    ["Order websocket", '/docs/order_websocket'],
-    ["Order cancellation", '/docs/order_cancellation'],
-    ["Receiving last keychain id for gateway", '/docs/last_keychain_id'],
-    ["Table of contents", '/docs'],
+    [I18n.t("pages.docs.link"), '/docs'],
+    [I18n.t("pages.docs.index.links.payment_proccessing"), '/docs/overview'],
+    [I18n.t("pages.docs.index.links.new_gateway"), '/docs/creating_gateway'],
+    [I18n.t("pages.docs.index.links.signed_request"), '/docs/signed_request'],
+    [I18n.t("pages.docs.index.links.creating_orders"), '/docs/creating_orders'],
+    [I18n.t("pages.docs.index.links.callback"), '/docs/callback'],
+    [I18n.t("pages.docs.index.links.order_status"), '/docs/checking_order_status'],
+    [I18n.t("pages.docs.index.links.websocket"), '/docs/order_websocket'],
+    [I18n.t("pages.docs.index.links.order_cancellation"), '/docs/order_cancellation'],
+    [I18n.t("pages.docs.index.links.last_keychain"), '/docs/last_keychain_id'],
+    [I18n.t("pages.docs.link"), '/docs'],
   ]
 
   def docs_links_for(page)
@@ -38,8 +38,24 @@ module ApplicationHelper
     prev_item = DOCS[index - 1]
     next_item = DOCS[index + 1]
     [
-      link_to("&#8592; Previous (#{prev_item[0]})".html_safe, prev_item[1]),
-      link_to("Next (#{next_item[0]}) &#8594;".html_safe, next_item[1]),
+      link_to("&#8592; #{I18n.t('prev')} (#{prev_item[0]})".html_safe, prev_item[1]),
+      link_to("#{I18n.t('next')} (#{next_item[0]}) &#8594;".html_safe, next_item[1]),
     ]
+  end
+
+  def subscriptions_collection
+    values = {}
+    UpdateItem.priorities.each do |value|
+      values[I18n.t("devise.devise_registrations.#{value.first}")] = value.second
+    end
+    values
+  end
+
+  def localized_doc_page_for(name, locale = I18n.locale)
+    if File.exists?("#{Rails.root}/app/views/pages/docs/md/#{locale}/#{name}.md")
+      return "pages/docs/md/#{locale}/#{name}.md"
+    else
+      return "pages/docs/md/#{I18n.default_locale}/#{name}.md"
+    end
   end
 end

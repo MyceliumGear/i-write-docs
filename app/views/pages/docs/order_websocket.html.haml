@@ -1,15 +1,15 @@
-- @page_title = I18n.t("page_title", scope: "pages.docs.order_websocket")
+- @page_title = t("pages.docs.order_websocket.page_title")
 
 .page.docs
 
-  %h1= I18n.t("header", scope: "pages.docs.order_websocket", link: link_to(I18n.t("link", scope: "pages.docs.order_websocket"), "/docs")).html_safe
+  %h1= t("pages.docs.order_websocket.header", link: link_to(t("pages.docs.order_websocket.link"), "/docs")).html_safe
 
-  %p= I18n.t("statement_1", scope: "pages.docs.order_websocket")
+  %p= t("pages.docs.order_websocket.statement_1")
 
-  %p= I18n.t("statement_2", scope: "pages.docs.order_websocket")
+  %p= t("pages.docs.order_websocket.statement_2")
 
   .code https://gateway.gear.mycelium.com/gateways/:api_gateway_id/orders/1/websocket
 
-  %p= I18n.t("statement_3", scope: "pages.docs.order_websocket", link: link_to(I18n.t("link_2", scope: "pages.docs.order_websocket"), "/docs/checking_order_status")).html_safe
+  %p= t("pages.docs.order_websocket.statement_3", link: link_to(t("pages.docs.order_websocket.link_2"), "/docs/checking_order_status")).html_safe
 
   = render partial: 'pages/docs/navigation', locals: {page: 'order_websocket'}

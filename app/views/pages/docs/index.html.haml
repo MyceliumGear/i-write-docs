@@ -1,28 +1,28 @@
-- @page_title = I18n.t("page_title", scope: "pages.docs.index")
+- @page_title = t("pages.docs.index.page_title")
 
 .page.docs
 
-  %h1= I18n.t("header", scope: "pages.docs.index")
+  %h1= t("pages.docs.index.header")
 
-  %p= I18n.t("statement_1", scope: "pages.docs.index", link: link_to(I18n.t("link_1", scope: "pages.docs.index"), "/wizard")).html_safe
+  %p= t("pages.docs.index.statement_1", link: link_to(t("pages.docs.index.link_1"), "/wizard")).html_safe
 
-  %p= I18n.t("statement_2", scope: "pages.docs.index")
+  %p= t("pages.docs.index.statement_2")
 
-  %p= I18n.t("statement_3", scope: "pages.docs.index", link_1: link_to("straight", "https://github.com/snitko/straight", target: "_blank" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server", target: "_blank") ).html_safe
+  %p= t("pages.docs.index.statement_3", link_1: link_to("straight", "https://github.com/snitko/straight", target: "_blank" ), link_2: link_to("straight-server", "https://github.com/snitko/straight-server", target: "_blank") ).html_safe
 
-  %h2= I18n.t("header_2", scope: "pages.docs.index")
+  %h2= t("pages.docs.index.header_2")
 
   %ul
 
-    %li= link_to I18n.t("payment_proccessing", scope: "pages.docs.index.links"), "/docs/overview"
-    %li= link_to I18n.t("new_gateway", scope: "pages.docs.index.links"), "/docs/creating_gateway"
+    %li= link_to t("pages.docs.index.links.payment_proccessing"), "/docs/overview"
+    %li= link_to t("pages.docs.index.links.new_gateway"), "/docs/creating_gateway"
     %li
-      = I18n.t("api", scope: "pages.docs.index")
+      = t("pages.docs.index.api")
       %ul
-        %li= link_to I18n.t("signed_request", scope: "pages.docs.index.links"), "/docs/signed_request"
-        %li= link_to I18n.t("creating_orders", scope: "pages.docs.index.links"), "/docs/creating_orders"
-        %li= link_to I18n.t("callback", scope: "pages.docs.index.links"), "/docs/callback"
-        %li= link_to I18n.t("order_status", scope: "pages.docs.index.links"), "/docs/checking_order_status"
-        %li= link_to I18n.t("websocket", scope: "pages.docs.index.links"), "/docs/order_websocket"
-        %li= link_to I18n.t("order_cancellation", scope: "pages.docs.index.links"), "/docs/order_cancellation"
-        %li= link_to I18n.t("last_keychain", scope: "pages.docs.index.links"), "/docs/last_keychain_id"
+        %li= link_to t("pages.docs.index.links.signed_request"), "/docs/signed_request"
+        %li= link_to t("pages.docs.index.links.creating_orders"), "/docs/creating_orders"
+        %li= link_to t("pages.docs.index.links.callback"), "/docs/callback"
+        %li= link_to t("pages.docs.index.links.order_status"), "/docs/checking_order_status"
+        %li= link_to t("pages.docs.index.links.websocket"), "/docs/order_websocket"
+        %li= link_to t("pages.docs.index.links.order_cancellation"), "/docs/order_cancellation"
+        %li= link_to t("pages.docs.index.links.last_keychain"), "/docs/last_keychain_id"
