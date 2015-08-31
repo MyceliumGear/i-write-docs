@@ -14,6 +14,6 @@ en:
         send_unsent: Send unsent
       no_records:
         title: Currently the are no updates
-      send_at: send_at
+      send_at: send at
     new:
       page_title: Create update

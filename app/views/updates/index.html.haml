@@ -25,7 +25,8 @@
           - if current_user.admin?
             = " / "
           - if update.sent_at
-            = "#{t("updates.index.send_at")} #{I18n.l(update.sent_at, format: default)}"
+            = t("updates.index.send_at")
+            = l(update.sent_at, format: :default)
           - else
             = link_to t("updates.index.links.send"), delivery_update_path(update), method: :post, data: {confirm: t("updates.index.links.confirm")}
             = link_to t("updates.index.links.delete"), update_path(update), method: :delete

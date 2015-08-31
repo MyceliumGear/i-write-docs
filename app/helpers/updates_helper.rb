@@ -1,12 +1,9 @@
 module UpdatesHelper
   def priority_indicator(item)
     case item.priority
-    when 'regular'
-      return
-    when 'important'
-      return 'orange'
-    when 'critical'
-      return 'red'
+    when 'regular' then return
+    when 'important' then return 'orange'
+    when 'critical' then return 'red'
     end
   end
 end
