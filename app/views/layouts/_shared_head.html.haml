@@ -12,7 +12,7 @@
 = stylesheet_link_tag "frontend_notifier_custom"
 %link(href='//fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css')
 
-= favicon_link_tag nil, href: '/favicon.ico'
+= favicon_link_tag
 = yield :meta_tags
 = javascript_include_tag 'jquery'
 = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};"
