@@ -7,6 +7,7 @@ namespace :gear do
     config['database'] = "straight_server_#{ENV['RACK_ENV']}"
     ActiveRecord::Tasks::DatabaseTasks.create config
 
-    Rake::Task['db:setup'].invoke
+    Rake::Task['db:create'].invoke
+    Rake::Task['db:migrate'].invoke
   end
 end
