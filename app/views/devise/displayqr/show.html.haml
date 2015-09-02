@@ -9,7 +9,7 @@
       %tr
         %td.qrcode= google_authenticator_qrcode(resource)
         %td.instructions
-          = t('devise.registration.instructions', link: link_to("Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2")).html_safe
+          = t('devise.registration.instructions', link: link_to("Google Auth", "https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2", target: '_blank')).html_safe
 
           .backup
             = t('devise.registration.backup')
