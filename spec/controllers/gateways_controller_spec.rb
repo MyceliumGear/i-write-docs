@@ -76,6 +76,29 @@ RSpec.describe GatewaysController, type: :controller do
 
   end
 
+  describe "show action" do
+
+    before(:each) do
+      @gateway = create(:gateway, user: @current_user)
+    end
+
+    it "show gateway without any parameters" do
+      get :show, id: @gateway.id
+      expect(response).to render_template('show')
+    end
+
+    it "show gateway with show_addresses parameter" do
+      get :show, id: @gateway.id, show_addresses: 1..15
+      expect(response).to render_template('show')
+    end
+
+    it "show gateway with invalid show_addresses parameter" do
+      get :show, id: @gateway.id, show_addresses: -1..15
+      expect(response).to render_template('show')
+    end
+
+  end
+
   describe "destroy action" do
     
     it "marks gateway as deleted" do
