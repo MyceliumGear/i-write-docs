@@ -19,24 +19,24 @@ module ApplicationHelper
     end
   end
 
-  DOCS = [
-    [I18n.t("pages.docs.link"), '/docs'],
-    [I18n.t("pages.docs.index.links.payment_proccessing"), '/docs/overview'],
-    [I18n.t("pages.docs.index.links.new_gateway"), '/docs/creating_gateway'],
-    [I18n.t("pages.docs.index.links.signed_request"), '/docs/signed_request'],
-    [I18n.t("pages.docs.index.links.creating_orders"), '/docs/creating_orders'],
-    [I18n.t("pages.docs.index.links.callback"), '/docs/callback'],
-    [I18n.t("pages.docs.index.links.order_status"), '/docs/checking_order_status'],
-    [I18n.t("pages.docs.index.links.websocket"), '/docs/order_websocket'],
-    [I18n.t("pages.docs.index.links.order_cancellation"), '/docs/order_cancellation'],
-    [I18n.t("pages.docs.index.links.last_keychain"), '/docs/last_keychain_id'],
-    [I18n.t("pages.docs.link"), '/docs'],
-  ]
-
   def docs_links_for(page)
-    index = DOCS.find_index { |item| item[1].end_with?("/#{page}") }
-    prev_item = DOCS[index - 1]
-    next_item = DOCS[index + 1]
+    docs = [
+      [I18n.t("pages.docs.link"), '/docs'],
+      [I18n.t("pages.docs.index.links.payment_proccessing"), '/docs/overview'],
+      [I18n.t("pages.docs.index.links.new_gateway"), '/docs/creating_gateway'],
+      [I18n.t("pages.docs.index.links.signed_request"), '/docs/signed_request'],
+      [I18n.t("pages.docs.index.links.creating_orders"), '/docs/creating_orders'],
+      [I18n.t("pages.docs.index.links.callback"), '/docs/callback'],
+      [I18n.t("pages.docs.index.links.order_status"), '/docs/checking_order_status'],
+      [I18n.t("pages.docs.index.links.websocket"), '/docs/order_websocket'],
+      [I18n.t("pages.docs.index.links.order_cancellation"), '/docs/order_cancellation'],
+      [I18n.t("pages.docs.index.links.last_keychain"), '/docs/last_keychain_id'],
+      [I18n.t("pages.docs.link"), '/docs'],
+    ]
+
+    index = docs.find_index { |item| item[1].end_with?("/#{page}") }
+    prev_item = docs[index - 1]
+    next_item = docs[index + 1]
     [
       link_to("&#8592; #{I18n.t('prev')} (#{prev_item[0]})".html_safe, prev_item[1]),
       link_to("#{I18n.t('next')} (#{next_item[0]}) &#8594;".html_safe, next_item[1]),
