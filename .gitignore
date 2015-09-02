@@ -10,8 +10,6 @@ log/*.log
 /coverage
 
 # Ignore all .yml and .txt files in config, because they should obviously are env specific.
-config/*.yml
-!config/layouts.yml
 config/*.txt
 config/straight
 
@@ -28,6 +26,7 @@ vendor/gems/straight*
 vendor/bundle
 /bundle
 .env.*.local
+.env.local
 
 # ansible vars
 /config/ansible/inventories/group_vars/stage

@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+%w{
+  SECRET_KEY_BASE
+  MAILER_SENDER
+  GEAR_WIDGET_HOST
+  GEAR_WIDGET_HOST_JS
+  CASHILA_CLIENT_ID
+}.each do |var|
+  ENV[var] = 'doesntmatter'
+end
+ENV['DATABASE_URL'] = 'postgresql://none@localhost/none'
+ENV['RAILS_ENV'] = 'production'
+
+require 'fileutils'
+
+STRAIGHT_DIR = File.expand_path('../../config/straight/production', __FILE__)
+FileUtils.mkdir_p STRAIGHT_DIR
+File.open(File.join(STRAIGHT_DIR, 'config.yml'), 'w') { |f|
+  f.write <<EOF
+# this config is just a stub for executing rake assets:precompile
+gateways_source: config
+environment: production
+db:
+  adapter: sqlite
+  name: ''
+redis: {}
+EOF
+}
+File.open(File.join(STRAIGHT_DIR, 'server_secret'), 'w') { |f| f.write 'doesntmatter' }
+FileUtils.touch File.join(STRAIGHT_DIR, 'addons.yml')
+
+require_relative '../config/boot'
+require 'rake'
+
+Rake.application.init
+Rake.application.load_rakefile
+Rake::Task['assets:precompile'].invoke

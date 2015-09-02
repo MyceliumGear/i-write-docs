@@ -1,2 +1,2 @@
-<script src="<%= APP_ENV['gear_widget_host_js']%>"></script>
-<iframe id="gear-widget" scrolling="no" src="<%= "#{APP_ENV['gateway_host']}/widgets/#{@gateway.straight_gateway_hashed_id}"%>" style="border: none; display: inline-block; height: 130px; min-width: 250px; max-width: 350px;"></iframe>
+<script src="<%= ENV['GEAR_WIDGET_HOST_JS']%>"></script>
+<iframe id="gear-widget" scrolling="no" src="<%= "#{ENV['GEAR_WIDGET_HOST']}/widgets/#{@gateway.straight_gateway_hashed_id}"%>" style="border: none; display: inline-block; height: 130px; min-width: 250px; max-width: 350px;"></iframe>

@@ -3,11 +3,54 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 
 require 'dotenv'
-Dotenv.load ".env.#{Rails.env}.local", ".env.#{Rails.env}", '.env'
+Dotenv.load ".env.#{Rails.env}.local", ".env.#{Rails.env}", '.env.local', '.env'
+require 'envied'
+ENVied.require
+
+# standalone mode requires manual requires :)
+# any production gem should be listed here
+%w{
+  lograge
+  redis
+  logstash-logger
+  sqlite3
+  haml-rails
+  devise
+  simple_form
+  meta_tags
+  jquery-rails
+  string_master
+  will_paginate
+  frontend_notifier
+  nilify_blanks
+  string_master
+  ice_nine
+  ice_nine/core_ext/object
+  mmmenu
+  country_select
+  pg
+  open_uri_redirections
+  sequel
+  httparty
+  faraday
+  devise_google_authenticator
+  jwt
+  dotenv
+  roadie-rails
+  sidekiq
+  sidetiq
+  cashila-api
+  kramdown
+  coderay
+  iban-tools
+  bic_validation
+  straight-server
+}.each { |item| require item }
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+Bundler.require :development if Rails.env.development?
+Bundler.require :test if Rails.env.test?
 
 module GearAdmin
   class Application < Rails::Application
@@ -49,9 +92,6 @@ module GearAdmin
     config.action_view.raise_on_missing_translations = false
     config.i18n.available_locales = [:en]
     config.i18n.default_locale = :en
-
-    ::ADMIN_EMAILS  = File.readlines("#{Rails.root}/config/admin_emails.txt").map { |e| e.strip }
-    ::APP_ENV = YAML::load_file("#{Rails.root}/config/environment.yml")
 
     require 'will_paginate/sequel'
     require 'will_paginate/active_record'

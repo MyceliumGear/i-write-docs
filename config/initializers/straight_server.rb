@@ -1,29 +1,8 @@
-require 'sequel'
-require 'straight'
-require 'openssl'
-require 'base64'
-Sequel.extension :migration
-
-require 'straight-server'
-
-# Connect to straght's DB before loading the models
-class StraightServerInitializer
-  include StraightServer::Initializer
-end
-StraightServer::Initializer::ConfigDir.set!("#{Rails.root}/config/straight/#{Rails.env}")
-STRAIGHT_SERVER_INITIALIZER = StraightServerInitializer.new
-STRAIGHT_SERVER_INITIALIZER.read_config_file
-
-db = STRAIGHT_SERVER_INITIALIZER.connect_to_db
-db.extension(:connection_validator)
-db.pool.connection_validation_timeout = 600
-
-STRAIGHT_SERVER_INITIALIZER.setup_redis_connection
+straight_config_dir = "#{Rails.root}/config/straight/#{Rails.env}"
+straight_config_dir = "#{Rails.root}/config/straight" unless File.exists?(straight_config_dir) # deployed build needs only one config
+StraightServer::Initializer::ConfigDir.set! straight_config_dir
+StraightServer::Initializer.new.prepare run_migrations: Rails.env.test?
 
 if Rails.env.test?
-  STRAIGHT_SERVER_INITIALIZER.run_migrations
-  StraightServer::Config.gateways_source = "db"
+  StraightServer::Config.gateways_source = 'db'
 end
-
-require 'straight-server/order'
-require 'straight-server/gateway'

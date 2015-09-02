@@ -1,0 +1,20 @@
+variable :SECRET_KEY_BASE
+variable :DATABASE_URL
+variable :MAILER_SENDER
+variable :GEAR_WIDGET_HOST
+variable :GEAR_WIDGET_HOST_JS
+variable :CASHILA_CLIENT_ID
+
+# These variables are required in non-test/development environments and cannot be set in dotenv file
+# RACK_ENV
+
+# These variables are optional and cannot be set in dotenv file
+# PUMA_THREADS_MIN
+# PUMA_THREADS_MAX
+# PUMA_WORKERS
+# PUMA_BIND
+# SIDEKIQ_OPTIONS
+
+# These variables are optional
+# RAILS_SERVE_STATIC_FILES
+# REDIS_URL
