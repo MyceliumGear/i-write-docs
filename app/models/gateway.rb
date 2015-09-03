@@ -201,6 +201,7 @@ class Gateway < ActiveRecord::Base
         auto_redirect:               auto_redirect,
         address_derivation_scheme:   address_derivation_scheme,
         address_provider:            address_provider ? address_provider.class.type : 'Bip32',
+        merchant_url:                merchant_url
       }
       fields.merge!(secret: @secret) if @secret
       fields

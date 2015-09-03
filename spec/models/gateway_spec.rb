@@ -87,6 +87,7 @@ RSpec.describe Gateway, type: :model do
         expect(@straight_gateway.exchange_rate_adapter_names).to eq(@gateway.exchange_rate_adapter_names)
         expect(@straight_gateway.active).to eq(@gateway.active)
         expect(@straight_gateway.hashed_id).to eq(@gateway.straight_gateway_hashed_id)
+        expect(@straight_gateway.merchant_url).to eq(@gateway.merchant_url)
       end
 
       it "updates a gateway with the changed fields from the model" do
