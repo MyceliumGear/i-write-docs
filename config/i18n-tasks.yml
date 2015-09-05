@@ -80,12 +80,13 @@ search:
 ## Do not consider these keys missing:
 ignore_missing:
 # - 'errors.messages.{accepted,blank,invalid,too_short,too_long}'
-  - '{devise,simple_form}.*'
+#  - '{devise,simple_form}.*'
 
 ## Consider these keys used:
 ignore_unused:
 # - 'activerecord.attributes.*'
 - '{true, false}'
+- '{date, time}.*'
 - '{devise,kaminari,will_paginate}.*'
 - 'simple_form.{yes,no}'
 - 'simple_form.{placeholders,hints,labels,required, error_notification}.*'
