@@ -87,6 +87,7 @@ RSpec.describe Gateway, type: :model do
         expect(@straight_gateway.exchange_rate_adapter_names).to eq(@gateway.exchange_rate_adapter_names)
         expect(@straight_gateway.active).to eq(@gateway.active)
         expect(@straight_gateway.hashed_id).to eq(@gateway.straight_gateway_hashed_id)
+        expect(@straight_gateway.merchant_url).to eq(@gateway.merchant_url)
       end
 
       it "updates a gateway with the changed fields from the model" do
@@ -96,7 +97,8 @@ RSpec.describe Gateway, type: :model do
       end
 
       it "shows gateway stats about orders" do
-        expect(@gateway.order_counters).to eq({new: 0, unconfirmed: 0, paid: 0, underpaid: 0, overpaid: 0, expired: 0, canceled: 0 })
+        expect(@gateway.order_counters.keys.to_set).to eq %i{new unconfirmed paid underpaid overpaid expired canceled}.to_set
+        expect(@gateway.order_counters.values.map(&:class).uniq).to eq [Fixnum]
       end
 
 

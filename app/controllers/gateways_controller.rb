@@ -31,7 +31,7 @@ class GatewaysController < ApplicationController
 
   def show
     @show_addresses = Range.new(*(params[:show_addresses] || '0..20').split('..').map(&:to_i)[0, 2]) rescue 0..20
-    if @show_addresses.size > 1000
+    if @show_addresses.size > 1000 || (@show_addresses.min.present? && @show_addresses.min < 0)
       @show_addresses = 0..20
     end
     @widget = @gateway.widget

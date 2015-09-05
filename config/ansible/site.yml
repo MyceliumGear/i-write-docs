@@ -1,5 +1,0 @@
----
-#- include: database_servers.yml
-#- include: application_servers.yml
-- include: job_servers.yml
-- include: straight_servers.yml

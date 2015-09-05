@@ -48,6 +48,15 @@ Rails.application.configure do
   # when problems arise.
   config.log_level = :debug
 
+  config.autoflush_log = true
+
+  config.lograge.enabled = true
+  config.lograge.formatter = Lograge::Formatters::Logstash.new
+
+  config.logstash.type = :redis
+  config.logstash.list = 'logstash_admin-app'
+  config.logstash.uri  = ENV['REDIS_URL']
+
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
 
