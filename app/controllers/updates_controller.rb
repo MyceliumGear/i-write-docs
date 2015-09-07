@@ -3,6 +3,7 @@ class UpdatesController < ApplicationController
   before_action :authenticate_admin!, only: [:delivery, :new, :create, :edit, :update, :destroy]
   before_action :set_update_item, only: [:delivery, :edit, :update, :destroy]
   before_action :reset_last_read_update, only: :index
+  after_action :allow_iframe, only: :index_for_langing_page
 
   def index
     @updates = updates
