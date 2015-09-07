@@ -109,6 +109,8 @@ GEM
     addressable (2.3.8)
     ansi (1.5.0)
     arel (6.0.2)
+    async-rack (0.5.1)
+      rack (~> 1.1)
     banking_data (0.5.0)
       activemodel
       activesupport
@@ -207,6 +209,11 @@ GEM
       json
       thread
       thread_safe
+    em-synchrony (1.0.4)
+      eventmachine (>= 1.0.0.beta.1)
+    em-websocket (0.3.8)
+      addressable (>= 2.1.1)
+      eventmachine (>= 0.12.9)
     envied (0.8.1)
       coercible (~> 1.0)
       rack (~> 1.4)
@@ -222,12 +229,28 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    faye-websocket (0.10.0)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.5.1)
+    ffi (1.9.10)
     frontend_notifier (0.1.5)
       coffee-rails
       haml-rails
       sass-rails
+    git-version-bump (0.15.1)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
+    goliath (1.0.4)
+      async-rack
+      em-synchrony (>= 1.0.0)
+      em-websocket (= 0.3.8)
+      eventmachine (>= 1.0.0.beta.4)
+      http_parser.rb (= 0.6.0)
+      log4r
+      multi_json
+      rack (>= 1.2.2)
+      rack-contrib
+      rack-respond_to
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -244,6 +267,7 @@ GEM
       haml (~> 4.0.0)
       nokogiri (~> 1.6.0)
       ruby_parser (~> 3.5)
+    http_parser.rb (0.6.0)
     httparty (0.13.5)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -266,6 +290,9 @@ GEM
     json (1.8.3)
     jwt (1.5.0)
     kramdown (1.7.0)
+    log4r (1.1.10)
+    logmaster (0.1.5)
+      pony
     lograge (0.3.4)
       actionpack (>= 3)
       activesupport (>= 3)
@@ -298,6 +325,8 @@ GEM
     open_uri_redirections (0.2.1)
     orm_adapter (0.5.0)
     pg (0.18.1)
+    pony (1.11)
+      mail (>= 2.0)
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.6.4)
@@ -307,6 +336,8 @@ GEM
       rack (~> 1.4)
     rack-protection (1.5.3)
       rack
+    rack-respond_to (0.9.8)
+      rack-accept-media-types (>= 0.6)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.3)
@@ -366,6 +397,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    ruby-hmac (0.4.0)
     ruby_parser (3.6.6)
       sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
