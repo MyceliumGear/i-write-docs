@@ -1,0 +1,67 @@
+upstream admin-app {
+  server localhost:3000;
+}
+
+upstream widget-app {
+  server localhost:3001;
+}
+
+upstream straight-server {
+  server localhost:9000;
+}
+
+map $http_upgrade $connection_upgrade {
+  default upgrade;
+  ''      close;
+}
+
+server {
+  listen 80;
+  server_name admin.gear.loc;
+
+  location / {
+    proxy_pass        http://admin-app;
+    proxy_set_header  Host $host;
+    proxy_set_header  X-Forwarded-For $remote_addr;
+  }
+}
+
+server {
+  listen 80;
+  server_name gear.loc;
+
+  #
+  # widget-app
+  #
+  location /widgets {
+    proxy_pass        http://widget-app;
+    proxy_set_header  Host $host;
+    proxy_set_header  X-Forwarded-For $remote_addr;
+  }
+
+  location /assets {
+    proxy_pass  http://widget-app;
+  }
+
+  location /gear-widget-host.js  {
+    proxy_pass  http://widget-app;
+  }
+
+  #
+  # straight-server
+  #
+  location / {
+    proxy_pass        http://straight-server;
+    proxy_set_header  Host $host;
+    proxy_set_header  X-Forwarded-For $remote_addr;
+  }
+
+  location ~ /websocket$ {
+    proxy_pass          http://straight-server;
+    proxy_http_version  1.1;
+    proxy_set_header    Connection $connection_upgrade;
+    proxy_set_header    Upgrade $http_upgrade;
+    proxy_set_header    Host $host;
+    proxy_buffering     off;
+  }
+}

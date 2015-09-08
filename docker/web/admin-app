@@ -1,4 +1,4 @@
 #!/bin/bash -l
 sudo service nginx restart
-cd /gear-admin
+cd /admin-app
 bin/rails s

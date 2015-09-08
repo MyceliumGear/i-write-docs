@@ -1,0 +1,26 @@
+web:
+  build: web
+  volumes:
+    - ..:/admin-app
+    - ../../widget-app:/widget-app
+    - ../../straight:/admin-app/vendor/gems/straight-engine
+    - ../../straight-server:/admin-app/vendor/gems/straight-server
+    - ../../straight-payment-ui:/home/app/.straight/addons/straight-payment-ui
+    - ../../address-providers:/home/app/.straight/addons/address-providers
+  privileged: true
+  ports:
+    - "127.0.0.1:30022:22"
+    - "127.0.0.1:80:80"
+  links:
+    - db
+    - redis
+
+db:
+  image: postgres:9.4.4
+  ports:
+    - "127.0.0.1:5432:5432"
+
+redis:
+  image: redis:3.0.3
+  ports:
+    - "127.0.0.1:6379:6379"
