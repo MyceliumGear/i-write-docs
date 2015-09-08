@@ -2,7 +2,7 @@ jQuery(function($){
 
   $("table.siteBackendTypesSelector td").click(function() {
     var site_type = $(this).data('siteType');
-    var site_type_button = $("table.siteBackendTypesSelector td[data-site-type=" + site_type + "]")
+    var site_type_button = $("table.siteBackendTypesSelector td[data-site-type=" + site_type + "]").first()
 
 
     if(site_type == "unknown") {
