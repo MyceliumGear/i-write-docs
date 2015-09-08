@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817085235) do
+ActiveRecord::Schema.define(version: 20150908065757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 20150817085235) do
     t.string   "pubkey"
     t.string   "name",                                           null: false
     t.string   "default_currency",               default: "BTC", null: false
-    t.string   "callback_url"
+    t.text     "callback_url"
     t.boolean  "check_signature",                default: true,  null: false
     t.boolean  "active",                         default: true,  null: false
     t.string   "exchange_rate_adapter_names"
     t.integer  "user_id"
     t.boolean  "deleted",                        default: false, null: false
     t.text     "description"
-    t.string   "merchant_url"
+    t.text     "merchant_url"
     t.string   "country"
     t.string   "region"
     t.string   "city"

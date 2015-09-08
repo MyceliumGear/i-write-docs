@@ -56,11 +56,11 @@ PATH
   remote: vendor/gems/straight-server
   specs:
     straight-server (1.0.0)
-      btcruby
+      btcruby (= 1.1.1)
       faye-websocket
       goliath
       httparty
-      logmaster (= 0.1.5)
+      logmaster (~> 0.2.0)
       redis
       ruby-hmac
       satoshi-unit (>= 0.1.8)
@@ -291,7 +291,7 @@ GEM
     jwt (1.5.0)
     kramdown (1.7.0)
     log4r (1.1.10)
-    logmaster (0.1.5)
+    logmaster (0.2.0)
       pony
     lograge (0.3.4)
       actionpack (>= 3)
