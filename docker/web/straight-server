@@ -1,3 +1,3 @@
 #!/bin/bash -l
-cd /gear-admin/vendor/gems/straight-server
+cd /admin-app/vendor/gems/straight-server
 bundle exec bin/straight-server

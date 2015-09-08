@@ -1,3 +1,0 @@
-#!/bin/bash -l
-cd /gear-admin/widget-app
-bin/rails s

@@ -45,7 +45,7 @@ class Gateway < ActiveRecord::Base
 
   has_one :widget
 
-  scope :has_widget, -> { where(check_signature: false) }
+  scope :has_widget, -> (has_widget = true) { where(check_signature: !has_widget) }
   scope :receives_payments_notifications, -> { where(receive_payments_notifications: true) }
 
   after_initialize do

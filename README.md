@@ -21,15 +21,14 @@ Development environment is managed by [Docker Compose](https://larry-price.com/b
 
 All required dependencies are installed using following commands. It takes some time and bandwidth.
 
-    docker pull postgres:9.4.1
-    docker pull redis:3.0.1
-    docker-compose build
-    docker-compose up
+    docker-compose -f docker/compose.yml pull
+    docker-compose -f docker/compose.yml build
+    docker-compose -f docker/compose.yml up -d
 
 Then containers can be stopped/started with:
 
-    docker-compose stop
-    docker-compose start
+    docker-compose -f docker/compose.yml stop
+    docker-compose -f docker/compose.yml start
 
 Consider adding following lines to your `~/.ssh/config`
 
@@ -39,7 +38,7 @@ Consider adding following lines to your `~/.ssh/config`
 
 And the following to your `/etc/hosts`:
 
-    127.0.0.1 admin.gear.loc
+    127.0.0.1   gear.loc admin.gear.loc
 
 `web` container can be easily accessed via ssh:
 
@@ -47,11 +46,6 @@ And the following to your `/etc/hosts`:
 
 Make sure you created the following files:
 
-    * config/database.yml (has a .sample file)
-    * config/environment.yml (has a .sample file)
-    * config/secrets.yml (has a .sample file)
-    * config/sidekiq.yml (has a .sample file)
-    * config/admin_emails.txt (leave it empty)
     * .env.development.local  (has a .sample file)
     * .env.test.local  (has a .sample file)
 
@@ -59,8 +53,8 @@ Since the Rails app uses `straight-server` gem it actually requires its config f
 for the development and test environments. Here's the best approach:
 
     cd .. # into something like ~/Projects
-    git clone https://github.com/snitko/straight.git
-    git clone https://github.com/snitko/straight-server.git
+    git clone https://github.com/MyceliumGear/straight.git
+    git clone https://github.com/MyceliumGear/straight-server.git
     git clone https://github.com/MyceliumGear/address-providers.git
     git clone https://github.com/MyceliumGear/straight-payment-ui.git
     cd straight-payment-ui
@@ -74,36 +68,44 @@ for the development and test environments. Here's the best approach:
 
 Then inside `web` container:
 
-    cd /gear-admin
+    cd /admin-app
     bin/setup
 
 It will install gems and then fail. Now run:
 
-    cd /gear-admin/vendor/gems/straight-server
-    bundle exec bin/straight-server
+    cd /admin-app/vendor/gems/straight-server
+    bundle install --path bundle
+    sudo chown -R app: /home/app
+    ~/straight-server
 
 It will generate sample config end exit. Edit it:
 
     vim /home/app/.straight/config.yml
 
-    * set `gateway_source: db`.
-    * uncomment the Redis-related section and set `host: redis`, `port: 6379`, `db: 1`
+    * set `gateway_source: db`
+    * in `redis` section set `host: redis`, `port: 6379`, `db: 1`
+    * delete `gateways` section
 
 Also, edit `vendor/gems/straight-server/spec/.straight/config.yml`:
 
-    cd vendor/gems/straight-server
     vim spec/.straight/config.yml
 
-    * in the Redis-related section set `host: redis`, `db: 2`
+    * in `redis` section set `host: redis`, `port: 6379`, `db: 2`
 
-Now re-run `bin/setup` inside `web` container, it should succeed.
+Now re-run `cd /admin-app && bin/setup` inside `web` container, it should succeed.
 
 After doing all that you should be able to successfully run the unit tests with `bin/rspec spec`.
 
 To make the app available on you host machine on [admin.gear.loc](http://admin.gear.loc/) run:
 
-    sudo service nginx restart
-    bin/rails s
+    ~/admin-app
+
+In order to run `widget-app`:
+
+    cd /widget-app
+    bin/setup
+    cp .env.development.local.sample .env.development.local
+    ~/widget-app
 
 ### `straight-server` addons installation:
 

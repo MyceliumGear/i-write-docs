@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
-    mount Sidekiq::Web => '/sidekiq'
+    mount Sidekiq::Web => 'admin/sidekiq'
+    get 'admin/stats', to: 'admin#stats'
   end
   get 'locales/:locale', to: "locales#switch", as: :change_locale
 

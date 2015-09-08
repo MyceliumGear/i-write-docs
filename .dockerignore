@@ -4,7 +4,7 @@ spec
 tmp
 .env*
 .rspec
-docker-compose.yml
+docker
 .git*
 README*
 LICENSE*

@@ -1,0 +1,8 @@
+- @data.each do |model, data|
+  %table{style: "display:inline-table; text-align:left; margin:0 10px;"}
+    %tr
+      %td{colspan: 2}= model.to_s.humanize
+    - data.each do |k, v|
+      %tr
+        %th= k
+        %td= v

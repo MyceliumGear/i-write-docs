@@ -1,0 +1,3 @@
+#!/bin/bash -l
+cd /widget-app
+bin/rails_s
