@@ -16,8 +16,6 @@ config/straight
 public/assets/
 public/uploads
 public/uploads_test
-public/maintenance.html
-public/robots.txt
 
 .DS_Store
 !.gitkeep
