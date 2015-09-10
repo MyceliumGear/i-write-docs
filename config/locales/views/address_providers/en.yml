@@ -25,7 +25,7 @@ en:
         title: You have not created fiat payout channels
       owner: OWNER
       through: through
-      your_exchanges: Your fiat payout chaneels
+      your_exchanges: Your fiat payout channels
     new:
       adding_a_new_exchange: Adding a new fiat payout channel
       currency: 'Select CURRENCY:'
