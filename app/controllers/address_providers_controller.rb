@@ -12,6 +12,7 @@ class AddressProvidersController < ApplicationController
       else
         @current_user.address_providers
       end.paginate(page: params[:page].try(:to_i) || 1)
+    @allow_new_entries = AddressProvider.providers.sort.eql? User.last.address_providers.collect(&:class).sort
     unless @address_providers.present?
       redirect_to new_address_provider_url
     end

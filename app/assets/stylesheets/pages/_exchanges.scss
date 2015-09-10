@@ -15,7 +15,13 @@
 
   &.index {
     h2 { display: block; float: left; width: 50%; margin: 1em 0 0 0; }
-    .actions { float: right; width: 50%; text-align: right; padding-top: 2em; }
+    .actions { 
+      float: right; 
+      width: 50%; 
+      text-align: right; 
+      padding-top: 2em;
+      .hint { color: #7a7f90 }
+   }
     table { margin-top: 1em; }
   }
 
