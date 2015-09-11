@@ -1,16 +1,14 @@
 .page.exchanges.index
 
   %h2.pageTitle
-  - if current_user.admin?
-    = @page_title = t("address_providers.index.all_exchanges")
-  - else
-    = @page_title = t("address_providers.index.your_exchanges")
+    - if current_user.admin?
+      = @page_title = t("address_providers.index.all_exchanges")
+    - else
+      = @page_title = t("address_providers.index.your_exchanges")
 
   .actions
-    - if @allow_new_entries
-      %span.hint= t("address_providers.index.no_more_payouts")
-    - else
-      = link_to t("address_providers.index.add_exchange"), new_address_provider_path, class: 'button small'
+    = link_to t("address_providers.index.add_exchange"), new_address_provider_path, class: @address_providers.new_payout_link_classes
+    .hint= t("address_providers.index.payouts_hint")
   .clearfix
 
   .list
