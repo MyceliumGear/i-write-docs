@@ -3,6 +3,8 @@
   - if @updates.blank?
 
     %p= t("updates.index.no_records.title")
+    -  if current_user.admin?
+      = link_to t("updates.index.links.new_update"), new_update_path
 
   - else
 
