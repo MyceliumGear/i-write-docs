@@ -13,6 +13,10 @@ jQuery(function($){
       $(".ajaxLoader").center(site_type_button);
       $(".ajaxLoader").show();
       window.location = "/wizard?step=2&site_type=" + site_type;
+      setTimeout(function(){
+        $('.pressed').removeClass('pressed');
+        $(".ajaxLoader").hide();
+      }, 500);
     }
 
   });
