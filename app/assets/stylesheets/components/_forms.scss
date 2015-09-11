@@ -5,6 +5,7 @@ form {
   label span.helper { font-size: 90%; color: $colors_link; border-bottom: dotted 1px $colors_link; cursor: pointer; margin-left: 1em; }
 
   div.input, input[type=submit] { margin: 0.5em 0 1em 0; }
+  div.input { padding-bottom: 10px; }
   .hint { display: block; font-size: 80%; color: $colors_gray; margin-top: 0.5em; line-height: 120%; }
 
   .input.boolean {
@@ -22,7 +23,7 @@ form {
 
   label.radio, label.checkbox { cursor: pointer; }
 
-  span.error { display: block; color: $colors_red; margin: 0.3em 0 1em 0; }
+  span.error { display: block; color: $colors_red; margin: 0.3em 0 1em 0; position: absolute; }
 
   .string.field_with_errors input,
   .integer.field_with_errors input,
