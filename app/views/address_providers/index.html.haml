@@ -7,7 +7,7 @@
       = @page_title = t("address_providers.index.your_exchanges")
 
   .actions
-    = link_to t("address_providers.index.add_exchange"), new_address_provider_path, class: @address_providers.new_payout_link_classes
+    = link_to t("address_providers.index.add_exchange"), new_address_provider_path, class: "button small #{ @address_providers.allows_new_entries? ? 'disabled' : ''}"
     .hint= t("address_providers.index.payouts_hint")
   .clearfix
 

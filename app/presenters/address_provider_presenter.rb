@@ -1,22 +1,12 @@
 class AddressProviderPresenter < SimpleDelegator
 
-  def initialize(obj, user)
+  def initialize(address_providers, user)
     @current_user = user
-    super(obj)
+    super(address_providers)
   end
 
-  def new_payout_link_classes
-    if AddressProvider.providers.sort.eql? @current_user.address_providers.collect(&:class).sort
-      'button small disabled'
-    else
-      'button small'
-    end
+  def allows_new_entries?
+    AddressProvider.providers.sort == @current_user.address_providers.map(&:class).sort
   end
-
-  private
-
-    def object
-      __getobj__
-    end
 
 end
