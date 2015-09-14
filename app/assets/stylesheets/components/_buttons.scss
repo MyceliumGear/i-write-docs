@@ -22,6 +22,7 @@ button, .button, input[type=submit] {
   padding: 0.7em 2em;
   &.big   { padding: 0.7em 2em; font-size: 130%; }
   &.small { padding: 0.3em 1.5em; font-size: 85%; }
+  &.disabled { pointer-events:none; }
 
   font-size: 100%; font-weight: bold; text-decoration: none; cursor: pointer;
 

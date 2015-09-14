@@ -26,6 +26,7 @@ en:
       owner: OWNER
       through: through
       your_exchanges: Your fiat payout channels
+      payouts_hint: You can create one payout for each currency, that we support
     new:
       adding_a_new_exchange: Adding a new fiat payout channel
       currency: 'Select CURRENCY:'

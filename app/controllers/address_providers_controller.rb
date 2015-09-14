@@ -12,8 +12,10 @@ class AddressProvidersController < ApplicationController
       else
         @current_user.address_providers
       end.paginate(page: params[:page].try(:to_i) || 1)
-    unless @address_providers.present?
-      redirect_to new_address_provider_url
+    if @address_providers.present?
+       @address_providers = AddressProviderPresenter.new(@address_providers, @current_user) 
+    else
+       redirect_to new_address_provider_url
     end
   end
 
