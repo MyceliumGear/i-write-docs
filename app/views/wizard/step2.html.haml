@@ -31,7 +31,7 @@
       .pure-u-12-24
         .container
           .rightBlock
-            = f.input :merchant_url
+            = f.input :merchant_url, as: :string
             = f.input :default_currency, as: :select, collection: ['BTC', 'USD', 'EUR'], priority: [ "BTC" ]
           .formBlock.btc-only-fields{style: btc_only_fields_style}
             = f.input :test_pubkey
