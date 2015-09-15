@@ -8,7 +8,7 @@
   = f.input :name
   = f.input :allow_links
   = f.input :confirmations_required, as: :select, collection: (0..6), priority: 0
-  = f.input :callback_url
+  = f.input :callback_url, as: :string 
   = f.input :orders_expiration_period
   = f.input :after_payment_redirect_to, as: :string
   = f.input :auto_redirect
@@ -51,7 +51,7 @@
     %h3= t("gateways.form.additional_info_about_the_merchant")
     %p.description= t("gateways.form.all_fields_are_optional")
     = f.input :description
-    = f.input :merchant_url
+    = f.input :merchant_url, as: :string
     = f.input :country
     = f.input :region
     = f.input :city
