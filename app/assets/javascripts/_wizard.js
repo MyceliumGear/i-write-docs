@@ -10,12 +10,9 @@ jQuery(function($){
     }
     else {
       site_type_button.addClass('pressed');
-      $(".ajaxLoader").center(site_type_button);
-      $(".ajaxLoader").show();
       window.location = "/wizard?step=2&site_type=" + site_type;
       setTimeout(function(){
         $('.pressed').removeClass('pressed');
-        $(".ajaxLoader").hide();
       }, 500);
     }
 
@@ -28,7 +25,6 @@ jQuery(function($){
       type: 'POST',
       data: { url: $(".websiteTypeChecker input").val(), authenticity_token: AUTH_TOKEN },
       success: function(resp) {
-        $(".ajaxLoader").hide();
         $("button, .button, input[type=submit]").removeClass("locked");
         $(".websiteTypeChecker .form").hide();
         $(".websiteTypeChecker ." + resp).fadeIn(300);
