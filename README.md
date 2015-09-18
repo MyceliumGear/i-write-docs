@@ -110,8 +110,6 @@ In order to run `widget-app`:
 ### `straight-server` addons installation:
 
     cd ~/.straight
-    ln -s /gear-admin/vendor/gems/straight-payment-ui/
-    ln -s /gear-admin/vendor/gems/address-providers/
     vim addons.yml
 
 Paste:
@@ -129,13 +127,13 @@ Save.
 
 Paste:
 
-    eval_gemfile '/home/app/.straight/straight-payment-ui/Gemfile'
-    eval_gemfile '/home/app/.straight/address-providers/cashila/Gemfile'
+    eval_gemfile '/home/app/.straight/addons/straight-payment-ui/Gemfile'
+    eval_gemfile '/home/app/.straight/addons/address-providers/cashila/Gemfile'
 
 Save.
 
-    cd /gear-admin/vendor/gems/straight-server
-    bundle --path .bundle/bundle
+    cd /admin-app/vendor/gems/straight-server
+    bundle --path bundle
     ~/straight-server
 
 
