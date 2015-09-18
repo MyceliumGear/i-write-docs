@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe IWriteDocs::Generator do
   before do
-    @docs_path = "./test/dummy/docs-dev"
+    @docs_path = TEST_REP_PATH
     @build_path = "#{@docs_path}/build"
     ENV["DOCUMENTATION_PATH"] = @docs_path
   end

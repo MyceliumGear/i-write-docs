@@ -1,10 +1,10 @@
 source "http://rubygems.org"
 
-gem 'rubytree' #, github: 'evolve75/RubyTree'
+gem 'rubytree'
 gem 'redcarpet'
 gem 'pygments.rb'
-# Add dependencies to develop your gem here.
-# Include everything needed to run rake, tests, features, etc.
+gem 'rugged'
+
 group :development do
   gem "minitest", "~> 5"
   gem "shoulda", ">= 0"

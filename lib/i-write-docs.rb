@@ -2,11 +2,13 @@ require 'yaml'
 require 'tree'
 require 'redcarpet'
 require 'pygments'
+require 'rugged'
 
 require_relative 'i-write-docs/docs_tree'
 require_relative 'i-write-docs/markdown_render'
 require_relative 'i-write-docs/generator'
 require_relative 'i-write-docs/doc_filter'
+require_relative 'i-write-docs/git_adapter'
 
 module IWriteDocs
 
@@ -27,6 +29,10 @@ module IWriteDocs
 
     def documentation_path
       ENV['DOCUMENTATION_PATH'] || raise(IWriteDocsError.new("DOCUMENTATION_PATH not provided in ENV"))
+    end
+
+    def git_adapter
+      IWriteDocs::GitAdapter.new(documentation_path)
     end
 
     def docs_tree

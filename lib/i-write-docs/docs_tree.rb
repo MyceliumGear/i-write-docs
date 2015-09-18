@@ -9,7 +9,8 @@ module IWriteDocs
     end
 
     def build_docs_tree
-      docs_config = YAML.load_file("#{@docs_path}/config.yml")
+      config = IWriteDocs.config.git_adapter.get_file_content('config.yml')
+      docs_config = Psych.load(config)
       @tree = Tree::TreeNode.new("ROOT", {root_path: @docs_path,
                                           source_path: "#{@docs_path}/#{IWriteDocs.config.source_folder}"})
       traverse(docs_config, @tree) do |node, parent|
