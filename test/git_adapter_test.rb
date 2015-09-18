@@ -4,7 +4,7 @@ describe IWriteDocs::GitAdapter do
 
   let(:repo_path) { TEST_REP_PATH }
 
-  before(:all) { @repo = IWriteDocs::GitAdapter.new(repo_path) }
+  before(:all) { @repo = IWriteDocs::GitAdapter.instance }
 
   it "gets file from git repository" do
     @repo.get_file_content("for_tests.yml").must_equal "New version"
@@ -12,6 +12,10 @@ describe IWriteDocs::GitAdapter do
 
   it "get file for specific git tag" do
     @repo.get_file_content("for_tests.yml", "v2.0.1").must_equal "Old version"
+  end
+
+  it "return list of tags in repository" do
+    @repo.tags.keys.must_equal ["v1", "v2", "v2.0.1"]
   end
   
 end

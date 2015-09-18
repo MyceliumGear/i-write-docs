@@ -18,6 +18,10 @@ module IWriteDocs
     Config.instance
   end
 
+  def self.repo
+    IWriteDocs::GitAdapter.instance
+  end
+
   class Config
     include Singleton
     
@@ -29,10 +33,6 @@ module IWriteDocs
 
     def documentation_path
       ENV['DOCUMENTATION_PATH'] || raise(IWriteDocsError.new("DOCUMENTATION_PATH not provided in ENV"))
-    end
-
-    def git_adapter
-      IWriteDocs::GitAdapter.new(documentation_path)
     end
 
     def docs_tree

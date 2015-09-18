@@ -24,9 +24,8 @@ module IWriteDocs
         f.write(content)
         @docs_tree.each do |node|
           next if node.is_root? || node.has_children?
-          source = node.content[:source_path] +".md"
-          file = File.open(source, "r").read
-          content = IWriteDocs::DocFilter.filter(file)
+          source = IWriteDocs.repo.get_file_content(node.content[:source_path] +".md")
+          content = IWriteDocs::DocFilter.filter(source)
           f.write(content +"\n\n")
         end
       end
@@ -42,8 +41,8 @@ module IWriteDocs
     end
 
     def render_html_file(node, node_build_path)
-      source_path = node.content[:source_path] +".md"
-      html = IWriteDocs::MarkdownRender.parse_to_html(source_path)
+      source = IWriteDocs.repo.get_file_content(node.content[:source_path] +".md")
+      html = IWriteDocs::MarkdownRender.parse_to_html(source)
       File.open(node_build_path +".html", 'w') { |f| f.write(html) }
     end
     

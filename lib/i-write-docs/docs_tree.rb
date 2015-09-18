@@ -9,10 +9,10 @@ module IWriteDocs
     end
 
     def build_docs_tree
-      config = IWriteDocs.config.git_adapter.get_file_content('config.yml')
+      config = IWriteDocs.repo.get_file_content('config.yml')
       docs_config = Psych.load(config)
       @tree = Tree::TreeNode.new("ROOT", {root_path: @docs_path,
-                                          source_path: "#{@docs_path}/#{IWriteDocs.config.source_folder}"})
+                                          source_path: "#{IWriteDocs.config.source_folder}"})
       traverse(docs_config, @tree) do |node, parent|
         leaf = node.is_a?(Tree::TreeNode) ? node : Tree::TreeNode.new(node.to_s, prepare_node_content(node, parent))
         parent << leaf
