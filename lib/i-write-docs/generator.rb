@@ -12,8 +12,8 @@ module IWriteDocs
     end
 
     def initialize
-      @docs_tree = IWriteDocs.config.docs_tree
-      path = @docs_tree.root.content[:root_path]
+      @docs_tree  = IWriteDocs.config.docs_tree
+      path        = @docs_tree.root.content[:root_path]
       @build_path = "#{path}/#{IWriteDocs.config.build_folder}"
       create_build_folder
     end

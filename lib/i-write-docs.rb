@@ -25,7 +25,7 @@ module IWriteDocs
   class Config
     include Singleton
     
-    attr_accessor :subproject
+    attr_accessor :subproject, :git_tag
 
     def initialize
       @default_subproject = ENV['DEFAULT_SUBPROJECT'] || 'gear'
@@ -49,6 +49,11 @@ module IWriteDocs
 
     def subproject
       @subproject || @default_subproject
+    end
+
+    def git_tag=(tag)
+      raise IWriteDocsError.new("Tag dosn't exist in repository") if tag && !IWriteDocs.repo.tag_exist?(tag)
+      @git_tag = tag
     end
   end
   

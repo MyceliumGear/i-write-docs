@@ -17,8 +17,8 @@ module IWriteDocs
   private
 
     def grep_document(doc)
-      doc.gsub!(%r{^#{START_SECTION}(?<project>.+)\n(?<content>.*)\n#{END_SECTION}$}) do |el|
-        $~[:content] if $~[:project].strip == selected_project
+      doc.gsub!(%r{#{START_SECTION}[ ]*(?<p>.+)\n(?<cnt>[\w\W\s]*)[ ]*(\k<p>)[ ]*#{END_SECTION}}) do |el|
+        $~[:cnt] if $~[:p] == selected_project
       end
       doc
     end
