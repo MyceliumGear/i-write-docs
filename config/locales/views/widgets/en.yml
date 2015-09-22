@@ -60,7 +60,7 @@ en:
           hint: You <b>don't</b> need to copy and and paste this code every time you change Widget settings. The code is always the same.
           tip: 'This is your widget code. You will need to copy and paste it into your page:'
         preview:
-          header: Widget perview
+          header: Widget preview
           tip: 'This is what your widget looks like with the current settings:'
       wordpress:
         header: Your website is created using Wordpress
