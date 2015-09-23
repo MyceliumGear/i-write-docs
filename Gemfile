@@ -4,6 +4,8 @@ gem 'rubytree'
 gem 'redcarpet'
 gem 'pygments.rb'
 gem 'rugged'
+gem 'sinatra'
+gem 'sinatra-contrib'
 
 group :development do
   gem "minitest", "~> 5"
