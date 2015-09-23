@@ -29,5 +29,15 @@ describe IWriteDocs::DocsTree do
     docs_instance.find_node_by_url('bad_url').must_be_nil
   end
 
+  it "returns prepared hash of previous leaf" do
+    node = docs_instance.find_node_by_url('getting_started')
+    docs_instance.previous_leaf(node).keys[0].must_equal 'changes'
+  end
+
+  it "returns prepare hash of next leaf" do
+    node = docs_instance.find_node_by_url('getting_started')
+    docs_instance.next_leaf(node).keys[0].must_equal 'setup/install-straight/basic'
+  end
+
 end
 
