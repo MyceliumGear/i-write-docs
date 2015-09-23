@@ -11,16 +11,20 @@ module IWriteDocs
     end
 
     def get_file_content(file_path)
-      tag = IWriteDocs.config.git_tag
-      oid = tag.nil? || tag.empty? ? @master_oid : @tags[tag]
+      oid = @current_tag.to_s.empty? ? @master_oid : @tags[@current_tag]
       @repo.blob_at(oid, file_path).content
     end
 
-    def tag_exist?(tag)
-      !!@tags[tag]
+    def set_tag(tag)
+      raise IWriteDocsError.new("Tag dosn't exist in repository") unless tag.to_s.empty? || tag_exist?(tag)
+      @current_tag = tag
     end
 
   private
+  
+    def tag_exist?(tag)
+      !!@tags[tag]
+    end
 
     def build_tags_hash
       @tags = {}

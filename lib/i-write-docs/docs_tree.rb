@@ -1,11 +1,49 @@
 module IWriteDocs
   class DocsTree
+    include Singleton
 
-    attr_reader :docs_path, :tree
+    attr_reader :docs_path, :tree, :leafs
     
     def initialize
       @docs_path = IWriteDocs.config.documentation_path
       build_docs_tree
+      build_leafs
+    end
+
+    def find_node_by_url(url)
+      node_path = ''
+      url.split("/").map { |name| node_path << "['#{name}']" }
+      eval("@tree#{node_path}")
+    end
+
+    # @return [Hash] of the form {"url" => "title"}, where url and title get from node
+    def previous_leaf(node)
+      index = get_index_in_leafs(node)
+      return nil if index == 0
+      @leafs.at(index-1)
+    end
+    
+    # @return [Hash] of the form {"url" => "title"}, where url and title get from node
+    def next_leaf(node)
+      index = get_index_in_leafs(node)
+      return nil if index == @leafs.size-1
+      @leafs.at(index+1)
+    end
+
+  private
+
+    def prepare_node_content(node, parent)
+      title = node.split("_").map(&:capitalize).join(" ")
+      source_path = "#{parent.content[:source_path]}/#{node}"
+      {
+        source_path: source_path,
+        url: source_path.split("/").drop(1).join("/"),
+        title: title
+      }
+    end
+
+    def get_index_in_leafs(node)
+      @leafs.index { |leaf| leaf.has_key? node.content[:url] }
     end
 
     def build_docs_tree
@@ -22,14 +60,15 @@ module IWriteDocs
     # rescue Psych::SyntaxError
     #   p "YAML config file contains invalid syntax"
     end
-
-  private
-
-    def prepare_node_content(node, parent)
-      title = node.split("_").map(&:capitalize).join(" ")
-      {source_path: "#{parent.content[:source_path]}/#{node}", title: title}
+    
+    def build_leafs
+      @leafs = []
+      @tree.each_leaf do |node| 
+        @leafs << {node.content[:url] => node.content[:title]}
+      end
+      @leafs.freeze
     end
-  
+
     def traverse(obj, parent, &blk)
       case obj
       when Hash

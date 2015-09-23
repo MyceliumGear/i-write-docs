@@ -1,3 +1,4 @@
+require 'singleton'
 require 'yaml'
 require 'tree'
 require 'redcarpet'
@@ -22,21 +23,21 @@ module IWriteDocs
     IWriteDocs::GitAdapter.instance
   end
 
+  def self.docs_tree
+    IWriteDocs::DocsTree.instance
+  end
+
   class Config
     include Singleton
     
-    attr_accessor :subproject, :git_tag
+    attr_accessor :subproject
 
     def initialize
       @default_subproject = ENV['DEFAULT_SUBPROJECT'] || 'gear'
     end
 
     def documentation_path
-      ENV['DOCUMENTATION_PATH'] || raise(IWriteDocsError.new("DOCUMENTATION_PATH not provided in ENV"))
-    end
-
-    def docs_tree
-      IWriteDocs::DocsTree.new.tree
+      ENV['DOCUMENTATION_PATH'] || raise(IWriteDocsError.new("DOCUMENTATION_PATH is not provided in ENV"))
     end
 
     def build_folder
@@ -49,11 +50,6 @@ module IWriteDocs
 
     def subproject
       @subproject || @default_subproject
-    end
-
-    def git_tag=(tag)
-      raise IWriteDocsError.new("Tag dosn't exist in repository") if tag && !IWriteDocs.repo.tag_exist?(tag)
-      @git_tag = tag
     end
   end
   

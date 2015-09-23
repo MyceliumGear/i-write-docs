@@ -22,7 +22,7 @@ namespace :generate do |args|
   def define_options(args)
     opts = TaskOptions.new(args)
     IWriteDocs.config.subproject = opts.subproject
-    IWriteDocs.config.git_tag = opts.tag
+    IWriteDocs.repo.set_tag opts.tag
   rescue IWriteDocs::IWriteDocsError => e
     puts "Error: #{e.message}"
     exit 0
