@@ -8,7 +8,7 @@ module IWriteDocs
       res = '<select name="tag"">'
       res << "<option value=''>Latest</option>"
       IWriteDocs.repo.tags.keys.each do |tag|
-        res << "<option value='#{tag}'>#{tag}</option>"
+        res << "<option value='#{tag}' #{'selected' if tag == session[:tag]}>#{tag}</option>"
       end
       res << '</select>'
     end
@@ -21,6 +21,14 @@ module IWriteDocs
     def next_link_for(node)
       next_leaf = IWriteDocs.docs_tree.next_leaf(node)
       build_prev_next_link(next_leaf)
+    end
+
+    def diff_tag_links(file_path)
+      res = "<div class='diffLinks'>Diff with verion: "
+      IWriteDocs.repo.tags.each_key do |t|
+        res << "<a href='/diff?file=#{file_path}&tag=#{t}'>#{t}</a> | "
+      end
+      res << "</div>"
     end
 
   private

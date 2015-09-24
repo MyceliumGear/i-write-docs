@@ -19,5 +19,9 @@ describe IWriteDocs::GitAdapter do
   it "return list of tags in repository" do
     @repo.tags.keys.must_equal ["v1", "v2", "v2.0.1"]
   end
+
+  it "returns diff for file with another tag" do
+    
+  end
   
 end

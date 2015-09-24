@@ -5,6 +5,7 @@ require 'redcarpet'
 require 'pygments'
 require 'rugged'
 
+require_relative 'i-write-docs/diff_to_html'
 require_relative 'i-write-docs/docs_tree'
 require_relative 'i-write-docs/markdown_render'
 require_relative 'i-write-docs/generator'
@@ -19,6 +20,7 @@ module IWriteDocs
     Config.instance
   end
 
+  # TODO: Fix global tag and prepare for chache experation
   def self.repo
     IWriteDocs::GitAdapter.instance
   end

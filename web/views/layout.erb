@@ -3,9 +3,11 @@
 		<title>Documentation</title>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+		<link href="/css/diff.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<h1>Main layout</h1>
+		<h3>Version: <%= session[:tag] || 'Latest' %></h3>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">

@@ -31,8 +31,22 @@ module IWriteDocs
     
     post '/versions' do
       IWriteDocs.repo.set_tag(params[:tag])
-      sessions[:tag] = params[:tag]
+      session[:tag] = params[:tag]
       redirect to('/')
+    end
+    
+    # TODO: create checks and answers on bad input
+    get '/diff' do
+      file = params[:file]
+      tag = params[:tag]
+      redirect to("/") if file.to_s.empty? || tag.to_s.empty?
+      node = IWriteDocs.docs_tree.find_node_by_url(file)
+      file_path = node.content[:source_path] +'.md'
+      logger.info file_path
+      diff = IWriteDocs.repo.get_diff_for(file_path, tag)
+      html_content = GitDiffToHtml.new.composite_to_html(diff)
+      # TODO: show that there is no diff
+      erb html_content
     end
 
     get '/*' do |page|
