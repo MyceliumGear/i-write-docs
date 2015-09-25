@@ -20,13 +20,12 @@ module IWriteDocs
     Config.instance
   end
 
-  # TODO: Fix global tag and prepare for chache experation
   def self.repo
-    IWriteDocs::GitAdapter.instance
+    GitAdapter.instance
   end
 
   def self.docs_tree
-    IWriteDocs::DocsTree.instance
+    DocsTree.instance
   end
 
   class Config

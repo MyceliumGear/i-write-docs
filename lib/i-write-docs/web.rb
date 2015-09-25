@@ -30,7 +30,6 @@ module IWriteDocs
     end
     
     post '/versions' do
-      IWriteDocs.repo.set_tag(params[:tag])
       session[:tag] = params[:tag]
       redirect to('/')
     end
@@ -42,8 +41,7 @@ module IWriteDocs
       redirect to("/") if file.to_s.empty? || tag.to_s.empty?
       node = IWriteDocs.docs_tree.find_node_by_url(file)
       file_path = node.content[:source_path] +'.md'
-      logger.info file_path
-      diff = IWriteDocs.repo.get_diff_for(file_path, tag)
+      diff = IWriteDocs.repo.get_diff_for(file_path, tag, session[:tag])
       html_content = GitDiffToHtml.new.composite_to_html(diff)
       # TODO: show that there is no diff
       erb html_content
@@ -58,7 +56,7 @@ module IWriteDocs
     end
 
     def prepare_page_content(path)
-      source = IWriteDocs.repo.get_file_content(path+ '.md')
+      source = IWriteDocs.repo.get_file_content(path+ '.md', session[:tag])
       content = IWriteDocs::DocFilter.filter(source)
       IWriteDocs::MarkdownRender.parse_to_html(content)
     end
