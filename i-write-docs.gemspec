@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Dmitry Tymchuk"]
-  s.date = "2015-08-25"
+  s.date = "2015-09-28"
   s.description = "TODO: longer description of your gem"
   s.email = "dsnipe@gmail.com"
   s.extra_rdoc_files = [
@@ -21,13 +21,43 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "i-write-docs.gemspec",
     "lib/i-write-docs.rb",
-    "test/helper.rb",
-    "test/test_i-write-docs.rb"
+    "lib/i-write-docs/diff_to_html.rb",
+    "lib/i-write-docs/doc_filter.rb",
+    "lib/i-write-docs/docs_tree.rb",
+    "lib/i-write-docs/doff_to_html.rb",
+    "lib/i-write-docs/generator.rb",
+    "lib/i-write-docs/git_adapter.rb",
+    "lib/i-write-docs/markdown_render.rb",
+    "lib/i-write-docs/web.rb",
+    "lib/i-write-docs/web_helpers.rb",
+    "lib/tasks/generator.rake",
+    "test/doc_filter_test.rb",
+    "test/docs_tree_test.rb",
+    "test/dummy/docs-dev/config.yml",
+    "test/dummy/docs-dev/source/changes.md",
+    "test/dummy/docs-dev/source/configuring/overview.md",
+    "test/dummy/docs-dev/source/configuring/tips_and_tricks.md",
+    "test/dummy/docs-dev/source/getting_started.md",
+    "test/dummy/docs-dev/source/index.md",
+    "test/dummy/docs-dev/source/setup/install-straight/advanced.md",
+    "test/dummy/docs-dev/source/setup/install-straight/basic.md",
+    "test/dummy/docs-dev/source/setup/install_straight-server.md",
+    "test/generator_test.rb",
+    "test/git_adapter_test.rb",
+    "test/markdown_render_test.rb",
+    "test/test_helper.rb",
+    "test/test_i-write-docs.rb",
+    "web/assets/css/diff.css",
+    "web/views/_nav.erb",
+    "web/views/layout.erb",
+    "web/views/page.erb"
   ]
   s.homepage = "http://github.com/dsnipe/i-write-docs"
   s.licenses = ["MIT"]
@@ -38,12 +68,26 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<rubytree>, [">= 0"])
+      s.add_runtime_dependency(%q<redcarpet>, [">= 0"])
+      s.add_runtime_dependency(%q<pygments.rb>, [">= 0"])
+      s.add_runtime_dependency(%q<rugged>, [">= 0"])
+      s.add_runtime_dependency(%q<sinatra>, [">= 0"])
+      s.add_runtime_dependency(%q<sinatra-contrib>, [">= 0"])
+      s.add_development_dependency(%q<minitest>, ["~> 5"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
       s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
+      s.add_dependency(%q<rubytree>, [">= 0"])
+      s.add_dependency(%q<redcarpet>, [">= 0"])
+      s.add_dependency(%q<pygments.rb>, [">= 0"])
+      s.add_dependency(%q<rugged>, [">= 0"])
+      s.add_dependency(%q<sinatra>, [">= 0"])
+      s.add_dependency(%q<sinatra-contrib>, [">= 0"])
+      s.add_dependency(%q<minitest>, ["~> 5"])
       s.add_dependency(%q<shoulda>, [">= 0"])
       s.add_dependency(%q<rdoc>, ["~> 3.12"])
       s.add_dependency(%q<bundler>, ["~> 1.0"])
@@ -51,6 +95,13 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
+    s.add_dependency(%q<rubytree>, [">= 0"])
+    s.add_dependency(%q<redcarpet>, [">= 0"])
+    s.add_dependency(%q<pygments.rb>, [">= 0"])
+    s.add_dependency(%q<rugged>, [">= 0"])
+    s.add_dependency(%q<sinatra>, [">= 0"])
+    s.add_dependency(%q<sinatra-contrib>, [">= 0"])
+    s.add_dependency(%q<minitest>, ["~> 5"])
     s.add_dependency(%q<shoulda>, [">= 0"])
     s.add_dependency(%q<rdoc>, ["~> 3.12"])
     s.add_dependency(%q<bundler>, ["~> 1.0"])
