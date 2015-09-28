@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.authors = ["Dmitry Tymchuk"]
   s.date = "2015-09-28"
-  s.description = "Documentation based on Git repository"
+  s.description = "TODO: longer description of your gem"
   s.email = "dsnipe@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
@@ -53,7 +53,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/dsnipe/i-write-docs"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.5"
-  s.summary = "Documentation based on Git repository"
+  s.summary = "TODO: one-line summary of your gem"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
