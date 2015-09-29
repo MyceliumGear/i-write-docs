@@ -1,6 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Documentik</title>
 <html>
 	<head>
 		<title>Documentation</title>
+		<%= stylesheet_link_tag    "i_write_docs/application", media: "all" %>
+		<%= javascript_include_tag "i_write_docs/application" %>
+		<%= csrf_meta_tags %>
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
 		<link href="/css/diff.css" rel="stylesheet" type="text/css">
@@ -11,11 +18,11 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">
-					<form action="/versions" method="POST">
-						<%= global_tags_select %>
+					<form action="<%= version_path %>" method="POST">
+						<%= global_version_select %>
 						<input type="submit" value="Submit!">
 					</form>
-					<%= erb :_nav %>
+					<%= render 'nav' %>
 				</div>
 				<div class="col-sm-8">
 					<%= yield %>

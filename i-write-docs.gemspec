@@ -6,19 +6,20 @@
 
 Gem::Specification.new do |s|
   s.name = "i-write-docs"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Dmitry Tymchuk"]
   s.date = "2015-09-28"
-  s.description = "TODO: longer description of your gem"
+  s.description = "Documentation based on Git repository with versions as tags and diff between that versions"
   s.email = "dsnipe@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.rdoc"
   ]
   s.files = [
+    "{app,config,lib}/**/*",
     ".document",
     "Gemfile",
     "Gemfile.lock",
@@ -27,17 +28,6 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "i-write-docs.gemspec",
-    "lib/i-write-docs.rb",
-    "lib/i-write-docs/diff_to_html.rb",
-    "lib/i-write-docs/doc_filter.rb",
-    "lib/i-write-docs/docs_tree.rb",
-    "lib/i-write-docs/doff_to_html.rb",
-    "lib/i-write-docs/generator.rb",
-    "lib/i-write-docs/git_adapter.rb",
-    "lib/i-write-docs/markdown_render.rb",
-    "lib/i-write-docs/web.rb",
-    "lib/i-write-docs/web_helpers.rb",
-    "lib/tasks/generator.rake",
     "test/doc_filter_test.rb",
     "test/docs_tree_test.rb",
     "test/generator_test.rb",
@@ -53,7 +43,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/dsnipe/i-write-docs"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.5"
-  s.summary = "TODO: one-line summary of your gem"
+  s.summary = "Documentation based on Git repository"
 
   if s.respond_to? :specification_version then
     s.specification_version = 4
@@ -65,6 +55,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rugged>, [">= 0"])
       s.add_runtime_dependency(%q<sinatra>, [">= 0"])
       s.add_runtime_dependency(%q<sinatra-contrib>, [">= 0"])
+      s.add_runtime_dependency(%q<rails>, "~> 4")
       s.add_development_dependency(%q<minitest>, ["~> 5"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
       s.add_development_dependency(%q<rdoc>, ["~> 3.12"])

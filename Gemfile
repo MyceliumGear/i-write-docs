@@ -6,6 +6,7 @@ gem 'pygments.rb'
 gem 'rugged'
 gem 'sinatra'
 gem 'sinatra-contrib'
+gem 'rails'
 
 group :development do
   gem "minitest", "~> 5"

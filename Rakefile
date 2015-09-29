@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "i-write-docs"
   gem.homepage = "http://github.com/dsnipe/i-write-docs"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Documentation based on Git repository}
+  gem.description = %Q{Documentation based on Git repository with versions as tags and diff between that versions}
   gem.email = "dsnipe@gmail.com"
   gem.authors = ["Dmitry Tymchuk"]
   # dependencies defined in Gemfile

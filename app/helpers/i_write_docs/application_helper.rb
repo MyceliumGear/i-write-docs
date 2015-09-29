@@ -1,16 +1,18 @@
 module IWriteDocs
-  module WebHelpers
+  module ApplicationHelper
+
     def navigation_tree
       build_tree_menu(IWriteDocs.docs_tree.tree)
     end
 
-    def global_tags_select
-      res = '<select name="tag"">'
+    def global_version_select
+      res = '<select name="version">'
       res << "<option value=''>Latest</option>"
-      IWriteDocs.repo.tags.keys.each do |tag|
-        res << "<option value='#{tag}' #{'selected' if tag == session[:tag]}>#{tag}</option>"
+      IWriteDocs.repo.tags.keys.each do |v|
+        res << "<option value='#{v}' #{'selected' if v == session[:version]}>#{v}</option>"
       end
       res << '</select>'
+      res.html_safe
     end
 
     def previous_link_for(node)
@@ -26,9 +28,10 @@ module IWriteDocs
     def diff_tag_links(file_path)
       res = "<div class='diffLinks'>Diff with verion: "
       IWriteDocs.repo.tags.each_key do |t|
-        res << "<a href='/diff?file=#{file_path}&tag=#{t}'>#{t}</a> | "
+        res << link_to(t, diff_path(file: file_path, tag: t))
       end
       res << "</div>"
+      res.html_safe
     end
 
   private
@@ -36,7 +39,7 @@ module IWriteDocs
     def build_prev_next_link(leaf)
       return "" unless leaf
       url, title = leaf.first
-      "<a href='/#{url}'>#{title}</a>"
+      link_to(title, page_path(url))
     end
 
     def build_tree_menu(node, res: '<ul>')
@@ -45,12 +48,14 @@ module IWriteDocs
         if node.has_children?
           res << '<b>'+node.content[:title]+'</b>'
         else
-          res << "<a href='/#{node.content[:url]}'>#{node.content[:title]}</a>"
+          res << link_to(node.content[:title], page_path(page: node.content[:url]))
         end
         res << '</li>'
       end
       node.children { |child| build_tree_menu(child, res: res << '<ul>') }
       res << '</ul>'
+      res.html_safe
     end
+
   end
 end
