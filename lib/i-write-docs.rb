@@ -4,6 +4,7 @@ require 'tree'
 require 'redcarpet'
 require 'pygments'
 require 'rugged'
+require 'haml'
 
 require_relative 'i-write-docs/diff_to_html'
 require_relative 'i-write-docs/docs_tree'

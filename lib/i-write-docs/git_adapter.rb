@@ -16,10 +16,12 @@ module IWriteDocs
     end
 
     def get_diff_for(file_path, tag, current_tag = nil)
-      tag_blob = @repo.blob_at(@tags[tag], file_path)
-      current_tag_oid = current_tag ? @tags[current_tag] : @master_oid
+      target_blob = @repo.blob_at(@tags[tag], file_path)
+      current_tag_oid = @tags[current_tag] || @master_oid
+      # Rails.logger.debug "Tag = #{tag} and oid = #{@tags[tag]}; current oid = #{current_tag_oid}"
       current_blob = @repo.blob_at(current_tag_oid, file_path)
-      current_blob.diff(tag_blob, {new_path: file_path.split('/').last}).to_s
+      HTMLDiff::Diff.new(current_blob, target_blob).insline_html
+      # current_blob.diff(tag_blob, {new_path: file_path.split('/').last}).to_s
     end
 
   private

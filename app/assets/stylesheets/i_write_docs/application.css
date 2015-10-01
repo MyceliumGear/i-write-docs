@@ -1,6 +1,43 @@
 /*
  *= require_tree .
  *= require_self
- require markdown
-  require diff
  */
+body {
+	background-color: #f6f5f3;
+}
+a {
+	color: #404045;
+	text-decoration: none;
+}
+a:hover {
+	color: #e4a297
+}
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
+	font-family: Roboto;
+	color: #404045;
+}
+.container {
+	padding-left: 65px;
+}
+.breadcrumbs-container {
+	display: table;
+	height: 44px;
+	background-color: #f2efeb;
+	vertical-align: middle;
+	margin-bottom: 30px
+}
+.breadcrumbs {
+	display: table-cell;
+	vertical-align: middle;
+	padding-left: 34px;
+}
+.breadcrumb-arrow {
+	margin: 0 25px 0 25px;
+}
+
+.sidebar {
+}
+.content {
+	padding-left: 20px
+}

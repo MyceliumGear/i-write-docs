@@ -1,0 +1,80 @@
+$active-color: #da6f5b;
+$text-color: #404045;
+
+.fa-angle-down {
+  transition: all .3s ease-in-out;
+}
+
+.docs-accordion-menu {
+  padding: 6px 20px 10px 0;
+}
+
+
+.docs-accordion-menu a, .docs-accordion-menu .folder {
+  color:#9b9b9b;
+  text-decoration:none;
+  padding:10px 0 10px 10px;
+  display:inline-block;
+}
+.docs-accordion-menu .folder {
+  font-size: 18px;
+  cursor: pointer;
+  color: $text-color;
+  width: 100%;
+  user-select: none;
+
+}
+
+.docs-accordion-menu i {
+  display: inline-block;
+  margin-top:6px;
+  float:right;
+  width:12px;
+  height:6px; 
+  background-image: url(image_path("i_write_docs/arrow.png"))
+}
+.docs-accordion-menu .active > .folder {
+  color: $active-color;
+  i {
+    transform: rotate(180deg);
+  }
+}
+
+.docs-accordion-menu i:hover {
+  cursor: pointer;
+    /*   color:#444; */
+}
+
+.docs-accordion-menu a:hover {
+    /*   color:#444 */
+}
+
+.docs-accordion-menu ul {
+  line-height:1.4;
+  list-style-type:none;
+  margin:0;
+  padding:0;
+
+  .active > a {
+    color: $active-color;
+  }
+}
+
+.docs-accordion-menu li li {
+  line-height:1.5;
+  margin-left: 24px;  
+}
+
+.docs-accordion-menu > ul li:first-child 
+li a:first-child {
+  display:inline-block;
+}
+
+.docs-accordion-menu li > a {
+  font-weight: light;
+  font-size: 16px;
+}
+
+.hide {
+  display:none;
+}

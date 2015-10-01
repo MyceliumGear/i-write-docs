@@ -1,0 +1,6 @@
+-# =select_tag :version, options_for_select(versions.unshift("Latest"), class: 'pure-u-23-24')
+%select.pure-u-23-24{name: "version", onchange: "this.form.submit()"}
+  %option{value: ""} Latest
+  - versions.each do |v|
+    %option{value: v, selected: v == session[:version]}= v
+    

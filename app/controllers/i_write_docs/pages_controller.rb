@@ -3,7 +3,7 @@ module IWriteDocs
 
     def show
       ENV['DOCUMENTATION_PATH'] = '../docs-dev'
-      page = params[:page] ? params[:page] : 'index'
+      page = params[:page] || 'index'
       @node = IWriteDocs.docs_tree.find_node_by_url(page)
       @content = prepare_page_content(@node.content[:source_path], session[:version])
     end
@@ -12,7 +12,7 @@ module IWriteDocs
       file = params[:file]
       tag = params[:tag]
       redirect_to(root_path) if file.to_s.empty? || tag.to_s.empty?
-      node = IWriteDocs.docs_tree.find_node_by_url(file)
+      @node = IWriteDocs.docs_tree.find_node_by_url(file)
       file_path = node.content[:source_path] +'.md'
       diff = IWriteDocs.repo.get_diff_for(file_path, tag, session[:version])
       @html_content = GitDiffToHtml.new.composite_to_html(diff)

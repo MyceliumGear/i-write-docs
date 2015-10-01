@@ -27,68 +27,22 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
-    "i-write-docs.gemspec",
-    "test/doc_filter_test.rb",
-    "test/docs_tree_test.rb",
-    "test/generator_test.rb",
-    "test/git_adapter_test.rb",
-    "test/markdown_render_test.rb",
-    "test/test_helper.rb",
-    "test/test_i-write-docs.rb",
-    "web/assets/css/diff.css",
-    "web/views/_nav.erb",
-    "web/views/layout.erb",
-    "web/views/page.erb"
+    "i-write-docs.gemspec"
   ]
   s.homepage = "http://github.com/dsnipe/i-write-docs"
   s.licenses = ["MIT"]
   s.rubygems_version = "2.4.5"
   s.summary = "Documentation based on Git repository"
 
-  if s.respond_to? :specification_version then
-    s.specification_version = 4
-
-    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<rubytree>, [">= 0"])
-      s.add_runtime_dependency(%q<redcarpet>, [">= 0"])
-      s.add_runtime_dependency(%q<pygments.rb>, [">= 0"])
-      s.add_runtime_dependency(%q<rugged>, [">= 0"])
-      s.add_runtime_dependency(%q<sinatra>, [">= 0"])
-      s.add_runtime_dependency(%q<sinatra-contrib>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, "~> 4")
-      s.add_development_dependency(%q<minitest>, ["~> 5"])
-      s.add_development_dependency(%q<shoulda>, [">= 0"])
-      s.add_development_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 2.0.1"])
-      s.add_development_dependency(%q<simplecov>, [">= 0"])
-    else
-      s.add_dependency(%q<rubytree>, [">= 0"])
-      s.add_dependency(%q<redcarpet>, [">= 0"])
-      s.add_dependency(%q<pygments.rb>, [">= 0"])
-      s.add_dependency(%q<rugged>, [">= 0"])
-      s.add_dependency(%q<sinatra>, [">= 0"])
-      s.add_dependency(%q<sinatra-contrib>, [">= 0"])
-      s.add_dependency(%q<minitest>, ["~> 5"])
-      s.add_dependency(%q<shoulda>, [">= 0"])
-      s.add_dependency(%q<rdoc>, ["~> 3.12"])
-      s.add_dependency(%q<bundler>, ["~> 1.0"])
-      s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
-      s.add_dependency(%q<simplecov>, [">= 0"])
-    end
-  else
-    s.add_dependency(%q<rubytree>, [">= 0"])
-    s.add_dependency(%q<redcarpet>, [">= 0"])
-    s.add_dependency(%q<pygments.rb>, [">= 0"])
-    s.add_dependency(%q<rugged>, [">= 0"])
-    s.add_dependency(%q<sinatra>, [">= 0"])
-    s.add_dependency(%q<sinatra-contrib>, [">= 0"])
-    s.add_dependency(%q<minitest>, ["~> 5"])
-    s.add_dependency(%q<shoulda>, [">= 0"])
-    s.add_dependency(%q<rdoc>, ["~> 3.12"])
-    s.add_dependency(%q<bundler>, ["~> 1.0"])
-    s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
-    s.add_dependency(%q<simplecov>, [">= 0"])
-  end
+  s.add_dependency(%q<rubytree>, [">= 0"])
+  s.add_dependency(%q<redcarpet>, [">= 0"])
+  s.add_dependency(%q<pygments.rb>, [">= 0"])
+  s.add_dependency(%q<rugged>, [">= 0"])
+  s.add_dependency(%q<minitest>, ["~> 5"])
+  s.add_dependency(%q<bundler>, ["~> 1.0"])
+  s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
+  s.add_dependency(%q<simplecov>, [">= 0"])
+  s.add_dependency(%q<haml-rails>, [">= 0"])
+  s.add_dependency "sass-rails", [">= 3"]
 end
 
