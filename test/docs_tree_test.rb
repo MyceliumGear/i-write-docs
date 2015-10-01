@@ -2,9 +2,6 @@ require 'test_helper'
 
 describe IWriteDocs::DocsTree do
 
-  before(:all) do
-    ENV["DOCUMENTATION_PATH"] = TEST_REP_PATH
-  end
   let(:docs_instance) { IWriteDocs::DocsTree.instance }
   let(:docs_tree) { docs_instance.tree }
 

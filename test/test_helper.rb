@@ -27,4 +27,4 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'i-write-docs'
 
-TEST_REP_PATH = '../docs-dev'
+ENV['DOCUMENTATION_PATH'] = 'test/dummy'

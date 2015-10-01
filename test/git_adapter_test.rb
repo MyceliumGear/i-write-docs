@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe IWriteDocs::GitAdapter do
 
-  let(:repo_path) { TEST_REP_PATH }
+  let(:repo_path) { ENV['DOCUMENTATION_PATH'] }
 
   before(:all) { @repo = IWriteDocs.repo }
 
