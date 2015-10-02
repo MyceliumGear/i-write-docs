@@ -4,23 +4,8 @@
     %title Documentation
     %link{:href => "http://yui.yahooapis.com/pure/0.6.0/pure-min.css", :rel => "stylesheet"}/
     %link(href='//fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic' rel='stylesheet' type='text/css')
-    -# %link(href: "https://code.jquery.com/jquery-1.11.3.min.js", rel: "javascript")
-    -# %script{src: "https://code.jquery.com/jquery-1.11.3.min.js"}
     = stylesheet_link_tag    "i_write_docs/application", media: "all"
     = csrf_meta_tags
   %body
-    .pure-g
-      .pure-u-1-1.breadcrumbs-container
-        %span.breadcrumbs
-          = breadcrumbs(@node)
-    .pure-g.container
-      .pure-u-1-1
-        %h1 Documentation
-      .pure-u-1-4.sidebar
-        %form.pure-form.pure-form-stacked{:action => version_path, :method => "POST"}
-          = render 'versions_select'
-        = render 'nav'
-      .pure-u-3-4
-        .content
-          = yield
+    = render 'body'
     = javascript_include_tag "i_write_docs/application"
