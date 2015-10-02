@@ -18,8 +18,8 @@ describe IWriteDocs::GitAdapter do
     @repo.tags.keys.must_equal ["v1", "v2", "v2.0.1"]
   end
 
-  it "returns diff for file with another tag" do
-    
+  it "create new instance on each request to repo" do
+    @repo.wont_equal IWriteDocs.repo
   end
 
 end

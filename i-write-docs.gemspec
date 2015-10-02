@@ -34,15 +34,15 @@ Gem::Specification.new do |s|
   s.rubygems_version = "2.4.5"
   s.summary = "Documentation based on Git repository"
 
-  s.add_dependency(%q<rubytree>, [">= 0"])
-  s.add_dependency(%q<redcarpet>, [">= 0"])
-  s.add_dependency(%q<pygments.rb>, [">= 0"])
-  s.add_dependency(%q<rugged>, [">= 0"])
-  s.add_dependency(%q<minitest>, ["~> 5"])
-  s.add_dependency(%q<bundler>, ["~> 1.0"])
-  s.add_dependency(%q<jeweler>, ["~> 2.0.1"])
-  s.add_dependency(%q<simplecov>, [">= 0"])
-  s.add_dependency(%q<haml-rails>, [">= 0"])
+  s.add_dependency "rubytree", [">= 0"]
+  s.add_dependency "redcarpet", [">= 0"]
+  s.add_dependency "pygments.rb", [">= 0"]
+  s.add_dependency "rugged", [">= 0"]
+  s.add_dependency "minitest", ["~> 5"]
+  s.add_dependency "bundler", ["~> 1.0"]
+  s.add_dependency "simplecov", [">= 0"]
+  s.add_dependency "haml-rails", [">= 0"]
   s.add_dependency "sass-rails", [">= 3"]
+  s.add_dependency "rails", [">= 4"]
 end
 

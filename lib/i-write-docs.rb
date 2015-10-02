@@ -5,6 +5,7 @@ require 'redcarpet'
 require 'pygments'
 require 'rugged'
 require 'haml'
+require 'rails'
 
 require_relative 'i-write-docs/diff_to_html'
 require_relative 'i-write-docs/docs_tree'
@@ -12,7 +13,7 @@ require_relative 'i-write-docs/markdown_render'
 require_relative 'i-write-docs/generator'
 require_relative 'i-write-docs/doc_filter'
 require_relative 'i-write-docs/git_adapter'
-# require_relative 'i-write-docs/engine'
+require_relative 'i-write-docs/engine'
 
 module IWriteDocs
 
@@ -23,7 +24,7 @@ module IWriteDocs
   end
 
   def self.repo
-    GitAdapter.instance
+    GitAdapter.new
   end
 
   def self.docs_tree

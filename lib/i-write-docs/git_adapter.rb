@@ -1,6 +1,5 @@
 module IWriteDocs
   class GitAdapter
-    include Singleton
 
     attr_reader :tags
       
