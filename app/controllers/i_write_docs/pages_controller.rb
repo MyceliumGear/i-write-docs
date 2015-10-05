@@ -2,10 +2,11 @@ module IWriteDocs
   class PagesController < ApplicationController
 
     def show
-      page = params[:page] || 'index'
+      page = params[:doc] || 'index'
       @node = IWriteDocs.docs_tree.find_node_by_url(page)
       raise ActionController::RoutingError.new('Not found') unless @node
       @content = prepare_page_content(@node.content[:source_path], session[:version])
+      render 'body', locals: { content: @content }
     end
 
     def diff

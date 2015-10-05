@@ -4,6 +4,8 @@
 # -*- encoding: utf-8 -*-
 # stub: i-write-docs 0.0.0 ruby lib
 
+$:.push File.expand_path("../lib", __FILE__)
+
 Gem::Specification.new do |s|
   s.name = "i-write-docs"
   s.version = "0.0.1"
