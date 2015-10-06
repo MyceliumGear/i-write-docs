@@ -11,20 +11,6 @@ rescue Bundler::BundlerError => e
 end
 require 'rake'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://guides.rubygems.org/specification-reference/ for more options
-  gem.name = "i-write-docs"
-  gem.homepage = "http://github.com/dsnipe/i-write-docs"
-  gem.license = "MIT"
-  gem.summary = %Q{Documentation based on Git repository}
-  gem.description = %Q{Documentation based on Git repository with versions as tags and diff between that versions}
-  gem.email = "dsnipe@gmail.com"
-  gem.authors = ["Dmitry Tymchuk"]
-  # dependencies defined in Gemfile
-end
-Jeweler::RubygemsDotOrgTasks.new
-
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
