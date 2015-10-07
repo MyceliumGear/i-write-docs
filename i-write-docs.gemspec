@@ -46,5 +46,6 @@ Gem::Specification.new do |s|
   s.add_dependency "haml-rails", [">= 0"]
   s.add_dependency "sass-rails", [">= 3"]
   s.add_dependency "rails", [">= 4"]
+  s.add_dependency "diffy", [">= 0"]
 end
 

@@ -10,19 +10,18 @@ module IWriteDocs
     end
 
     def diff
-      redirect_to(root_path)
-      # file = params[:file]
-      # tag = params[:tag]
-      # redirect_to(root_path) if file.to_s.empty? || tag.to_s.empty?
-      # @node = IWriteDocs.docs_tree.find_node_by_url(file)
-      # file_path = @node.content[:source_path] +'.md'
-      # diff = IWriteDocs.repo.get_diff_for(file_path, tag, session[:version])
-      # @html_content = GitDiffToHtml.new.composite_to_html(diff)
+      file = params[:file]
+      @tag = params[:tag]
+      redirect_to(iwd.root_path) and return if file.to_s.empty? || @tag.to_s.empty?
+      @node = IWriteDocs.docs_tree.find_node_by_url(file)
+      file_path = @node.content[:source_path] +'.md'
+      html_content = Differ.new(file_path, @tag, session[:version]).result.html_safe
+      render 'body', locals: { content: html_content }
     end
 
     def version
       session[:version] = params[:version]
-      redirect_to root_path
+      redirect_to iwd.root_path
     end
 
   private

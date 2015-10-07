@@ -14,11 +14,8 @@ module IWriteDocs
       rc.render(source)
     end
 
-    def block_code(code, language = "ruby")
-      title = nil
-      code.gsub!(/\A\:\:(.*)$/) { title = $1 ; nil }
+    def block_code(code, language = "")
       String.new.tap do |s|
-        s << "<p class='codeTitle'>#{title}</p>" if title
         s << Pygments.highlight(code, :lexer => language)
       end
     rescue

@@ -15,13 +15,6 @@ module IWriteDocs
       @repo.blob_at(oid, file_path).content
     end
 
-    def get_diff_for(file_path, tag, current_tag = nil)
-      # target_blob = @repo.blob_at(@tags[tag], file_path)
-      # current_tag_oid = @tags[current_tag] || @master_oid
-      # current_blob = @repo.blob_at(current_tag_oid, file_path)
-      # HTMLDiff::Diff.new(current_blob, target_blob).insline_html
-    end
-
   private
 
     def file_from_fs(file_path)

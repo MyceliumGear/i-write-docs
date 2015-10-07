@@ -6,7 +6,7 @@ gem 'pygments.rb'
 gem 'rugged'
 gem 'rails'
 gem 'haml-rails'
-gem 'sass-rails'
+gem 'diffy'
 
 group :development do
   gem "minitest", "~> 5"

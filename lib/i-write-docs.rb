@@ -6,13 +6,15 @@ require 'pygments'
 require 'rugged'
 require 'haml'
 require 'rails'
+require 'diffy'
 
-require_relative 'i-write-docs/diff_to_html'
+# require_relative 'i-write-docs/diff_to_html'
 require_relative 'i-write-docs/docs_tree'
 require_relative 'i-write-docs/markdown_render'
 require_relative 'i-write-docs/generator'
 require_relative 'i-write-docs/doc_filter'
 require_relative 'i-write-docs/git_adapter'
+require_relative 'i-write-docs/differ'
 require_relative 'i-write-docs/engine'
 
 module IWriteDocs

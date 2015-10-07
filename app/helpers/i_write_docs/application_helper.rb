@@ -20,11 +20,12 @@ module IWriteDocs
     end
 
     def iwd_diff_tag_links(file_path)
-      res = "<div class='diff-links'>Diff with verion: "
+      res = "<select class='diff-links'>Diff with verion: "
+      res << "option>---</option>"
       IWriteDocs.repo.tags.each_key do |t|
-        res << link_to(t, diff_path(file: file_path, tag: t))
+        res << "<option value='#{t}'>#{t}</option>"
       end
-      res << "</div>"
+      res << "</select>"
       res.html_safe
     end
 

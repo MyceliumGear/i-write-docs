@@ -4,11 +4,19 @@
 -#       = iwd_breadcrumbs(@node)
 .iwd.pure-g.container
   .pure-u-1-1
-    %h1 Documentation
-  .pure-u-1-4.sidebar
-    %form.pure-form.pure-form-stacked{:action => iwd.version_path, :method => "POST"}
-      = render 'versions_select'
-    = render 'nav'
+    %h2 Documentation
+  .pure-u-1-4
+    .sidebar
+      =form_tag iwd.version_path, method: :post, class: '.pure-form.pure-form-stacked' do
+        = render 'versions_select'
+      = render 'nav'
   .pure-u-3-4
     .content
-      = content
+      .pure-u-10-24
+        =form_tag iwd.diff_path, method: :get, class: '.pure-form.pure-form-aligned' do
+          %input{type: 'hidden', name: 'file', value: @node.content[:url]}
+          %span Diff with: 
+          %span.diff-select-wrapper
+            = render 'diff_select'
+      .pure-u-1-1
+        = content
