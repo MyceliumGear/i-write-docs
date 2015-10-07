@@ -8,7 +8,6 @@ require 'haml'
 require 'rails'
 require 'diffy'
 
-# require_relative 'i-write-docs/diff_to_html'
 require_relative 'i-write-docs/docs_tree'
 require_relative 'i-write-docs/markdown_render'
 require_relative 'i-write-docs/generator'
