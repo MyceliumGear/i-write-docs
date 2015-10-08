@@ -15,7 +15,7 @@ describe IWriteDocs::GitAdapter do
   end
 
   it "return list of tags in repository" do
-    @repo.tags.keys.must_equal ["v1", "v2", "v2.0.1"]
+    @repo.tags.keys.must_equal ["v1", "v2", "v2.0.1", "v3"]
   end
 
   it "create new instance on each request to repo" do
