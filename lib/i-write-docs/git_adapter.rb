@@ -10,7 +10,6 @@ module IWriteDocs
     end
 
     def get_file_content(file_path, version = '')
-      return file_from_fs(file_path) if ENV['IWD_WRITER_MODE']
       oid = get_oid_for_version(version)
       @repo.blob_at(oid, file_path).content
     end
@@ -18,7 +17,6 @@ module IWriteDocs
   private
 
     def file_from_fs(file_path)
-      path = ENV['DOCUMENTATION_PATH'] + file_path
       File.open(path).read
     end
   

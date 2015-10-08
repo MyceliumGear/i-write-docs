@@ -13,7 +13,8 @@ module IWriteDocs
       file = params[:file]
       @tag = params[:tag]
       @node = IWriteDocs.docs_tree.find_node_by_url(file)
-      raise ActionController::RoutingError.new('Not found') if @tag.to_s.empty? || node_is_not_document?(@node)
+      raise ActionController::RoutingError.new('Not found') if node_is_not_document?(@node)
+      redirect_to(iwd.page_path(doc: @node.content[:url])) and return if @tag.to_s.empty?
       file_path = @node.content[:source_path] +'.md'
       html_content = Differ.new(file_path, @tag, session[:version]).result.html_safe
       render 'body', locals: { content: html_content }
