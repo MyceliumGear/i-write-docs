@@ -22,11 +22,11 @@ module IWriteDocs
         cleaned = clean_line(line)
         @result << case line
           when /^\+/
-            "<div class='ins'><span class='symbol'>+</span>#{cleaned}</div>"
+            "<span class='ins'><span class='symbol'>+</span>#{cleaned}</span>\n"
           when /^-/
-            "<div class='del'><span class='symbol'>-</span>#{cleaned}</div>"
+            "<span class='del'><span class='symbol'>&mdash;</span>#{cleaned}</span>\n"
           else
-            cleaned
+            "#{cleaned}\n"
           end
       end
       @result << "</div>"
