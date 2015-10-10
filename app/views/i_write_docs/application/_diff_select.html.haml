@@ -1,5 +1,5 @@
 %select{name: "tag", onchange: "this.form.submit()"}
-  %option{value: ""} ---
+  %option{value: ""} Not selected
   - iwd_versions.each do |v|
     - next if v == session[:version]
     %option{value: v, selected: v == @tag}= v

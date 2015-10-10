@@ -33,7 +33,7 @@ module IWriteDocs
   private
 
     def prepare_node_content(node, parent)
-      title = node.split("_").map(&:capitalize).join(" ")
+      title = node.gsub('_', ' ').capitalize
       source_path = "#{parent.content[:source_path]}/#{node}"
       {
         source_path: source_path,

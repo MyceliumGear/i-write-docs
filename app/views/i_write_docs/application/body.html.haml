@@ -2,20 +2,20 @@
 -#   .pure-u-1-1.breadcrumbs-container
 -#     %span.breadcrumbs
 -#       = iwd_breadcrumbs(@node)
-.iwd.pure-g.container
+.iwd.pure-g
   .pure-u-1-1
-    %h2 Documentation
+    %h1 Documentation
   .pure-u-1-4
     .sidebar
-      =form_tag iwd.version_path, method: :post, class: '.pure-form.pure-form-stacked' do
+      = form_tag iwd.version_path, method: :post, class: '.pure-form.pure-form-stacked' do
         = render 'versions_select'
       = render 'nav'
   .pure-u-3-4
     .content
-      .pure-u-10-24
-        =form_tag iwd.diff_path, method: :get, class: '.pure-form.pure-form-aligned' do
+      .diff-form.pure-u-14-24
+        = form_tag iwd.diff_path, method: :get, class: '.pure-form.pure-form-aligned' do
           %input{type: 'hidden', name: 'file', value: @node.content[:url]}
-          %span Diff with: 
+          %label Diff with version:
           %span.diff-select-wrapper
             = render 'diff_select'
       .pure-u-1-1

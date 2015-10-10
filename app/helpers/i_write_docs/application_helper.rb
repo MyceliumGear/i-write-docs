@@ -49,7 +49,7 @@ module IWriteDocs
     end
 
     def build_tree_menu(node)
-      html = "<ul #{'class=hide' unless node.is_root? || node_in_path?(node)}>"
+      html = "<ul>"
       node.children do |child|
         next if child.is_root?
         html << "<li #{'class=active' if node_in_path?(child)}>"
