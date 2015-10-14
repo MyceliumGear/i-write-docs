@@ -20,7 +20,7 @@ module IWriteDocs
     end
 
     def iwd_diff_tag_links(file_path)
-      res = "<select class='diff-links'>Diff with verion: "
+      res = "<select class='diffLinks'>Diff with verion: "
       res << "option>---</option>"
       IWriteDocs.repo.tags.each_key do |t|
         res << "<option value='#{t}'>#{t}</option>"
@@ -34,7 +34,7 @@ module IWriteDocs
       parentage = node.parentage.reverse
       parentage.each do |n|
         res << n.content[:title]
-        res << "<span class='breadcrumb-arrow'>></span> " 
+        res << "<span class='breadcrumbArrow'>></span> " 
       end
       res << node.content[:title]
       res.html_safe
@@ -55,7 +55,7 @@ module IWriteDocs
         html << "<li #{'class=active' if node_in_path?(child)}>"
         if child.has_children?
           html << "<span class='folder'>#{child.content[:title]}"
-          html << "<i class='fa fa-angle-down'></i></span>"
+          html << "<i class='fa faAngleDown'></i></span>"
           html << build_tree_menu(child)
         else
           html << link_to(child.content[:title], iwd.page_path(doc: child.content[:url]))
