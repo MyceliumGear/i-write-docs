@@ -5,18 +5,17 @@
 .iwd.pure-g
   .pure-u-1-1
     %h1 Documentation
-  .pure-u-1-4.sidebarContainer
     .sidebar
       = form_tag iwd.version_path, method: :post, class: '.pure-form.pure-form-stacked' do
         = render 'versions_select'
       = render 'nav'
-  .pure-u-3-4
-    .content
-      .diffForm.pure-u-14-24
-        = form_tag iwd.diff_path, method: :get, class: '.pure-form.pure-form-aligned' do
-          %input{type: 'hidden', name: 'file', value: @node.content[:url]}
-          %label Diff with version:
-          %span.diffSelectWrapper
-            = render 'diff_select'
-      .pure-u-1-1
-        = content
+    .contentHolder
+      .content
+        .diffForm.pure-u-14-24
+          = form_tag iwd.diff_path, method: :get, class: '.pure-form.pure-form-aligned' do
+            %input{type: 'hidden', name: 'file', value: @node.content[:url]}
+            %label Diff with version:
+            %span.diffSelectWrapper
+              = render 'diff_select'
+        .pure-u-1-1
+          = content

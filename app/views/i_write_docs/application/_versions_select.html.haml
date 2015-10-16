@@ -1,4 +1,4 @@
-%select.pure-u-23-24{name: "version", onchange: "this.form.submit()"}
+%select{name: "version", onchange: "this.form.submit()"}
   %option{value: ""} Latest
   - iwd_versions.each do |v|
     %option{value: v, selected: v == session[:version]}= v
