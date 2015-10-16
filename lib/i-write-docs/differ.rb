@@ -1,3 +1,4 @@
+# coding: utf-8
 module IWriteDocs
   class Differ
     attr_reader :result
@@ -13,11 +14,11 @@ module IWriteDocs
     private
 
     def prepare_content(target_blob, current_blob)
-      @target_content = MarkdownRender.parse_to_html(target_blob)
-      @current_content = MarkdownRender.parse_to_html(current_blob)
+      @target_content = MarkdownRender.parse_to_html(target_blob).force_encoding(Encoding::UTF_8)
+      @current_content = MarkdownRender.parse_to_html(current_blob).force_encoding(Encoding::UTF_8)
     end
 
-    def make_diff
+    def make_diffп
       Diffy::Diff.new(@target_content, @current_content).each do |line|
         cleaned = clean_line(line)
         @result << case line
