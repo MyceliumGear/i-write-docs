@@ -11,7 +11,7 @@
       = render 'nav'
     .contentHolder
       .content
-        .diffForm.pure-u-14-24
+        .diffForm
           = form_tag iwd.diff_path, method: :get, class: '.pure-form.pure-form-aligned' do
             %input{type: 'hidden', name: 'file', value: @node.content[:url]}
             %label Diff with version:
