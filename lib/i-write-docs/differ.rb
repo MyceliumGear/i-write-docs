@@ -4,37 +4,17 @@ module IWriteDocs
     attr_reader :result
     
     def initialize(file_path, target_version, current_version)
-      @result = "<div class='diff'>"
-      target_blob = IWriteDocs.repo.get_file_content(file_path, target_version)
-      current_blob = IWriteDocs.repo.get_file_content(file_path, current_version)
-      prepare_content(target_blob, current_blob)
+      @target_content  = IWriteDocs.repo.get_file_content(file_path, target_version).force_encoding(Encoding::UTF_8)
+      @current_content = IWriteDocs.repo.get_file_content(file_path, current_version).force_encoding(Encoding::UTF_8)
       make_diff
     end
 
-    private
+  private
 
-    def prepare_content(target_blob, current_blob)
-      @target_content = MarkdownRender.parse_to_html(target_blob).force_encoding(Encoding::UTF_8)
-      @current_content = MarkdownRender.parse_to_html(current_blob).force_encoding(Encoding::UTF_8)
+    def make_diff
+      prepared_diff = "```diff\n"+ Diffy::Diff.new(@target_content, @current_content).to_s(:text) +"\n```\n"
+      @result = MarkdownRender.parse_to_html(prepared_diff)
     end
 
-    def make_diffп
-      Diffy::Diff.new(@target_content, @current_content).each do |line|
-        cleaned = clean_line(line)
-        @result << case line
-          when /^\+/
-            "<span class='ins'><span class='symbol'>+</span>#{cleaned}</span>\n"
-          when /^-/
-            "<span class='del'><span class='symbol'>&mdash;</span>#{cleaned}</span>\n"
-          else
-            "#{cleaned}\n"
-          end
-      end
-      @result << "</div>"
-    end
-
-    def clean_line(line)
-      line.sub(/^(.)/, '').chomp
-    end
   end
 end
