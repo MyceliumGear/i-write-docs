@@ -14,6 +14,8 @@ module IWriteDocs
       node_path = ''
       url.split("/").map { |name| node_path << "['#{name}']" }
       eval("@tree#{node_path}")
+    rescue NoMethodError
+      return nil
     end
 
     # @return [Hash] of the form {"url" => "title"}, where url and title get from node
