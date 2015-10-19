@@ -1,6 +1,5 @@
 module IWriteDocs
   class DocsTree
-    include Singleton
 
     attr_reader :docs_path, :tree, :leafs
     
@@ -8,6 +7,10 @@ module IWriteDocs
       @docs_path = IWriteDocs.config.documentation_path
       build_docs_tree
       build_leafs
+    end
+
+    def index_node_url
+      @tree.root.first_child.content[:url]
     end
 
     def find_node_by_url(url)

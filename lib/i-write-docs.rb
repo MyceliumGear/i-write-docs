@@ -29,7 +29,7 @@ module IWriteDocs
   end
 
   def self.docs_tree
-    DocsTree.instance
+    DocsTree.new
   end
 
   class Config
@@ -38,7 +38,7 @@ module IWriteDocs
     attr_accessor :subproject
 
     def initialize
-      @default_subproject = ENV['DEFAULT_SUBPROJECT'] || 'gear'
+      @default_subproject = ENV['DEFAULT_SUBPROJECT'] || 'admin_app'
     end
 
     def documentation_path
