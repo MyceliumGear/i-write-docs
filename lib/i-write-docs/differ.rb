@@ -4,8 +4,9 @@ module IWriteDocs
     attr_reader :result
     
     def initialize(file_path, target_version, current_version)
-      @target_content  = IWriteDocs.repo.get_file_content(file_path, target_version).force_encoding(Encoding::UTF_8)
       @current_content = IWriteDocs.repo.get_file_content(file_path, current_version).force_encoding(Encoding::UTF_8)
+      target_file_path = IWriteDocs.repo.file_path_for_version(file_path, current_version, target_version)
+      @target_content  = IWriteDocs.repo.get_file_content(target_file_path, target_version).force_encoding(Encoding::UTF_8)
       @result = make_diff
     end
 
