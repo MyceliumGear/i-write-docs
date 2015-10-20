@@ -2,8 +2,10 @@ module IWriteDocs
   class PagesController < ApplicationController
 
     def show
-      page = params[:doc] || IWriteDocs.docs_tree.index_node_url
-      @node = IWriteDocs.docs_tree.find_node_by_url(page)
+      docs_tree = DocsTree.new(session[:version])
+      page = params[:doc] || docs_tree.index_node_url
+      Rails.logger.info "path = #{page}"
+      @node = docs_tree.find_node_by_url(page)
       raise ActionController::RoutingError.new('Not found') if node_is_not_document?(@node) 
       content = prepare_page_content(@node.content[:source_path], session[:version])
       render 'body', locals: { content: content }
@@ -12,7 +14,8 @@ module IWriteDocs
     def diff
       file = params[:file]
       @tag = params[:tag]
-      @node = IWriteDocs.docs_tree.find_node_by_url(file)
+      docs_tree = DocsTree.new(session[:version])
+      @node = docs_tree.find_node_by_url(file)
       raise ActionController::RoutingError.new('Not found') if node_is_not_document?(@node)
       redirect_to(iwd.page_path(doc: @node.content[:url])) and return if @tag.to_s.empty?
       file_path = @node.content[:source_path] +'.md'
@@ -32,7 +35,8 @@ module IWriteDocs
     end
     
     def prepare_page_content(path, ver)
-      source = IWriteDocs.repo.get_file_content(path+ '.md', ver)
+      repo = GitAdapter.new(ver)
+      source = repo.get_file_content(path +".md")
       content = IWriteDocs::DocFilter.filter(source)
       IWriteDocs::MarkdownRender.parse_to_html(content).html_safe
     end

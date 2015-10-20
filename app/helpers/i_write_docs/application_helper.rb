@@ -2,27 +2,27 @@ module IWriteDocs
   module ApplicationHelper
 
     def iwd_navigation_tree
-      build_tree_menu(IWriteDocs.docs_tree.tree).html_safe
+      build_tree_menu(docs_tree.tree).html_safe
     end
 
     def iwd_versions
-      IWriteDocs.repo.tags.keys
+      GitAdapter.new.tags.keys
     end
 
     def iwd_previous_link_for(node)
-      prev_leaf = IWriteDocs.docs_tree.previous_leaf(node)
+      prev_leaf = docs_tree.previous_leaf(node)
       build_prev_next_link(prev_leaf)
     end
 
     def iwd_next_link_for(node)
-      next_leaf = IWriteDocs.docs_tree.next_leaf(node)
+      next_leaf = docs_tree.next_leaf(node)
       build_prev_next_link(next_leaf)
     end
 
     def iwd_diff_tag_links(file_path)
       res = "<select class='diffLinks'>Diff with verion: "
       res << "option>---</option>"
-      IWriteDocs.repo.tags.each_key do |t|
+      iwd_versions.each do |t|
         res << "<option value='#{t}'>#{t}</option>"
       end
       res << "</select>"
@@ -68,6 +68,10 @@ module IWriteDocs
     def node_in_path?(current_node)
       return true if current_node == @node
       @node.parentage.any? { |n| n == current_node }
+    end
+
+    def docs_tree
+      DocsTree.new(session[:version])
     end
 
   end

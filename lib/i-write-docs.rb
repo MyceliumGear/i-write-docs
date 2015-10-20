@@ -24,14 +24,6 @@ module IWriteDocs
     Config.instance
   end
 
-  def self.repo
-    GitAdapter.new
-  end
-
-  def self.docs_tree
-    DocsTree.new
-  end
-
   class Config
     include Singleton
     

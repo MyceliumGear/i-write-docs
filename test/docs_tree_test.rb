@@ -2,7 +2,7 @@ require 'test_helper'
 
 describe IWriteDocs::DocsTree do
 
-  let(:docs_instance) { IWriteDocs::DocsTree.instance }
+  let(:docs_instance) { IWriteDocs::DocsTree.new }
   let(:docs_tree) { docs_instance.tree }
 
   it "build tree from valid config" do

@@ -8,7 +8,7 @@ module IWriteDocs
     end
 
     def initialize
-      @docs_tree  = IWriteDocs.docs_tree.tree
+      @docs_tree  = DocsTree.new.tree
       path        = @docs_tree.root.content[:root_path]
       @build_path = "#{path}/#{IWriteDocs.config.build_folder}"
       create_build_folder
@@ -20,7 +20,7 @@ module IWriteDocs
         f.write(content)
         @docs_tree.each do |node|
           next if node.is_root? || node.has_children?
-          source = IWriteDocs.repo.get_file_content(node.content[:source_path] +".md")
+          source = GitAdapter.new.get_file_content(node.content[:source_path] +".md")
           content = IWriteDocs::DocFilter.filter(source)
           f.write(content +"\n\n")
         end

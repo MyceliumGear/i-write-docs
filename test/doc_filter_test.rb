@@ -4,9 +4,9 @@ describe IWriteDocs::DocFilter do
   
   it "leaves only selected project blocks" do
     doc = %q{Hello.
-      <<- gear
+      <<-admin_app
       gear text
-      gear->>
+      admin_app->>
       <<- project2
       project text
       project2->>}.gsub(/^\s+/,'')

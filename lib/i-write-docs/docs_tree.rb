@@ -3,9 +3,9 @@ module IWriteDocs
 
     attr_reader :docs_path, :tree, :leafs
     
-    def initialize
+    def initialize(ver = "")
       @docs_path = IWriteDocs.config.documentation_path
-      build_docs_tree
+      build_docs_tree(ver)
       build_leafs
     end
 
@@ -51,8 +51,9 @@ module IWriteDocs
       @leafs.index { |leaf| leaf.has_key? node.content[:url] }
     end
 
-    def build_docs_tree
-      config = IWriteDocs.repo.get_file_content('config.yml')
+    def build_docs_tree(ver = "")
+      repo = GitAdapter.new(ver)
+      config = repo.get_file_content('config.yml')
       docs_config = Psych.load(config)
       @tree = Tree::TreeNode.new("ROOT", {root_path: @docs_path,
                                           source_path: "#{IWriteDocs.config.source_folder}",
