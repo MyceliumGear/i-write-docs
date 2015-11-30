@@ -3,11 +3,13 @@ module IWriteDocs
 
     attr_accessor :version
     attr_reader :tags
+
+    MAIN_BRANCH = 'refs/heads/master'
       
     def initialize(version = "")
       @version = version
       @repo = Rugged::Repository.discover(IWriteDocs.config.documentation_path)
-      @master_oid = @repo.ref('refs/heads/master').target.oid
+      @master_oid = @repo.ref(MAIN_BRANCH).target.oid
       build_tags_hash
     end
 
@@ -50,10 +52,10 @@ module IWriteDocs
       diff.find_similar!(:renames => true)
       
       diff.each_delta do |delta|
-        old_file_path = delta.old_file[:path]
-        new_file_path = delta.new_file[:path]
-        next unless old_file_path == file_path
-        return new_file_path if old_file_path != new_file_path
+        cur_file_path = delta.old_file[:path]
+        target_file_path = delta.new_file[:path]
+        return target_file_path if delta.status == :renamed && cur_file_path == file_path
+        raise NotExistFile if delta.status == :deleted && cur_file_path == file_path
       end
       file_path
     end

@@ -19,6 +19,7 @@ require_relative 'i-write-docs/engine'
 module IWriteDocs
 
   class IWriteDocsError < StandardError; end
+  class NotExistFile < StandardError; end
 
   def self.config
     Config.instance
