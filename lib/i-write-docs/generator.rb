@@ -20,7 +20,7 @@ module IWriteDocs
         f.write(content)
         @docs_tree.each do |node|
           next if node.is_root? || node.has_children?
-          source = GitAdapter.new.get_file_content(node.content[:source_path] +".md")
+          source = GitAdapter.new.get_file_content(node.content[:source_path])
           content = IWriteDocs::DocFilter.filter(source)
           f.write(content +"\n\n")
         end

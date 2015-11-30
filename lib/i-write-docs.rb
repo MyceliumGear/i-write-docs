@@ -28,7 +28,7 @@ module IWriteDocs
   class Config
     include Singleton
     
-    attr_accessor :subproject
+    attr_accessor :subproject, :locale
 
     def initialize
       @default_subproject = ENV['DEFAULT_SUBPROJECT'] || 'admin_app'
@@ -48,6 +48,10 @@ module IWriteDocs
 
     def subproject
       @subproject || @default_subproject
+    end
+
+    def locale
+      @locale || 'en'
     end
   end
   

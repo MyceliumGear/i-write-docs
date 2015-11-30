@@ -10,7 +10,7 @@ describe IWriteDocs::DocsTree do
   end
 
   it "have for each node specific content" do
-    content = {:source_path=>"source/index", :url => 'index', :title=>"Index"}
+    content = {:source_path=>"source/en/index.md", :url => 'index', :title=>"Index"}
     docs_tree.first_child.content.must_equal content
   end
 
@@ -19,7 +19,7 @@ describe IWriteDocs::DocsTree do
   end
 
   it "returns node by given url" do
-    docs_instance.find_node_by_url('index').name.must_equal 'index'
+    docs_instance.find_node_by_url('index').name.must_equal 'Index'
   end
 
   it "returns nil for bad given url" do
