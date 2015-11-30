@@ -53,10 +53,10 @@ module IWriteDocs
     def locale
       @locale || 'en'
     end
+
+    def working_branch
+      ENV['DOCS_WORKING_BRANCH'] || 'master'
+    end
   end
   
-  # def self.setup
-  #   yield self.config
-  # end
-
 end

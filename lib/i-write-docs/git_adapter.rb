@@ -4,12 +4,11 @@ module IWriteDocs
     attr_accessor :version
     attr_reader :tags
 
-    MAIN_BRANCH = 'refs/heads/master'
-      
     def initialize(version = "")
       @version = version
       @repo = Rugged::Repository.discover(IWriteDocs.config.documentation_path)
-      @master_oid = @repo.ref(MAIN_BRANCH).target.oid
+      branch = "refs/heads/#{IWriteDocs.config.working_branch}"
+      @master_oid = @repo.ref(branch).target.oid
       build_tags_hash
     end
 
