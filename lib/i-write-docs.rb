@@ -19,6 +19,7 @@ require_relative 'i-write-docs/engine'
 module IWriteDocs
 
   class IWriteDocsError < StandardError; end
+  class NotExistFile < StandardError; end
 
   def self.config
     Config.instance
@@ -27,7 +28,7 @@ module IWriteDocs
   class Config
     include Singleton
     
-    attr_accessor :subproject
+    attr_accessor :subproject, :locale
 
     def initialize
       @default_subproject = ENV['DEFAULT_SUBPROJECT'] || 'admin_app'
@@ -48,10 +49,14 @@ module IWriteDocs
     def subproject
       @subproject || @default_subproject
     end
+
+    def locale
+      @locale || 'en'
+    end
+
+    def working_branch
+      ENV['DOCS_WORKING_BRANCH'] || 'master'
+    end
   end
   
-  # def self.setup
-  #   yield self.config
-  # end
-
 end

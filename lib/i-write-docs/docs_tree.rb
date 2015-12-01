@@ -1,10 +1,14 @@
 module IWriteDocs
   class DocsTree
 
+    CONFIG_FILE = 'config.yml'
+    ROOT_TITLE = 'Documentation'
     attr_reader :docs_path, :tree, :leafs
-    
+
     def initialize(ver = "")
-      @docs_path = IWriteDocs.config.documentation_path
+      @docs_path   = IWriteDocs.config.documentation_path
+      @locale      = IWriteDocs.config.locale
+      @source_path = "#{IWriteDocs.config.source_folder}/#{@locale}"
       build_docs_tree(ver)
       build_leafs
     end
@@ -14,11 +18,8 @@ module IWriteDocs
     end
 
     def find_node_by_url(url)
-      node_path = ''
-      url.split("/").map { |name| node_path << "['#{name}']" }
-      eval("@tree#{node_path}")
-    rescue NoMethodError
-      return nil
+      @tree.breadth_each { |node| return node if node.content[:url] == url }
+      nil
     end
 
     # @return [Hash] of the form {"url" => "title"}, where url and title get from node
@@ -27,7 +28,7 @@ module IWriteDocs
       return nil if index == 0
       @leafs.at(index-1)
     end
-    
+
     # @return [Hash] of the form {"url" => "title"}, where url and title get from node
     def next_leaf(node)
       index = get_index_in_leafs(node)
@@ -37,38 +38,24 @@ module IWriteDocs
 
   private
 
-    def prepare_node_content(node, parent)
-      title = node.gsub('_', ' ').capitalize
-      source_path = "#{parent.content[:source_path]}/#{node}"
-      {
-        source_path: source_path,
-        url: source_path.split("/").drop(1).join("/"),
-        title: title
-      }
-    end
-
     def get_index_in_leafs(node)
       @leafs.index { |leaf| leaf.has_key? node.content[:url] }
     end
 
     def build_docs_tree(ver = "")
-      repo = GitAdapter.new(ver)
-      config = repo.get_file_content('config.yml')
-      docs_config = Psych.load(config)
+      config_file = GitAdapter.new(ver).get_file_content(CONFIG_FILE)
+      docs_config = Psych.load(config_file)
       @tree = Tree::TreeNode.new("ROOT", {root_path: @docs_path,
-                                          source_path: "#{IWriteDocs.config.source_folder}",
+                                          source_path: @source_path,
                                           url: "",
-                                          title: "Documentation"})
-      traverse(docs_config, @tree) do |node, parent|
-        leaf = node.is_a?(Tree::TreeNode) ? node : Tree::TreeNode.new(node.to_s, prepare_node_content(node, parent))
+                                          title: ROOT_TITLE})
+      traverse(docs_config[@locale], @tree) do |node, parent|
+        name = node.is_a?(Hash) ? node.keys.first : node
+        leaf = node.is_a?(Tree::TreeNode) ? node : Tree::TreeNode.new(name, prepare_node_content(node, parent))
         parent << leaf
       end
-     # rescue Errno::ENOENT
-    #   p "YAML config not found"
-    # rescue Psych::SyntaxError
-    #   p "YAML config file contains invalid syntax"
     end
-    
+
     def build_leafs
       @leafs = []
       @tree.each_leaf do |node| 
@@ -78,8 +65,9 @@ module IWriteDocs
     end
 
     def traverse(obj, parent, &blk)
+      is_folder = ->(obj) { obj.is_a?(Hash) && obj.values.first.is_a?(Array) }
       case obj
-      when Hash
+      when is_folder
         obj.each do |k,v|
           sub_root = Tree::TreeNode.new(k, prepare_node_content(k, parent))
           blk.call(sub_root, parent)
@@ -91,5 +79,19 @@ module IWriteDocs
         blk.call(obj, parent)
       end
     end
+
+    def prepare_node_content(node, parent)
+      case node
+      when String
+        {source_path: '', url: '', title: node}
+      else
+        {
+          source_path:  "#{@source_path}/#{node.values.first}",
+          url: node.values.first.gsub(/\.(.*)$/, ''),
+          title: node.keys.first
+        }
+      end
+    end
+
   end
 end

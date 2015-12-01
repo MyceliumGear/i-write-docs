@@ -3,7 +3,7 @@ require 'test_helper'
 describe IWriteDocs::MarkdownRender do
 
   it "render file as expected" do
-    html = IWriteDocs::MarkdownRender.parse_from_md_file("#{ENV['DOCUMENTATION_PATH']}/source/changes.md")
+    html = IWriteDocs::MarkdownRender.parse_from_md_file("#{ENV['DOCUMENTATION_PATH']}/source/en/changes.md")
     html.must_equal "<h1>Overview</h1>\n"
   end
 

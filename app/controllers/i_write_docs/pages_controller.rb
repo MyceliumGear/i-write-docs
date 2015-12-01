@@ -4,22 +4,18 @@ module IWriteDocs
     def show
       docs_tree = DocsTree.new(session[:version])
       page = params[:doc] || docs_tree.index_node_url
-      Rails.logger.info "path = #{page}"
       @node = docs_tree.find_node_by_url(page)
-      raise ActionController::RoutingError.new('Not found') if node_is_not_document?(@node) 
+      raise ActionController::RoutingError.new("Not found page: #{page}") if node_is_not_document?(@node) 
       content = prepare_page_content(@node.content[:source_path], session[:version])
       render 'body', locals: { content: content }
     end
 
     def diff
-      file = params[:file]
       @tag = params[:tag]
-      docs_tree = DocsTree.new(session[:version])
-      @node = docs_tree.find_node_by_url(file)
-      raise ActionController::RoutingError.new('Not found') if node_is_not_document?(@node)
+      @node = DocsTree.new(session[:version]).find_node_by_url(params[:file])
+      raise ActionController::RoutingError.new("Not found page: #{params[:file]}") if node_is_not_document?(@node)
       redirect_to(iwd.page_path(doc: @node.content[:url])) and return if @tag.to_s.empty?
-      file_path = @node.content[:source_path] +'.md'
-      html_content = Differ.new(file_path, @tag, session[:version]).result.html_safe
+      html_content = Differ.new(@node.content[:source_path], @tag, session[:version]).result.html_safe
       render 'body', locals: { content: html_content }
     end
 
@@ -33,10 +29,9 @@ module IWriteDocs
     def node_is_not_document?(node)
       node.nil? || node.has_children?
     end
-    
+
     def prepare_page_content(path, ver)
-      repo = GitAdapter.new(ver)
-      source = repo.get_file_content(path +".md")
+      source  = GitAdapter.new(ver).get_file_content(path)
       content = IWriteDocs::DocFilter.filter(source)
       IWriteDocs::MarkdownRender.parse_to_html(content).html_safe
     end
