@@ -1,5 +1,6 @@
 module IWriteDocs
   class PagesController < ApplicationController
+    layout 'application'
 
     def show
       docs_tree = DocsTree.new(session[:version])
