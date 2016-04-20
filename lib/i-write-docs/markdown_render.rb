@@ -1,10 +1,11 @@
 module IWriteDocs
   class MarkdownRender < Redcarpet::Render::HTML
-    
+
      REDCARPET_OPTIONS = { highlight: true,
                            fenced_code_blocks: true,
                            with_toc_data: true,
-                           no_intra_emphasis: true }
+                           no_intra_emphasis: true,
+                           tables: true }
 
     def self.parse_to_html(source)
       md = self.new
